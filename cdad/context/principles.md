@@ -27,10 +27,12 @@ Each principle: the rule, then the trade-off it accepts.
   anchors within the page).
 - **One canonical Bootstrap reference** — every mention of the Bootstrap
   project, anywhere in the site, points at
-  `https://github.com/CDAD-Community/cdad-bootstrap`. Rules out mixing in the
-  superseded `GTT-method-Community/gtt-method-bootstrap` name or any personal
-  fork URL. Accepts: content written against the old name needs updating
-  when found, not left as "still basically right."
+  `https://github.com/GTT-Community/gtt-bootstrap`, and every "GitHub" link
+  points at `https://github.com/orgs/GTT-Community/repositories`. Rules out
+  mixing in the superseded `GTT-method-Community/gtt-method-bootstrap` or
+  `CDAD-Community/cdad-bootstrap` names, or any personal fork URL. Accepts:
+  content written against an old name needs updating when found, not left
+  as "still basically right."
 
 ## Anti-examples
 

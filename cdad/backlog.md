@@ -56,8 +56,11 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
 ##### STORY-001 — Fix dead/decorative CTAs and audit every button and link
 
 - **Status:** Done — `src/routes/index.tsx` pillar CTAs now link to
-  `/manual`, `https://github.com/GTT-method-Community` (x2), and
-  `/gtt-method-2-1` instead of `#method`. Full link audit below.
+  `/manual`, `https://github.com/orgs/GTT-Community/repositories` (x2), and
+  `/gtt-method-2-1` instead of `#method`. Both "Get Started" CTAs (header +
+  hero) now link to `https://github.com/GTT-Community/gtt-bootstrap`
+  instead of anchoring to `#method` (added 2026-09-21 per Solution
+  Designer follow-up). Full link audit below.
 - **Priority:** High
 - **Description:** `src/routes/index.tsx`'s four "pillars" cards ("Browse
   Docs", "View on GitHub", "Join the Community", "See Examples") all render
@@ -77,20 +80,29 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
 ##### STORY-002 — Correct all Bootstrap repository references
 
 - **Status:** Done — all 6 URL occurrences and 2 project-name mentions in
-  `src/lib/gttContent.ts` updated to `CDAD-Community/cdad-bootstrap`.
-  Verified zero remaining `gtt-method-bootstrap`/`mgriott` references in
-  `src/` and in the built output (`dist/`).
+  `src/lib/gttContent.ts` updated. Initially pointed at
+  `CDAD-Community/cdad-bootstrap` per `Project Vision.md`; corrected
+  2026-09-21 on Solution Designer follow-up to the actual official repo,
+  `GTT-Community/gtt-bootstrap` (see `cdad/context/glossary.md` →
+  *Bootstrap*). Also corrected every "GitHub" button/link, across all
+  routes, to `https://github.com/orgs/GTT-Community/repositories`
+  (previously `GTT-method-Community`). Verified zero remaining
+  `gtt-method-bootstrap`/`GTT-method-Community`/`CDAD-Community/cdad-bootstrap`/
+  `mgriott` references in `src/` and in the built output (`dist/`).
 - **Priority:** High
 - **Description:** `src/lib/gttContent.ts` currently references
   `https://github.com/GTT-method-Community/gtt-method-bootstrap` (the
   superseded name) in multiple page bodies (`gtt-method-2-1`, `faq`,
   `manual`). Update every Bootstrap reference, anywhere in the site's copy
-  or links, to `https://github.com/CDAD-Community/cdad-bootstrap`.
+  or links, to the current official repository.
 - **Acceptance Criteria:**
   - Every mention of the Bootstrap project (button, link, or inline text
-    URL) resolves to `CDAD-Community/cdad-bootstrap`.
+    URL) resolves to `GTT-Community/gtt-bootstrap`.
+  - Every "GitHub" button/link resolves to
+    `https://github.com/orgs/GTT-Community/repositories`.
   - No reference to `GTT-method-Community/gtt-method-bootstrap`,
-    `mgriott/...`, or any other superseded/personal repo remains in `src/`.
+    `CDAD-Community/cdad-bootstrap`, `mgriott/...`, or any other
+    superseded/personal repo remains in `src/`.
 - **Dependencies:** None
 - **Notes:** Corresponds to Project Vision.md Task 2.
 
@@ -197,6 +209,17 @@ and for `/manual` reachability from every page's nav (present on all 9),
 and live in-browser testing (dev server): language switch, client-side
 navigation with language persistence, and full-reload persistence, on
 Home → About → Manual.
+
+**2026-09-21 follow-up round:** Solution Designer corrected the Bootstrap
+repo and GitHub org (see STORY-001/STORY-002 status updates above). Both
+"Get Started" CTAs now link to `GTT-Community/gtt-bootstrap`, every
+"GitHub" link now goes to `github.com/orgs/GTT-Community/repositories`,
+and all `gttContent.ts` Bootstrap mentions were updated to match.
+Re-verified via `tsc --noEmit` (clean), a fresh
+`npm run build:github-pages` (all 9 routes prerendered again, no errors),
+and in-browser `document.querySelectorAll('a')` checks on `/`, `/about`,
+and `/gtt-method-2-1` confirming the exact target URLs and `target="_blank"`
+on every external link touched.
 
 **Task 10 checklist status:** all items satisfied except the last two
 implicit ones ("errores de routing" / "build de producción exitoso" are

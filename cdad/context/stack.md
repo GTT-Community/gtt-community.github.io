@@ -46,7 +46,7 @@ flowchart LR
         CFPages["Prerendered HTML/CSS/JS\n(Cloudflare Pages, secondary)"]
     end
 
-    GH["GitHub\n(org + cdad-bootstrap repo)"]
+    GH["GitHub\n(GTT-Community org + gtt-bootstrap repo)"]
 
     Browser -->|HTTPS GET| Pages
     Browser -->|HTTPS GET, alt target| CFPages

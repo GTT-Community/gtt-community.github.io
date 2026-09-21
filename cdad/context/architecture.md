@@ -28,8 +28,9 @@ data table in source, plus the home route (`/`).
 ## Integration strategy
 
 No external services are called at runtime. The only "integrations" are
-outbound links to GitHub (the GTT-method-Community org and the Bootstrap
-repository). There is no API layer, no auth, no messaging — `@tanstack/react-query`'s
+outbound links to GitHub (the `GTT-Community` org's repositories page and
+the `GTT-Community/gtt-bootstrap` repository). There is no API layer, no
+auth, no messaging — `@tanstack/react-query`'s
 `QueryClientProvider` is present in the shell but nothing in the current
 codebase issues a query through it.
 

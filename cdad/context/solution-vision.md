@@ -39,10 +39,13 @@ QA/remediation pass.
   card's stated action, no 404s, no internal link that accidentally points at
   the wrong language variant of a page.
 - Every reference to the Bootstrap project points at
-  `https://github.com/CDAD-Community/cdad-bootstrap` — the current official
-  repository — with no remaining reference to the superseded
-  `GTT-method-Community/gtt-method-bootstrap` name or to any personal
-  (`mgriott/...`) fork.
+  `https://github.com/GTT-Community/gtt-bootstrap` — the current official
+  repository (corrected 2026-09-21 by the Solution Designer; superseding
+  `Project Vision.md`'s original `CDAD-Community/cdad-bootstrap`) — with no
+  remaining reference to `GTT-method-Community/gtt-method-bootstrap`,
+  `CDAD-Community/cdad-bootstrap`, or any personal (`mgriott/...`) fork.
+  Every "GitHub" link/button points at
+  `https://github.com/orgs/GTT-Community/repositories`.
 - The Quick User Manual reads as a native section of the site (shared header,
   footer, language switch, styling) and is reachable from primary navigation
   on every page, not just some.
