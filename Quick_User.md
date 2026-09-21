@@ -1,25 +1,25 @@
-# GTT-method V2.1 — Manual de Usuario Rápido
+# GTT-Method V2.1 — Manual de Usuario Rápido
 
 > Fuente: https://cdad-community.github.io/es/manual-usuario-rapido.html
 >
-> Migración conceptual: CDAD → GTT-method / Governance Through Thinking
+> Migración conceptual: CDAD → GTT-Method / Governance Through Thinking
 
 ## Principio
 
-**Tú defines la intención. GTT-method protege la intención. La IA acelera la implementación.**
+**Tú defines la intención. GTT-Method protege la intención. La IA acelera la implementación.**
 
-La regla de oro: la IA puede analizar, proponer y ejecutar; la autoridad sobre las decisiones gobernadas sigue siendo humana. GTT-method puede introducir fricción deliberada en el desarrollo rápido para guiar al usuario hacia el cumplimiento de los estándares, las reglas y la gobernanza del proyecto.
+La regla de oro: la IA puede analizar, proponer y ejecutar; la autoridad sobre las decisiones gobernadas sigue siendo humana. GTT-Method puede introducir fricción deliberada en el desarrollo rápido para guiar al usuario hacia el cumplimiento de los estándares, las reglas y la gobernanza del proyecto.
 
 ## 1. El flujo completo
 
-GTT-method convierte la gobernanza en parte natural del trabajo, sin pedirte que administres manualmente cada artefacto.
+GTT-Method convierte la gobernanza en parte natural del trabajo, sin pedirte que administres manualmente cada artefacto.
 
 ```text
 TÚ define → delega → revisa → acepta/rechaza
               ↓
 AGENTE analiza → implementa lo permitido → propone cuando corresponde
               ↓
-GTT-method registra decisiones → actualiza contexto → protege lo aprobado
+GTT-Method registra decisiones → actualiza contexto → protege lo aprobado
 ```
 
 Implementación rutinaria: delega.
@@ -36,9 +36,9 @@ Change Request → Proposal → revisión humana → aceptación → ADR/context
 
 Deja en la raíz un documento con visión, objetivo, funcionalidad principal, arquitectura, stack, restricciones y decisiones conocidas. No tiene que ser perfecto, pero debe expresar lo que quieres construir.
 
-### Incorpora GTT-method
+### Incorpora GTT-Method
 
-Entrega al ADE la implementación de GTT-method Bootstrap.
+Entrega al ADE la implementación de GTT-Method Bootstrap.
 
 ```text
 https://github.com/CDAD-Community/cdad-bootstrap
@@ -47,13 +47,13 @@ https://github.com/CDAD-Community/cdad-bootstrap
 Y pídele:
 
 ```text
-Clona/incorpora GTT-method Bootstrap en este proyecto.
+Clona/incorpora GTT-Method Bootstrap en este proyecto.
 Inspecciona el proyecto y usa mi documento de diseño inicial
-como fuente para ejecutar el GTT-method Bootstrap.
+como fuente para ejecutar el GTT-Method Bootstrap.
 No inventes decisiones; si falta información, pregúntame.
 ```
 
-El agente debe inspeccionar, identificar el documento fuente, detectar conflictos, evitar adivinar, mapear el diseño al contexto GTT-method y mostrarte el resultado.
+El agente debe inspeccionar, identificar el documento fuente, detectar conflictos, evitar adivinar, mapear el diseño al contexto GTT-Method y mostrarte el resultado.
 
 ## 3. Las dos confirmaciones
 
@@ -61,7 +61,7 @@ El agente debe inspeccionar, identificar el documento fuente, detectar conflicto
 
 Si no, corrige el diseño y vuelve a revisarlo. Si sí, confirma explícitamente.
 
-### B. ¿GTT-method entendió correctamente mi solución?
+### B. ¿GTT-Method entendió correctamente mi solución?
 
 Revisa visión, arquitectura, stack, principios, restricciones y glosario. Corrige cualquier error antes de congelar.
 
@@ -69,18 +69,18 @@ Revisa visión, arquitectura, stack, principios, restricciones y glosario. Corri
 
 ## 4. Revisa el workspace y ejecuta Freeze
 
-Después del Bootstrap encontrarás archivos como `AGENTS.md`, `CHANGE-REQUEST.md`, `SOURCE-BRIEF.*` y el directorio `gtt-method/` con contexto, ADRs, propuestas y scripts.
+Después del Bootstrap encontrarás archivos como `AGENTS.md`, `CHANGE-REQUEST.md`, `SOURCE-BRIEF.*` y el directorio `GTT-Method/` con contexto, ADRs, propuestas y scripts.
 
 Mapa rápido:
 
 ```text
-gtt-method/context/stack.md
+GTT-Method/context/stack.md
 ```
 
 Cuando hayas confirmado el contexto:
 
 ```text
-gtt-method/scripts/gtt-method-freeze.sh
+GTT-Method/scripts/GTT-Method-freeze.sh
 ```
 
 Después de Freeze, el agente debe leer el contexto gobernado y no modificarlo directamente. La protección no depende solamente de una promesa del agente.
@@ -91,7 +91,7 @@ Una vez congelado el contexto, delega las tareas dentro de los límites establec
 
 ```text
 Implementa esta funcionalidad siguiendo la arquitectura
-y las restricciones definidas por GTT-method. No cambies
+y las restricciones definidas por GTT-Method. No cambies
 decisiones arquitectónicas.
 ```
 
@@ -168,7 +168,7 @@ El mapa arquitectónico debe seguir a la decisión. No edites `stack.md` directa
 
 # 11. Cómo usar Epics, Stories y Backlog
 
-Puedes entregar tus Epics y Stories dentro del documento inicial de diseño o en un documento separado de requisitos/backlog. GTT-method analizará ambas fuentes durante el Bootstrap y las incorporará a `gtt-method/backlog.md`. No necesitas preparar ese archivo manualmente.
+Puedes entregar tus Epics y Stories dentro del documento inicial de diseño o en un documento separado de requisitos/backlog. GTT-Method analizará ambas fuentes durante el Bootstrap y las incorporará a `GTT-Method/backlog.md`. No necesitas preparar ese archivo manualmente.
 
 ## 11.1 Dos formas de entregar el backlog
 
@@ -191,7 +191,7 @@ Design Document
     └── STORY-005: WhatsApp notification
 ```
 
-Durante el Bootstrap, el ADE debe identificar las Epics y Stories, validar que estén completas, detectar inconsistencias, no inventar Stories, mapearlas al backlog GTT-method, pedir aclaraciones y presentar el resultado para confirmación.
+Durante el Bootstrap, el ADE debe identificar las Epics y Stories, validar que estén completas, detectar inconsistencias, no inventar Stories, mapearlas al backlog GTT-Method, pedir aclaraciones y presentar el resultado para confirmación.
 
 ### Opción B — Diseño y backlog separados
 
@@ -212,12 +212,12 @@ epics-and-stories.md
 
 El documento de Epics y Stories es una fuente de requisitos. El ADE no debe copiarlo sin analizarlo: debe comprobar Epics, Stories, IDs, duplicados, relaciones, alcance, consistencia con la visión y consistencia con la arquitectura. Si encuentra contradicciones, debe preguntarte.
 
-## 11.2 Qué hace GTT-method con el backlog
+## 11.2 Qué hace GTT-Method con el backlog
 
 El resultado confirmado queda en:
 
 ```text
-gtt-method/backlog.md
+GTT-Method/backlog.md
 ```
 
 Ese archivo se convierte en la línea de desarrollo gobernada.
@@ -227,16 +227,16 @@ SOURCE-BRIEF / Design Document
               +
        Epics & Stories
               ↓
-       GTT-method Bootstrap
+       GTT-Method Bootstrap
               ↓
-       gtt-method/backlog.md
+       GTT-Method/backlog.md
 ```
 
 El backlog responde qué vamos a construir y qué sigue ahora.
 
 El contexto responde dentro de qué arquitectura y decisiones vamos a construirlo.
 
-## 11.3 GTT-method no inventa el backlog
+## 11.3 GTT-Method no inventa el backlog
 
 Si entregas `EPIC-001` con `STORY-001` y `STORY-002`, el agente no debe crear mágicamente Stories adicionales porque parezcan necesarias.
 
@@ -280,13 +280,13 @@ CHANGE-REQUEST.md
         ↓
   Promotion
         ↓
-gtt-method/backlog.md
+GTT-Method/backlog.md
 ```
 
 Cuando exista un script de promoción, la Proposal aprobada se aplica mediante el script correspondiente, por ejemplo:
 
 ```text
-bash gtt-method/proposals/apply-....sh
+bash GTT-Method/proposals/apply-....sh
 ```
 
 Así el backlog promovido queda trazable y no se convierte en una modificación silenciosa de la IA.
@@ -296,7 +296,7 @@ Así el backlog promovido queda trazable y no se convierte en una modificación 
 ```text
 Design + Epics + Stories
           ↓
-      GTT-method
+      GTT-Method
           ↓
 Governed Context + Backlog
           ↓
@@ -305,7 +305,7 @@ Governed Context + Backlog
      Implementation
 ```
 
-Una vez confirmado, `gtt-method/backlog.md` se convierte en la línea de desarrollo gobernada del proyecto.
+Una vez confirmado, `GTT-Method/backlog.md` se convierte en la línea de desarrollo gobernada del proyecto.
 
 ---
 

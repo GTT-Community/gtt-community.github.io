@@ -1,8 +1,8 @@
-# GTT-method Community — Complete Website Content Extraction
+# GTT-Method Community — Complete Website Content Extraction
 
-> Source: https://gtt-method-community.github.io/
+> Source: https://GTT-Method-community.github.io/
 >
-> Repository source: https://github.com/mgriott/gtt-method-site
+> Repository source: https://github.com/mgriott/GTT-Method-site
 >
 > Extraction date: 2026-09-21
 >
@@ -22,11 +22,11 @@ Main navigation:
 4. Approach — `/en/approach.html`
 5. Ecosystem — `/en/ecosystem.html`
 6. Methodology — `/en/methodology.html`
-7. GTT-method 2.1 — `/en/gtt-method-2-1.html`
+7. GTT-Method 2.1 — `/en/GTT-Method-2-1.html`
 8. FAQ — `/en/faq.html`
 9. Manual — `/en/quick-user-manual.html`
-10. GitHub — `https://github.com/GTT-method-Community/gtt-method-bootstrap`
-11. GTT-method Docs — `https://github.com/GTT-method-Community/gtt-method-docs`
+10. GitHub — `https://github.com/GTT-Method-Community/GTT-Method-bootstrap`
+11. GTT-Method Docs — `https://github.com/GTT-Method-Community/GTT-Method-docs`
 
 ## Español
 
@@ -38,23 +38,23 @@ Main navigation:
 4. Enfoque — `/es/enfoque.html`
 5. Ecosistema — `/es/ecosistema`
 6. Metodología — `/es/metodologia.html`
-7. GTT-method 2.1 — `/es/gtt-method-2-1.html`
+7. GTT-Method 2.1 — `/es/GTT-Method-2-1.html`
 8. Preguntas — `/es/preguntas-frecuentes.html`
 9. Manual — `/es/manual-usuario-rapido.html`
-10. GitHub — `https://github.com/GTT-method-Community/gtt-method-bootstrap`
-11. GTT-method Docs — `https://github.com/GTT-method-Community/gtt-method-docs`
+10. GitHub — `https://github.com/GTT-Method-Community/GTT-Method-bootstrap`
+11. GTT-Method Docs — `https://github.com/GTT-Method-Community/GTT-Method-docs`
 
 ## Site-wide footer
 
 English:
 
-GTT-method — Governance Through Thinking
+GTT-Method — Governance Through Thinking
 
 Open Source • AI-Assisted Software Development • SDD • Context Engineering • AI Coding Agents
 
 Spanish:
 
-GTT-method — Governance Through Thinking
+GTT-Method — Governance Through Thinking
 
 Código Abierto • Desarrollo de Software Asistido por IA • SDD • Context Engineering • Agentes de IA
 
@@ -76,7 +76,7 @@ Badge:
 
 Title:
 
-> GTT-method
+> GTT-Method
 
 Subtitle:
 
@@ -116,7 +116,7 @@ Intro:
 
 > AI-assisted development needs explicit rules, responsibilities and controlled context.
 
-### The GTT-method Approach
+### The GTT-Method Approach
 
 Intro:
 
@@ -139,11 +139,11 @@ Five-step flow:
 5. **Validated Software**
    - Produce quality changes.
 
-### GTT-method and the AI Development Ecosystem
+### GTT-Method and the AI Development Ecosystem
 
 Intro:
 
-> GTT-method complements SDD, Context Engineering and modern AI-assisted software engineering practices.
+> GTT-Method complements SDD, Context Engineering and modern AI-assisted software engineering practices.
 
 #### Spec-Driven Development
 
@@ -151,11 +151,11 @@ Intro:
 
 #### Context Engineering
 
-> GTT-method treats project context as an explicit engineering artifact that can be structured, governed and protected.
+> GTT-Method treats project context as an explicit engineering artifact that can be structured, governed and protected.
 
 #### AI Coding Agents
 
-> GTT-method provides a governance layer for Claude Code, Kiro, Cursor, Copilot and other agentic development tools.
+> GTT-Method provides a governance layer for Claude Code, Kiro, Cursor, Copilot and other agentic development tools.
 
 #### AI-Assisted Development
 
@@ -169,7 +169,7 @@ Heading:
 
 Intro:
 
-> GTT-method introduces explicit protection around the context that governs the agent.
+> GTT-Method introduces explicit protection around the context that governs the agent.
 
 Architecture:
 
@@ -185,11 +185,11 @@ Governed Context
 Controlled Implementation
 ```
 
-### When Should You Use GTT-method?
+### When Should You Use GTT-Method?
 
 Intro:
 
-> GTT-method is particularly useful when AI agents participate actively in implementation and architectural consistency matters.
+> GTT-Method is particularly useful when AI agents participate actively in implementation and architectural consistency matters.
 
 #### Existing Systems
 
@@ -207,33 +207,33 @@ Intro:
 
 > When multiple sessions, agents and developers need to preserve the same project knowledge and engineering intent.
 
-### GTT-method and SDD
+### GTT-Method and SDD
 
 Intro:
 
-> GTT-method complements Spec-Driven Development (SDD) by adding a governance model for context, architecture and rules consumed by AI coding agents.
+> GTT-Method complements Spec-Driven Development (SDD) by adding a governance model for context, architecture and rules consumed by AI coding agents.
 
 #### SDD defines what to build
 
 > Specification-Driven Development makes requirements, expected behavior and implementation intent explicit and reviewable.
 
-#### GTT-method governs how agents work
+#### GTT-Method governs how agents work
 
-> GTT-method treats project context, architectural decisions, constraints and agent rules as governed engineering assets that can be protected.
+> GTT-Method treats project context, architectural decisions, constraints and agent rules as governed engineering assets that can be protected.
 
 #### How they complement each other
 
-> SDD can define what should be built; GTT-method governs the context and boundaries that guide an AI agent while it builds it.
+> SDD can define what should be built; GTT-Method governs the context and boundaries that guide an AI agent while it builds it.
 
 #### Not a replacement
 
-> GTT-method does not replace SDD. The two approaches work together in modern AI-assisted software development.
+> GTT-Method does not replace SDD. The two approaches work together in modern AI-assisted software development.
 
 ### Designed for AI Coding Agents
 
 Intro:
 
-> GTT-method is an approach, not a replacement for your preferred development agent.
+> GTT-Method is an approach, not a replacement for your preferred development agent.
 
 Supported examples:
 
@@ -248,45 +248,45 @@ Supported examples:
 
 Intro:
 
-> Common questions about GTT-method, its concepts and how to get started.
+> Common questions about GTT-Method, its concepts and how to get started.
 
-#### What is GTT-method?
+#### What is GTT-Method?
 
-> GTT-method (Governance Through Thinking) is an open-source methodology for governed AI-assisted software development that combines specifications, context engineering, governance and protection patterns.
+> GTT-Method (Governance Through Thinking) is an open-source methodology for governed AI-assisted software development that combines specifications, context engineering, governance and protection patterns.
 
-#### Is GTT-method a replacement for SDD?
+#### Is GTT-Method a replacement for SDD?
 
-> No. GTT-method complements SDD. SDD focuses on explicit specifications; GTT-method focuses on governing the context, architecture, rules and boundaries used by AI-assisted development.
+> No. GTT-Method complements SDD. SDD focuses on explicit specifications; GTT-Method focuses on governing the context, architecture, rules and boundaries used by AI-assisted development.
 
-#### Is GTT-method an AI coding agent?
+#### Is GTT-Method an AI coding agent?
 
-> No. GTT-method is a methodology and governance approach that can be applied around different AI coding agents and development tools.
+> No. GTT-Method is a methodology and governance approach that can be applied around different AI coding agents and development tools.
 
 #### What is the Context Protection Pattern?
 
-> CPP is a GTT-method pattern for protecting governed project context and making changes to critical engineering knowledge deliberate and reviewable.
+> CPP is a GTT-Method pattern for protecting governed project context and making changes to critical engineering knowledge deliberate and reviewable.
 
 #### What is architectural drift?
 
-> Individually reasonable AI-generated changes that gradually move a system away from its intended design. GTT-method helps prevent this.
+> Individually reasonable AI-generated changes that gradually move a system away from its intended design. GTT-Method helps prevent this.
 
 #### Where do I start?
 
-> Start with the open-source GTT-method Bootstrap project. Clone it, understand the governed context structure, then adapt rules and protection mechanisms to your project.
+> Start with the open-source GTT-Method Bootstrap project. Clone it, understand the governed context structure, then adapt rules and protection mechanisms to your project.
 
 ### Community section
 
 Heading:
 
-> GTT-method Community
+> GTT-Method Community
 
 Text:
 
-> GTT-method is an open-source methodology maintained by the GTT-method Community. Contributions, experiments, implementations and critical feedback are welcome.
+> GTT-Method is an open-source methodology maintained by the GTT-Method Community. Contributions, experiments, implementations and critical feedback are welcome.
 
-> Created by Moisés Griott • Maintained by GTT-method Community
+> Created by Moisés Griott • Maintained by GTT-Method Community
 
-> Reference Implementation: gtt-method-bootstrap
+> Reference Implementation: GTT-Method-bootstrap
 
 ---
 
@@ -296,7 +296,7 @@ Text:
 
 Title:
 
-> About GTT-method
+> About GTT-Method
 
 Subtitle:
 
@@ -306,15 +306,15 @@ Description:
 
 > Understanding the methodology, principles and approach to governed AI-assisted software development.
 
-### What is GTT-method?
+### What is GTT-Method?
 
-> GTT-method (Governance Through Thinking) is an open-source methodology for governed AI-assisted software development.
+> GTT-Method (Governance Through Thinking) is an open-source methodology for governed AI-assisted software development.
 
-> GTT-method provides a governance layer around AI-assisted software development. It combines ideas from Spec-Driven Development (SDD), Context Engineering, AI coding agents, software architecture governance, engineering constraints, and human architectural decisions.
+> GTT-Method provides a governance layer around AI-assisted software development. It combines ideas from Spec-Driven Development (SDD), Context Engineering, AI coding agents, software architecture governance, engineering constraints, and human architectural decisions.
 
 > The goal is not to replace specifications, developers or AI agents. The goal is to make the **context and architectural intent that guide AI agents explicit and governable**.
 
-> GTT-method treats context as an engineering asset — something that can be structured, governed, protected and validated. **Context is the Source of Truth.**
+> GTT-Method treats context as an engineering asset — something that can be structured, governed, protected and validated. **Context is the Source of Truth.**
 
 ### Core Principle
 
@@ -322,9 +322,9 @@ Description:
 
 ### Architectural Drift
 
-> GTT-method recognizes that AI agents are increasingly capable of implementing complete features. But the difficult problem is not simply code generation — it is **architectural drift**.
+> GTT-Method recognizes that AI agents are increasingly capable of implementing complete features. But the difficult problem is not simply code generation — it is **architectural drift**.
 
-> An agent can make a sequence of individually reasonable changes that collectively move a system away from the architecture and engineering decisions originally intended by the team. GTT-method addresses this by making architecture, context, rules and constraints explicit assets of the development process.
+> An agent can make a sequence of individually reasonable changes that collectively move a system away from the architecture and engineering decisions originally intended by the team. GTT-Method addresses this by making architecture, context, rules and constraints explicit assets of the development process.
 
 ### The Problem
 
@@ -336,9 +336,9 @@ As AI coding agents become more capable and participate directly in implementati
 - Architectural Drift — Individual changes collectively move away from intended design.
 - Governance Gap — No explicit rules, responsibilities or controlled context.
 
-### The GTT-method Solution
+### The GTT-Method Solution
 
-GTT-method establishes **governed context** around AI-assisted software development.
+GTT-Method establishes **governed context** around AI-assisted software development.
 
 This means:
 
@@ -348,21 +348,21 @@ This means:
 - Traceability — Changes are reviewable through Git history.
 - Validation — Governance is enforced through both instructions and deterministic mechanisms.
 
-### Who Created GTT-method?
+### Who Created GTT-Method?
 
-> GTT-method was created by Moisés Griott and is maintained by the GTT-method Community.
+> GTT-Method was created by Moisés Griott and is maintained by the GTT-Method Community.
 
 #### Moisés Griott
 
-> Digital Architect, Cloud Architect, and AI/Agentic AI Architect. Creator and original author of GTT-method.
+> Digital Architect, Cloud Architect, and AI/Agentic AI Architect. Creator and original author of GTT-Method.
 
-#### GTT-method Community
+#### GTT-Method Community
 
-> Open-source community maintaining and evolving GTT-method through contributions, feedback, and implementations.
+> Open-source community maintaining and evolving GTT-Method through contributions, feedback, and implementations.
 
 #### Reference Implementation
 
-> The official **gtt-method-bootstrap** project provides a concrete implementation of the methodology with governance artifacts and integration examples.
+> The official **GTT-Method-bootstrap** project provides a concrete implementation of the methodology with governance artifacts and integration examples.
 
 #### Open Source License
 
@@ -371,9 +371,9 @@ This means:
 ### Learn More
 
 - The Problem — Understand the challenges AI agents face in software development.
-- The Approach — Discover how GTT-method addresses these challenges through governance.
-- Methodology — Deep dive into GTT-method concepts and principles.
-- GTT-method 2.1 — Current reference implementation with workspace structure.
+- The Approach — Discover how GTT-Method addresses these challenges through governance.
+- Methodology — Deep dive into GTT-Method concepts and principles.
+- GTT-Method 2.1 — Current reference implementation with workspace structure.
 
 ---
 
@@ -466,9 +466,9 @@ Intro:
 
 > Make context explicit, governed and protected.
 
-> **GTT-method** addresses this by treating context as an engineering asset that can be structured, governed, protected and validated.
+> **GTT-Method** addresses this by treating context as an engineering asset that can be structured, governed, protected and validated.
 
-> Instead of trying to make agents "smarter", GTT-method makes the development environment more reliable by establishing explicit rules, protecting critical context, and detecting drift.
+> Instead of trying to make agents "smarter", GTT-Method makes the development environment more reliable by establishing explicit rules, protecting critical context, and detecting drift.
 
 ---
 
@@ -486,11 +486,11 @@ Subtitle:
 
 Description:
 
-> How GTT-method establishes reliable development environments through explicit context governance, architecture preservation and protection mechanisms.
+> How GTT-Method establishes reliable development environments through explicit context governance, architecture preservation and protection mechanisms.
 
 ### Core Concept: Governed Context
 
-> GTT-method addresses the problem by establishing **governed context** around AI-assisted software development.
+> GTT-Method addresses the problem by establishing **governed context** around AI-assisted software development.
 
 ```text
 Software Development
@@ -502,7 +502,7 @@ Governed Context
 Governance Through Thinking
 ```
 
-### What GTT-method Does
+### What GTT-Method Does
 
 #### Context Governance
 
@@ -528,11 +528,11 @@ Governance Through Thinking
 
 > Detect and prevent architectural drift through mechanisms that validate governed context remains intact.
 
-### What GTT-method Does NOT Attempt
+### What GTT-Method Does NOT Attempt
 
-> GTT-method does not attempt to make the AI "smarter".
+> GTT-Method does not attempt to make the AI "smarter".
 
-> Instead, GTT-method establishes a more reliable **development environment and context contract** around the agent.
+> Instead, GTT-Method establishes a more reliable **development environment and context contract** around the agent.
 
 > The goal is not to replace specifications, developers or AI agents. The goal is to make the **context and architectural intent that guide AI agents explicit and governable**.
 
@@ -549,7 +549,7 @@ Governance Through Thinking
 
 > An instruction saying "AI must not modify architecture files" is useful, but remains an instruction. A filesystem permission, hook or CI gate provides **actual enforcement**.
 
-> GTT-method combines **instructional governance with deterministic controls wherever possible**.
+> GTT-Method combines **instructional governance with deterministic controls wherever possible**.
 
 ---
 
@@ -559,7 +559,7 @@ Governance Through Thinking
 
 Title:
 
-> GTT-method & the Ecosystem
+> GTT-Method & the Ecosystem
 
 Subtitle:
 
@@ -567,11 +567,11 @@ Subtitle:
 
 Description:
 
-> GTT-method is not a replacement for existing methodologies. It's a complementary governance approach that works alongside SDD, Context Engineering and modern AI development practices.
+> GTT-Method is not a replacement for existing methodologies. It's a complementary governance approach that works alongside SDD, Context Engineering and modern AI development practices.
 
-### GTT-method Position
+### GTT-Method Position
 
-> GTT-method operates at the intersection of multiple disciplines, providing governance for AI-assisted development.
+> GTT-Method operates at the intersection of multiple disciplines, providing governance for AI-assisted development.
 
 ```text
 AI-Assisted Software Development
@@ -580,13 +580,13 @@ AI-Assisted Software Development
 ├── AI Coding Agents
 └── Software Architecture
     ↓
-GTT-method
+GTT-Method
 └── Governed Context + Governance Layer
 ```
 
-### GTT-method vs SDD
+### GTT-Method vs SDD
 
-> Spec-Driven Development and GTT-method answer different questions.
+> Spec-Driven Development and GTT-Method answer different questions.
 
 #### SDD
 
@@ -594,7 +594,7 @@ GTT-method
 
 > Focus: Explicit specifications and expected outcomes.
 
-#### GTT-method
+#### GTT-Method
 
 > Question: How should the context govern AI development? What boundaries protect architecture?
 
@@ -602,35 +602,35 @@ GTT-method
 
 #### Together
 
-> SDD defines WHAT to build. GTT-method governs HOW an AI agent should operate while building it. They complement each other.
+> SDD defines WHAT to build. GTT-Method governs HOW an AI agent should operate while building it. They complement each other.
 
 #### Not Replacement
 
-> GTT-method does not replace SDD. You can use both methodologies in the same project effectively.
+> GTT-Method does not replace SDD. You can use both methodologies in the same project effectively.
 
-### GTT-method vs Context Engineering
+### GTT-Method vs Context Engineering
 
-> Context Engineering is a broader discipline. GTT-method applies it specifically to AI-assisted development.
+> Context Engineering is a broader discipline. GTT-Method applies it specifically to AI-assisted development.
 
 #### Context Engineering
 
 > Broad discipline focusing on designing and supplying useful context to AI systems in general.
 
-#### GTT-method
+#### GTT-Method
 
 > Applies context engineering specifically to software development with AI agents, adding governance, architecture and protection patterns.
 
 #### Relationship
 
-> GTT-method is Context Engineering + Software Architecture + Governance + Protection Patterns applied to AI-assisted development.
+> GTT-Method is Context Engineering + Software Architecture + Governance + Protection Patterns applied to AI-assisted development.
 
 #### Integration
 
-> GTT-method uses context engineering principles but adds software development-specific governance mechanisms.
+> GTT-Method uses context engineering principles but adds software development-specific governance mechanisms.
 
-### GTT-method vs RAG
+### GTT-Method vs RAG
 
-> RAG and GTT-method solve different problems at different layers.
+> RAG and GTT-Method solve different problems at different layers.
 
 #### RAG (Retrieval-Augmented Generation)
 
@@ -638,7 +638,7 @@ GTT-method
 
 > Solves: "How do I give the AI better information?"
 
-#### GTT-method
+#### GTT-Method
 
 > A development methodology for governing AI-assisted software development.
 
@@ -646,17 +646,17 @@ GTT-method
 
 #### Can Complement
 
-> GTT-method can use RAG to retrieve context. But GTT-method is not RAG. GTT-method is governance; RAG is retrieval.
+> GTT-Method can use RAG to retrieve context. But GTT-Method is not RAG. GTT-Method is governance; RAG is retrieval.
 
 #### Different Concerns
 
 > RAG: Information retrieval.
 
-> GTT-method: Context governance, architectural intent, rules enforcement.
+> GTT-Method: Context governance, architectural intent, rules enforcement.
 
-### GTT-method vs Prompt Engineering
+### GTT-Method vs Prompt Engineering
 
-> Prompt engineering and GTT-method operate at different levels of abstraction.
+> Prompt engineering and GTT-Method operate at different levels of abstraction.
 
 #### Prompt Engineering
 
@@ -664,7 +664,7 @@ GTT-method
 
 > Focus: Instruction quality and phrasing.
 
-#### GTT-method
+#### GTT-Method
 
 > Asks: "How should the development environment itself be structured so the AI behaves correctly?"
 
@@ -674,11 +674,11 @@ GTT-method
 
 > Prompt engineering: One interaction.
 
-> GTT-method: Entire development process across multiple sessions.
+> GTT-Method: Entire development process across multiple sessions.
 
 #### Relationship
 
-> GTT-method is not "better prompt engineering". It's a different approach addressing structural governance vs. instruction phrasing.
+> GTT-Method is not "better prompt engineering". It's a different approach addressing structural governance vs. instruction phrasing.
 
 ---
 
@@ -688,7 +688,7 @@ GTT-method
 
 Title:
 
-> GTT-method Methodology
+> GTT-Method Methodology
 
 Subtitle:
 
@@ -696,11 +696,11 @@ Subtitle:
 
 Description:
 
-> Understanding the core concepts that make GTT-method work: governed context, context layers, freeze, change requests, and architectural intent preservation.
+> Understanding the core concepts that make GTT-Method work: governed context, context layers, freeze, change requests, and architectural intent preservation.
 
 ### Context Layers (L0-L3)
 
-> GTT-method organizes project information into governance layers with different authority and edit policies.
+> GTT-Method organizes project information into governance layers with different authority and edit policies.
 
 #### L0: Governed Context
 
@@ -787,13 +787,13 @@ WORK
 
 ---
 
-## 2.7 GTT-method 2.1
+## 2.7 GTT-Method 2.1
 
-**Route:** `/en/gtt-method-2-1.html`
+**Route:** `/en/GTT-Method-2-1.html`
 
 Title:
 
-> GTT-method 2.1
+> GTT-Method 2.1
 
 Subtitle:
 
@@ -801,20 +801,20 @@ Subtitle:
 
 Description:
 
-> GTT-method 2.1 is the current reference implementation providing a governed project workspace with explicit context, architectural decisions, and agent integration.
+> GTT-Method 2.1 is the current reference implementation providing a governed project workspace with explicit context, architectural decisions, and agent integration.
 
-### What is GTT-method 2.1?
+### What is GTT-Method 2.1?
 
-> GTT-method 2.1 is a concrete implementation of the GTT-method methodology providing governance structure and integration with AI coding agents.
+> GTT-Method 2.1 is a concrete implementation of the GTT-Method methodology providing governance structure and integration with AI coding agents.
 
 > The bootstrap introduces a **governed workspace** containing governance and context artifacts such as:
 
 - **AGENTS.md** — Agent instructions and governance
 - **CHANGE-REQUEST.md** — Template for proposed changes
-- **gtt-method/context/** — Governed project context (L0)
-- **gtt-method/adr/** — Architecture Decision Records (L1)
-- **gtt-method/proposals/** — Pending proposals under review
-- **gtt-method/scripts/** — Validation and governance scripts
+- **GTT-Method/context/** — Governed project context (L0)
+- **GTT-Method/adr/** — Architecture Decision Records (L1)
+- **GTT-Method/proposals/** — Pending proposals under review
+- **GTT-Method/scripts/** — Validation and governance scripts
 - **.claude/, .kiro/** — Agent-specific configuration
 
 ### Workspace Structure
@@ -825,7 +825,7 @@ Description:
 ├── AGENTS.md
 ├── CHANGE-REQUEST.md
 │
-├── gtt-method/
+├── GTT-Method/
 │   ├── README.md
 │   ├── context/          (L0: Governed)
 │   │   ├── stack.md
@@ -855,13 +855,13 @@ Description:
 
 #### Methodology First
 
-> GTT-method is not tied to any specific agent. The methodology is portable across tools.
+> GTT-Method is not tied to any specific agent. The methodology is portable across tools.
 
 ### Getting Started
 
 Official Bootstrap Repository:
 
-> https://github.com/GTT-method-Community/gtt-method-bootstrap
+> https://github.com/GTT-Method-Community/GTT-Method-bootstrap
 
 > The bootstrap project is the authoritative reference implementation. Clone it, adapt to your project, and follow the documented setup process.
 
@@ -869,7 +869,7 @@ Official Bootstrap Repository:
    - Clone bootstrap and adapt the workspace structure to your project.
 
 2. **Establish Context**
-   - Define architecture, principles and constraints explicitly in `gtt-method/context/`.
+   - Define architecture, principles and constraints explicitly in `GTT-Method/context/`.
 
 3. **Agent Integration**
    - Configure `.claude/` or `.kiro/` with governance rules specific to your agents.
@@ -886,29 +886,29 @@ Official Bootstrap Repository:
 
 **Route:** `/en/faq.html`
 
-### What is GTT-method?
+### What is GTT-Method?
 
-> GTT-method is an open-source methodology for governed AI-assisted software development that combines specifications, context governance, and protection patterns.
+> GTT-Method is an open-source methodology for governed AI-assisted software development that combines specifications, context governance, and protection patterns.
 
-### What problem does GTT-method solve?
+### What problem does GTT-Method solve?
 
-> Architectural drift — when AI-generated changes gradually move a system away from its intended design. GTT-method provides mechanisms to make context explicit, governed and protected.
+> Architectural drift — when AI-generated changes gradually move a system away from its intended design. GTT-Method provides mechanisms to make context explicit, governed and protected.
 
-### Is GTT-method a replacement for SDD?
+### Is GTT-Method a replacement for SDD?
 
-> No. GTT-method complements SDD. SDD defines what to build; GTT-method governs the context and boundaries that guide an AI agent while building it.
+> No. GTT-Method complements SDD. SDD defines what to build; GTT-Method governs the context and boundaries that guide an AI agent while building it.
 
-### Is GTT-method an AI coding agent?
+### Is GTT-Method an AI coding agent?
 
-> No. GTT-method is a methodology and governance approach, not an AI agent itself, but a framework for governing how AI agents behave.
+> No. GTT-Method is a methodology and governance approach, not an AI agent itself, but a framework for governing how AI agents behave.
 
 ### What is CPP (Context Protection Pattern)?
 
-> CPP is a GTT-method pattern for protecting governed context. Instead of free modification, agents propose changes through a controlled workflow for human review.
+> CPP is a GTT-Method pattern for protecting governed context. Instead of free modification, agents propose changes through a controlled workflow for human review.
 
-### Does GTT-method depend on one vendor?
+### Does GTT-Method depend on one vendor?
 
-> No. GTT-method is vendor-independent and works with Claude Code, Kiro, Cursor, Copilot and other AI coding agents.
+> No. GTT-Method is vendor-independent and works with Claude Code, Kiro, Cursor, Copilot and other AI coding agents.
 
 ---
 
@@ -918,7 +918,7 @@ Official Bootstrap Repository:
 
 Badge:
 
-> GTT-method V2.1 · Practical guide
+> GTT-Method V2.1 · Practical guide
 
 Title:
 
@@ -926,22 +926,22 @@ Title:
 
 Core statement:
 
-> **You define the intent. GTT-method protects the intent. AI accelerates implementation.**
+> **You define the intent. GTT-Method protects the intent. AI accelerates implementation.**
 
 ### Golden rule
 
-> AI may analyze, propose and execute; authority over governed decisions remains human. GTT-method may intentionally introduce friction into rapid development to guide users toward compliance with the project's standards, rules and governance requirements.
+> AI may analyze, propose and execute; authority over governed decisions remains human. GTT-Method may intentionally introduce friction into rapid development to guide users toward compliance with the project's standards, rules and governance requirements.
 
 ### 1. The complete flow
 
-> GTT-method makes governance part of the normal workflow, so users do not have to manually manage every governance artifact.
+> GTT-Method makes governance part of the normal workflow, so users do not have to manually manage every governance artifact.
 
 ```text
 YOU define → delegate → review → accept/reject
              ↓
 AGENT analyzes → implements what is allowed → proposes when needed
              ↓
-GTT-method records decisions → updates context → protects what was approved
+GTT-Method records decisions → updates context → protects what was approved
 ```
 
 > Routine implementation: delegate.
@@ -954,24 +954,24 @@ GTT-method records decisions → updates context → protects what was approved
 
 > Keep an initial design document in the project root with the vision, objective, main functionality, architecture, technology stack, constraints and known decisions. It does not need to be perfect, but it must clearly represent what you want to build.
 
-#### Incorporate GTT-method
+#### Incorporate GTT-Method
 
 Give the ADE:
 
 ```text
-https://github.com/GTT-method-Community/gtt-method-bootstrap
+https://github.com/GTT-Method-Community/GTT-Method-bootstrap
 ```
 
 Ask:
 
 ```text
-Clone/incorporate GTT-method Bootstrap into this project.
+Clone/incorporate GTT-Method Bootstrap into this project.
 Inspect the project and use my initial design document
-as the source for performing the GTT-method Bootstrap.
+as the source for performing the GTT-Method Bootstrap.
 Do not invent decisions; if information is missing, ask me.
 ```
 
-> The agent should inspect the project, identify the source document, detect conflicts, avoid guessing, map the design into GTT-method artifacts and show you the result.
+> The agent should inspect the project, identify the source document, detect conflicts, avoid guessing, map the design into GTT-Method artifacts and show you the result.
 
 ### 3. The two confirmations
 
@@ -979,7 +979,7 @@ Do not invent decisions; if information is missing, ask me.
 
 > If not, correct the design and review it again. If yes, explicitly confirm it.
 
-#### B. Did GTT-method correctly represent my solution?
+#### B. Did GTT-Method correctly represent my solution?
 
 > Review the vision, architecture, stack, principles, constraints and glossary. Correct anything that is wrong before freezing.
 
@@ -987,18 +987,18 @@ Do not invent decisions; if information is missing, ask me.
 
 ### 4. Review the workspace and Freeze
 
-> After Bootstrap you will find files such as `AGENTS.md`, `CHANGE-REQUEST.md`, `SOURCE-BRIEF.*` and a `gtt-method/` directory containing context, ADRs, proposals and scripts.
+> After Bootstrap you will find files such as `AGENTS.md`, `CHANGE-REQUEST.md`, `SOURCE-BRIEF.*` and a `GTT-Method/` directory containing context, ADRs, proposals and scripts.
 
 Quick architecture map:
 
 ```text
-gtt-method/context/stack.md
+GTT-Method/context/stack.md
 ```
 
 Freeze:
 
 ```text
-gtt-method/scripts/gtt-method-freeze.sh
+GTT-Method/scripts/GTT-Method-freeze.sh
 ```
 
 > After Freeze, the agent must use the governed context as its source of truth and must not modify it directly. Protection should not rely only on an agent promise.
@@ -1006,7 +1006,7 @@ gtt-method/scripts/gtt-method-freeze.sh
 ### 5. Normal development: delegate
 
 ```text
-Implement this functionality according to the governed GTT-method
+Implement this functionality according to the governed GTT-Method
 context. Do not change architectural decisions.
 ```
 
@@ -1079,7 +1079,7 @@ Proposal → human approval → ADR → context/map → implementation
 
 ### 11. How to use Epics, Stories and Backlog
 
-> You can provide Epics and Stories inside the initial design document or in a separate requirements/backlog document. GTT-method analyzes both sources during Bootstrap and incorporates them into `gtt-method/backlog.md`. You do not need to prepare that file manually.
+> You can provide Epics and Stories inside the initial design document or in a separate requirements/backlog document. GTT-Method analyzes both sources during Bootstrap and incorporates them into `GTT-Method/backlog.md`. You do not need to prepare that file manually.
 
 #### Option A — Everything is in the initial document
 
@@ -1100,7 +1100,7 @@ Design Document
     └── STORY-005: WhatsApp notification
 ```
 
-> During Bootstrap, the ADE must identify Epics and Stories, validate completeness, detect inconsistencies, avoid inventing Stories, map them to the GTT-method backlog, ask for clarification and present the result for confirmation.
+> During Bootstrap, the ADE must identify Epics and Stories, validate completeness, detect inconsistencies, avoid inventing Stories, map them to the GTT-Method backlog, ask for clarification and present the result for confirmation.
 
 #### Option B — Design and backlog are separate
 
@@ -1121,12 +1121,12 @@ epics-and-stories.md
 
 > The Epics and Stories document is a requirements source. The ADE must analyze it rather than simply copy it: it must check Epics, Stories, IDs, duplicates, relationships, scope, consistency with the vision and consistency with the architecture. If contradictions are found, it must ask the user.
 
-#### What GTT-method does with it
+#### What GTT-Method does with it
 
 Confirmed result:
 
 ```text
-gtt-method/backlog.md
+GTT-Method/backlog.md
 ```
 
 ```text
@@ -1134,16 +1134,16 @@ SOURCE-BRIEF / Design Document
           +
     Epics & Stories
           ↓
-    GTT-method Bootstrap
+    GTT-Method Bootstrap
           ↓
-     gtt-method/backlog.md
+     GTT-Method/backlog.md
 ```
 
 > The backlog answers **what we are going to build and what comes next**.
 
 > The context answers **within which architecture and decisions we are going to build it**.
 
-#### GTT-method does not invent the backlog
+#### GTT-Method does not invent the backlog
 
 > If you provide `EPIC-001` with `STORY-001` and `STORY-002`, the agent must not magically create additional Stories merely because they seem necessary.
 
@@ -1183,20 +1183,20 @@ CHANGE-REQUEST.md
         ↓
   Promotion
         ↓
-gtt-method/backlog.md
+GTT-Method/backlog.md
 ```
 
 Example promotion script:
 
 ```text
-bash gtt-method/proposals/apply-....sh
+bash GTT-Method/proposals/apply-....sh
 ```
 
 > This keeps the promoted backlog traceable and prevents a silent AI modification.
 
-> **Simple rule:** Design + Epics + Stories → GTT-method → Governed Context + Backlog → AI → Implementation.
+> **Simple rule:** Design + Epics + Stories → GTT-Method → Governed Context + Backlog → AI → Implementation.
 
-> Once confirmed, `gtt-method/backlog.md` becomes the project's governed development line.
+> Once confirmed, `GTT-Method/backlog.md` becomes the project's governed development line.
 
 ---
 
@@ -1216,7 +1216,7 @@ Badge:
 
 Title:
 
-> GTT-method
+> GTT-Method
 
 Subtitle:
 
@@ -1254,7 +1254,7 @@ CTA secundaria:
 
 > El desarrollo asistido por IA necesita reglas explícitas, responsabilidades y contexto controlado.
 
-### El Enfoque GTT-method
+### El Enfoque GTT-Method
 
 > El contexto se convierte en una parte explícita y gobernada del desarrollo de software.
 
@@ -1273,9 +1273,9 @@ CTA secundaria:
 5. **Software Validado**
    - Produce cambios de calidad.
 
-### GTT-method y el Ecosistema de Desarrollo de IA
+### GTT-Method y el Ecosistema de Desarrollo de IA
 
-> GTT-method complementa SDD, Context Engineering y prácticas modernas de ingeniería de software asistida por IA.
+> GTT-Method complementa SDD, Context Engineering y prácticas modernas de ingeniería de software asistida por IA.
 
 #### Spec-Driven Development
 
@@ -1283,11 +1283,11 @@ CTA secundaria:
 
 #### Context Engineering
 
-> GTT-method trata el contexto del proyecto como un artefacto de ingeniería explícito que puede ser estructurado, gobernado y protegido.
+> GTT-Method trata el contexto del proyecto como un artefacto de ingeniería explícito que puede ser estructurado, gobernado y protegido.
 
 #### Agentes de IA de Codificación
 
-> GTT-method proporciona una capa de gobernanza para Claude Code, Kiro, Cursor, Copilot y otras herramientas de desarrollo agentic.
+> GTT-Method proporciona una capa de gobernanza para Claude Code, Kiro, Cursor, Copilot y otras herramientas de desarrollo agentic.
 
 #### Desarrollo Asistido por IA
 
@@ -1295,7 +1295,7 @@ CTA secundaria:
 
 ### Context Protection Pattern
 
-> GTT-method introduce protección explícita alrededor del contexto que gobierna el agente.
+> GTT-Method introduce protección explícita alrededor del contexto que gobierna el agente.
 
 ```text
 Agente de IA de Codificación
@@ -1309,7 +1309,7 @@ Contexto Gobernado
 Implementación Controlada
 ```
 
-### ¿Cuándo Deberías Usar GTT-method?
+### ¿Cuándo Deberías Usar GTT-Method?
 
 #### Sistemas Existentes
 
@@ -1327,23 +1327,23 @@ Implementación Controlada
 
 > Cuando múltiples sesiones, agentes y desarrolladores necesitan preservar el mismo conocimiento del proyecto y la intención de ingeniería.
 
-### GTT-method y SDD
+### GTT-Method y SDD
 
 #### SDD define qué construir
 
 > Specification-Driven Development hace explícitos y revisables los requisitos, comportamiento esperado e intención de implementación.
 
-#### GTT-method gobierna cómo trabajan los agentes
+#### GTT-Method gobierna cómo trabajan los agentes
 
-> GTT-method trata el contexto del proyecto, decisiones arquitectónicas, restricciones y reglas de agentes como activos de ingeniería gobernados que pueden ser protegidos.
+> GTT-Method trata el contexto del proyecto, decisiones arquitectónicas, restricciones y reglas de agentes como activos de ingeniería gobernados que pueden ser protegidos.
 
 #### Cómo se complementan
 
-> SDD puede definir qué debe construirse; GTT-method gobierna el contexto y los límites que guían a un agente de IA mientras lo construye.
+> SDD puede definir qué debe construirse; GTT-Method gobierna el contexto y los límites que guían a un agente de IA mientras lo construye.
 
 #### No es un reemplazo
 
-> GTT-method no reemplaza SDD. Ambos enfoques trabajan juntos en el desarrollo moderno de software asistido por IA.
+> GTT-Method no reemplaza SDD. Ambos enfoques trabajan juntos en el desarrollo moderno de software asistido por IA.
 
 ### Diseñado para Agentes de IA
 
@@ -1356,37 +1356,37 @@ Implementación Controlada
 
 ### Preguntas Frecuentes
 
-#### ¿Qué es GTT-method?
+#### ¿Qué es GTT-Method?
 
-> GTT-method (Governance Through Thinking) es una metodología de código abierto para desarrollo de software asistido por IA gobernado que combina especificaciones, ingeniería de contexto, gobernanza y patrones de protección.
+> GTT-Method (Governance Through Thinking) es una metodología de código abierto para desarrollo de software asistido por IA gobernado que combina especificaciones, ingeniería de contexto, gobernanza y patrones de protección.
 
-#### ¿Es GTT-method un reemplazo para SDD?
+#### ¿Es GTT-Method un reemplazo para SDD?
 
-> No. GTT-method complementa SDD. SDD se enfoca en especificaciones explícitas; GTT-method se enfoca en gobernar el contexto, arquitectura, reglas y límites utilizados por el desarrollo asistido por IA.
+> No. GTT-Method complementa SDD. SDD se enfoca en especificaciones explícitas; GTT-Method se enfoca en gobernar el contexto, arquitectura, reglas y límites utilizados por el desarrollo asistido por IA.
 
-#### ¿Es GTT-method un agente de IA?
+#### ¿Es GTT-Method un agente de IA?
 
-> No. GTT-method es una metodología y enfoque de gobernanza que puede aplicarse alrededor de diferentes agentes de IA y herramientas de desarrollo.
+> No. GTT-Method es una metodología y enfoque de gobernanza que puede aplicarse alrededor de diferentes agentes de IA y herramientas de desarrollo.
 
 #### ¿Qué es el Context Protection Pattern?
 
-> CPP es un patrón GTT-method para proteger el contexto gobernado del proyecto y hacer que los cambios al conocimiento crítico de ingeniería sean deliberados y revisables.
+> CPP es un patrón GTT-Method para proteger el contexto gobernado del proyecto y hacer que los cambios al conocimiento crítico de ingeniería sean deliberados y revisables.
 
 #### ¿Qué es la desviación arquitectónica?
 
-> Cambios generados por IA que individualmente pueden parecer razonables pero que gradualmente alejan el sistema de su diseño previsto. GTT-method ayuda a prevenirlo.
+> Cambios generados por IA que individualmente pueden parecer razonables pero que gradualmente alejan el sistema de su diseño previsto. GTT-Method ayuda a prevenirlo.
 
 #### ¿Dónde comienzo?
 
-> Comienza con el proyecto open-source GTT-method Bootstrap. Clónalo, comprende la estructura de contexto gobernado y adapta las reglas y mecanismos de protección a tu proyecto.
+> Comienza con el proyecto open-source GTT-Method Bootstrap. Clónalo, comprende la estructura de contexto gobernado y adapta las reglas y mecanismos de protección a tu proyecto.
 
 ### Comunidad
 
-> GTT-method es una metodología de código abierto mantenida por la GTT-method Community. Las contribuciones, experimentos, implementaciones y comentarios críticos son bienvenidos.
+> GTT-Method es una metodología de código abierto mantenida por la GTT-Method Community. Las contribuciones, experimentos, implementaciones y comentarios críticos son bienvenidos.
 
-> Creado por **Moisés Griott** • Mantenido por **GTT-method Community**
+> Creado por **Moisés Griott** • Mantenido por **GTT-Method Community**
 
-> Implementación de referencia: **gtt-method-bootstrap**
+> Implementación de referencia: **GTT-Method-bootstrap**
 
 ---
 
@@ -1394,15 +1394,15 @@ Implementación Controlada
 
 **Ruta:** `/es/acerca.html`
 
-### ¿Qué es GTT-method?
+### ¿Qué es GTT-Method?
 
-> GTT-method (Governance Through Thinking) es una metodología de código abierto para desarrollo de software asistido por IA gobernado.
+> GTT-Method (Governance Through Thinking) es una metodología de código abierto para desarrollo de software asistido por IA gobernado.
 
-> GTT-method proporciona una capa de gobernanza alrededor del desarrollo de software asistido por IA. Combina ideas de Spec-Driven Development (SDD), Context Engineering, agentes de IA de codificación, gobernanza de arquitectura de software, restricciones de ingeniería y decisiones arquitectónicas humanas.
+> GTT-Method proporciona una capa de gobernanza alrededor del desarrollo de software asistido por IA. Combina ideas de Spec-Driven Development (SDD), Context Engineering, agentes de IA de codificación, gobernanza de arquitectura de software, restricciones de ingeniería y decisiones arquitectónicas humanas.
 
 > El objetivo no es reemplazar especificaciones, desarrolladores o agentes de IA. El objetivo es hacer que el **contexto y la intención arquitectónica que guían a los agentes de IA sean explícitos y gobernables**.
 
-> GTT-method trata el contexto como un activo de ingeniería — algo que puede estructurarse, gobernarse, protegerse y validarse. **El contexto es la fuente de verdad.**
+> GTT-Method trata el contexto como un activo de ingeniería — algo que puede estructurarse, gobernarse, protegerse y validarse. **El contexto es la fuente de verdad.**
 
 ### Principio central
 
@@ -1418,9 +1418,9 @@ Implementación Controlada
 - Desviación Arquitectónica — Cambios individuales alejan colectivamente el sistema del diseño previsto.
 - Brecha de Gobernanza — No existen reglas, responsabilidades o contexto controlado explícitos.
 
-### La solución GTT-method
+### La solución GTT-Method
 
-GTT-method establece **contexto gobernado** alrededor del desarrollo de software asistido por IA:
+GTT-Method establece **contexto gobernado** alrededor del desarrollo de software asistido por IA:
 
 - Contexto explícito — El conocimiento del proyecto se estructura como artefactos de ingeniería.
 - Límites gobernados — Los agentes tienen reglas y restricciones claras.
@@ -1428,21 +1428,21 @@ GTT-method establece **contexto gobernado** alrededor del desarrollo de software
 - Trazabilidad — Los cambios son revisables mediante el historial de Git.
 - Validación — La gobernanza se aplica mediante instrucciones y mecanismos determinísticos.
 
-### ¿Quién creó GTT-method?
+### ¿Quién creó GTT-Method?
 
-> GTT-method fue creado por Moisés Griott y es mantenido por GTT-method Community.
+> GTT-Method fue creado por Moisés Griott y es mantenido por GTT-Method Community.
 
 #### Moisés Griott
 
-> Digital Architect, Cloud Architect y AI/Agentic AI Architect. Creador y autor original de GTT-method.
+> Digital Architect, Cloud Architect y AI/Agentic AI Architect. Creador y autor original de GTT-Method.
 
-#### GTT-method Community
+#### GTT-Method Community
 
-> Comunidad open-source que mantiene y evoluciona GTT-method mediante contribuciones, feedback e implementaciones.
+> Comunidad open-source que mantiene y evoluciona GTT-Method mediante contribuciones, feedback e implementaciones.
 
 #### Implementación de referencia
 
-> El proyecto oficial **gtt-method-bootstrap** proporciona una implementación concreta de la metodología con artefactos de gobernanza y ejemplos de integración.
+> El proyecto oficial **GTT-Method-bootstrap** proporciona una implementación concreta de la metodología con artefactos de gobernanza y ejemplos de integración.
 
 #### Licencia
 
@@ -1523,9 +1523,9 @@ Comportamiento impredecible
 
 > Hacer el contexto explícito, gobernado y protegido.
 
-> **GTT-method** trata el contexto como un activo de ingeniería que puede estructurarse, gobernarse, protegerse y validarse.
+> **GTT-Method** trata el contexto como un activo de ingeniería que puede estructurarse, gobernarse, protegerse y validarse.
 
-> En lugar de intentar hacer que los agentes sean "más inteligentes", GTT-method hace más confiable el entorno de desarrollo mediante reglas explícitas, protección del contexto crítico y detección de desviación.
+> En lugar de intentar hacer que los agentes sean "más inteligentes", GTT-Method hace más confiable el entorno de desarrollo mediante reglas explícitas, protección del contexto crítico y detección de desviación.
 
 ---
 
@@ -1533,7 +1533,7 @@ Comportamiento impredecible
 
 **Ruta:** `/es/enfoque.html`
 
-### El Enfoque GTT-method
+### El Enfoque GTT-Method
 
 > **Contexto Gobernado para Desarrollo Asistido por IA**
 
@@ -1541,7 +1541,7 @@ Comportamiento impredecible
 
 ### La Idea Central
 
-> GTT-method no intenta hacer que los agentes de IA sean más inteligentes. En su lugar, hace que el entorno de desarrollo sea más confiable al establecer contexto gobernado que el agente debe respetar.
+> GTT-Method no intenta hacer que los agentes de IA sean más inteligentes. En su lugar, hace que el entorno de desarrollo sea más confiable al establecer contexto gobernado que el agente debe respetar.
 
 > La base es simple: **el contexto es un activo de ingeniería**. Así como controlas la versión del código fuente, deberías controlar la versión y proteger el contexto que guía a los agentes de IA.
 
@@ -1551,7 +1551,7 @@ En lugar de:
 - "Escribir indicaciones detalladas cada vez"
 - "Revisar y corregir la salida del agente"
 
-GTT-method establece:
+GTT-Method establece:
 
 - Contexto explícito y gobernado que persiste entre sesiones.
 - Reglas y límites claros que son revisables y versionados.
@@ -1594,14 +1594,14 @@ GTT-method establece:
 
 ### No se trata de hacer IA más inteligente
 
-> GTT-method no intenta mejorar el modelo de IA en sí. Mejora el entorno en el que opera el agente.
+> GTT-Method no intenta mejorar el modelo de IA en sí. Mejora el entorno en el que opera el agente.
 
 ```text
 Enfoque Tradicional
 Mejores indicaciones → Respuestas más inteligentes
     (Aún dependiente del contexto)
 
-Enfoque GTT-method
+Enfoque GTT-Method
 Contexto Gobernado + Límites Claros
 → Entorno de Desarrollo Confiable
     (El contexto está protegido)
@@ -1613,9 +1613,9 @@ Contexto Gobernado + Límites Claros
 
 **Ruta:** `/es/ecosistema`
 
-### Posición de GTT-method
+### Posición de GTT-Method
 
-> GTT-method opera en la intersección de múltiples disciplinas, proporcionando gobernanza para desarrollo asistido por IA.
+> GTT-Method opera en la intersección de múltiples disciplinas, proporcionando gobernanza para desarrollo asistido por IA.
 
 ```text
 Desarrollo de Software Asistido por IA
@@ -1624,11 +1624,11 @@ Desarrollo de Software Asistido por IA
 ├── Agentes de IA de Codificación
 └── Arquitectura de Software
     ↓
-GTT-method
+GTT-Method
 └── Contexto Gobernado + Capa de Gobernanza
 ```
 
-### GTT-method vs SDD
+### GTT-Method vs SDD
 
 #### SDD
 
@@ -1636,7 +1636,7 @@ GTT-method
 
 > Enfoque: Especificaciones explícitas y resultados esperados.
 
-#### GTT-method
+#### GTT-Method
 
 > Pregunta: ¿Cómo debe el contexto gobernar el desarrollo de IA? ¿Qué límites protegen la arquitectura?
 
@@ -1644,31 +1644,31 @@ GTT-method
 
 #### Juntos
 
-> SDD define QUÉ construir. GTT-method gobierna CÓMO un agente de IA debe operar mientras lo construye. Se complementan.
+> SDD define QUÉ construir. GTT-Method gobierna CÓMO un agente de IA debe operar mientras lo construye. Se complementan.
 
 #### No es reemplazo
 
-> GTT-method no reemplaza SDD. Puedes usar ambas metodologías en el mismo proyecto de manera efectiva.
+> GTT-Method no reemplaza SDD. Puedes usar ambas metodologías en el mismo proyecto de manera efectiva.
 
-### GTT-method vs Context Engineering
+### GTT-Method vs Context Engineering
 
 #### Context Engineering
 
 > Disciplina amplia enfocada en diseñar y suministrar contexto útil a sistemas de IA en general.
 
-#### GTT-method
+#### GTT-Method
 
 > Aplica context engineering específicamente a desarrollo de software con agentes de IA, agregando gobernanza, arquitectura y patrones de protección.
 
 #### Relación
 
-> GTT-method es Context Engineering + Arquitectura de Software + Gobernanza + Patrones de Protección aplicado a desarrollo asistido por IA.
+> GTT-Method es Context Engineering + Arquitectura de Software + Gobernanza + Patrones de Protección aplicado a desarrollo asistido por IA.
 
 #### Integración
 
-> GTT-method usa principios de context engineering pero agrega mecanismos de gobernanza específicos del desarrollo de software.
+> GTT-Method usa principios de context engineering pero agrega mecanismos de gobernanza específicos del desarrollo de software.
 
-### GTT-method vs RAG
+### GTT-Method vs RAG
 
 #### RAG
 
@@ -1676,7 +1676,7 @@ GTT-method
 
 > Resuelve: "¿Cómo doy mejor información a la IA?"
 
-#### GTT-method
+#### GTT-Method
 
 > Una metodología de desarrollo para gobernar desarrollo asistido por IA.
 
@@ -1684,15 +1684,15 @@ GTT-method
 
 #### Pueden complementarse
 
-> GTT-method puede usar RAG para recuperar contexto. Pero GTT-method no es RAG. GTT-method es gobernanza; RAG es recuperación.
+> GTT-Method puede usar RAG para recuperar contexto. Pero GTT-Method no es RAG. GTT-Method es gobernanza; RAG es recuperación.
 
 #### Preocupaciones diferentes
 
 > RAG: Recuperación de información.
 
-> GTT-method: Gobernanza de contexto, intención arquitectónica, aplicación de reglas.
+> GTT-Method: Gobernanza de contexto, intención arquitectónica, aplicación de reglas.
 
-### GTT-method vs Ingeniería de Indicaciones
+### GTT-Method vs Ingeniería de Indicaciones
 
 #### Ingeniería de Indicaciones
 
@@ -1700,7 +1700,7 @@ GTT-method
 
 > Enfoque: Calidad y formulación de instrucciones.
 
-#### GTT-method
+#### GTT-Method
 
 > Pregunta: "¿Cómo debe estructurarse el entorno de desarrollo para que la IA se comporte correctamente?"
 
@@ -1710,11 +1710,11 @@ GTT-method
 
 > Ingeniería de indicaciones: Una interacción.
 
-> GTT-method: Proceso completo de desarrollo en múltiples sesiones.
+> GTT-Method: Proceso completo de desarrollo en múltiples sesiones.
 
 #### Relación
 
-> GTT-method no es "mejor ingeniería de indicaciones". Es un enfoque diferente que aborda gobernanza estructural frente a formulación de instrucciones.
+> GTT-Method no es "mejor ingeniería de indicaciones". Es un enfoque diferente que aborda gobernanza estructural frente a formulación de instrucciones.
 
 ---
 
@@ -1724,7 +1724,7 @@ GTT-method
 
 ### Capas de Contexto (L0-L3)
 
-> GTT-method organiza la información del proyecto en capas de gobernanza con diferente autoridad y políticas de edición.
+> GTT-Method organiza la información del proyecto en capas de gobernanza con diferente autoridad y políticas de edición.
 
 #### L0: Contexto Gobernado
 
@@ -1807,22 +1807,22 @@ TRABAJO
 
 ---
 
-## 3.7 GTT-method 2.1
+## 3.7 GTT-Method 2.1
 
-**Ruta:** `/es/gtt-method-2-1.html`
+**Ruta:** `/es/GTT-Method-2-1.html`
 
-### Qué es GTT-method 2.1
+### Qué es GTT-Method 2.1
 
-> GTT-method 2.1 es una implementación concreta de la metodología GTT-method que proporciona una estructura de gobernanza e integración con agentes de IA de codificación.
+> GTT-Method 2.1 es una implementación concreta de la metodología GTT-Method que proporciona una estructura de gobernanza e integración con agentes de IA de codificación.
 
 El bootstrap introduce un **workspace gobernado** con:
 
 - **AGENTS.md** — Instrucciones y gobernanza para agentes.
 - **CHANGE-REQUEST.md** — Plantilla para cambios propuestos.
-- **gtt-method/context/** — Contexto gobernado del proyecto (L0).
-- **gtt-method/adr/** — Architecture Decision Records (L1).
-- **gtt-method/proposals/** — Propuestas pendientes de revisión.
-- **gtt-method/scripts/** — Scripts de validación y gobernanza.
+- **GTT-Method/context/** — Contexto gobernado del proyecto (L0).
+- **GTT-Method/adr/** — Architecture Decision Records (L1).
+- **GTT-Method/proposals/** — Propuestas pendientes de revisión.
+- **GTT-Method/scripts/** — Scripts de validación y gobernanza.
 - **.claude/, .kiro/** — Configuración específica de agentes.
 
 ### Estructura del Workspace
@@ -1833,7 +1833,7 @@ El bootstrap introduce un **workspace gobernado** con:
 ├── AGENTS.md
 ├── CHANGE-REQUEST.md
 │
-├── gtt-method/
+├── GTT-Method/
 │   ├── README.md
 │   ├── context/          (L0: Governed)
 │   │   ├── stack.md
@@ -1863,19 +1863,19 @@ El bootstrap introduce un **workspace gobernado** con:
 
 #### Metodología primero
 
-> GTT-method no está ligado a un agente específico. La metodología es portable entre herramientas.
+> GTT-Method no está ligado a un agente específico. La metodología es portable entre herramientas.
 
 ### Cómo comenzar
 
 Repositorio oficial:
 
-> https://github.com/GTT-method-Community/gtt-method-bootstrap
+> https://github.com/GTT-Method-Community/GTT-Method-bootstrap
 
 1. **Inicializar**
    - Clona bootstrap y adapta la estructura del workspace a tu proyecto.
 
 2. **Establecer Contexto**
-   - Define arquitectura, principios y restricciones explícitamente en `gtt-method/context/`.
+   - Define arquitectura, principios y restricciones explícitamente en `GTT-Method/context/`.
 
 3. **Integración del Agente**
    - Configura `.claude/` o `.kiro/` con reglas específicas de gobernanza.
@@ -1892,29 +1892,29 @@ Repositorio oficial:
 
 **Ruta:** `/es/preguntas-frecuentes.html`
 
-### ¿Qué es GTT-method?
+### ¿Qué es GTT-Method?
 
-> GTT-method es una metodología de código abierto para desarrollo de software asistido por IA gobernado que combina especificaciones, gobernanza de contexto y patrones de protección.
+> GTT-Method es una metodología de código abierto para desarrollo de software asistido por IA gobernado que combina especificaciones, gobernanza de contexto y patrones de protección.
 
-### ¿Qué problema resuelve GTT-method?
+### ¿Qué problema resuelve GTT-Method?
 
-> Desviación arquitectónica — cuando los cambios generados por IA alejan gradualmente un sistema de su diseño previsto. GTT-method proporciona mecanismos para hacer el contexto explícito, gobernado y protegido.
+> Desviación arquitectónica — cuando los cambios generados por IA alejan gradualmente un sistema de su diseño previsto. GTT-Method proporciona mecanismos para hacer el contexto explícito, gobernado y protegido.
 
-### ¿Es GTT-method un reemplazo para SDD?
+### ¿Es GTT-Method un reemplazo para SDD?
 
-> No. GTT-method complementa SDD. SDD define qué construir; GTT-method gobierna el contexto y límites que guían a un agente de IA mientras lo construye.
+> No. GTT-Method complementa SDD. SDD define qué construir; GTT-Method gobierna el contexto y límites que guían a un agente de IA mientras lo construye.
 
-### ¿Es GTT-method un agente de IA de codificación?
+### ¿Es GTT-Method un agente de IA de codificación?
 
-> No. GTT-method es una metodología y enfoque de gobernanza, no un agente de IA en sí, sino un marco para gobernar cómo se comportan los agentes de IA.
+> No. GTT-Method es una metodología y enfoque de gobernanza, no un agente de IA en sí, sino un marco para gobernar cómo se comportan los agentes de IA.
 
 ### ¿Qué es CPP?
 
-> CPP es un patrón GTT-method para proteger el contexto gobernado. En lugar de modificación libre, los agentes proponen cambios a través de un flujo controlado para revisión humana.
+> CPP es un patrón GTT-Method para proteger el contexto gobernado. En lugar de modificación libre, los agentes proponen cambios a través de un flujo controlado para revisión humana.
 
-### ¿Depende GTT-method de un solo proveedor?
+### ¿Depende GTT-Method de un solo proveedor?
 
-> No. GTT-method es independiente del proveedor y funciona con Claude Code, Kiro, Cursor, Copilot y otros agentes de IA de codificación.
+> No. GTT-Method es independiente del proveedor y funciona con Claude Code, Kiro, Cursor, Copilot y otros agentes de IA de codificación.
 
 ---
 
@@ -1924,7 +1924,7 @@ Repositorio oficial:
 
 Badge:
 
-> GTT-method V2.1 · Guía práctica
+> GTT-Method V2.1 · Guía práctica
 
 Título:
 
@@ -1932,22 +1932,22 @@ Título:
 
 Principio:
 
-> **Tú defines la intención. GTT-method protege la intención. La IA acelera la implementación.**
+> **Tú defines la intención. GTT-Method protege la intención. La IA acelera la implementación.**
 
 ### La regla de oro
 
-> La IA puede analizar, proponer y ejecutar; la autoridad sobre las decisiones gobernadas sigue siendo humana. GTT-method puede introducir fricción deliberada en el desarrollo rápido para guiar al usuario hacia el cumplimiento de los estándares, las reglas y la gobernabilidad del proyecto.
+> La IA puede analizar, proponer y ejecutar; la autoridad sobre las decisiones gobernadas sigue siendo humana. GTT-Method puede introducir fricción deliberada en el desarrollo rápido para guiar al usuario hacia el cumplimiento de los estándares, las reglas y la gobernabilidad del proyecto.
 
 ### 1. El flujo completo
 
-> GTT-method convierte la gobernabilidad en parte natural del trabajo, sin pedirte que administres manualmente cada artefacto.
+> GTT-Method convierte la gobernabilidad en parte natural del trabajo, sin pedirte que administres manualmente cada artefacto.
 
 ```text
 TÚ define → delega → revisa → acepta/rechaza
               ↓
 AGENTE analiza → implementa lo permitido → propone cuando corresponde
               ↓
-GTT-method registra decisiones → actualiza contexto → protege lo aprobado
+GTT-Method registra decisiones → actualiza contexto → protege lo aprobado
 ```
 
 > Implementación rutinaria: delega.
@@ -1960,24 +1960,24 @@ GTT-method registra decisiones → actualiza contexto → protege lo aprobado
 
 > Deja en la raíz un documento con visión, objetivo, funcionalidad principal, arquitectura, stack, restricciones y decisiones conocidas. No tiene que ser perfecto, pero debe expresar lo que quieres construir.
 
-#### Incorpora GTT-method
+#### Incorpora GTT-Method
 
 Entrega al ADE:
 
 ```text
-https://github.com/GTT-method-Community/gtt-method-bootstrap
+https://github.com/GTT-Method-Community/GTT-Method-bootstrap
 ```
 
 Y pídele:
 
 ```text
-Clona/incorpora GTT-method Bootstrap en este proyecto.
+Clona/incorpora GTT-Method Bootstrap en este proyecto.
 Inspecciona el proyecto y usa mi documento de diseño inicial
-como fuente para ejecutar el GTT-method Bootstrap.
+como fuente para ejecutar el GTT-Method Bootstrap.
 No inventes decisiones; si falta información, pregúntame.
 ```
 
-> El agente debe inspeccionar, identificar el documento fuente, detectar conflictos, evitar adivinar, mapear el diseño al contexto GTT-method y mostrarte el resultado.
+> El agente debe inspeccionar, identificar el documento fuente, detectar conflictos, evitar adivinar, mapear el diseño al contexto GTT-Method y mostrarte el resultado.
 
 ### 3. Las dos confirmaciones
 
@@ -1985,7 +1985,7 @@ No inventes decisiones; si falta información, pregúntame.
 
 > Si no, corrige el diseño y vuelve a revisarlo. Si sí, confirma explícitamente.
 
-#### B. ¿GTT-method entendió correctamente mi solución?
+#### B. ¿GTT-Method entendió correctamente mi solución?
 
 > Revisa visión, arquitectura, stack, principios, restricciones y glosario. Corrige cualquier error antes de congelar.
 
@@ -1993,18 +1993,18 @@ No inventes decisiones; si falta información, pregúntame.
 
 ### 4. Revisa el workspace y ejecuta Freeze
 
-> Después del Bootstrap encontrarás `AGENTS.md`, `CHANGE-REQUEST.md`, `SOURCE-BRIEF.*` y el directorio `gtt-method/` con contexto, ADRs, propuestas y scripts.
+> Después del Bootstrap encontrarás `AGENTS.md`, `CHANGE-REQUEST.md`, `SOURCE-BRIEF.*` y el directorio `GTT-Method/` con contexto, ADRs, propuestas y scripts.
 
 Mapa:
 
 ```text
-gtt-method/context/stack.md
+GTT-Method/context/stack.md
 ```
 
 Freeze:
 
 ```text
-gtt-method/scripts/gtt-method-freeze.sh
+GTT-Method/scripts/GTT-Method-freeze.sh
 ```
 
 > Después de Freeze, el agente debe leer el contexto gobernado y no modificarlo directamente. La protección no depende solamente de una promesa del agente.
@@ -2013,7 +2013,7 @@ gtt-method/scripts/gtt-method-freeze.sh
 
 ```text
 Implementa esta funcionalidad siguiendo la arquitectura
-y las restricciones definidas por GTT-method. No cambies decisiones
+y las restricciones definidas por GTT-Method. No cambies decisiones
 arquitectónicas.
 ```
 
@@ -2082,7 +2082,7 @@ Proposal → aprobación humana → ADR → contexto/mapa → implementación
 
 ### 11. Cómo usar Epics, Stories y Backlog
 
-> Puedes entregar tus Epics y Stories dentro del documento inicial de diseño o en un documento separado de requisitos/backlog. GTT-method analizará ambas fuentes durante el Bootstrap y las incorporará a `gtt-method/backlog.md`. No necesitas preparar ese archivo manualmente.
+> Puedes entregar tus Epics y Stories dentro del documento inicial de diseño o en un documento separado de requisitos/backlog. GTT-Method analizará ambas fuentes durante el Bootstrap y las incorporará a `GTT-Method/backlog.md`. No necesitas preparar ese archivo manualmente.
 
 #### Opción A — Todo viene en el documento inicial
 
@@ -2103,7 +2103,7 @@ Design Document
     └── STORY-005: WhatsApp notification
 ```
 
-> Durante el Bootstrap, el ADE debe identificar las Epics y Stories, validar que estén completas, detectar inconsistencias, no inventar Stories, mapearlas al backlog GTT-method, pedir aclaraciones y presentar el resultado para confirmación.
+> Durante el Bootstrap, el ADE debe identificar las Epics y Stories, validar que estén completas, detectar inconsistencias, no inventar Stories, mapearlas al backlog GTT-Method, pedir aclaraciones y presentar el resultado para confirmación.
 
 #### Opción B — Diseño y backlog separados
 
@@ -2122,23 +2122,23 @@ epics-and-stories.md
 
 > El documento de Epics y Stories es una fuente de requisitos. El ADE no debe copiarlo sin analizarlo: debe comprobar Epics, Stories, IDs, duplicados, relaciones, alcance, consistencia con la visión y consistencia con la arquitectura. Si encuentra contradicciones, debe preguntarte.
 
-#### Qué hace GTT-method con el backlog
+#### Qué hace GTT-Method con el backlog
 
 ```text
 SOURCE-BRIEF / Design Document
               +
        Epics & Stories
               ↓
-        GTT-method Bootstrap
+        GTT-Method Bootstrap
               ↓
-        gtt-method/backlog.md
+        GTT-Method/backlog.md
 ```
 
 > El backlog responde **qué vamos a construir y qué sigue ahora**.
 
 > El contexto responde **dentro de qué arquitectura y decisiones vamos a construirlo**.
 
-#### GTT-method no inventa el backlog
+#### GTT-Method no inventa el backlog
 
 > Si entregas `EPIC-001` con `STORY-001` y `STORY-002`, el agente no debe crear mágicamente Stories adicionales porque parezcan necesarias.
 
@@ -2178,20 +2178,20 @@ CHANGE-REQUEST.md
         ↓
   Promotion
         ↓
-gtt-method/backlog.md
+GTT-Method/backlog.md
 ```
 
 Ejemplo:
 
 ```text
-bash gtt-method/proposals/apply-....sh
+bash GTT-Method/proposals/apply-....sh
 ```
 
 > Así el backlog promovido queda trazable y no se convierte en una modificación silenciosa de la IA.
 
-> **Regla sencilla:** Design + Epics + Stories → GTT-method → Governed Context + Backlog → AI → Implementation.
+> **Regla sencilla:** Design + Epics + Stories → GTT-Method → Governed Context + Backlog → AI → Implementation.
 
-> Una vez confirmado, `gtt-method/backlog.md` se convierte en la línea de desarrollo gobernada del proyecto.
+> Una vez confirmado, `GTT-Method/backlog.md` se convierte en la línea de desarrollo gobernada del proyecto.
 
 ---
 
@@ -2207,7 +2207,7 @@ bash gtt-method/proposals/apply-....sh
 │   ├── approach
 │   ├── ecosystem
 │   ├── methodology
-│   ├── gtt-method-2-1
+│   ├── GTT-Method-2-1
 │   ├── faq
 │   └── quick-user-manual
 │
@@ -2217,14 +2217,14 @@ bash gtt-method/proposals/apply-....sh
     ├── enfoque
     ├── ecosistema
     ├── metodologia
-    ├── gtt-method-2-1
+    ├── GTT-Method-2-1
     ├── preguntas-frecuentes
     └── manual-usuario-rapido
 ```
 
 ## Important content concepts to preserve
 
-The current site consistently positions GTT-method around:
+The current site consistently positions GTT-Method around:
 
 1. Governed Context
 2. Architectural Intent
@@ -2251,7 +2251,7 @@ The current site consistently positions GTT-method around:
 
 > Context is the Source of Truth.
 
-> You define the intent. GTT-method protects the intent. AI accelerates implementation.
+> You define the intent. GTT-Method protects the intent. AI accelerates implementation.
 
 > Human First. AI Accelerated.
 
@@ -2272,7 +2272,7 @@ The repository sitemap identifies these published pages and language pairs:
 - `/en/approach.html`
 - `/en/ecosystem.html`
 - `/en/methodology.html`
-- `/en/gtt-method-2-1.html`
+- `/en/GTT-Method-2-1.html`
 - `/en/faq.html`
 
 ## Spanish
@@ -2284,14 +2284,14 @@ The repository sitemap identifies these published pages and language pairs:
 - `/es/enfoque.html`
 - `/es/ecosistema.html`
 - `/es/metodologia.html`
-- `/es/gtt-method-2-1.html`
+- `/es/GTT-Method-2-1.html`
 - `/es/preguntas-frecuentes.html`
 
 ## External resources
 
-- Bootstrap: https://github.com/GTT-method-Community/gtt-method-bootstrap
-- GTT-method Docs: https://github.com/GTT-method-Community/gtt-method-docs
-- Current website: https://gtt-method-community.github.io/
+- Bootstrap: https://github.com/GTT-Method-Community/GTT-Method-bootstrap
+- GTT-Method Docs: https://github.com/GTT-Method-Community/GTT-Method-docs
+- Current website: https://GTT-Method-community.github.io/
 
 ---
 

@@ -29,7 +29,7 @@ Each principle: the rule, then the trade-off it accepts.
   project, anywhere in the site, points at
   `https://github.com/GTT-Community/gtt-bootstrap`, and every "GitHub" link
   points at `https://github.com/orgs/GTT-Community/repositories`. Rules out
-  mixing in the superseded `GTT-method-Community/gtt-method-bootstrap` or
+  mixing in the superseded `GTT-Method-Community/GTT-Method-bootstrap` or
   `CDAD-Community/cdad-bootstrap` names, or any personal fork URL. Accepts:
   content written against an old name needs updating when found, not left
   as "still basically right."

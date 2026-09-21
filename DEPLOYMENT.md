@@ -1,6 +1,6 @@
-# Deployment Guide - GTT-method Website
+# Deployment Guide - GTT-Method Website
 
-Este documento explica cómo desplegar el sitio GTT-method en diferentes plataformas.
+Este documento explica cómo desplegar el sitio GTT-Method en diferentes plataformas.
 
 ## 🚀 Opciones de Despliegue
 

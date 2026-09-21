@@ -58,9 +58,9 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
 - **Status:** Done — `src/routes/index.tsx` pillar CTAs now link to
   `https://github.com/GTT-Community/gtt-docs` (Documentation),
   `https://github.com/orgs/GTT-Community/repositories` (x2), and
-  `/gtt-method-2-1` instead of `#method`. Both "Get Started" CTAs (header +
+  `/GTT-Method-2-1` instead of `#method`. Both "Get Started" CTAs (header +
   hero) now link to `https://github.com/GTT-Community/gtt-bootstrap`
-  instead of anchoring to `#method`. Added a "GTT-method Docs" nav link
+  instead of anchoring to `#method`. Added a "GTT-Method Docs" nav link
   (`https://github.com/GTT-Community/gtt-docs`) to the desktop header and
   mobile menu on every page — this wires up the `nav.docs` translation key
   that existed but was never rendered anywhere. Also added GitHub/Docs/Get
@@ -93,13 +93,13 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
   `GTT-Community/gtt-bootstrap` (see `cdad/context/glossary.md` →
   *Bootstrap*). Also corrected every "GitHub" button/link, across all
   routes, to `https://github.com/orgs/GTT-Community/repositories`
-  (previously `GTT-method-Community`). Verified zero remaining
-  `gtt-method-bootstrap`/`GTT-method-Community`/`CDAD-Community/cdad-bootstrap`/
+  (previously `GTT-Method-Community`). Verified zero remaining
+  `GTT-Method-bootstrap`/`GTT-Method-Community`/`CDAD-Community/cdad-bootstrap`/
   `mgriott` references in `src/` and in the built output (`dist/`).
 - **Priority:** High
 - **Description:** `src/lib/gttContent.ts` currently references
-  `https://github.com/GTT-method-Community/gtt-method-bootstrap` (the
-  superseded name) in multiple page bodies (`gtt-method-2-1`, `faq`,
+  `https://github.com/GTT-Method-Community/GTT-Method-bootstrap` (the
+  superseded name) in multiple page bodies (`GTT-Method-2-1`, `faq`,
   `manual`). Update every Bootstrap reference, anywhere in the site's copy
   or links, to the current official repository.
 - **Acceptance Criteria:**
@@ -107,7 +107,7 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
     URL) resolves to `GTT-Community/gtt-bootstrap`.
   - Every "GitHub" button/link resolves to
     `https://github.com/orgs/GTT-Community/repositories`.
-  - No reference to `GTT-method-Community/gtt-method-bootstrap`,
+  - No reference to `GTT-Method-Community/GTT-Method-bootstrap`,
     `CDAD-Community/cdad-bootstrap`, `mgriott/...`, or any other
     superseded/personal repo remains in `src/`.
 - **Dependencies:** None
@@ -124,7 +124,7 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
   `$slug.tsx` layout (same header, footer, typography, styles, language
   system as every other content page) — it is not an external resource.
   However, `$slug.tsx`'s desktop header nav hardcodes `pages.slice(0, 5)`,
-  which excludes `gtt-method-2-1`, `faq`, and `manual` from primary
+  which excludes `GTT-Method-2-1`, `faq`, and `manual` from primary
   navigation on every content page. Fix the primary nav to consistently
   surface all pages on every page, matching what `index.tsx` already does.
 - **Acceptance Criteria:**
@@ -203,7 +203,7 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
 | Approach | `/approach` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Ecosystem | `/ecosystem` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Methodology | `/methodology` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| GTT-method 2.1 | `/gtt-method-2-1` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| GTT-Method 2.1 | `/GTT-Method-2-1` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | FAQ | `/faq` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | User Manual | `/manual` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 
@@ -211,7 +211,7 @@ Verified via: `npm run build:github-pages` (crawler successfully prerendered
 all 9 routes by following the site's own `<Link>`s — no 404s during crawl),
 `tsc --noEmit` (clean except two pre-existing, unrelated errors in
 `vite.config.ts` not touched by this Epic), grep audits of the built
-`dist/` output for stale `gtt-method-bootstrap`/`mgriott` references (zero)
+`dist/` output for stale `GTT-Method-bootstrap`/`mgriott` references (zero)
 and for `/manual` reachability from every page's nav (present on all 9),
 and live in-browser testing (dev server): language switch, client-side
 navigation with language persistence, and full-reload persistence, on
@@ -225,7 +225,7 @@ and all `gttContent.ts` Bootstrap mentions were updated to match.
 Re-verified via `tsc --noEmit` (clean), a fresh
 `npm run build:github-pages` (all 9 routes prerendered again, no errors),
 and in-browser `document.querySelectorAll('a')` checks on `/`, `/about`,
-and `/gtt-method-2-1` confirming the exact target URLs and `target="_blank"`
+and `/GTT-Method-2-1` confirming the exact target URLs and `target="_blank"`
 on every external link touched.
 
 **Task 10 checklist status:** all items satisfied except the last two

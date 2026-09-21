@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 
 type Language = "en" | "es";
 
-const STORAGE_KEY = "gtt-method-language";
+const STORAGE_KEY = "GTT-Method-language";
 
 function readStoredLanguage(): Language | null {
   if (typeof window === "undefined") return null;
@@ -30,14 +30,14 @@ const translations = {
     "nav.approach": "Approach",
     "nav.ecosystem": "Ecosystem",
     "nav.methodology": "Methodology",
-    "nav.gttmethod21": "GTT-method 2.1",
+    "nav.gttmethod21": "GTT-Method 2.1",
     "nav.faq": "FAQ",
     "nav.manual": "Manual",
     "nav.github": "GitHub",
-    "nav.docs": "GTT-method Docs",
+    "nav.docs": "GTT-Method Docs",
     "lang.es": "Español",
     "lang.en": "English",
-    "footer.text": "GTT-method — Governance Through Thinking",
+    "footer.text": "GTT-Method — Governance Through Thinking",
     "footer.tags": "Open Source • AI-Assisted Software Development • SDD • Context Engineering • AI Coding Agents",
   },
   es: {
@@ -47,14 +47,14 @@ const translations = {
     "nav.approach": "Enfoque",
     "nav.ecosystem": "Ecosistema",
     "nav.methodology": "Metodología",
-    "nav.gttmethod21": "GTT-method 2.1",
+    "nav.gttmethod21": "GTT-Method 2.1",
     "nav.faq": "Preguntas",
     "nav.manual": "Manual",
     "nav.github": "GitHub",
-    "nav.docs": "GTT-method Docs",
+    "nav.docs": "GTT-Method Docs",
     "lang.es": "Español",
     "lang.en": "English",
-    "footer.text": "GTT-method — Governance Through Thinking",
+    "footer.text": "GTT-Method — Governance Through Thinking",
     "footer.tags": "Código Abierto • Desarrollo de Software Asistido por IA • SDD • Context Engineering • Agentes de IA",
   },
 };

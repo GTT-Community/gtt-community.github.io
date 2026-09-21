@@ -59,14 +59,14 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
 - **Status:** Proposed
 - **Priority:** High
 - **Description:** `src/lib/gttContent.ts` currently references
-  `https://github.com/GTT-method-Community/gtt-method-bootstrap` (the
-  superseded name) in multiple page bodies (`gtt-method-2-1`, `faq`,
+  `https://github.com/GTT-Method-Community/GTT-Method-bootstrap` (the
+  superseded name) in multiple page bodies (`GTT-Method-2-1`, `faq`,
   `manual`). Update every Bootstrap reference, anywhere in the site's
   copy or links, to `https://github.com/CDAD-Community/cdad-bootstrap`.
 - **Acceptance Criteria:**
   - Every mention of the Bootstrap project (button, link, or inline text URL)
     resolves to `CDAD-Community/cdad-bootstrap`.
-  - No reference to `GTT-method-Community/gtt-method-bootstrap`,
+  - No reference to `GTT-Method-Community/GTT-Method-bootstrap`,
     `mgriott/...`, or any other superseded/personal repo remains in `src/`.
 - **Dependencies:** None
 - **Notes:** Corresponds to Project Vision.md Task 2. `gttmethod.md` at the
@@ -82,7 +82,7 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
   layout (same header, footer, typography, styles, language system as every
   other content page) — it is not an external resource. However,
   `$slug.tsx`'s desktop header nav hardcodes `pages.slice(0, 5)`, which
-  excludes `gtt-method-2-1`, `faq`, and `manual` from primary navigation on
+  excludes `GTT-Method-2-1`, `faq`, and `manual` from primary navigation on
   every content page (they're reachable only via the mobile menu or the
   in-article page-to-page nav at the bottom). Fix the primary nav to
   consistently surface all pages (or a deliberately-designed grouping, e.g.

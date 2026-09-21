@@ -3,7 +3,7 @@
 ## Problem
 
 The GTT-Method Community website (this repository) was rebuilt from a prior
-static site (`mgriott/gtt-method-site`, extracted into `gttmethod.md`) into a
+static site (`mgriott/GTT-Method-site`, extracted into `gttmethod.md`) into a
 React/TanStack Start app. The rebuild is functionally incomplete: buttons and
 links exist that do not resolve to a real destination, the Bootstrap
 repository is still referenced by its old name, the User Manual page,
@@ -42,7 +42,7 @@ QA/remediation pass.
   `https://github.com/GTT-Community/gtt-bootstrap` — the current official
   repository (corrected 2026-09-21 by the Solution Designer; superseding
   `Project Vision.md`'s original `CDAD-Community/cdad-bootstrap`) — with no
-  remaining reference to `GTT-method-Community/gtt-method-bootstrap`,
+  remaining reference to `GTT-Method-Community/GTT-Method-bootstrap`,
   `CDAD-Community/cdad-bootstrap`, or any personal (`mgriott/...`) fork.
   Every "GitHub" link/button points at
   `https://github.com/orgs/GTT-Community/repositories`.

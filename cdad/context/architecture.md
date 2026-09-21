@@ -18,7 +18,7 @@ data table in source, plus the home route (`/`).
 | Module | Responsibility | May depend on | Must not depend on |
 |---|---|---|
 | `src/routes/index.tsx` | Home page (hero, method overview, pillars, tools strip) | `contexts/LanguageContext`, `lib/gttContent`, `components/Footer` | Route-specific logic belonging to `$slug.tsx` |
-| `src/routes/$slug.tsx` | Generic content-page shell (header, nav, article renderer, footer) for every non-home page, including `about`, `problem`, `approach`, `ecosystem`, `methodology`, `gtt-method-2-1`, `faq`, and `manual` | `contexts/LanguageContext`, `lib/gttContent`, `components/Footer` | A second, parallel manual-only page/route — the Manual is a `pages` entry like any other, not a special case |
+| `src/routes/$slug.tsx` | Generic content-page shell (header, nav, article renderer, footer) for every non-home page, including `about`, `problem`, `approach`, `ecosystem`, `methodology`, `GTT-Method-2-1`, `faq`, and `manual` | `contexts/LanguageContext`, `lib/gttContent`, `components/Footer` | A second, parallel manual-only page/route — the Manual is a `pages` entry like any other, not a special case |
 | `src/routes/__root.tsx` | App shell: HTML document, `<head>`, error/404 boundaries, wraps the tree in `QueryClientProvider` + `LanguageProvider` | — | Page-specific markup |
 | `src/contexts/LanguageContext.tsx` | Holds the active language (`en`/`es`) as in-memory React state and a small UI-string dictionary (`nav.*`, `footer.*`); exposes `useLanguage()` | — | Page body copy (that lives in `gttContent.ts`, not here) |
 | `src/lib/gttContent.ts` | The content model: `pages[]` array, each entry carrying `slug`, `titleEn/Es`, `descriptionEn/Es`, `contentEn/Es` (Markdown-ish string rendered by a hand-rolled parser in `$slug.tsx`), plus `searchContent()` | — | Presentation/layout concerns |
@@ -72,7 +72,7 @@ Two build targets share the same TanStack Start codebase:
   architecture change.
 - **Primary in-page navigation is inconsistent per page.** `$slug.tsx`'s
   desktop header only surfaces `pages.slice(0, 5)` (`about` through
-  `methodology`), leaving `gtt-method-2-1`, `faq`, and `manual` out of the
+  `methodology`), leaving `GTT-Method-2-1`, `faq`, and `manual` out of the
   primary nav on every content page (they do appear in the mobile menu and in
   the in-article page-to-page nav at the bottom). `index.tsx`'s header does
   surface all pages, split into a primary and secondary group. This asymmetry
