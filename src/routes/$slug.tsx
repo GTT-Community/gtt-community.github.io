@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages, searchContent } from "@/lib/gttContent";
 import { ArrowLeft, Menu, X } from "lucide-react";
@@ -66,23 +66,36 @@ function ContentPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <header className="mx-auto flex h-[82px] w-full max-w-[1500px] items-center gap-6 px-8 xl:px-12">
-        <a href="/" className="flex min-w-max items-center gap-3" aria-label="GTT Method home">
+        <Link to="/" className="flex min-w-max items-center gap-3" aria-label="GTT Method home">
           <img src={orcaMark} width={74} height={74} className="h-16 w-16 object-contain" alt="Orca GTT Method" />
           <div>
             <div className="text-[27px] font-extrabold leading-none tracking-tight">GTT-<span className="font-light">Method</span></div>
             <div className="mt-1 text-xs text-muted-foreground">Governance Through Thinking</div>
           </div>
-        </a>
+        </Link>
         <nav className="ml-auto hidden items-center gap-8 text-xs lg:flex" aria-label="Main navigation">
           {pages.slice(0, 5).map((p) => (
-            <a
+            <Link
               key={p.slug}
-              href={`/${p.slug}`}
+              to="/$slug"
+              params={{ slug: p.slug }}
               className={p.slug === slug ? "border-b-2 border-foreground py-3 font-semibold" : "hover:text-muted-foreground transition-colors"}
             >
               {language === "en" ? p.titleEn : p.titleEs}
-            </a>
+            </Link>
           ))}
+          <div className="border-l border-border pl-8 flex items-center gap-4">
+            {pages.slice(5).map((p) => (
+              <Link
+                key={p.slug}
+                to="/$slug"
+                params={{ slug: p.slug }}
+                className={p.slug === slug ? "border-b-2 border-foreground py-3 font-semibold" : "hover:text-muted-foreground transition-colors"}
+              >
+                {language === "en" ? p.titleEn : p.titleEs}
+              </Link>
+            ))}
+          </div>
         </nav>
         <div className="ml-auto hidden items-center gap-4 md:flex lg:ml-6">
           <div className="flex items-center gap-2 rounded-md border border-border px-3 py-2">
@@ -111,14 +124,15 @@ function ContentPage() {
         <div className="border-b border-border bg-muted/50 px-8 py-4 lg:hidden">
           <nav className="flex flex-col gap-4 text-sm">
             {pages.map((p) => (
-              <a
+              <Link
                 key={p.slug}
-                href={`/${p.slug}`}
+                to="/$slug"
+                params={{ slug: p.slug }}
                 className="hover:text-muted-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {language === "en" ? p.titleEn : p.titleEs}
-              </a>
+              </Link>
             ))}
             <div className="border-t border-border pt-4 mt-4 flex gap-2">
               <button
@@ -145,10 +159,10 @@ function ContentPage() {
       )}
 
       <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-12 md:px-8 md:py-16">
-        <a href="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">
+        <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">
           <ArrowLeft size={16} />
           {language === "en" ? "Back to home" : "Volver al inicio"}
-        </a>
+        </Link>
 
         <header className="mb-12">
           <h1 className="text-4xl font-bold tracking-tight mb-4">{title}</h1>
@@ -237,9 +251,10 @@ function ContentPage() {
         <nav className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-wrap gap-4">
             {pages.map((p) => (
-              <a
+              <Link
                 key={p.slug}
-                href={`/${p.slug}`}
+                to="/$slug"
+                params={{ slug: p.slug }}
                 className={`px-3 py-2 rounded text-sm font-medium transition-colors ${
                   p.slug === slug
                     ? "bg-primary text-primary-foreground"
@@ -247,7 +262,7 @@ function ContentPage() {
                 }`}
               >
                 {language === "en" ? p.titleEn : p.titleEs}
-              </a>
+              </Link>
             ))}
           </div>
         </nav>

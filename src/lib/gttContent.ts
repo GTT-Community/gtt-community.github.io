@@ -71,7 +71,7 @@ Open-source community maintaining and evolving GTT-method through contributions,
 
 ### Reference Implementation
 
-The official gtt-method-bootstrap project provides a concrete implementation of the methodology with governance artifacts and integration examples.
+The official cdad-bootstrap project provides a concrete implementation of the methodology with governance artifacts and integration examples.
 
 ### Open Source License
 
@@ -130,7 +130,7 @@ Comunidad open-source que mantiene y evoluciona GTT-method mediante contribucion
 
 ### Implementación de referencia
 
-El proyecto oficial gtt-method-bootstrap proporciona una implementación concreta de la metodología con artefactos de gobernanza y ejemplos de integración.
+El proyecto oficial cdad-bootstrap proporciona una implementación concreta de la metodología con artefactos de gobernanza y ejemplos de integración.
 
 ### Licencia
 
@@ -794,7 +794,7 @@ GTT-method is not tied to any specific agent. The methodology is portable across
 
 ## Getting Started
 
-Official Bootstrap Repository: https://github.com/GTT-method-Community/gtt-method-bootstrap
+Official Bootstrap Repository: https://github.com/CDAD-Community/cdad-bootstrap
 
 The bootstrap project is the authoritative reference implementation. Clone it, adapt to your project, and follow the documented setup process.
 
@@ -859,7 +859,7 @@ GTT-method no está ligado a un agente específico. La metodología es portable 
 
 ## Cómo comenzar
 
-Repositorio oficial: https://github.com/GTT-method-Community/gtt-method-bootstrap
+Repositorio oficial: https://github.com/CDAD-Community/cdad-bootstrap
 
 El proyecto bootstrap es la implementación de referencia autoritativa. Clónalo, adapta a tu proyecto y sigue el proceso de configuración documentado.
 
@@ -913,7 +913,7 @@ No. GTT-method is vendor-independent and works with Claude Code, Kiro, Cursor, C
 
 ## How do I start with GTT-method?
 
-Clone the official bootstrap project from https://github.com/GTT-method-Community/gtt-method-bootstrap and follow the setup guide.
+Clone the official bootstrap project from https://github.com/CDAD-Community/cdad-bootstrap and follow the setup guide.
 
 ## Is GTT-method suitable for my project?
 
@@ -958,7 +958,7 @@ No. GTT-method es independiente del proveedor y funciona con Claude Code, Kiro, 
 
 ## ¿Cómo comienzo con GTT-method?
 
-Clona el proyecto bootstrap oficial desde https://github.com/GTT-method-Community/gtt-method-bootstrap y sigue la guía de configuración.
+Clona el proyecto bootstrap oficial desde https://github.com/CDAD-Community/cdad-bootstrap y sigue la guía de configuración.
 
 ## ¿Es GTT-method adecuado para mi proyecto?
 
@@ -1003,7 +1003,7 @@ Keep an initial design document in the project root with the vision, objective, 
 
 ### Incorporate GTT-method
 
-Give the ADE: https://github.com/GTT-method-Community/gtt-method-bootstrap
+Give the ADE: https://github.com/CDAD-Community/cdad-bootstrap
 
 Ask:
 \`\`\`
@@ -1103,7 +1103,7 @@ Deja en la raíz un documento con visión, objetivo, funcionalidad principal, ar
 
 ### Incorpora GTT-method
 
-Entrega al ADE: https://github.com/GTT-method-Community/gtt-method-bootstrap
+Entrega al ADE: https://github.com/CDAD-Community/cdad-bootstrap
 
 Y pídele:
 \`\`\`

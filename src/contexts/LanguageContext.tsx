@@ -1,6 +1,18 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 type Language = "en" | "es";
+
+const STORAGE_KEY = "gtt-method-language";
+
+function readStoredLanguage(): Language | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    return stored === "en" || stored === "es" ? stored : null;
+  } catch {
+    return null;
+  }
+}
 
 interface LanguageContextType {
   language: Language;
@@ -48,7 +60,25 @@ const translations = {
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
+  // Starts as "en" to match the prerendered/SSR markup; the stored choice
+  // (if any) is applied right after mount to avoid a hydration mismatch.
+  const [language, setLanguageState] = useState<Language>("en");
+
+  useEffect(() => {
+    const stored = readStoredLanguage();
+    if (stored) {
+      setLanguageState(stored);
+    }
+  }, []);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, lang);
+    } catch {
+      // ignore write failures (private browsing, quota, etc.)
+    }
+  };
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations["en"]] || key;
