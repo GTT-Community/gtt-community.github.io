@@ -56,11 +56,18 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
 ##### STORY-001 — Fix dead/decorative CTAs and audit every button and link
 
 - **Status:** Done — `src/routes/index.tsx` pillar CTAs now link to
-  `/manual`, `https://github.com/orgs/GTT-Community/repositories` (x2), and
+  `https://github.com/GTT-Community/gtt-docs` (Documentation),
+  `https://github.com/orgs/GTT-Community/repositories` (x2), and
   `/gtt-method-2-1` instead of `#method`. Both "Get Started" CTAs (header +
   hero) now link to `https://github.com/GTT-Community/gtt-bootstrap`
-  instead of anchoring to `#method` (added 2026-09-21 per Solution
-  Designer follow-up). Full link audit below.
+  instead of anchoring to `#method`. Added a "GTT-method Docs" nav link
+  (`https://github.com/GTT-Community/gtt-docs`) to the desktop header and
+  mobile menu on every page — this wires up the `nav.docs` translation key
+  that existed but was never rendered anywhere. Also added GitHub/Docs/Get
+  Started links to the mobile menu, which previously had none (desktop-only
+  before), and `aria-label`/`aria-expanded` to both mobile menu toggle
+  buttons, which had neither (all 2026-09-21 per Solution Designer
+  follow-up). Full link audit below.
 - **Priority:** High
 - **Description:** `src/routes/index.tsx`'s four "pillars" cards ("Browse
   Docs", "View on GitHub", "Join the Community", "See Examples") all render

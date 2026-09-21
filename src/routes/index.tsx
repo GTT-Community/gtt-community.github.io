@@ -38,6 +38,7 @@ export const Route = createFileRoute("/")({
 
 const BOOTSTRAP_URL = "https://github.com/GTT-Community/gtt-bootstrap";
 const GITHUB_ORG_URL = "https://github.com/orgs/GTT-Community/repositories";
+const DOCS_URL = "https://github.com/GTT-Community/gtt-docs";
 
 const methodSteps = {
   en: [
@@ -58,13 +59,13 @@ const methodSteps = {
 
 const pillars = {
   en: [
-    { icon: BookOpen, title: "Documentation", text: "Guides, templates and practical examples to apply GTT in real projects.", link: "Browse Docs", slug: "manual" as const },
+    { icon: BookOpen, title: "Documentation", text: "Guides, templates and practical examples to apply GTT in real projects.", link: "Browse Docs", href: DOCS_URL },
     { icon: Code2, title: "Open Source", text: "Built in the open. Contribute, learn and grow with the community.", link: "View on GitHub", href: GITHUB_ORG_URL },
     { icon: Users, title: "Community", text: "A space for builders, learners and practitioners.", link: "Join the Community", href: GITHUB_ORG_URL },
     { icon: Rocket, title: "Real Impact", text: "From ideas to working software, with governance and purpose.", link: "See Examples", slug: "gtt-method-2-1" as const },
   ],
   es: [
-    { icon: BookOpen, title: "Documentación", text: "Guías, plantillas y ejemplos prácticos para aplicar GTT en proyectos reales.", link: "Ver Documentación", slug: "manual" as const },
+    { icon: BookOpen, title: "Documentación", text: "Guías, plantillas y ejemplos prácticos para aplicar GTT en proyectos reales.", link: "Ver Documentación", href: DOCS_URL },
     { icon: Code2, title: "Código Abierto", text: "Construido en abierto. Contribuye, aprende y crece con la comunidad.", link: "Ver en GitHub", href: GITHUB_ORG_URL },
     { icon: Users, title: "Comunidad", text: "Un espacio para constructores, aprendices y profesionales.", link: "Únete a la Comunidad", href: GITHUB_ORG_URL },
     { icon: Rocket, title: "Impacto Real", text: "De las ideas al software funcional, con gobernanza y propósito.", link: "Ver Ejemplos", slug: "gtt-method-2-1" as const },
@@ -149,6 +150,7 @@ function Index() {
           </div>
         </nav>
         <div className="ml-auto hidden items-center gap-4 md:flex lg:ml-6">
+          <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:text-muted-foreground transition-colors">{t("nav.docs")}</a>
           <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-semibold"><Github size={22} /> GitHub</a>
           <div className="flex items-center gap-2 rounded-md border border-border px-3 py-2">
             <button
@@ -167,7 +169,12 @@ function Index() {
           </div>
           <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark">{heroContent[language].ctaPrimary} <ArrowRight size={16} /></a>
         </div>
-        <button className="lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <button
+          className="lg:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? (language === "en" ? "Close menu" : "Cerrar menú") : (language === "en" ? "Open menu" : "Abrir menú")}
+          aria-expanded={mobileMenuOpen}
+        >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </header>
@@ -183,6 +190,9 @@ function Index() {
                 onClick={() => setMobileMenuOpen(false)}
               />
             ))}
+            <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{t("nav.docs")}</a>
+            <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-muted-foreground transition-colors"><Github size={16} /> GitHub</a>
+            <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{heroContent[language].ctaPrimary}</a>
             <div className="border-t border-border pt-4 mt-4 flex gap-2">
               <button
                 onClick={() => {

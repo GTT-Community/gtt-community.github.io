@@ -6,6 +6,10 @@ import { useState } from "react";
 import { Footer } from "@/components/Footer";
 import orcaMark from "@/assets/orca-mark.png";
 
+const BOOTSTRAP_URL = "https://github.com/GTT-Community/gtt-bootstrap";
+const GITHUB_ORG_URL = "https://github.com/orgs/GTT-Community/repositories";
+const DOCS_URL = "https://github.com/GTT-Community/gtt-docs";
+
 export const Route = createFileRoute("/$slug")({
   head: ({ params }) => {
     const { slug } = params;
@@ -113,9 +117,15 @@ function ContentPage() {
               ES
             </button>
           </div>
-          <a href="https://github.com/orgs/GTT-Community/repositories" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold">GitHub</a>
+          <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:text-muted-foreground transition-colors">{t("nav.docs")}</a>
+          <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold">GitHub</a>
         </div>
-        <button className="lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <button
+          className="lg:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? (language === "en" ? "Close menu" : "Cerrar menú") : (language === "en" ? "Open menu" : "Abrir menú")}
+          aria-expanded={mobileMenuOpen}
+        >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </header>
@@ -134,6 +144,9 @@ function ContentPage() {
                 {language === "en" ? p.titleEn : p.titleEs}
               </Link>
             ))}
+            <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{t("nav.docs")}</a>
+            <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">GitHub</a>
+            <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{language === "en" ? "Get Started" : "Comenzar"}</a>
             <div className="border-t border-border pt-4 mt-4 flex gap-2">
               <button
                 onClick={() => {
