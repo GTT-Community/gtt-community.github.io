@@ -5,10 +5,25 @@ import { ArrowLeft, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Footer } from "@/components/Footer";
 import orcaMark from "@/assets/orca-mark.png";
+import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL } from "@/lib/links";
 
-const BOOTSTRAP_URL = "https://github.com/GTT-Community/gtt-bootstrap";
-const GITHUB_ORG_URL = "https://github.com/orgs/GTT-Community/repositories";
-const DOCS_URL = "https://github.com/GTT-Community/gtt-docs";
+const URL_PATTERN = /(https?:\/\/[^\s)<>"']+)/g;
+
+function linkify(text: string) {
+  const parts = text.split(URL_PATTERN);
+  if (parts.length === 1) return text;
+  // split() with a single capturing group interleaves the captured matches
+  // at odd indices — no need for a second, stateful regex test.
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 hover:text-primary">
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+}
 
 export const Route = createFileRoute("/$slug")({
   head: ({ params }) => {
@@ -202,7 +217,7 @@ function ContentPage() {
                   <ul key={index} className="list-disc list-inside space-y-2 ml-2">
                     {paragraph.split("\n").map((line, i) => (
                       <li key={i} className="text-muted-foreground">
-                        {line.replace(/^[-•*]\s*|\d+\.\s*/, "")}
+                        {linkify(line.replace(/^[-•*]\s*|\d+\.\s*/, ""))}
                       </li>
                     ))}
                   </ul>
@@ -247,14 +262,14 @@ function ContentPage() {
               if (paragraph.trim().startsWith(">")) {
                 return (
                   <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4">
-                    {paragraph.replace(/^>\s*/, "")}
+                    {linkify(paragraph.replace(/^>\s*/, ""))}
                   </blockquote>
                 );
               }
 
               return (
                 <p key={index} className="text-muted-foreground">
-                  {paragraph.trim()}
+                  {linkify(paragraph.trim())}
                 </p>
               );
             })}

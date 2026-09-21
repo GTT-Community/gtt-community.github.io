@@ -746,10 +746,10 @@ The bootstrap introduces a governed workspace containing governance and context 
 
 - AGENTS.md — Agent instructions and governance
 - CHANGE-REQUEST.md — Template for proposed changes
-- GTT-Method/context/ — Governed project context (L0)
-- GTT-Method/adr/ — Architecture Decision Records (L1)
-- GTT-Method/proposals/ — Pending proposals under review
-- GTT-Method/scripts/ — Validation and governance scripts
+- gtt-method/context/ — Governed project context (L0)
+- gtt-method/adr/ — Architecture Decision Records (L1)
+- gtt-method/proposals/ — Pending proposals under review
+- gtt-method/scripts/ — Validation and governance scripts
 - .claude/, .kiro/ — Agent-specific configuration
 
 ## Workspace Structure
@@ -760,7 +760,7 @@ The bootstrap introduces a governed workspace containing governance and context 
 ├── AGENTS.md
 ├── CHANGE-REQUEST.md
 │
-├── GTT-Method/
+├── gtt-method/
 │   ├── README.md
 │   ├── context/          (L0: Governed)
 │   │   ├── stack.md
@@ -799,7 +799,7 @@ Official Bootstrap Repository: https://github.com/GTT-Community/gtt-bootstrap
 The bootstrap project is the authoritative reference implementation. Clone it, adapt to your project, and follow the documented setup process.
 
 1. **Initialize** - Clone bootstrap and adapt the workspace structure to your project.
-2. **Establish Context** - Define architecture, principles and constraints explicitly in \`GTT-Method/context/\`.
+2. **Establish Context** - Define architecture, principles and constraints explicitly in \`gtt-method/context/\`.
 3. **Agent Integration** - Configure \`.claude/\` or \`.kiro/\` with governance rules specific to your agents.
 4. **Freeze** - Review and ratify your governed context through the freeze process.
 5. **Work** - Begin development with agents working within the governed boundaries.`,
@@ -811,10 +811,10 @@ El bootstrap introduce un workspace gobernado con:
 
 - AGENTS.md — Instrucciones y gobernanza para agentes.
 - CHANGE-REQUEST.md — Plantilla para cambios propuestos.
-- GTT-Method/context/ — Contexto gobernado del proyecto (L0).
-- GTT-Method/adr/ — Architecture Decision Records (L1).
-- GTT-Method/proposals/ — Propuestas pendientes de revisión.
-- GTT-Method/scripts/ — Scripts de validación y gobernanza.
+- gtt-method/context/ — Contexto gobernado del proyecto (L0).
+- gtt-method/adr/ — Architecture Decision Records (L1).
+- gtt-method/proposals/ — Propuestas pendientes de revisión.
+- gtt-method/scripts/ — Scripts de validación y gobernanza.
 - .claude/, .kiro/ — Configuración específica de agentes.
 
 ## Estructura del Workspace
@@ -825,7 +825,7 @@ El bootstrap introduce un workspace gobernado con:
 ├── AGENTS.md
 ├── CHANGE-REQUEST.md
 │
-├── GTT-Method/
+├── gtt-method/
 │   ├── README.md
 │   ├── context/          (L0: Governed)
 │   │   ├── stack.md
@@ -864,7 +864,7 @@ Repositorio oficial: https://github.com/GTT-Community/gtt-bootstrap
 El proyecto bootstrap es la implementación de referencia autoritativa. Clónalo, adapta a tu proyecto y sigue el proceso de configuración documentado.
 
 1. **Inicializar** - Clona bootstrap y adapta la estructura del workspace a tu proyecto.
-2. **Establecer Contexto** - Define arquitectura, principios y restricciones explícitamente en \`GTT-Method/context/\`.
+2. **Establecer Contexto** - Define arquitectura, principios y restricciones explícitamente en \`gtt-method/context/\`.
 3. **Integración del Agente** - Configura \`.claude/\` o \`.kiro/\` con reglas específicas de gobernanza.
 4. **Freeze** - Revisa y ratifica el contexto gobernado mediante el proceso de freeze.
 5. **Work** - Comienza el desarrollo con agentes trabajando dentro de los límites gobernados.`,
@@ -1027,11 +1027,11 @@ These are different decisions and both matter.
 
 ## 4. Review the Workspace and Freeze
 
-After Bootstrap you will find files such as AGENTS.md, CHANGE-REQUEST.md, SOURCE-BRIEF.* and a GTT-Method/ directory containing context, ADRs, proposals and scripts.
+After Bootstrap you will find files such as AGENTS.md, CHANGE-REQUEST.md, SOURCE-BRIEF.* and a gtt-method/ directory containing context, ADRs, proposals and scripts.
 
-Quick architecture map: \`GTT-Method/context/stack.md\`
+Quick architecture map: \`gtt-method/context/stack.md\`
 
-Freeze: \`GTT-Method/scripts/GTT-Method-freeze.sh\`
+Freeze: \`gtt-method/scripts/gtt-method-freeze.sh\`
 
 ## 5. Normal Development: Delegate
 
@@ -1127,11 +1127,11 @@ Son decisiones distintas y ambas son necesarias.
 
 ## 4. Revisa el Workspace y Ejecuta Freeze
 
-Después del Bootstrap encontrarás AGENTS.md, CHANGE-REQUEST.md, SOURCE-BRIEF.* y el directorio GTT-Method/ con contexto, ADRs, propuestas y scripts.
+Después del Bootstrap encontrarás AGENTS.md, CHANGE-REQUEST.md, SOURCE-BRIEF.* y el directorio gtt-method/ con contexto, ADRs, propuestas y scripts.
 
-Mapa: \`GTT-Method/context/stack.md\`
+Mapa: \`gtt-method/context/stack.md\`
 
-Freeze: \`GTT-Method/scripts/GTT-Method-freeze.sh\`
+Freeze: \`gtt-method/scripts/gtt-method-freeze.sh\`
 
 ## 5. Desarrollo Normal: Delega
 

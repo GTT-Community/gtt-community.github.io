@@ -21,6 +21,7 @@ import { pages } from "@/lib/gttContent";
 import { Footer } from "@/components/Footer";
 import heroImage from "@/assets/orca-hero.jpg";
 import orcaMark from "@/assets/orca-mark.png";
+import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL } from "@/lib/links";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,10 +36,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const BOOTSTRAP_URL = "https://github.com/GTT-Community/gtt-bootstrap";
-const GITHUB_ORG_URL = "https://github.com/orgs/GTT-Community/repositories";
-const DOCS_URL = "https://github.com/GTT-Community/gtt-docs";
 
 const methodSteps = {
   en: [
