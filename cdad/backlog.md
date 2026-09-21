@@ -119,6 +119,21 @@ URL-prefix routing rewrite; see `cdad/context/solution-vision.md` →
   pages (primary 5 + secondary 3, matching `index.tsx`'s existing pattern)
   instead of hardcoding `pages.slice(0, 5)`. Verified `/manual` link present
   in every built page's nav.
+  **Follow-up (2026-09-21):** Solution Designer caught that Home's header
+  and content pages' header had still drifted apart — the "Get Started"
+  button and a "Home" nav item existed only on Home, and the Docs/GitHub/
+  language-switch order differed. Root cause: the two headers were two
+  independently hand-maintained copies of the same markup, guaranteed to
+  drift again on the next change. Extracted a single shared
+  `src/components/Header.tsx` (parallel to the existing `Footer.tsx`) that
+  both `index.tsx` and `$slug.tsx` now render — `<Header />` on Home,
+  `<Header activeSlug={slug} />` on content pages — so the header can no
+  longer diverge between them. Includes `aria-current="page"` on the
+  active nav link and `aria-pressed` on the language toggle buttons.
+  Removed ~230 lines of duplicated header/mobile-menu JSX from the two
+  route files. Verified in-browser: Home and `/manual` render byte-for-byte
+  the same header structure, mobile menu on `/manual` now includes "Home"
+  (previously missing).
 - **Priority:** Medium
 - **Description:** The Manual already renders through the shared
   `$slug.tsx` layout (same header, footer, typography, styles, language

@@ -1,11 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages, searchContent } from "@/lib/gttContent";
-import { ArrowLeft, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 import { Footer } from "@/components/Footer";
-import orcaMark from "@/assets/orca-mark.png";
-import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL } from "@/lib/links";
+import { Header } from "@/components/Header";
 
 const URL_PATTERN = /(https?:\/\/[^\s)<>"']+)/g;
 
@@ -57,8 +55,7 @@ export const Route = createFileRoute("/$slug")({
 
 function ContentPage() {
   const { slug } = Route.useParams();
-  const { language, setLanguage, t } = useLanguage();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language } = useLanguage();
   const page = pages.find((p) => p.slug === slug);
 
   if (!page) {
@@ -84,107 +81,7 @@ function ContentPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <header className="mx-auto flex h-[82px] w-full max-w-[1500px] items-center gap-6 px-8 xl:px-12">
-        <Link to="/" className="flex min-w-max items-center gap-3" aria-label="GTT Method home">
-          <img src={orcaMark} width={74} height={74} className="h-16 w-16 object-contain" alt="Orca GTT Method" />
-          <div>
-            <div className="text-[27px] font-extrabold leading-none tracking-tight">GTT-<span className="font-light">Method</span></div>
-            <div className="mt-1 text-xs text-muted-foreground">Governance Through Thinking</div>
-          </div>
-        </Link>
-        <nav className="ml-auto hidden items-center gap-8 text-xs lg:flex" aria-label="Main navigation">
-          {pages.slice(0, 5).map((p) => (
-            <Link
-              key={p.slug}
-              to="/$slug"
-              params={{ slug: p.slug }}
-              className={p.slug === slug ? "border-b-2 border-foreground py-3 font-semibold" : "hover:text-muted-foreground transition-colors"}
-            >
-              {language === "en" ? p.titleEn : p.titleEs}
-            </Link>
-          ))}
-          <div className="border-l border-border pl-8 flex items-center gap-4">
-            {pages.slice(5).map((p) => (
-              <Link
-                key={p.slug}
-                to="/$slug"
-                params={{ slug: p.slug }}
-                className={p.slug === slug ? "border-b-2 border-foreground py-3 font-semibold" : "hover:text-muted-foreground transition-colors"}
-              >
-                {language === "en" ? p.titleEn : p.titleEs}
-              </Link>
-            ))}
-          </div>
-        </nav>
-        <div className="ml-auto hidden items-center gap-4 md:flex lg:ml-6">
-          <div className="flex items-center gap-2 rounded-md border border-border px-3 py-2">
-            <button
-              onClick={() => setLanguage("en")}
-              className={`text-xs font-semibold px-2 py-1 rounded ${language === "en" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
-            >
-              EN
-            </button>
-            <div className="text-muted-foreground">|</div>
-            <button
-              onClick={() => setLanguage("es")}
-              className={`text-xs font-semibold px-2 py-1 rounded ${language === "es" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
-            >
-              ES
-            </button>
-          </div>
-          <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:text-muted-foreground transition-colors">{t("nav.docs")}</a>
-          <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold">GitHub</a>
-        </div>
-        <button
-          className="lg:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? (language === "en" ? "Close menu" : "Cerrar menú") : (language === "en" ? "Open menu" : "Abrir menú")}
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </header>
-
-      {mobileMenuOpen && (
-        <div className="border-b border-border bg-muted/50 px-8 py-4 lg:hidden">
-          <nav className="flex flex-col gap-4 text-sm">
-            {pages.map((p) => (
-              <Link
-                key={p.slug}
-                to="/$slug"
-                params={{ slug: p.slug }}
-                className="hover:text-muted-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {language === "en" ? p.titleEn : p.titleEs}
-              </Link>
-            ))}
-            <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{t("nav.docs")}</a>
-            <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">GitHub</a>
-            <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{language === "en" ? "Get Started" : "Comenzar"}</a>
-            <div className="border-t border-border pt-4 mt-4 flex gap-2">
-              <button
-                onClick={() => {
-                  setLanguage("en");
-                  setMobileMenuOpen(false);
-                }}
-                className={`text-xs font-semibold px-3 py-2 rounded ${language === "en" ? "bg-primary text-primary-foreground" : "bg-muted"}`}
-              >
-                English
-              </button>
-              <button
-                onClick={() => {
-                  setLanguage("es");
-                  setMobileMenuOpen(false);
-                }}
-                className={`text-xs font-semibold px-3 py-2 rounded ${language === "es" ? "bg-primary text-primary-foreground" : "bg-muted"}`}
-              >
-                Español
-              </button>
-            </div>
-          </nav>
-        </div>
-      )}
+      <Header activeSlug={slug} />
 
       <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-12 md:px-8 md:py-16">
         <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">

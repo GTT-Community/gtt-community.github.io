@@ -6,21 +6,15 @@ import {
   Boxes,
   BrainCircuit,
   Code2,
-  Github,
   Leaf,
   Rocket,
-  Search,
   Shield,
   Users,
-  Menu,
-  X,
 } from "lucide-react";
-import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { pages } from "@/lib/gttContent";
 import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import heroImage from "@/assets/orca-hero.jpg";
-import orcaMark from "@/assets/orca-mark.png";
 import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL } from "@/lib/links";
 
 export const Route = createFileRoute("/")({
@@ -95,124 +89,12 @@ function ArrowLink({ children }: { children: React.ReactNode }) {
   return <a href="#method" className="inline-flex items-center gap-3 border-b border-foreground pb-0.5 text-sm font-medium">{children}<ArrowRight size={15} /></a>;
 }
 
-function NavLink({ item, className, onClick }: { item: { label: string; anchor?: string; slug?: string }; className?: string; onClick?: () => void }) {
-  if (item.slug) {
-    return (
-      <Link to="/$slug" params={{ slug: item.slug }} className={className} onClick={onClick}>
-        {item.label}
-      </Link>
-    );
-  }
-  return (
-    <a href={item.anchor} className={className} onClick={onClick}>
-      {item.label}
-    </a>
-  );
-}
-
 function Index() {
-  const { language, setLanguage, t } = useLanguage();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const navItems: Array<{ label: string; anchor?: string; slug?: string }> = [
-    { label: t("nav.home"), anchor: "#top" },
-    ...pages.map((p) => ({
-      label: language === "en" ? p.titleEn : p.titleEs,
-      slug: p.slug,
-    })),
-  ];
+  const { language } = useLanguage();
 
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
-      <header className="mx-auto flex h-[82px] max-w-[1500px] items-center gap-6 px-8 xl:px-12">
-        <a href="#top" className="flex min-w-max items-center gap-3" aria-label="GTT Method home">
-          <img src={orcaMark} width={74} height={74} className="h-16 w-16 object-contain" alt="Orca GTT Method" />
-          <div>
-            <div className="text-[27px] font-extrabold leading-none tracking-tight">GTT-<span className="font-light">Method</span></div>
-            <div className="mt-1 text-xs text-muted-foreground">Governance Through Thinking</div>
-          </div>
-        </a>
-        <nav className="ml-auto hidden items-center gap-8 text-xs lg:flex" aria-label="Main navigation">
-          {navItems.slice(0, 6).map((item) => (
-            <NavLink
-              key={item.label}
-              item={item}
-              className={item.label === t("nav.home") ? "border-b-2 border-foreground py-3 font-semibold" : "hover:text-muted-foreground transition-colors"}
-            />
-          ))}
-          <div className="border-l border-border pl-8 flex items-center gap-4">
-            {navItems.slice(6).map((item) => (
-              <NavLink key={item.label} item={item} className="hover:text-muted-foreground transition-colors" />
-            ))}
-          </div>
-        </nav>
-        <div className="ml-auto hidden items-center gap-4 md:flex lg:ml-6">
-          <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:text-muted-foreground transition-colors">{t("nav.docs")}</a>
-          <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-semibold"><Github size={22} /> GitHub</a>
-          <div className="flex items-center gap-2 rounded-md border border-border px-3 py-2">
-            <button
-              onClick={() => setLanguage("en")}
-              className={`text-xs font-semibold px-2 py-1 rounded ${language === "en" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
-            >
-              EN
-            </button>
-            <div className="text-muted-foreground">|</div>
-            <button
-              onClick={() => setLanguage("es")}
-              className={`text-xs font-semibold px-2 py-1 rounded ${language === "es" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
-            >
-              ES
-            </button>
-          </div>
-          <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark">{heroContent[language].ctaPrimary} <ArrowRight size={16} /></a>
-        </div>
-        <button
-          className="lg:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? (language === "en" ? "Close menu" : "Cerrar menú") : (language === "en" ? "Open menu" : "Abrir menú")}
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </header>
-
-      {mobileMenuOpen && (
-        <div className="border-b border-border bg-muted/50 px-8 py-4 lg:hidden">
-          <nav className="flex flex-col gap-4 text-sm">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.label}
-                item={item}
-                className="hover:text-muted-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-            ))}
-            <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{t("nav.docs")}</a>
-            <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-muted-foreground transition-colors"><Github size={16} /> GitHub</a>
-            <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{heroContent[language].ctaPrimary}</a>
-            <div className="border-t border-border pt-4 mt-4 flex gap-2">
-              <button
-                onClick={() => {
-                  setLanguage("en");
-                  setMobileMenuOpen(false);
-                }}
-                className={`text-xs font-semibold px-3 py-2 rounded ${language === "en" ? "bg-primary text-primary-foreground" : "bg-muted"}`}
-              >
-                English
-              </button>
-              <button
-                onClick={() => {
-                  setLanguage("es");
-                  setMobileMenuOpen(false);
-                }}
-                className={`text-xs font-semibold px-3 py-2 rounded ${language === "es" ? "bg-primary text-primary-foreground" : "bg-muted"}`}
-              >
-                Español
-              </button>
-            </div>
-          </nav>
-        </div>
-      )}
+      <Header />
 
       <section id="top" className="hero-stage relative mx-auto max-w-[1600px] px-8 xl:px-12">
         <img src={heroImage} width={1920} height={900} className="absolute inset-0 h-full w-full object-cover object-center" alt="Orca leaping from the ocean before alpine mountains" />
