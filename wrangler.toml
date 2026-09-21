@@ -1,0 +1,12 @@
+# Cloudflare Pages Configuration
+# Deploy to Cloudflare Pages with: npx wrangler pages deploy .output/public
+
+name = "orca-site-codigo"
+main = "src/server.ts"
+compatibility_date = "2025-09-16"
+
+[env.production]
+name = "orca-site-codigo-prod"
+
+[env.preview]
+name = "orca-site-codigo-preview"
