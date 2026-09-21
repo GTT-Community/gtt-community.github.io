@@ -113,7 +113,7 @@ function ContentPage() {
               ES
             </button>
           </div>
-          <a href="https://github.com/GTT-method-Community" className="text-xs font-semibold">GitHub</a>
+          <a href="https://github.com/orgs/GTT-Community/repositories" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold">GitHub</a>
         </div>
         <button className="lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
