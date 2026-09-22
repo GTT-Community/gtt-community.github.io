@@ -3,7 +3,7 @@ import { Github, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages } from "@/lib/gttContent";
-import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL } from "@/lib/links";
+import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL, GTT_METHOD_CANONICAL_URL } from "@/lib/links";
 import orcaMark from "@/assets/orca-mark.png";
 
 interface HeaderProps {
@@ -11,7 +11,7 @@ interface HeaderProps {
   activeSlug?: string;
 }
 
-type NavItem = { label: string; slug?: string; isHome?: boolean };
+type NavItem = { label: string; slug?: string; isHome?: boolean; href?: string };
 
 /**
  * The single header used by the home page and every content page, so the
@@ -26,18 +26,27 @@ export function Header({ activeSlug }: HeaderProps) {
 
   const navItems: NavItem[] = [
     { label: t("nav.home"), isHome: true },
-    ...pages.map((p) => ({
-      label: language === "en" ? p.titleEn : p.titleEs,
-      slug: p.slug,
-    })),
+    ...pages.map((p) =>
+      p.slug === "gtt-method-2-1"
+        ? { label: "GTT-Method 2.1 / Canonical", href: GTT_METHOD_CANONICAL_URL }
+        : { label: language === "en" ? p.titleEn : p.titleEs, slug: p.slug },
+    ),
   ];
 
-  const isActive = (item: NavItem) => (item.isHome ? isHome : item.slug === activeSlug);
+  const isActive = (item: NavItem) => (item.href ? false : item.isHome ? isHome : item.slug === activeSlug);
 
   function NavLink({ item, className, onClick }: { item: NavItem; className: string; onClick?: () => void }) {
     const active = isActive(item);
     const combinedClassName = active ? "border-b-2 border-foreground py-3 font-semibold" : className;
     const ariaCurrent = active ? ("page" as const) : undefined;
+
+    if (item.href) {
+      return (
+        <a href={item.href} target="_blank" rel="noopener noreferrer" className={combinedClassName} onClick={onClick}>
+          {item.label}
+        </a>
+      );
+    }
 
     if (item.isHome) {
       return isHome ? (
