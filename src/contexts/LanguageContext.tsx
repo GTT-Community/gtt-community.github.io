@@ -24,7 +24,6 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const translations = {
   en: {
-    "nav.home": "Home",
     "nav.about": "About",
     "nav.problem": "Problem",
     "nav.approach": "Approach",
@@ -32,7 +31,6 @@ const translations = {
     "nav.methodology": "Methodology",
     "nav.gttmethod21": "GTT-Method 2.1",
     "nav.faq": "FAQ",
-    "nav.manual": "Manual",
     "nav.github": "GitHub",
     "nav.docs": "GTT-Method Docs",
     "lang.es": "Español",
@@ -41,7 +39,6 @@ const translations = {
     "footer.tags": "Open Source • AI-Assisted Software Development • SDD • Context Engineering • AI Coding Agents",
   },
   es: {
-    "nav.home": "Inicio",
     "nav.about": "Acerca",
     "nav.problem": "Problema",
     "nav.approach": "Enfoque",
@@ -49,7 +46,6 @@ const translations = {
     "nav.methodology": "Metodología",
     "nav.gttmethod21": "GTT-Method 2.1",
     "nav.faq": "Preguntas",
-    "nav.manual": "Manual",
     "nav.github": "GitHub",
     "nav.docs": "GTT-Method Docs",
     "lang.es": "Español",

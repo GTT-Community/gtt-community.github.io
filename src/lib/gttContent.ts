@@ -1901,13 +1901,19 @@ El proyecto bootstrap es la implementación de referencia autoritativa. Clónalo
     slug: "faq",
     titleEn: "FAQ",
     titleEs: "Preguntas Frecuentes",
-    descriptionEn: "Direct answers about GTT-Method: what it is, how its governance works, THINK, GTT Bootstrap, GTT CLI, ADEs and how to start a GTT project.",
-    descriptionEs: "Respuestas directas sobre GTT-Method: qué es, cómo funciona su gobernanza, THINK, GTT Bootstrap, GTT CLI, los ADEs y cómo empezar un proyecto GTT.",
+    descriptionEn: "Direct answers about GTT-Method: what it is, how its governance and control plane work, THINK, GTTGuard, enforcement, context efficiency, session continuity, GTT Bootstrap, GTT CLI, ADEs and how to start.",
+    descriptionEs: "Respuestas directas sobre GTT-Method: qué es, cómo funcionan su gobernanza y su plano de control, THINK, GTTGuard, enforcement, eficiencia de contexto, continuidad de sesión, GTT Bootstrap, GTT CLI, los ADEs y cómo empezar.",
     contentEn: `## What is GTT-Method?
 
-GTT-Method (Governance Through Thinking) is an open-source methodology for governed AI-assisted software development. It establishes the context, evidence, architectural intent, decision boundaries, controlled change, validation and session continuity that let AI agents take part in software development without becoming the authority over the system.
+GTT-Method (Governance Through Thinking) is an open-source methodology and governance control plane for governed AI-assisted software development. It establishes the context, evidence, architectural intent, governance rules, decision boundaries, controlled change, protection, validation and session continuity that let AI agents and ADEs take part in software development without becoming the authority over the system.
 
-It is implemented through GTT Bootstrap and operated through GTT CLI. Its canonical definition is https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+Its central distinction is that agent reasoning is not change authorization: agents analyze, propose and implement within the authority GTT grants, and the human remains the authority for governed decisions.
+
+GTT is implemented through GTT Bootstrap and operated through GTT CLI. Its canonical definition is https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+
+## Which version of GTT is current?
+
+GTT 2.1 is the current released generation, defined by a single canonical document. Anything that document does not define is not a GTT 2.1 capability, even if it appears in code, a website, a prompt or a proposal. Future generations are defined separately and are not current until formally released.
 
 ## What problem does GTT-Method solve?
 
@@ -1917,11 +1923,57 @@ AI agents produce software quickly, and a sequence of individually reasonable ch
 
 The operating model is: Human decides, GTT governs, Agent/ADE executes within the boundary.
 
-Authorized sources are grounded into evidence. Agents reason over that evidence and produce proposals, marking gaps and conflicts instead of resolving them silently. A human decides. Freeze establishes the accepted governed state, and any later change goes through a change request, new reasoning, a new human decision and a new freeze. There is no "unfreeze".
+Authorized sources are grounded into an evidence dossier. Agents reason over that evidence and produce proposals, marking gaps and conflicts instead of resolving them silently. A human decides. Freeze establishes the accepted governed state.
+
+GTT therefore governs two things: what context and evidence an agent may rely on, and what changes an agent or ADE may cause to governed project state.
+
+## What is the GTT Control Plane?
+
+The Control Plane is the logical layer that sits between the human and the ADE or agent. It provides context selection, evidence handling, validation, protection, proposal handling, governed state and freeze, session continuity, status and policy enforcement.
+
+It is an architectural concept, not a network service: GTT does not need to be deployed as a server. It does not replace the human decision boundary.
 
 ## What is THINK in GTT?
 
 THINK is the reasoning mode of GTT. In THINK, agents analyze the evidence, identify gaps and conflicts and produce proposals; they do not decide. THINK is not a one-time phase: the project re-enters it whenever a change requires governance.
+
+## How do I change something after a freeze?
+
+Through the governed change path: change request, impact analysis, THINK, proposal, human decision, and a new governed state with a new freeze. There is no "unfreeze", and an item left OPEN does not authorize a change; resolving it is a new decision that follows the same path.
+
+## What is GTTGuard?
+
+GTTGuard is the GTT capability that protects files, classes and methods from autonomous modification. The developer declares the protection on the source artifact itself, for example with a @GTTGuard annotation, and GTT normalizes it into a machine-readable registry that records what is protected, why, under which policy and where the protection originated.
+
+GTTGuard does not hide code from agents; it protects the authority to change it. An agent may read, analyze and propose changes to a protected artifact, and the proposal is written under gtt/proposals/ for a human to approve, reject or modify. The current policy is HUMAN_APPROVAL.
+
+## What is GTT Enforcement?
+
+Enforcement is the application of already-defined GTT governance rules to the operations an agent or ADE requests. An operation that affects governed state is evaluated against the actor, the artifact, the governed state, the protection policy and the applicable constraints, and is either allowed or answered with a proposal or governance response.
+
+Enforcement applies rules that already exist. It does not create a new architectural decision and it does not transfer decision authority from the human to an agent.
+
+## Is GTT a security layer?
+
+No. GTTGuard and GTT Enforcement are methodology-level change authorization. They do not replace filesystem permissions, Git permissions, branch protection, CI/CD authorization or production access controls.
+
+## Does GTT load the whole project context into every agent session?
+
+No. GTT distinguishes the Governed Context, the authoritative body of information, from the Execution Context, the minimum relevant subset selected for a specific operation. The principle is minimum sufficient governed context, not maximum available context.
+
+This reduces irrelevant token consumption, duplicated or conflicting copies and context-window pressure. Context reduction must never remove an applicable constraint, decision, protection or required evidence.
+
+## How does GTT keep continuity between sessions?
+
+Session state is generated from actual project and GTT state: Git history, the last freeze, active proposals and change requests, OPEN items and validation status. It is not an agent-authored memory, and it is portable across ADEs. In GTT CLI, gtt resume produces the session context and gtt status reports where the project stands.
+
+Session state is an operational handoff, not authority. It is not evidence, an ADR or a governed decision, and it complements the native memory of each ADE without depending on it.
+
+## What does GTT validate, and what does it leave to people?
+
+GTT validates deterministically whatever can be expressed as a rule: protected artifacts, proposal paths, provenance structure, unresolved blocking items, freeze and governed state consistency, required artifacts and the integrity of GTT metadata.
+
+It does not claim to judge semantic architectural correctness. The machine answers whether the governance structure is valid; the human answers whether the architectural decision is correct.
 
 ## What is GTT Bootstrap?
 
@@ -1931,17 +1983,23 @@ Repository: https://github.com/GTT-Community/gtt-bootstrap
 
 ## What is GTT CLI?
 
-GTT CLI is the operational tool of GTT: a single gtt binary for Linux, macOS and Windows that installs, configures, validates, updates, resumes, freezes, exports and recovers GTT projects through the Bootstrap contracts. It is not a second GTT engine and needs no LLM.
+GTT CLI is the operational tool of GTT: a single gtt binary for Linux, macOS and Windows that finds, installs, configures, validates, updates, resumes, freezes, exports and recovers GTT projects through the Bootstrap contracts. It contains no GTT methodology of its own, it is not a second GTT engine, and every command is deterministic, so it needs no LLM.
 
 Install and command details: https://gtt-method.org/cli/
 
+## What are Method Plans?
+
+Method Plans (Light, Medium, Hard and Team) decide how much GTT does without asking you. Whatever the plan, destructive operations and governed decisions always need a human. You choose the plan in gtt init and can review or change it with gtt method.
+
 ## How does GTT relate to AI agents and ADEs?
 
-An ADE (AI Development Environment) such as Claude Code, GitHub Copilot, Codex or Kiro is the execution environment, and the agent provides reasoning and execution capability. GTT provides the governance boundary. Several ADEs can participate in one project under a single governance model, with exactly one Primary ADE, which is a workflow role and carries no governance authority.
+An ADE (AI Development Environment) such as Claude Code, GitHub Copilot, Codex or Kiro is the execution environment, and the agent provides reasoning and execution capability. GTT provides the governance boundary. Each ADE is connected through an adapter that translates its operations into the GTT contract; an adapter never redefines GTT.
+
+Several ADEs can participate in one project under a single governance model, with exactly one Primary ADE, which is a workflow role and carries no governance authority. An ADE being detected on your machine does not make it a participant: GTT installs only the integrations you choose.
 
 ## Is GTT-Method an AI coding agent?
 
-No. GTT is not an LLM, not an agent framework and not an IDE. It does not replace your ADE; it governs how agents and ADEs take part in development.
+No. GTT is not an LLM, not an agent framework and not an IDE. It does not replace your ADE, its native memory or its instruction files; it governs how agents and ADEs take part in development.
 
 ## Is GTT-Method a replacement for Spec-Driven Development?
 
@@ -1949,19 +2007,20 @@ No. GTT-Method complements SDD. SDD defines what to build; GTT-Method governs th
 
 ## Does GTT-Method depend on one vendor?
 
-No. GTT is independent of any particular agent or ADE. GTT Bootstrap currently ships integrations for Claude Code, GitHub Copilot, Codex and Kiro.
+No. GTT is independent of any particular agent or ADE, and does not require the memory, hook or permission system of any of them. GTT Bootstrap currently ships integrations for Claude Code, GitHub Copilot, Codex and Kiro.
 
-## What is GTTGuard?
+## Can I use GTT in CI?
 
-GTTGuard is the GTT capability that protects artifacts (files, classes, methods) from autonomous modification. It does not hide code from agents: an agent may read, analyze and propose changes to a protected artifact, but may not turn a protected change into an accepted one without human approval.
+Yes. GTT CLI is built for pipelines: gtt validate --ci runs the Bootstrap validation, and the CLI offers JSON output, a no-input mode and stable exit codes. Freeze is never unattended; it is always a human act.
 
 ## How do I start a GTT project?
 
-Install GTT CLI, then run gtt init inside your project. It resolves and verifies GTT Bootstrap, asks which ADEs participate and which one is Primary, the language, the Method Plan and your initial design documents, installs, validates and hands off to your Primary ADE.
+Install GTT CLI, then run gtt init inside your project. It resolves and verifies GTT Bootstrap, asks which ADEs participate and which one is Primary, the language, the Method Plan and your initial design documents, installs, validates and hands off to your Primary ADE. If you have no design document, your ADE guides you through the Initial Design Questionnaire.
+
+The Primary ADE drafts the governed context for your review, and once you confirm it you freeze it with gtt freeze.
 
 - Install the CLI: https://gtt-method.org/cli/
 - Or bootstrap with prompts from your ADE: https://gtt-method.org/prompts/
-- Quick user manual: https://gtt-method.org/manual/
 
 ## Where are the GTT terms defined?
 
@@ -1976,9 +2035,15 @@ GTT Method and GTT CLI are Apache-2.0. GTT Bootstrap and this website are MIT.
 On the community board: https://gtt-method.feedlog.ai/ or in the GitHub repositories: https://github.com/orgs/GTT-Community/repositories`,
     contentEs: `## ¿Qué es GTT-Method?
 
-GTT-Method (Governance Through Thinking) es una metodología de código abierto para el desarrollo de software asistido por IA, gobernado. Establece el contexto, la evidencia, la intención arquitectónica, las fronteras de decisión, el cambio controlado, la validación y la continuidad de sesión que permiten que agentes de IA participen en el desarrollo sin convertirse en la autoridad sobre el sistema.
+GTT-Method (Governance Through Thinking) es una metodología de código abierto y un plano de control de gobernanza para el desarrollo de software asistido por IA, gobernado. Establece el contexto, la evidencia, la intención arquitectónica, las reglas de gobernanza, las fronteras de decisión, el cambio controlado, la protección, la validación y la continuidad de sesión que permiten que agentes de IA y ADEs participen en el desarrollo sin convertirse en la autoridad sobre el sistema.
 
-Se implementa mediante GTT Bootstrap y se opera mediante GTT CLI. Su definición canónica es https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+Su distinción central es que el razonamiento de un agente no es autorización de cambio: los agentes analizan, proponen e implementan dentro de la autoridad que GTT les otorga, y el humano sigue siendo la autoridad en las decisiones gobernadas.
+
+GTT se implementa mediante GTT Bootstrap y se opera mediante GTT CLI. Su definición canónica es https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+
+## ¿Cuál es la versión vigente de GTT?
+
+GTT 2.1 es la generación publicada vigente, definida por un único documento canónico. Lo que ese documento no define no es una capacidad de GTT 2.1, aunque aparezca en código, en un sitio web, en un prompt o en una propuesta. Las generaciones futuras se definen por separado y no son vigentes hasta su publicación formal.
 
 ## ¿Qué problema resuelve GTT-Method?
 
@@ -1988,51 +2053,104 @@ Los agentes de IA producen software rápido, y una secuencia de cambios individu
 
 El modelo operativo es: el humano decide, GTT gobierna, el agente/ADE ejecuta dentro de la frontera.
 
-Las fuentes autorizadas pasan por grounding y se convierten en evidencia. Los agentes razonan sobre esa evidencia y producen propuestas, marcando vacíos y conflictos en lugar de resolverlos en silencio. Un humano decide. El freeze establece el estado gobernado aceptado, y todo cambio posterior pasa por una solicitud de cambio, nuevo razonamiento, una nueva decisión humana y un nuevo freeze. No existe "unfreeze".
+Las fuentes autorizadas pasan por grounding y se consolidan en un dossier de evidencia. Los agentes razonan sobre esa evidencia y producen propuestas, marcando vacíos y conflictos en lugar de resolverlos en silencio. Un humano decide. El freeze establece el estado gobernado aceptado.
+
+GTT gobierna, por tanto, dos cosas: en qué contexto y evidencia puede apoyarse un agente, y qué cambios puede causar un agente o ADE en el estado gobernado del proyecto.
+
+## ¿Qué es el Plano de Control de GTT?
+
+El Plano de Control (GTT Control Plane) es la capa lógica que se ubica entre el humano y el ADE o agente. Provee selección de contexto, manejo de evidencia, validación, protección, manejo de propuestas, estado gobernado y freeze, continuidad de sesión, estado y aplicación de políticas.
+
+Es un concepto arquitectónico, no un servicio de red: GTT no necesita desplegarse como servidor. No reemplaza la frontera de decisión humana.
 
 ## ¿Qué es THINK en GTT?
 
 THINK es el modo de razonamiento de GTT. En THINK los agentes analizan la evidencia, identifican vacíos y conflictos y producen propuestas; no deciden. THINK no es una fase que ocurre una sola vez: el proyecto vuelve a entrar en él cada vez que un cambio requiere gobernanza.
 
+## ¿Cómo cambio algo después de un freeze?
+
+Por el camino de cambio gobernado: solicitud de cambio, análisis de impacto, THINK, propuesta, decisión humana y un nuevo estado gobernado con un nuevo freeze. No existe "unfreeze", y un ítem que quedó OPEN no autoriza un cambio; resolverlo es una decisión nueva que sigue el mismo camino.
+
+## ¿Qué es GTTGuard?
+
+GTTGuard es la capacidad de GTT que protege archivos, clases y métodos frente a la modificación autónoma. El desarrollador declara la protección en el propio artefacto fuente, por ejemplo con una anotación @GTTGuard, y GTT la normaliza en un registro legible por máquina que indica qué está protegido, por qué, bajo qué política y dónde se originó la protección.
+
+GTTGuard no oculta el código a los agentes; protege la autoridad para cambiarlo. Un agente puede leer, analizar y proponer cambios a un artefacto protegido, y la propuesta se escribe en gtt/proposals/ para que un humano la apruebe, la rechace o la modifique. La política vigente es HUMAN_APPROVAL.
+
+## ¿Qué es GTT Enforcement?
+
+Enforcement es la aplicación de reglas de gobernanza de GTT ya definidas a las operaciones que solicita un agente o ADE. Una operación que afecta el estado gobernado se evalúa contra el actor, el artefacto, el estado gobernado, la política de protección y las restricciones aplicables, y se permite o se responde con una propuesta o una respuesta de gobernanza.
+
+Enforcement aplica reglas que ya existen. No crea una decisión arquitectónica nueva ni transfiere la autoridad de decisión del humano a un agente.
+
+## ¿Es GTT una capa de seguridad?
+
+No. GTTGuard y GTT Enforcement son autorización de cambio a nivel de metodología. No reemplazan los permisos del sistema de archivos, los permisos de Git, la protección de ramas, la autorización de CI/CD ni los controles de acceso a producción.
+
+## ¿GTT carga todo el contexto del proyecto en cada sesión del agente?
+
+No. GTT distingue el Contexto Gobernado, el cuerpo autoritativo de información, del Contexto de Ejecución, el subconjunto mínimo relevante seleccionado para una operación concreta. El principio es contexto gobernado mínimo suficiente, no el máximo disponible.
+
+Esto reduce el consumo de tokens irrelevantes, las copias duplicadas o en conflicto y la presión sobre la ventana de contexto. Reducir el contexto nunca puede eliminar una restricción, decisión, protección o evidencia requerida que sea aplicable.
+
+## ¿Cómo mantiene GTT la continuidad entre sesiones?
+
+El estado de sesión se genera a partir del estado real del proyecto y de GTT: historial de Git, último freeze, propuestas y solicitudes de cambio activas, ítems OPEN y estado de validación. No es una memoria redactada por un agente, y es portable entre ADEs. En GTT CLI, gtt resume produce el contexto de sesión y gtt status informa dónde está el proyecto.
+
+El estado de sesión es un traspaso operativo, no autoridad. No es evidencia, ni un ADR, ni una decisión gobernada, y complementa la memoria nativa de cada ADE sin depender de ella.
+
+## ¿Qué valida GTT y qué deja a las personas?
+
+GTT valida de forma determinista todo lo que puede expresarse como regla: artefactos protegidos, rutas de propuestas, estructura de procedencia, ítems bloqueantes sin resolver, consistencia del freeze y del estado gobernado, artefactos requeridos e integridad de los metadatos de GTT.
+
+No pretende juzgar si una arquitectura es semánticamente correcta. La máquina responde si la estructura de gobernanza es válida; el humano responde si la decisión arquitectónica es correcta.
+
 ## ¿Qué es GTT Bootstrap?
 
-GTT Bootstrap es la implementación de referencia del GTT Method. Contiene la semántica GTT y los contratos versionados que hacen a GTT ejecutable en un proyecto real: gobernanza, evidencia y procedencia, propuestas y decisiones, validación determinística, freeze, integraciones de ADE, estado y contexto de sesión.
+GTT Bootstrap es la implementación de referencia del Método GTT. Contiene la semántica de GTT y los contratos versionados que lo hacen ejecutable en un proyecto real: gobernanza, evidencia y procedencia, propuestas y decisiones, validación determinista, freeze, integraciones con ADEs, estado y contexto de sesión.
 
 Repositorio: https://github.com/GTT-Community/gtt-bootstrap
 
 ## ¿Qué es GTT CLI?
 
-GTT CLI es la herramienta operativa de GTT: un único binario gtt para Linux, macOS y Windows que instala, configura, valida, actualiza, reanuda, congela, exporta y recupera proyectos GTT a través de los contratos de Bootstrap. No es un segundo motor de GTT y no necesita un LLM.
+GTT CLI es la herramienta operacional de GTT: un único binario gtt para Linux, macOS y Windows que encuentra, instala, configura, valida, actualiza, reanuda, congela, exporta y recupera proyectos GTT a través de los contratos del Bootstrap. No contiene metodología GTT propia, no es un segundo motor GTT, y todos sus comandos son deterministas, por lo que no necesita un LLM.
 
 Instalación y comandos: https://gtt-method.org/cli/
 
+## ¿Qué son los Method Plans?
+
+Los Method Plans (Light, Medium, Hard y Team) definen cuánto hace GTT sin preguntarte. Sea cual sea el plan, las operaciones destructivas y las decisiones gobernadas siempre requieren a un humano. Eliges el plan en gtt init y puedes revisarlo o cambiarlo con gtt method.
+
 ## ¿Cómo se relaciona GTT con los agentes de IA y los ADEs?
 
-Un ADE (Entorno de Desarrollo con IA) como Claude Code, GitHub Copilot, Codex o Kiro es el entorno de ejecución, y el agente aporta la capacidad de razonamiento y ejecución. GTT aporta la frontera de gobernanza. Varios ADEs pueden participar en un mismo proyecto bajo un solo modelo de gobernanza, con exactamente un ADE Primario, que es un rol de flujo de trabajo y no tiene autoridad de gobernanza.
+Un ADE (AI Development Environment) como Claude Code, GitHub Copilot, Codex o Kiro es el entorno de ejecución, y el agente aporta la capacidad de razonamiento y ejecución. GTT aporta la frontera de gobernanza. Cada ADE se conecta mediante un adaptador que traduce sus operaciones al contrato de GTT; un adaptador nunca redefine GTT.
 
-## ¿GTT-Method es un agente de programación con IA?
+Varios ADEs pueden participar en un mismo proyecto bajo un único modelo de gobernanza, con exactamente un ADE Primario, que es un rol de flujo de trabajo y no otorga autoridad de gobernanza. Que un ADE esté detectado en tu máquina no lo convierte en participante: GTT instala solo las integraciones que eliges.
 
-No. GTT no es un LLM, ni un framework de agentes, ni un IDE. No reemplaza a tu ADE; gobierna cómo los agentes y los ADEs participan en el desarrollo.
+## ¿Es GTT-Method un agente de programación con IA?
 
-## ¿GTT-Method reemplaza a Spec-Driven Development?
+No. GTT no es un LLM, ni un framework de agentes, ni un IDE. No reemplaza a tu ADE, ni su memoria nativa, ni sus archivos de instrucciones; gobierna cómo los agentes y los ADEs participan en el desarrollo.
 
-No. GTT-Method complementa a SDD. SDD define qué construir; GTT-Method gobierna el contexto y las fronteras que guían al agente de IA mientras lo construye.
+## ¿Es GTT-Method un reemplazo de Spec-Driven Development?
+
+No. GTT-Method complementa a SDD. SDD define qué construir; GTT-Method gobierna el contexto y las fronteras que guían a un agente de IA mientras lo construye.
 
 ## ¿GTT-Method depende de un proveedor?
 
-No. GTT es independiente de cualquier agente o ADE en particular. GTT Bootstrap incluye hoy integraciones para Claude Code, GitHub Copilot, Codex y Kiro.
+No. GTT es independiente de cualquier agente o ADE en particular, y no requiere el sistema de memoria, hooks o permisos de ninguno de ellos. GTT Bootstrap incluye hoy integraciones para Claude Code, GitHub Copilot, Codex y Kiro.
 
-## ¿Qué es GTTGuard?
+## ¿Puedo usar GTT en CI?
 
-GTTGuard es la capacidad de GTT que protege artefactos (archivos, clases, métodos) de la modificación autónoma. No oculta el código a los agentes: un agente puede leer, analizar y proponer cambios sobre un artefacto protegido, pero no puede convertir un cambio protegido en un cambio aceptado sin aprobación humana.
+Sí. GTT CLI está hecho para pipelines: gtt validate --ci ejecuta la validación del Bootstrap, y la CLI ofrece salida JSON, un modo sin entrada interactiva y códigos de salida estables. El freeze nunca es desatendido; siempre es un acto humano.
 
 ## ¿Cómo empiezo un proyecto GTT?
 
-Instala GTT CLI y ejecuta gtt init dentro de tu proyecto. Resuelve y verifica GTT Bootstrap, pregunta qué ADEs participan y cuál es el Primario, el idioma, el Method Plan y tus documentos de diseño iniciales, instala, valida y entrega el control a tu ADE Primario.
+Instala GTT CLI y ejecuta gtt init dentro de tu proyecto. Resuelve y verifica GTT Bootstrap, pregunta qué ADEs participan y cuál es el Primario, el idioma, el Method Plan y tus documentos iniciales de diseño, instala, valida y entrega el control a tu ADE Primario. Si no tienes un documento de diseño, tu ADE te guía por el Cuestionario de Diseño Inicial.
+
+El ADE Primario redacta el contexto gobernado para tu revisión y, una vez que lo confirmas, lo congelas con gtt freeze.
 
 - Instalar la CLI: https://gtt-method.org/cli/
 - O hacer el bootstrap con prompts desde tu ADE: https://gtt-method.org/prompts/
-- Manual rápido de usuario: https://gtt-method.org/manual/
 
 ## ¿Dónde están definidos los términos de GTT?
 
@@ -2045,8 +2163,8 @@ GTT Method y GTT CLI son Apache-2.0. GTT Bootstrap y este sitio web son MIT.
 ## ¿Dónde reporto un bug o propongo una idea?
 
 En el tablero de la comunidad: https://gtt-method.feedlog.ai/ o en los repositorios de GitHub: https://github.com/orgs/GTT-Community/repositories`,
-    searchableEn: "faq frequently asked questions GTT-Method methodology concepts",
-    searchableEs: "preguntas frecuentes FAQ GTT-Method metodología conceptos",
+    searchableEn: "faq frequently asked questions GTT-Method methodology concepts control plane enforcement GTTGuard context efficiency session continuity validation method plans CI",
+    searchableEs: "preguntas frecuentes FAQ GTT-Method metodología conceptos plano de control enforcement GTTGuard eficiencia de contexto continuidad de sesión validación method plans CI",
   },
   {
     slug: "glossary",
@@ -2310,216 +2428,6 @@ La información portable necesaria para reconstruir una instalación GTT y su es
 - GTT CLI: https://gtt-method.org/cli/`,
     searchableEn: "glossary terms definitions governed context execution context evidence boundary grounding dossier provenance THINK proposal freeze change request GTTGuard ADE Primary ADE Method Plan session continuity",
     searchableEs: "glosario términos definiciones contexto gobernado contexto de ejecución frontera de evidencia grounding dossier procedencia THINK propuesta freeze solicitud de cambio GTTGuard ADE Primario Method Plan continuidad de sesión",
-  },
-  {
-    slug: "manual",
-    titleEn: "Quick User Manual",
-    titleEs: "Manual de Usuario Rápido",
-    descriptionEn: "Practical guide for using GTT-Method in your projects.",
-    descriptionEs: "Guía práctica para usar GTT-Method en tus proyectos.",
-    contentEn: `Badge: GTT-Method V2.1 · Practical guide
-
-## Core Statement
-
-You define the intent. GTT-Method protects the intent. AI accelerates implementation.
-
-## The Golden Rule
-
-AI may analyze, propose and execute; authority over governed decisions remains human. GTT-Method may intentionally introduce friction into rapid development to guide users toward compliance with the project's standards, rules and governance requirements.
-
-## 1. The Complete Flow
-
-GTT-Method makes governance part of the normal workflow, so users do not have to manually manage every governance artifact.
-
-YOU define → delegate → review → accept/reject → AGENT analyzes → implements what is allowed → proposes when needed → GTT-Method records decisions → updates context → protects what was approved
-
-Routine implementation: delegate.
-Governed decision change: Change Request → Proposal → human review → acceptance → ADR/context.
-
-## 2. First Use: Bootstrap
-
-### Prepare the design
-
-Keep an initial design document in the project root with the vision, objective, main functionality, architecture, technology stack, constraints and known decisions. It does not need to be perfect, but it must clearly represent what you want to build.
-
-### Incorporate GTT-Method
-
-Give the ADE: https://github.com/GTT-Community/gtt-bootstrap
-
-Ask:
-\`\`\`
-Clone/incorporate GTT-Method Bootstrap into this project.
-Inspect the project and use my initial design document
-as the source for performing the GTT-Method Bootstrap.
-Do not invent decisions; if information is missing, ask me.
-\`\`\`
-
-## 3. The Two Confirmations
-
-### A. Does this design represent what I want to build?
-
-If not, correct the design and review it again. If yes, explicitly confirm it.
-
-### B. Did GTT-Method correctly represent my solution?
-
-Review the vision, architecture, stack, principles, constraints and glossary. Correct anything that is wrong before freezing.
-
-These are different decisions and both matter.
-
-## 4. Review the Workspace and Freeze
-
-After Bootstrap you will find files such as AGENTS.md, CHANGE-REQUEST.md, SOURCE-BRIEF.* and a gtt-method/ directory containing context, ADRs, proposals and scripts.
-
-Quick architecture map: \`gtt-method/context/stack.md\`
-
-Freeze: \`gtt-method/scripts/gtt-method-freeze.sh\`
-
-## 5. Normal Development: Delegate
-
-\`\`\`
-Implement this functionality according to the governed GTT-Method
-context. Do not change architectural decisions.
-\`\`\`
-
-A Change Request is not needed for a bug fix, unit test, already-defined endpoint, refactor without a governed decision change or logging improvement.
-
-## 6. When to Use CHANGE-REQUEST.md
-
-Use it when changing a governed decision: database, cloud platform, framework, architectural pattern, integration, constraint, security or deployment decision, or when introducing a major component.
-
-## 7. What Not to Do
-
-- Do not directly edit frozen governed context.
-- Do not create copies to bypass protection.
-- Do not disable the guardrails.
-- Do not create a Proposal for every line of code.
-- Do not accept a Proposal without reading it.
-
-## Quick Checklist
-
-- I prepared or defined the initial design.
-- I ran Bootstrap and confirmed the design.
-- I reviewed and confirmed the generated context.
-- I ran Freeze and checked the protection.
-- I delegate routine work without changing decisions.
-- I use CHANGE-REQUEST.md for governed changes.
-- I review and decide every Proposal.
-- I keep ADRs, context and the architecture map consistent.
-
-## Quick Reference
-
-| Situation | What you do |
-|---|---|
-| New project | Bootstrap |
-| Routine task or bug | Delegate, implement and validate |
-| Architectural change | CHANGE-REQUEST.md |
-| Proposal received | Review, accept, reject or request changes |
-| Frozen context | Do not edit it directly |
-
-Remember: define the intent, confirm the context, make the decisions, delegate implementation and review the result. Human First. AI Accelerated.`,
-    contentEs: `Badge: GTT-Method V2.1 · Guía práctica
-
-## Principio Central
-
-Tú defines la intención. GTT-Method protege la intención. La IA acelera la implementación.
-
-## La Regla de Oro
-
-La IA puede analizar, proponer y ejecutar; la autoridad sobre las decisiones gobernadas sigue siendo humana. GTT-Method puede introducir fricción deliberada en el desarrollo rápido para guiar al usuario hacia el cumplimiento de los estándares, reglas y gobernabilidad del proyecto.
-
-## 1. El Flujo Completo
-
-GTT-Method convierte la gobernabilidad en parte natural del trabajo, sin pedirte que administres manualmente cada artefacto.
-
-TÚ define → delega → revisa → acepta/rechaza → AGENTE analiza → implementa lo permitido → propone cuando corresponde → GTT-Method registra decisiones → actualiza contexto → protege lo aprobado
-
-Implementación rutinaria: delega.
-Cambio de decisión gobernada: Change Request → Proposal → revisión humana → aceptación → ADR/contexto.
-
-## 2. Primer Uso: Bootstrap
-
-### Prepara el Diseño
-
-Deja en la raíz un documento con visión, objetivo, funcionalidad principal, arquitectura, stack, restricciones y decisiones conocidas. No tiene que ser perfecto, pero debe expresar lo que quieres construir.
-
-### Incorpora GTT-Method
-
-Entrega al ADE: https://github.com/GTT-Community/gtt-bootstrap
-
-Y pídele:
-\`\`\`
-Clona/incorpora GTT-Method Bootstrap en este proyecto.
-Inspecciona el proyecto y usa mi documento de diseño inicial
-como fuente para ejecutar el GTT-Method Bootstrap.
-No inventes decisiones; si falta información, pregúntame.
-\`\`\`
-
-## 3. Las Dos Confirmaciones
-
-### A. ¿Este diseño representa lo que quiero construir?
-
-Si no, corrige el diseño y vuelve a revisarlo. Si sí, confirma explícitamente.
-
-### B. ¿GTT-Method entendió correctamente mi solución?
-
-Revisa visión, arquitectura, stack, principios, restricciones y glosario. Corrige cualquier error antes de congelar.
-
-Son decisiones distintas y ambas son necesarias.
-
-## 4. Revisa el Workspace y Ejecuta Freeze
-
-Después del Bootstrap encontrarás AGENTS.md, CHANGE-REQUEST.md, SOURCE-BRIEF.* y el directorio gtt-method/ con contexto, ADRs, propuestas y scripts.
-
-Mapa: \`gtt-method/context/stack.md\`
-
-Freeze: \`gtt-method/scripts/gtt-method-freeze.sh\`
-
-## 5. Desarrollo Normal: Delega
-
-\`\`\`
-Implementa esta funcionalidad siguiendo la arquitectura
-y las restricciones definidas por GTT-Method. No cambies decisiones
-arquitectónicas.
-\`\`\`
-
-No necesitas un Change Request para un bug, un unit test, un endpoint ya definido, un refactor sin cambio arquitectónico o mejoras de logging.
-
-## 6. Cuándo Usar CHANGE-REQUEST.md
-
-Úsalo cuando cambies una decisión gobernada: tecnología, base de datos, plataforma cloud, framework, patrón arquitectónico, integración, restricción, seguridad, despliegue o un componente mayor.
-
-## 7. Qué No Hacer
-
-- No edites directamente el contexto congelado.
-- No crees copias para esquivar la protección.
-- No desactives los guardrails.
-- No crees una Proposal por cada línea de código.
-- No aceptes una Proposal sin leerla.
-
-## Checklist Rápido
-
-- Preparé o definí el diseño inicial.
-- Ejecuté Bootstrap y confirmé el diseño.
-- Revisé y confirmé el contexto generado.
-- Ejecuté Freeze y comprobé la protección.
-- Delego tareas normales sin cambiar decisiones.
-- Uso CHANGE-REQUEST.md para cambios gobernados.
-- Reviso y decido cada Proposal.
-- Mantengo ADR, contexto y mapa consistentes.
-
-## Referencia Rápida
-
-| Situación | Qué haces |
-|---|---|
-| Nuevo proyecto | Bootstrap |
-| Tarea rutinaria o bug | Delegas, implementas y validas |
-| Cambio arquitectónico | CHANGE-REQUEST.md |
-| Proposal recibida | Revisas, aceptas, rechazas o pides cambios |
-| Contexto congelado | No lo editas directamente |
-
-Recuerda: define la intención, confirma el contexto, toma las decisiones, delega la implementación y revisa el resultado. Human First. AI Accelerated.`,
-    searchableEn: "manual quick user guide bootstrap freeze change request workflow",
-    searchableEs: "manual guía de usuario rápida bootstrap freeze solicitud de cambio flujo de trabajo",
   },
   {
     slug: "cli",
@@ -2834,7 +2742,6 @@ Show me the context you propose so I can confirm it before it is frozen.
 
 - Review what the agent produced: vision, architecture, stack, principles, constraints and glossary.
 - Correct anything that is wrong and confirm it before freezing the context.
-- The full flow is described in the Quick User Manual.
 
 ## Prefer the command line?
 
@@ -2889,7 +2796,6 @@ Muéstrame el contexto que propones para confirmarlo antes de congelarlo.
 
 - Revisa lo que produjo el agente: visión, arquitectura, stack, principios, restricciones y glosario.
 - Corrige lo que esté mal y confírmalo antes de congelar el contexto.
-- El flujo completo está descrito en el Manual de Usuario Rápido.
 
 ## ¿Prefieres la línea de comandos?
 

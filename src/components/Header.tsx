@@ -11,13 +11,13 @@ interface HeaderProps {
   activeSlug?: string;
 }
 
-type NavItem = { label: string; slug?: string; isHome?: boolean; href?: string };
+type NavItem = { label: string; slug?: string; href?: string };
 
 /**
  * The single header used by the home page and every content page, so the
  * two can never drift apart again. The only thing that differs per page is
- * which nav item is marked active, and whether the logo/"Home" link is an
- * in-page anchor (already on "/") or a real navigation (from elsewhere).
+ * which nav item is marked active, and whether the logo, the only link back
+ * home, is an in-page anchor (already on "/") or a real navigation.
  */
 export function Header({ activeSlug }: HeaderProps) {
   const { language, setLanguage, t } = useLanguage();
@@ -25,17 +25,16 @@ export function Header({ activeSlug }: HeaderProps) {
   const isHome = activeSlug === undefined;
 
   const navItems: NavItem[] = [
-    { label: t("nav.home"), isHome: true },
-    // GTT CLI, the prompts page and the glossary are reached from the hero CTAs, the FAQ
+    // The methodology, GTT CLI, the prompts page and the glossary are reached from the home page, the FAQ
     // and the footer; keeping them out of the header avoids overflowing the desktop nav.
-    ...pages.filter((p) => p.slug !== "cli" && p.slug !== "prompts" && p.slug !== "glossary").map((p) =>
+    ...pages.filter((p) => p.slug !== "cli" && p.slug !== "prompts" && p.slug !== "glossary" && p.slug !== "methodology").map((p) =>
       p.slug === "gtt-method-2-1"
-        ? { label: "GTT-Method 2.1 / Canonical", href: GTT_METHOD_CANONICAL_URL }
+        ? { label: "GTT-Method Canonical", href: GTT_METHOD_CANONICAL_URL }
         : { label: language === "en" ? p.titleEn : p.titleEs, slug: p.slug },
     ),
   ];
 
-  const isActive = (item: NavItem) => (item.href ? false : item.isHome ? isHome : item.slug === activeSlug);
+  const isActive = (item: NavItem) => (item.href ? false : item.slug === activeSlug);
 
   function NavLink({ item, className, onClick }: { item: NavItem; className: string; onClick?: () => void }) {
     const active = isActive(item);
@@ -47,18 +46,6 @@ export function Header({ activeSlug }: HeaderProps) {
         <a href={item.href} target="_blank" rel="noopener noreferrer" className={combinedClassName} onClick={onClick}>
           {item.label}
         </a>
-      );
-    }
-
-    if (item.isHome) {
-      return isHome ? (
-        <a href="#top" className={combinedClassName} onClick={onClick} aria-current={ariaCurrent}>
-          {item.label}
-        </a>
-      ) : (
-        <Link to="/" className={combinedClassName} onClick={onClick}>
-          {item.label}
-        </Link>
       );
     }
 
@@ -95,11 +82,11 @@ export function Header({ activeSlug }: HeaderProps) {
         )}
 
         <nav className="ml-auto hidden items-center gap-8 text-xs lg:flex" aria-label="Main navigation">
-          {navItems.slice(0, 6).map((item) => (
+          {navItems.slice(0, 4).map((item) => (
             <NavLink key={item.label} item={item} className="hover:text-muted-foreground transition-colors" />
           ))}
           <div className="border-l border-border pl-8 flex items-center gap-4">
-            {navItems.slice(6).map((item) => (
+            {navItems.slice(4).map((item) => (
               <NavLink key={item.label} item={item} className="hover:text-muted-foreground transition-colors" />
             ))}
           </div>
