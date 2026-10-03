@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages, searchContent } from "@/lib/gttContent";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Terminal } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -172,6 +172,14 @@ function ContentPage() {
             })}
           </div>
         </article>
+
+        {slug === "agent-prompts" && (
+          <div className="mt-10">
+            <Link to="/$slug" params={{ slug: "cli" }} className="cta-green">
+              <Terminal size={17} /> {language === "en" ? "GTT CLI install commands" : "Comandos de instalación de GTT CLI"}
+            </Link>
+          </div>
+        )}
 
         <nav className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-wrap gap-4">
