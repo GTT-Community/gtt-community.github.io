@@ -16,7 +16,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import heroImage from "@/assets/orca-hero.jpg";
-import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL } from "@/lib/links";
+import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL, FEEDBACK_URL } from "@/lib/links";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -101,39 +101,41 @@ function Index() {
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <Header />
 
-      <section id="top" className="hero-stage relative mx-3 max-w-[1600px] overflow-hidden rounded-3xl px-4 sm:mx-4 xl:px-8 min-[1632px]:mx-auto">
-        <img src={heroImage} width={1920} height={900} className="absolute inset-0 h-full w-full object-cover object-center" alt="Orca leaping from the ocean before alpine mountains" />
-        <div className="absolute inset-0 bg-hero-wash" />
-        <div className="relative z-10 flex min-h-[425px] flex-col justify-center pb-8 pt-12">
-          <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.36em]">{heroContent[language].eyebrow}</p>
-          {language === "en" ? (
-            <h1 className="max-w-[650px] text-[clamp(3rem,5.3vw,5.35rem)] font-light leading-[0.92] tracking-tight">Governed Intelligence<br />for <strong className="font-extrabold">Better Software</strong></h1>
-          ) : (
-            <h1 className="max-w-[650px] text-[clamp(3rem,5.3vw,5.35rem)] font-light leading-[0.92] tracking-tight">Inteligencia Gobernada<br />para <strong className="font-extrabold">Mejor Software</strong></h1>
-          )}
-          {language === "en" ? (
-            <p className="mt-5 max-w-[610px] text-[17px] leading-snug">GTT-Method helps individuals and teams design, build and evolve<br className="hidden sm:block" /> software with AI, using a governed, reusable and human-centered approach.</p>
-          ) : (
-            <p className="mt-5 max-w-[610px] text-[17px] leading-snug">GTT-Method ayuda a personas y equipos a diseñar, construir y evolucionar<br className="hidden sm:block" /> software con IA, con un enfoque gobernado, reutilizable y centrado en las personas.</p>
-          )}
-          <div className="mt-6 flex flex-wrap gap-4">
-            <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark px-8">{heroContent[language].ctaPrimary} <ArrowRight size={17} /></a>
-            <Link to="/$slug" params={{ slug: "methodology" }} className="cta-light">{heroContent[language].ctaSecondary}</Link>
-            <Link to="/$slug" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
-            <Link to="/$slug" params={{ slug: "prompts" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrompts}</Link>
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-8 xl:px-12">
+        <section id="top" className="hero-stage relative overflow-hidden rounded-3xl px-6 sm:px-8">
+          <img src={heroImage} width={1920} height={900} className="absolute inset-0 h-full w-full object-cover object-center" alt="Orca leaping from the ocean before alpine mountains" />
+          <div className="absolute inset-0 bg-hero-wash" />
+          <div className="relative z-10 flex min-h-[425px] flex-col justify-center pb-8 pt-12">
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.36em]">{heroContent[language].eyebrow}</p>
+            {language === "en" ? (
+              <h1 className="max-w-[650px] text-[clamp(3rem,5.3vw,5.35rem)] font-light leading-[0.92] tracking-tight">Governed Intelligence<br />for <strong className="font-extrabold">Better Software</strong></h1>
+            ) : (
+              <h1 className="max-w-[650px] text-[clamp(3rem,5.3vw,5.35rem)] font-light leading-[0.92] tracking-tight">Inteligencia Gobernada<br />para <strong className="font-extrabold">Mejor Software</strong></h1>
+            )}
+            {language === "en" ? (
+              <p className="mt-5 max-w-[610px] text-[17px] leading-snug">GTT-Method helps individuals and teams design, build and evolve<br className="hidden sm:block" /> software with AI, using a governed, reusable and human-centered approach.</p>
+            ) : (
+              <p className="mt-5 max-w-[610px] text-[17px] leading-snug">GTT-Method ayuda a personas y equipos a diseñar, construir y evolucionar<br className="hidden sm:block" /> software con IA, con un enfoque gobernado, reutilizable y centrado en las personas.</p>
+            )}
+            <div className="mt-6 flex flex-wrap gap-4">
+              <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark px-8">{heroContent[language].ctaPrimary} <ArrowRight size={17} /></a>
+              <Link to="/$slug" params={{ slug: "methodology" }} className="cta-light">{heroContent[language].ctaSecondary}</Link>
+              <Link to="/$slug" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
+              <Link to="/$slug" params={{ slug: "prompts" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrompts}</Link>
+            </div>
+            <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
+              <span className="flex items-center gap-2 pr-7"><Code2 size={20} /> {heroContent[language].badges[0]}</span>
+              <a href={FEEDBACK_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-l border-border px-7 underline underline-offset-4"><Users size={20} /> {heroContent[language].badges[1]}</a>
+              <span className="flex items-center gap-2 border-l border-border pl-7"><Leaf size={20} /> {heroContent[language].badges[2]}</span>
+            </div>
           </div>
-          <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
-            <span className="flex items-center gap-2 pr-7"><Code2 size={20} /> {heroContent[language].badges[0]}</span>
-            <span className="flex items-center gap-2 border-l border-border px-7"><Users size={20} /> {heroContent[language].badges[1]}</span>
-            <span className="flex items-center gap-2 border-l border-border pl-7"><Leaf size={20} /> {heroContent[language].badges[2]}</span>
-          </div>
-        </div>
-        {language === "en" ? (
-          <div className="absolute right-16 top-12 z-10 hidden w-28 text-[10px] font-semibold uppercase leading-[1.65] tracking-[0.3em] xl:block">Deeper<br />Context<br />Higher<br />Impact<div className="my-4 h-px w-8 bg-foreground" /><span className="text-[8px]">Human direction<br />AI amplification</span></div>
-        ) : (
-          <div className="absolute right-16 top-12 z-10 hidden w-28 text-[10px] font-semibold uppercase leading-[1.65] tracking-[0.3em] xl:block">Más<br />Contexto<br />Mayor<br />Impacto<div className="my-4 h-px w-8 bg-foreground" /><span className="text-[8px]">Dirección humana<br />Amplificación de IA</span></div>
-        )}
-      </section>
+          {language === "en" ? (
+            <div className="absolute right-16 top-12 z-10 hidden w-28 text-[10px] font-semibold uppercase leading-[1.65] tracking-[0.3em] xl:block">Deeper<br />Context<br />Higher<br />Impact<div className="my-4 h-px w-8 bg-foreground" /><span className="text-[8px]">Human direction<br />AI amplification</span></div>
+          ) : (
+            <div className="absolute right-16 top-12 z-10 hidden w-28 text-[10px] font-semibold uppercase leading-[1.65] tracking-[0.3em] xl:block">Más<br />Contexto<br />Mayor<br />Impacto<div className="my-4 h-px w-8 bg-foreground" /><span className="text-[8px]">Dirección humana<br />Amplificación de IA</span></div>
+          )}
+        </section>
+      </div>
 
       <section id="method" className="mx-auto max-w-[1500px] px-8 xl:px-12">
         <div className="method-panel grid gap-7 px-8 py-5 lg:grid-cols-[250px_1fr]">

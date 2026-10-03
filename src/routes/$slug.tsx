@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages, searchContent } from "@/lib/gttContent";
 import { SITE_URL } from "@/lib/links";
-import { ArrowLeft, Terminal } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, Check, Copy, Terminal } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -21,6 +22,39 @@ function linkify(text: string) {
     ) : (
       part
     )
+  );
+}
+
+function CodeBlock({ code, language }: { code: string; language: "en" | "es" }) {
+  const [copied, setCopied] = useState(false);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable (insecure context or denied) — the text stays selectable.
+    }
+  };
+
+  const label = copied ? (language === "en" ? "Copied" : "Copiado") : language === "en" ? "Copy" : "Copiar";
+
+  return (
+    <div className="relative my-4">
+      <button
+        type="button"
+        onClick={copy}
+        aria-label={language === "en" ? "Copy to clipboard" : "Copiar al portapapeles"}
+        className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded border border-border bg-background px-2 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+      >
+        {copied ? <Check size={13} /> : <Copy size={13} />}
+        <span aria-live="polite">{label}</span>
+      </button>
+      <pre className="bg-muted p-4 pt-10 rounded-md overflow-x-auto">
+        <code className="text-xs">{code}</code>
+      </pre>
+    </div>
   );
 }
 
@@ -186,11 +220,7 @@ function ContentPage() {
 
               if (paragraph.trim().startsWith("```")) {
                 const code = paragraph.replace(/```[\w-]*\n?|\n?```/g, "").trim();
-                return (
-                  <pre key={index} className="bg-muted p-4 rounded-md overflow-x-auto my-4">
-                    <code className="text-xs">{code}</code>
-                  </pre>
-                );
+                return <CodeBlock key={index} code={code} language={language} />;
               }
 
               if (paragraph.trim().startsWith(">")) {

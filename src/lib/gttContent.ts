@@ -15,128 +15,166 @@ export const pages: ContentPage[] = [
     slug: "about",
     titleEn: "About GTT-Method",
     titleEs: "Acerca de GTT-Method",
-    descriptionEn: "Understanding the methodology, principles and approach to governed AI-assisted software development.",
-    descriptionEs: "Entendiendo la metodología, principios y enfoque para desarrollo de software asistido por IA gobernado.",
-    contentEn: `GTT-Method (Governance Through Thinking) is an open-source methodology for governed AI-assisted software development.
+    descriptionEn: "What GTT is today: a methodology for governed AI-assisted software development, its reference implementation (GTT Bootstrap) and its operational tool (GTT CLI).",
+    descriptionEs: "Qué es GTT hoy: una metodología para el desarrollo de software asistido por IA gobernado, su implementación de referencia (GTT Bootstrap) y su herramienta operativa (GTT CLI).",
+    contentEn: `GTT (Governance Through Thinking) is an open-source methodology for governing software development when AI agents participate in it.
 
-GTT-Method provides a governance layer around AI-assisted software development. It combines ideas from Spec-Driven Development (SDD), Context Engineering, AI coding agents, software architecture governance, engineering constraints, and human architectural decisions.
+Today GTT is three things, in a deliberate order: a methodology, its reference implementation, and the tool that operates it.
 
-The goal is not to replace specifications, developers or AI agents. The goal is to make the context and architectural intent that guide AI agents explicit and governable.
+\`\`\`
+GTT Method        Methodology and governance
+      ↓
+GTT Bootstrap     Reference implementation
+      ↓
+GTT CLI           Operational tooling
+      ↓
+ADEs + Human      Development work
+\`\`\`
 
-GTT-Method treats context as an engineering asset — something that can be structured, governed, protected and validated. Context is the Source of Truth.
+## Core principle
 
-## Core Principle
+> When context doesn't govern AI, AI governs the solution.
 
-"When context doesn't govern AI, AI governs the solution."
+AI agents can implement complete features. The hard problem is no longer code generation: it is that a sequence of individually reasonable changes can move a system away from the architecture and decisions the team intended. GTT makes context, evidence, architecture, proposals, decisions and change explicit and governed, so the project, not the agent, remains the source of truth.
 
-## Architectural Drift
+## GTT Method
 
-GTT-Method recognizes that AI agents are increasingly capable of implementing complete features. But the difficult problem is not simply code generation — it is architectural drift.
+The methodology. It defines how project context, evidence, architecture, rules, constraints, proposals, decisions, validation, freeze and controlled change are handled when AI Development Environments (ADEs) take part in development.
 
-An agent can make a sequence of individually reasonable changes that collectively move a system away from the architecture and engineering decisions originally intended by the team. GTT-Method addresses this by making architecture, context, rules and constraints explicit assets of the development process.
+- Evidence, proposals and decisions are kept apart: agents reason and propose, humans decide.
+- Freeze establishes the governed state. Changes after freeze go through a change request, never around it.
+- One governance model serves several ADEs, with exactly one Primary ADE.
 
-## The Problem
+Read it in full on the Methodology page: https://gtt-community.github.io/methodology
 
-As AI coding agents become more capable and participate directly in implementation, new challenges emerge:
+## GTT Bootstrap
 
-- Context Loss — Agents lose important architectural and business context.
-- Uncontrolled Changes — No explicit boundaries on what an agent can modify.
-- Inconsistent Decisions — Different prompts produce different implementations.
-- Architectural Drift — Individual changes collectively move away from intended design.
-- Governance Gap — No explicit rules, responsibilities or controlled context.
+The reference implementation of the method. Bootstrap holds the GTT semantics and the versioned contracts that make GTT executable inside a real project: governance, evidence and provenance, proposals and decisions, deterministic validation, freeze, ADE integrations, status and session context.
 
-## The GTT-Method Solution
+Repository: https://github.com/GTT-Community/gtt-bootstrap
 
-GTT-Method establishes governed context around AI-assisted software development.
+## GTT CLI
 
-This means:
+The operational surface. A single gtt binary for Linux, macOS and Windows that installs, configures, validates, updates, resumes, freezes, exports and recovers GTT projects through the Bootstrap contracts. Every command is deterministic and needs no LLM.
 
-- Explicit context — Project knowledge is structured as engineering artifacts.
-- Governed boundaries — Agents have clear rules and constraints.
-- Protected decisions — Architectural decisions are protected from unintended changes.
-- Traceability — Changes are reviewable through Git history.
-- Validation — Governance is enforced through both instructions and deterministic mechanisms.
+\`\`\`
+cd my-project
+gtt init
+gtt status
+\`\`\`
 
-## Who Created GTT-Method?
+GTT CLI is not a second GTT engine: it orchestrates Bootstrap and contains no methodology of its own. Installation and commands are on the GTT CLI page: https://gtt-community.github.io/cli
 
-GTT-Method was created by Moisés Griott and is maintained by the GTT-Method Community.
+## Works with your ADE
+
+GTT is independent of the development environment. Bootstrap currently ships integrations for Claude Code, GitHub Copilot, Codex and Kiro, and several can participate in the same project under one governance model.
+
+## What GTT is not
+
+- Not an LLM and not an AI coding agent: it does not replace your ADE.
+- Not an IDE.
+- Not only a CLI, and not a prompt library: the methodology is the center.
+
+## Who created GTT?
+
+GTT was created by Moisés Griott and is maintained by the GTT Community.
 
 ### Moisés Griott
 
-Digital Architect, Cloud Architect, and AI/Agentic AI Architect. Creator and original author of GTT-Method.
+Digital Architect, Cloud Architect, and AI/Agentic AI Architect. Creator and original author of the GTT Method.
 
-### GTT-Method Community
+### GTT Community
 
-Open-source community maintaining and evolving GTT-Method through contributions, feedback, and implementations.
+The open-source community that maintains and evolves GTT through contributions, feedback and real implementations: https://github.com/orgs/GTT-Community/repositories
 
-### Reference Implementation
+Report a bug, propose an idea or leave a comment on the community board: https://gtt-method.feedlog.ai/
 
-The official gtt-bootstrap project provides a concrete implementation of the methodology with governance artifacts and integration examples.
+## Open source licenses
 
-### Open Source License
+- GTT Method: Apache-2.0
+- GTT Bootstrap: MIT
+- GTT CLI: Apache-2.0
+- This website: MIT`,
+    contentEs: `GTT (Governance Through Thinking) es una metodología de código abierto para gobernar el desarrollo de software cuando participan agentes de IA.
 
-Creative Commons Attribution 4.0 International (CC BY 4.0). Share, adapt and build upon the work freely with attribution.`,
-    contentEs: `GTT-Method (Governance Through Thinking) es una metodología de código abierto para desarrollo de software asistido por IA gobernado.
+Hoy GTT son tres cosas, en un orden deliberado: una metodología, su implementación de referencia y la herramienta que la opera.
 
-GTT-Method proporciona una capa de gobernanza alrededor del desarrollo de software asistido por IA. Combina ideas de Spec-Driven Development (SDD), Context Engineering, agentes de IA de codificación, gobernanza de arquitectura de software, restricciones de ingeniería y decisiones arquitectónicas humanas.
-
-El objetivo no es reemplazar especificaciones, desarrolladores o agentes de IA. El objetivo es hacer que el contexto y la intención arquitectónica que guían a los agentes de IA sean explícitos y gobernables.
-
-GTT-Method trata el contexto como un activo de ingeniería — algo que puede estructurarse, gobernarse, protegerse y validarse. El contexto es la fuente de verdad.
+\`\`\`
+GTT Method        Metodología y gobernanza
+      ↓
+GTT Bootstrap     Implementación de referencia
+      ↓
+GTT CLI           Herramienta operativa
+      ↓
+ADEs + Humano     Trabajo de desarrollo
+\`\`\`
 
 ## Principio central
 
-"Cuando el contexto no gobierna a la IA, la IA gobierna la solución."
+> Cuando el contexto no gobierna a la IA, la IA gobierna la solución.
 
-## Desviación Arquitectónica
+Los agentes de IA pueden implementar funcionalidades completas. El problema difícil ya no es generar código: es que una secuencia de cambios individualmente razonables puede alejar al sistema de la arquitectura y de las decisiones que el equipo quería. GTT hace explícitos y gobernados el contexto, la evidencia, la arquitectura, las propuestas, las decisiones y el cambio, para que el proyecto, y no el agente, siga siendo la fuente de verdad.
 
-GTT-Method reconoce que los agentes de IA son cada vez más capaces de implementar características completas. Pero el problema difícil no es simplemente la generación de código — es la desviación arquitectónica.
+## GTT Method
 
-Un agente puede hacer una secuencia de cambios individualmente razonables que colectivamente alejen un sistema de la arquitectura y las decisiones de ingeniería originalmente previstas por el equipo. GTT-Method aborda esto haciendo que la arquitectura, el contexto, las reglas y las restricciones sean activos explícitos del proceso de desarrollo.
+La metodología. Define cómo se manejan el contexto del proyecto, la evidencia, la arquitectura, las reglas, las restricciones, las propuestas, las decisiones, la validación, el freeze y el cambio controlado cuando Entornos de Desarrollo con IA (ADEs) participan en el desarrollo.
 
-## El problema
+- La evidencia, las propuestas y las decisiones se mantienen separadas: los agentes razonan y proponen, los humanos deciden.
+- El freeze establece el estado gobernado. Los cambios posteriores pasan por una solicitud de cambio, nunca por fuera.
+- Un solo modelo de gobernanza sirve a varios ADEs, con exactamente un ADE Primario.
 
-A medida que los agentes de IA se vuelven más capaces y participan directamente en la implementación, aparecen nuevos desafíos:
+Léela completa en la página de Metodología: https://gtt-community.github.io/methodology
 
-- Pérdida de Contexto — Los agentes pierden contexto arquitectónico y empresarial importante.
-- Cambios Incontrolados — No existen límites explícitos sobre lo que un agente puede modificar.
-- Decisiones Inconsistentes — Diferentes indicaciones producen diferentes implementaciones.
-- Desviación Arquitectónica — Cambios individuales alejan colectivamente el sistema del diseño previsto.
-- Brecha de Gobernanza — No existen reglas, responsabilidades o contexto controlado explícitos.
+## GTT Bootstrap
 
-## La solución GTT-Method
+La implementación de referencia del método. Bootstrap contiene la semántica GTT y los contratos versionados que hacen a GTT ejecutable dentro de un proyecto real: gobernanza, evidencia y procedencia, propuestas y decisiones, validación determinística, freeze, integraciones de ADE, estado y contexto de sesión.
 
-GTT-Method establece contexto gobernado alrededor del desarrollo de software asistido por IA.
+Repositorio: https://github.com/GTT-Community/gtt-bootstrap
 
-Esto significa:
+## GTT CLI
 
-- Contexto explícito — El conocimiento del proyecto se estructura como artefactos de ingeniería.
-- Límites gobernados — Los agentes tienen reglas y restricciones claras.
-- Decisiones protegidas — Las decisiones arquitectónicas están protegidas de cambios involuntarios.
-- Trazabilidad — Los cambios son revisables mediante el historial de Git.
-- Validación — La gobernanza se aplica mediante instrucciones y mecanismos determinísticos.
+La superficie operativa. Un único binario gtt para Linux, macOS y Windows que instala, configura, valida, actualiza, reanuda, congela, exporta y recupera proyectos GTT a través de los contratos de Bootstrap. Todos los comandos son determinísticos y no necesitan un LLM.
 
-## ¿Quién creó GTT-Method?
+\`\`\`
+cd mi-proyecto
+gtt init
+gtt status
+\`\`\`
 
-GTT-Method fue creado por Moisés Griott y es mantenido por GTT-Method Community.
+GTT CLI no es un segundo motor de GTT: orquesta Bootstrap y no contiene metodología propia. La instalación y los comandos están en la página de GTT CLI: https://gtt-community.github.io/cli
+
+## Funciona con tu ADE
+
+GTT es independiente del entorno de desarrollo. Bootstrap incluye hoy integraciones para Claude Code, GitHub Copilot, Codex y Kiro, y varios pueden participar en el mismo proyecto bajo un solo modelo de gobernanza.
+
+## Lo que GTT no es
+
+- No es un LLM ni un agente de programación con IA: no reemplaza a tu ADE.
+- No es un IDE.
+- No es solo una CLI ni una biblioteca de prompts: la metodología es el centro.
+
+## ¿Quién creó GTT?
+
+GTT fue creado por Moisés Griott y es mantenido por la Comunidad GTT.
 
 ### Moisés Griott
 
-Digital Architect, Cloud Architect y AI/Agentic AI Architect. Creador y autor original de GTT-Method.
+Digital Architect, Cloud Architect y AI/Agentic AI Architect. Creador y autor original del GTT Method.
 
-### GTT-Method Community
+### Comunidad GTT
 
-Comunidad open-source que mantiene y evoluciona GTT-Method mediante contribuciones, feedback e implementaciones.
+La comunidad de código abierto que mantiene y hace evolucionar GTT con contribuciones, feedback e implementaciones reales: https://github.com/orgs/GTT-Community/repositories
 
-### Implementación de referencia
+Reporta un bug, propone una idea o deja un comentario en el tablero de la comunidad: https://gtt-method.feedlog.ai/
 
-El proyecto oficial gtt-bootstrap proporciona una implementación concreta de la metodología con artefactos de gobernanza y ejemplos de integración.
+## Licencias de código abierto
 
-### Licencia
-
-Creative Commons Attribution 4.0 International (CC BY 4.0).`,
-    searchableEn: "GTT-Method Governance Through Thinking AI assisted development architecture drift context engineering",
-    searchableEs: "GTT-Method Governance Through Thinking desarrollo asistido por IA desviación arquitectónica context engineering",
+- GTT Method: Apache-2.0
+- GTT Bootstrap: MIT
+- GTT CLI: Apache-2.0
+- Este sitio web: MIT`,
+    searchableEn: "GTT-Method Governance Through Thinking AI assisted development architecture drift context engineering Bootstrap CLI ADE license community feedback",
+    searchableEs: "GTT-Method Governance Through Thinking desarrollo asistido por IA desviación arquitectónica context engineering Bootstrap CLI ADE licencia comunidad feedback",
   },
   {
     slug: "problem",

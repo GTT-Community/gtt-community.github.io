@@ -129,9 +129,6 @@ export function Header({ activeSlug }: HeaderProps) {
               ES
             </button>
           </div>
-          <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark">
-            {language === "en" ? "Get Started" : "Comenzar"}
-          </a>
         </div>
 
         <button

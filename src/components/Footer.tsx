@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages } from "@/lib/gttContent";
-import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL } from "@/lib/links";
+import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL, FEEDBACK_URL } from "@/lib/links";
 
 // Open-source projects GTT is built with, grouped by where they are used.
 // Every link is the project's own GitHub home.
@@ -86,6 +86,7 @@ export function Footer() {
             <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">{t("nav.docs")}</a>
             <a href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">GitHub</a>
             <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">{language === "en" ? "Get Started" : "Comenzar"}</a>
+            <a href={FEEDBACK_URL} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">{language === "en" ? "Feedback: bugs & ideas" : "Feedback: bugs e ideas"}</a>
           </div>
           <div className="border-l border-footer-foreground pl-8 text-[9px] font-semibold uppercase leading-[1.8] tracking-[0.28em]">
             {language === "en"
