@@ -107,11 +107,11 @@ function Index() {
           <div className="absolute inset-0 bg-hero-wash" />
           <div className="relative z-10 flex min-h-[425px] flex-col justify-center pb-8 pt-12">
             <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.36em]">{heroContent[language].eyebrow}</p>
-            {language === "en" ? (
-              <h1 className="max-w-[650px] text-[clamp(3rem,5.3vw,5.35rem)] font-light leading-[0.92] tracking-tight">Governed Intelligence<br />for <strong className="font-extrabold">Better Software</strong></h1>
-            ) : (
-              <h1 className="max-w-[650px] text-[clamp(3rem,5.3vw,5.35rem)] font-light leading-[0.92] tracking-tight">Inteligencia Gobernada<br />para <strong className="font-extrabold">Mejor Software</strong></h1>
-            )}
+            <h1 className="max-w-[760px] tracking-tight">
+              <span className="block text-[clamp(2.5rem,4.4vw,4.4rem)] font-extrabold leading-[0.95]">GTT — Governance &amp; THINK</span>
+              <span className="mt-4 block text-[clamp(1.35rem,2.3vw,2.3rem)] font-light leading-[1.1]">Agentic Specification-Driven Development</span>
+              <span className="mt-1 block text-[clamp(1.35rem,2.3vw,2.3rem)] font-light leading-[1.1]">AI Efficiency Governance</span>
+            </h1>
             {language === "en" ? (
               <p className="mt-5 max-w-[610px] text-[17px] leading-snug">GTT-Method helps individuals and teams design, build and evolve<br className="hidden sm:block" /> software with AI, using a governed, reusable and human-centered approach.</p>
             ) : (
