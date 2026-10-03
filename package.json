@@ -10,6 +10,7 @@
     "build:github-pages": "TARGET=github-pages vite build",
     "build:cloudflare": "vite build",
     "preview": "vite preview",
+    "audit:site": "node scripts/site-audit.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

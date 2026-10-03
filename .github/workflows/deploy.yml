@@ -35,6 +35,9 @@ jobs:
       - name: Build for GitHub Pages
         run: npm run build:github-pages
 
+      - name: Audit built site (crawlability, metadata, links)
+        run: npm run audit:site
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 

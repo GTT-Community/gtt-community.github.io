@@ -26,9 +26,9 @@ export function Header({ activeSlug }: HeaderProps) {
 
   const navItems: NavItem[] = [
     { label: t("nav.home"), isHome: true },
-    // GTT CLI and the prompts page are reached from the hero CTAs and the footer;
-    // keeping them out of the header avoids overflowing the desktop nav.
-    ...pages.filter((p) => p.slug !== "cli" && p.slug !== "prompts").map((p) =>
+    // GTT CLI, the prompts page and the glossary are reached from the hero CTAs, the FAQ
+    // and the footer; keeping them out of the header avoids overflowing the desktop nav.
+    ...pages.filter((p) => p.slug !== "cli" && p.slug !== "prompts" && p.slug !== "glossary").map((p) =>
       p.slug === "gtt-method-2-1"
         ? { label: "GTT-Method 2.1 / Canonical", href: GTT_METHOD_CANONICAL_URL }
         : { label: language === "en" ? p.titleEn : p.titleEs, slug: p.slug },
@@ -63,7 +63,7 @@ export function Header({ activeSlug }: HeaderProps) {
     }
 
     return (
-      <Link to="/$slug" params={{ slug: item.slug! }} className={combinedClassName} onClick={onClick} aria-current={ariaCurrent}>
+      <Link to="/$slug/" params={{ slug: item.slug! }} className={combinedClassName} onClick={onClick} aria-current={ariaCurrent}>
         {item.label}
       </Link>
     );

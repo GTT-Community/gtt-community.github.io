@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import { OG_IMAGE_URL, SITE_DESCRIPTION, SITE_NAME } from "../lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -78,13 +79,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "GTT-Method" },
-      { name: "description", content: "Governance Through Thinking" },
-      { name: "author", content: "GTT-Method" },
-      { property: "og:title", content: "GTT-Method" },
-      { property: "og:description", content: "Governance Through Thinking" },
+      { title: SITE_NAME },
+      { name: "description", content: SITE_DESCRIPTION },
+      { name: "author", content: "GTT Community" },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:title", content: SITE_NAME },
+      { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE_URL },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "GTT-Method: an orca leaping from the ocean before alpine mountains" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE_URL },
     ],
     links: [
       {

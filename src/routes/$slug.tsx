@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages, searchContent } from "@/lib/gttContent";
-import { SITE_URL } from "@/lib/links";
+import { pageJsonLd, pageTitle, pageUrl } from "@/lib/seo";
 import { useState } from "react";
 import { ArrowLeft, Check, Copy, Terminal } from "lucide-react";
 import { Footer } from "@/components/Footer";
@@ -74,7 +74,6 @@ const INDEX_MIN_SECTIONS = 6;
 export const Route = createFileRoute("/$slug")({
   head: ({ params }) => {
     const { slug } = params;
-    const lang = "en";
     const page = pages.find((p) => p.slug === slug);
 
     if (!page) {
@@ -82,21 +81,26 @@ export const Route = createFileRoute("/$slug")({
         meta: [
           { title: "Page not found | GTT-Method" },
           { name: "description", content: "Page not found" },
+          { name: "robots", content: "noindex" },
         ],
       };
     }
 
-    const title = lang === "en" ? page.titleEn : page.titleEs;
-    const description = lang === "en" ? page.descriptionEn : page.descriptionEs;
+    // Prerendered HTML is the English version; Spanish is a client-side switch on the same URL.
+    const title = pageTitle(page);
+    const description = page.descriptionEn;
 
     return {
       meta: [
-        { title: `${title} | GTT-Method` },
+        { title },
         { name: "description", content: description },
-        { property: "og:title", content: `${title} | GTT-Method` },
+        { property: "og:title", content: title },
         { property: "og:description", content: description },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: pageUrl(page.slug) },
       ],
-      links: [{ rel: "canonical", href: `${SITE_URL}/${page.slug}` }],
+      links: [{ rel: "canonical", href: pageUrl(page.slug) }],
+      scripts: [{ type: "application/ld+json", children: pageJsonLd(page) }],
     };
   },
   component: ContentPage,
@@ -242,7 +246,7 @@ function ContentPage() {
 
         {slug === "prompts" && (
           <div className="mt-6">
-            <Link to="/$slug" params={{ slug: "cli" }} className="cta-green">
+            <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green">
               <Terminal size={17} /> {language === "en" ? "Install GTT CLI" : "Instalar GTT CLI"}
             </Link>
           </div>
@@ -253,7 +257,7 @@ function ContentPage() {
             {pages.map((p) => (
               <Link
                 key={p.slug}
-                to="/$slug"
+                to="/$slug/"
                 params={{ slug: p.slug }}
                 className={`px-3 py-2 rounded text-sm font-medium transition-colors ${
                   p.slug === slug

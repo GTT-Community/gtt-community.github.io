@@ -16,6 +16,8 @@ export default defineConfig({
     prerender: {
        enabled: true,
     },
+    // Non-HTML routes are not reachable by link crawling; list them so they are prerendered too.
+    pages: [{ path: "/sitemap.xml" }, { path: "/llms.txt" }, { path: "/llms-full.txt" }],
   },
   nitro: isGitHubPages
     ? {

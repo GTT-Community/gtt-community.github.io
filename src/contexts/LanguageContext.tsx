@@ -71,6 +71,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  // Keep the document language in step with the visible language (assistive tech, translators).
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     try {

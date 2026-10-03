@@ -17,17 +17,22 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import heroImage from "@/assets/orca-hero.jpg";
 import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL, FEEDBACK_URL } from "@/lib/links";
+import { SITE_DESCRIPTION, homeJsonLd, pageUrl } from "@/lib/seo";
+
+const HOME_TITLE = "GTT-Method | Governance Through Thinking for AI-Assisted Software Development";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "GTT-Method | Governance Through Thinking" },
-      { name: "description", content: "An open methodology for governed, reusable and human-centered AI software development." },
-      { property: "og:title", content: "GTT-Method | Governance Through Thinking" },
-      { property: "og:description", content: "Design, build and evolve better software with governed intelligence." },
+      { title: HOME_TITLE },
+      { name: "description", content: SITE_DESCRIPTION },
+      { property: "og:title", content: HOME_TITLE },
+      { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: pageUrl() },
     ],
+    links: [{ rel: "canonical", href: pageUrl() }],
+    scripts: [{ type: "application/ld+json", children: homeJsonLd() }],
   }),
   component: Index,
 });
@@ -91,7 +96,7 @@ const methodSectionContent = {
 };
 
 function ArrowLink({ children }: { children: React.ReactNode }) {
-  return <Link to="/$slug" params={{ slug: "methodology" }} className="inline-flex items-center gap-3 border-b border-foreground pb-0.5 text-sm font-medium">{children}<ArrowRight size={15} /></Link>;
+  return <Link to="/$slug/" params={{ slug: "methodology" }} className="inline-flex items-center gap-3 border-b border-foreground pb-0.5 text-sm font-medium">{children}<ArrowRight size={15} /></Link>;
 }
 
 function Index() {
@@ -119,9 +124,9 @@ function Index() {
             )}
             <div className="mt-6 flex flex-wrap gap-4">
               <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark px-8">{heroContent[language].ctaPrimary} <ArrowRight size={17} /></a>
-              <Link to="/$slug" params={{ slug: "methodology" }} className="cta-light">{heroContent[language].ctaSecondary}</Link>
-              <Link to="/$slug" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
-              <Link to="/$slug" params={{ slug: "prompts" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrompts}</Link>
+              <Link to="/$slug/" params={{ slug: "methodology" }} className="cta-light">{heroContent[language].ctaSecondary}</Link>
+              <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
+              <Link to="/$slug/" params={{ slug: "prompts" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrompts}</Link>
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
               <span className="flex items-center gap-2 pr-7"><Code2 size={20} /> {heroContent[language].badges[0]}</span>
@@ -162,7 +167,7 @@ function Index() {
             <h3 className="text-sm font-extrabold">{title}</h3>
             <p className="mt-1 min-h-10 text-xs leading-snug text-muted-foreground">{text}</p>
             {slug ? (
-              <Link to="/$slug" params={{ slug }} className="mt-3 inline-flex items-center gap-3 text-xs font-medium">{link}<ArrowRight size={14} /></Link>
+              <Link to="/$slug/" params={{ slug }} className="mt-3 inline-flex items-center gap-3 text-xs font-medium">{link}<ArrowRight size={14} /></Link>
             ) : (
               <a href={href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-3 text-xs font-medium">{link}<ArrowRight size={14} /></a>
             )}

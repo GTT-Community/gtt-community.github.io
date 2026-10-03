@@ -9,6 +9,8 @@ export const getRouter = () => {
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
+    // GitHub Pages serves prerendered pages at /slug/; link there directly instead of through a 301.
+    trailingSlash: "always",
     defaultPreloadStaleTime: 0,
   });
 

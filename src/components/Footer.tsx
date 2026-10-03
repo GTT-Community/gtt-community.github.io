@@ -92,7 +92,7 @@ export function Footer() {
           </blockquote>
           <nav aria-label={language === "en" ? "Footer navigation" : "Navegación del pie de página"} className="border-l border-footer-foreground pl-8 flex flex-wrap gap-x-8 gap-y-2 text-xs">
             {pages.map((p) => (
-              <Link key={p.slug} to="/$slug" params={{ slug: p.slug }} className="hover:opacity-70 transition-opacity">
+              <Link key={p.slug} to="/$slug/" params={{ slug: p.slug }} className="hover:opacity-70 transition-opacity">
                 {language === "en" ? p.titleEn : p.titleEs}
               </Link>
             ))}
