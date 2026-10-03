@@ -1,52 +1,67 @@
 import { Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages } from "@/lib/gttContent";
+import goIcon from "@/assets/credits/go.svg";
+import cobraIcon from "@/assets/credits/cobra.png";
+import goreleaserIcon from "@/assets/credits/goreleaser.png";
+import pythonIcon from "@/assets/credits/python.svg";
+import bashIcon from "@/assets/credits/gnubash.svg";
+import gitIcon from "@/assets/credits/git.svg";
+import typescriptIcon from "@/assets/credits/typescript.svg";
+import reactIcon from "@/assets/credits/react.svg";
+import tanstackIcon from "@/assets/credits/tanstack.svg";
+import viteIcon from "@/assets/credits/vite.svg";
+import tailwindIcon from "@/assets/credits/tailwindcss.svg";
+import radixIcon from "@/assets/credits/radixui.svg";
+import lucideIcon from "@/assets/credits/lucide.svg";
+import githubIcon from "@/assets/credits/github.svg";
+import githubActionsIcon from "@/assets/credits/githubactions.svg";
+import debianIcon from "@/assets/credits/debian.svg";
+import nodeIcon from "@/assets/credits/nodedotjs.svg";
 import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL, FEEDBACK_URL } from "@/lib/links";
 
 // Open-source projects GTT is built with, grouped by where they are used.
-// Every link is the project's own GitHub home.
+// Every link is the project's own GitHub home; logos are shown without names.
 const credits = [
   {
     titleEn: "GTT CLI",
     titleEs: "GTT CLI",
     items: [
-      { name: "Go", roleEn: "language", roleEs: "lenguaje", href: "https://github.com/golang/go" },
-      { name: "Cobra", roleEn: "command framework", roleEs: "framework de comandos", href: "https://github.com/spf13/cobra" },
-      { name: "GoReleaser", roleEn: "release builds", roleEs: "builds de release", href: "https://github.com/goreleaser/goreleaser" },
+      { name: "Go", icon: goIcon, roleEn: "language", roleEs: "lenguaje", href: "https://github.com/golang/go" },
+      { name: "Cobra", icon: cobraIcon, roleEn: "command framework", roleEs: "framework de comandos", href: "https://github.com/spf13/cobra" },
+      { name: "GoReleaser", icon: goreleaserIcon, roleEn: "release builds", roleEs: "builds de release", href: "https://github.com/goreleaser/goreleaser" },
     ],
   },
   {
     titleEn: "GTT Bootstrap",
     titleEs: "GTT Bootstrap",
     items: [
-      { name: "Python", roleEn: "engine and validation", roleEs: "motor y validación", href: "https://github.com/python/cpython" },
-      { name: "Bash", roleEn: "service scripts", roleEs: "scripts de servicio" },
-      { name: "Git", roleEn: "versioned project state", roleEs: "estado versionado del proyecto", href: "https://github.com/git/git" },
+      { name: "Python", icon: pythonIcon, roleEn: "engine and validation", roleEs: "motor y validación", href: "https://github.com/python/cpython" },
+      { name: "Bash", icon: bashIcon, roleEn: "service scripts", roleEs: "scripts de servicio" },
+      { name: "Git", icon: gitIcon, roleEn: "versioned project state", roleEs: "estado versionado del proyecto", href: "https://github.com/git/git" },
     ],
   },
   {
     titleEn: "This site",
     titleEs: "Este sitio",
     items: [
-      { name: "TypeScript", roleEn: "language", roleEs: "lenguaje", href: "https://github.com/microsoft/TypeScript" },
-      { name: "React", roleEn: "UI", roleEs: "interfaz", href: "https://github.com/facebook/react" },
-      { name: "TanStack Start", roleEn: "routing and prerender", roleEs: "rutas y prerender", href: "https://github.com/TanStack/router" },
-      { name: "Vite", roleEn: "build", roleEs: "build", href: "https://github.com/vitejs/vite" },
-      { name: "Tailwind CSS", roleEn: "styling", roleEs: "estilos", href: "https://github.com/tailwindlabs/tailwindcss" },
-      { name: "Radix UI", roleEn: "primitives", roleEs: "primitivas", href: "https://github.com/radix-ui/primitives" },
-      { name: "Lucide", roleEn: "icons", roleEs: "iconos", href: "https://github.com/lucide-icons/lucide" },
+      { name: "TypeScript", icon: typescriptIcon, roleEn: "language", roleEs: "lenguaje", href: "https://github.com/microsoft/TypeScript" },
+      { name: "React", icon: reactIcon, roleEn: "UI", roleEs: "interfaz", href: "https://github.com/facebook/react" },
+      { name: "TanStack Start", icon: tanstackIcon, roleEn: "routing and prerender", roleEs: "rutas y prerender", href: "https://github.com/TanStack/router" },
+      { name: "Vite", icon: viteIcon, roleEn: "build", roleEs: "build", href: "https://github.com/vitejs/vite" },
+      { name: "Tailwind CSS", icon: tailwindIcon, roleEn: "styling", roleEs: "estilos", href: "https://github.com/tailwindlabs/tailwindcss" },
+      { name: "Radix UI", icon: radixIcon, roleEn: "primitives", roleEs: "primitivas", href: "https://github.com/radix-ui/primitives" },
+      { name: "Lucide", icon: lucideIcon, roleEn: "icons", roleEs: "iconos", href: "https://github.com/lucide-icons/lucide" },
     ],
   },
   {
     titleEn: "Platform",
     titleEs: "Plataforma",
     items: [
-      { name: "GitHub", roleEn: "source and community", roleEs: "código y comunidad", href: "https://github.com/github" },
-      { name: "GitHub Actions", roleEn: "CI and releases", roleEs: "CI y releases", href: "https://github.com/actions" },
-      { name: "GitHub Pages", roleEn: "hosting", roleEs: "hosting", href: "https://github.com/actions/deploy-pages" },
-      { name: "Ubuntu", roleEn: "CI runners", roleEs: "runners de CI", href: "https://github.com/ubuntu" },
-      { name: "Debian", roleEn: "the base Ubuntu builds on", roleEs: "la base de Ubuntu", href: "https://github.com/Debian" },
-      { name: "Node.js", roleEn: "build runtime", roleEs: "runtime de build", href: "https://github.com/nodejs/node" },
+      { name: "GitHub", icon: githubIcon, roleEn: "source, community and hosting", roleEs: "código, comunidad y hosting", href: "https://github.com/github" },
+      { name: "GitHub Actions", icon: githubActionsIcon, roleEn: "CI and releases", roleEs: "CI y releases", href: "https://github.com/actions" },
+      { name: "Debian", icon: debianIcon, roleEn: "server", roleEs: "servidor", href: "https://github.com/Debian" },
+      { name: "Node.js", icon: nodeIcon, roleEn: "build runtime", roleEs: "runtime de build", href: "https://github.com/nodejs/node" },
     ],
   },
 ];
@@ -109,17 +124,20 @@ export function Footer() {
                 <h3 className="text-[9px] font-semibold uppercase tracking-[0.28em]">
                   {language === "en" ? group.titleEn : group.titleEs}
                 </h3>
-                <ul className="mt-3 flex flex-col gap-1.5 text-xs">
-                  {group.items.map((item) => (
-                    <li key={item.name}>
-                      {item.href ? (
-                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="font-semibold hover:opacity-70 transition-opacity">{item.name}</a>
-                      ) : (
-                        <span className="font-semibold">{item.name}</span>
-                      )}
-                      <span className="opacity-70"> · {language === "en" ? item.roleEn : item.roleEs}</span>
-                    </li>
-                  ))}
+                <ul className="mt-4 flex flex-wrap items-center gap-5">
+                  {group.items.map((item) => {
+                    const label = `${item.name} · ${language === "en" ? item.roleEn : item.roleEs}`;
+                    const logo = <img src={item.icon} alt={label} title={label} width={28} height={28} loading="lazy" className="h-7 w-7 object-contain" />;
+                    return (
+                      <li key={item.name}>
+                        {item.href ? (
+                          <a href={item.href} target="_blank" rel="noopener noreferrer" className="block hover:opacity-70 transition-opacity">{logo}</a>
+                        ) : (
+                          logo
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
