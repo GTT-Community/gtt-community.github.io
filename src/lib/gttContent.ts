@@ -583,154 +583,1142 @@ GTT-Method no es "mejor ingeniería de indicaciones". Es un enfoque diferente qu
   },
   {
     slug: "methodology",
-    titleEn: "GTT-Method Methodology",
-    titleEs: "Metodología GTT-Method",
-    descriptionEn: "Principles, Concepts and Practices for governing AI development.",
-    descriptionEs: "Principios, Conceptos y Prácticas para gobernar desarrollo de IA.",
-    contentEn: `## Context Layers (L0-L3)
+    titleEn: "GTT Methodology",
+    titleEs: "Metodología GTT",
+    descriptionEn: "Governed AI-assisted software development. GTT is a methodology for governing AI-assisted software development, implemented through GTT Bootstrap and operated through GTT CLI.",
+    descriptionEs: "Desarrollo de software asistido por IA, gobernado. GTT es una metodología para gobernar el desarrollo de software asistido por IA, implementada mediante GTT Bootstrap y operada mediante GTT CLI.",
+    contentEn: `GTT is a methodology for governing software development when AI agents participate in the development process. It establishes the governance model for project context, evidence, architecture, proposals, decisions, constraints, rules, validation, freeze and controlled change.
 
-GTT-Method organizes project information into governance layers with different authority and edit policies.
+It is implemented through GTT Bootstrap and operated through GTT CLI.
 
-### L0: Governed Context
+\`\`\`
+GTT Method
+Methodology & Governance
+        ↓
+GTT Bootstrap
+Reference Implementation
+        ↓
+GTT CLI
+Operational Tooling
+        ↓
+ADEs + Human
+\`\`\`
 
-- Contents: Architecture, principles, constraints, solution vision, glossary
-- Policy: Protected / Propose only
-- Authority: Human review required
+> GTT Governance Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
 
-### L1: Decisions
+## What is GTT?
 
-- Contents: ADRs (Architecture Decision Records)
-- Policy: Propose with review
-- Authority: Deliberate change process
+> GTT is a methodology for governed AI-assisted software development.
 
-### L2: Documentation
+It defines how project context, evidence, architecture, rules, constraints, proposals, decisions, validation and controlled change are managed when AI Development Environments (ADEs) and AI coding agents participate in software development.
 
-- Contents: Human-facing guides and references
-- Policy: Editable with review
-- Authority: Flexible updates
+GTT is designed around a separation between four things:
 
-### L3: Implementation
+- The methodology and its governance semantics.
+- The implementation of those semantics.
+- The operational tooling used to install and operate them.
+- The ADEs and agents that perform development work.
 
-- Contents: Source code, tests, infrastructure
-- Policy: Normal development
-- Authority: Standard review process
+This separation is what allows GTT to remain independent of any specific AI development environment.
 
-## Freeze: Ratification & Authority
+## The problem GTT solves
 
-Freeze establishes the authoritative baseline for implementation.
+AI agents produce software at high speed. That speed creates concrete engineering and governance problems, and GTT addresses each of them explicitly.
 
-THINK (Explore, design, dialogue) → Context / Decisions (Made explicit) → Human Ratification (Approval & authority) → FREEZE (Authoritative baseline) → WORK (Guided by frozen context)
+\`\`\`
+AI Agents
+    │
+    ▼
+High-speed software production
+    │
+    ├── Context drift
+    ├── Architecture drift
+    ├── Uncontrolled assumptions
+    ├── Session discontinuity
+    ├── Multiple ADEs
+    └── Weak traceability
+            │
+            ▼
+          GTT
+            │
+    ┌───────┼────────┐
+    ▼       ▼        ▼
+Govern   Evidence   Change
+    │       │        │
+    └───────┼────────┘
+            ▼
+     Governed AI Development
+\`\`\`
 
-## Change Requests & Impact Analysis
+### Context is not automatically governance
 
-Changes after freeze follow a governed process, not bypass governance.
+An AI agent can receive large amounts of information without that information having a defined authority. GTT provides an explicit model for determining what participates in governed development context and how that context is used.
 
-### Discovery
+### Evidence and reasoning must be distinguishable
 
-During work, new requirements, constraints or contradictions are discovered.
+GTT establishes an evidence boundary. The system must be able to distinguish:
 
-### Change Request
+- What came from authorized evidence.
+- What is missing.
+- What conflicts.
+- What is proposed.
+- What has actually been decided.
 
-The change is documented with rationale, not just implemented ad-hoc.
+This prevents generated reasoning from silently becoming project authority.
 
-### Impact Analysis
+### Proposals are not decisions
 
-Analyze what changes to architecture, context, and decisions would be needed.
+AI agents can generate architectural and implementation proposals. GTT separates proposals from ratified decisions: the agent can reason and propose, and the governed project state is established through the GTT decision process.
 
-### THINK & Decide
+### Architecture must remain governed
 
-Re-enter THINK mode, make decisions, then re-freeze with updated context.
+GTT prevents the implementation produced by an agent from silently becoming the project's new architectural authority. Architectural intent, constraints and decisions remain explicit GTT artifacts.
 
-## Core Principles
+### Freeze must establish authority
 
-### Context is Explicit
+GTT uses a freeze mechanism to establish the governed state. A freeze is not simply a Git operation: it is a governance boundary. After freeze, changes must follow the GTT change process rather than silently rewriting governed state.
 
-Architecture and constraints exist in written form, versioned in Git. Not in prompts, conversations or assumptions.
+### Multiple ADEs need one governance model
 
-### Governance is Deterministic
+A project can be touched by several development environments, for example Claude Code, Codex, GitHub Copilot, Kiro and other supported ADEs. GTT therefore uses:
 
-Where possible, governance is enforced through code (CI gates, hooks, scripts) not just instructions to the agent.
+\`\`\`
+one GTT governance model
++
+multiple ADE integration surfaces
++
+exactly one Primary ADE
+\`\`\`
 
-### Human Decision Boundary
+The Primary ADE is a workflow identity. It does not receive governance authority.
 
-Agents propose and analyze. Humans decide. Freeze marks the decision point and establishes authority.
+### Development must be recoverable
 
-### Architectural Intent is Protected
+GTT also addresses operational continuity. Project state can be inspected, and session context can be derived from actual project state. The goal is not to make an agent's private memory the authority: the project remains the source of governed truth.
 
-Critical decisions are protected from unintended modification through governance layers and review processes.`,
-    contentEs: `## Capas de Contexto (L0-L3)
+## The GTT methodology
 
-GTT-Method organiza la información del proyecto en capas de gobernanza con diferente autoridad y políticas de edición.
+GTT is a governance methodology, not a command-line product. The methodology establishes the rules and semantic contracts around:
 
-### L0: Contexto Gobernado
+\`\`\`
+GTT METHOD
+│
+├── Governance
+├── Context
+├── Evidence
+├── Grounding
+├── Provenance
+├── Architecture / Intent
+├── Proposals
+├── Decisions
+├── ADR semantics
+├── Rules
+├── Constraints
+├── Validation
+├── Freeze
+├── Change
+├── ADE participation
+├── Session context
+└── Lifecycle governance
+\`\`\`
 
-- Contenido: Arquitectura, principios, restricciones, visión de solución, glosario.
-- Política: Protegido / Solo propuestas.
-- Autoridad: Revisión humana requerida.
+These semantics are owned by the GTT Method and implemented in GTT Bootstrap. The CLI does not duplicate them.
 
-### L1: Decisiones
+## How GTT works
 
-- Contenido: ADRs (Registros de Decisiones Arquitectónicas).
-- Política: Proponer con revisión.
-- Autoridad: Proceso de cambio deliberado.
+\`\`\`
+                   GTT METHOD
+                       │
+                       ▼
+                Project Context
+                       │
+                       ▼
+                    GROUNDING
+                       │
+                       ▼
+                Evidence / Context
+                       │
+                       ▼
+                     THINK
+                       │
+              ┌────────┴────────┐
+              ▼                 ▼
+          Proposals          Gaps /
+          Analysis           Conflicts
+              │                 │
+              └────────┬────────┘
+                       ▼
+                 Human Decision
+                       │
+                       ▼
+                    FREEZE
+                       │
+                       ▼
+                      WORK
+                       │
+                       ▼
+                Change Discovery
+                       │
+                       ▼
+                Change Request
+                       │
+                       ▼
+                     THINK
+                       │
+                       ▼
+                 New Decision
+                       │
+                       ▼
+                  New FREEZE
+\`\`\`
 
-### L2: Documentación
+THINK is not a one-time phase. The reasoning mode is re-entrant: whenever a change requires governance, the project returns to THINK.
 
-- Contenido: Guías y referencias orientadas a humanos.
-- Política: Editable con revisión.
-- Autoridad: Actualizaciones flexibles.
+### Evidence and provenance
 
-### L3: Implementación
+GTT separates retrieval and evidence from reasoning.
 
-- Contenido: Código fuente, pruebas, infraestructura.
-- Política: Desarrollo normal.
-- Autoridad: Proceso de revisión estándar.
+\`\`\`
+AUTHORIZED SOURCES
+        │
+        ▼
+    GROUNDING
+        │
+        ▼
+ EVIDENCE / CONTEXT
+        │
+        ▼
+   THINK / AGENTS
+        │
+        ▼
+    PROPOSALS
+        │
+        ▼
+ HUMAN DECISION
+        │
+        ▼
+      FREEZE
+\`\`\`
 
-## Freeze: Ratificación & Autoridad
+> An agent's generated reasoning must not silently become evidence or governed project truth.
 
-Freeze establece la línea de base autoritativa para la implementación.
+GTT distinguishes evidence, proposals and decisions. This is one of the methodology's central governance mechanisms.
 
-THINK (Explorar, diseñar, dialogar) → Contexto / Decisiones (Hechas explícitas) → Ratificación Humana (Aprobación & autoridad) → FREEZE (Línea de base autoritativa) → TRABAJO (Guiado por contexto congelado)
+### Freeze and controlled change
 
-## Solicitudes de Cambio & Análisis de Impacto
+\`\`\`
+FREEZE
+  ↓
+Governed project state
+  ↓
+WORK
+  ↓
+Discovery of change
+  ↓
+CHANGE REQUEST
+  ↓
+THINK
+  ↓
+Decision
+  ↓
+NEW FREEZE
+\`\`\`
 
-Los cambios después del freeze siguen un proceso gobernado, no eludir la gobernanza.
+There is no "unfreeze" workflow in GTT. The governance model is based on controlled re-entry and re-freeze, not on turning governance off.
 
-### Descubrimiento
+### Method Plans
 
-Durante el trabajo se descubren nuevos requisitos, restricciones o contradicciones.
+GTT is applied through a Method Plan, chosen once per project:
 
-### Solicitud de Cambio
+\`\`\`
+LIGHT
+MEDIUM
+HARD
+TEAM
+\`\`\`
 
-El cambio se documenta con fundamentación, no solo se implementa sin pensar.
+A Method Plan is an operating profile, not a quality level, and no plan turns governance off. The CLI lets the project select the plan; Bootstrap owns what each plan means. The plans are documented in the Bootstrap repository: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.md
 
-### Análisis de Impacto
+### Session continuity
 
-Analiza qué cambios en arquitectura, contexto y decisiones serían necesarios.
+GTT provides session-context capabilities to help recover where work is and what remains to be done. Two things are kept apart:
 
-### THINK & Decidir
+\`\`\`
+GOVERNED PROJECT STATE
+        │
+        ├── Architecture
+        ├── Decisions
+        ├── Constraints
+        └── Validated state
+\`\`\`
 
-Re-entra en modo THINK, toma decisiones y luego vuelve a congelar con contexto actualizado.
+\`\`\`
+SESSION / OPERATIONAL CONTEXT
+        │
+        ├── Current work
+        ├── Current progress
+        ├── Pending work
+        └── Operational orientation
+\`\`\`
 
-## Principios Clave
+Session context is not an alternative architecture authority. This matters most when a project uses several ADEs.
 
-### El Contexto es Explícito
+## GTT + ADEs
 
-La arquitectura y restricciones existen en forma escrita, versionadas en Git. No en indicaciones, conversaciones o suposiciones.
+GTT is ADE-independent.
 
-### La Gobernanza es Determinística
+\`\`\`
+                       GTT
+                Methodology / Governance
+                           │
+                           ▼
+                    GTT Bootstrap
+                           │
+                           ▼
+                       GTT CLI
+                           │
+          ┌────────────────┼────────────────┐
+          ▼                ▼                ▼
+     Claude Code         Codex            Kiro
+          │                │                │
+          └────────────────┼────────────────┘
+                           ▼
+                     Project Work
+\`\`\`
 
-Cuando es posible, la gobernanza se aplica a través del código (puertas CI, hooks, scripts), no solo instrucciones al agente.
+> The ADE is the development environment. GTT is the governance model.
 
-### Límite de Decisión Humana
+Bootstrap supports several ADE integration surfaces (currently Claude Code, GitHub Copilot, Codex and Kiro) while maintaining one governance model and one Primary ADE. The Primary ADE is a workflow role, not a governance role. Secondary ADEs are not ignored: if they participate in the project, their GTT integration is represented according to Bootstrap contracts.
 
-Los agentes proponen y analizan. Los humanos deciden. Freeze marca el punto de decisión y establece autoridad.
+## GTT Bootstrap
 
-### La Intención Arquitectónica es Protegida
+> GTT Bootstrap is the reference implementation of the GTT Method.
 
-Las decisiones críticas están protegidas de modificación involuntaria a través de capas de gobernanza y procesos de revisión.`,
-    searchableEn: "methodology context layers L0 L1 L2 L3 freeze change request ADR",
-    searchableEs: "metodología capas de contexto L0 L1 L2 L3 freeze solicitud de cambio ADR",
+It contains the semantic and operational contracts required to apply GTT to a real software project, including governance, evidence, architecture and context semantics, proposals, decisions, validation, freeze, ADE integration and project lifecycle services.
+
+Bootstrap is the implementation source of truth for GTT semantics. The CLI consumes Bootstrap; it does not reimplement GTT.
+
+### What Bootstrap solves
+
+- Project governance foundation: the project structure and contracts required to operate GTT.
+- Governance semantics: governance is implemented in Bootstrap, not left to CLI interpretation.
+- Evidence boundary: grounding, evidence and provenance semantics.
+- Architecture and context semantics: the model used to govern architecture and context.
+- Proposals versus decisions: proposals are kept distinct from governed decisions.
+- Freeze: freeze semantics and the validation surrounding the governed state.
+- ADE integration and multi-ADE coordination: several participating ADEs, one Primary ADE.
+- Deterministic validation, status and session context derived from actual project state.
+- Index, retrieval, reconciliation, guard synchronization, export and recovery contracts.
+
+### Bootstrap service catalog
+
+| Service | Purpose |
+|---|---|
+| Governance Engine | Implements the GTT governance semantics that define how project context, evidence, proposals, decisions, architecture and freeze are handled. |
+| Evidence & Grounding | Establishes the boundary between authorized source material, evidence and generated reasoning. |
+| Provenance | Maintains the relationship between project assertions and their supporting evidence or governance state. |
+| Architecture / Context Semantics | Provides the semantic model for governing architecture, context and project intent. |
+| Proposal Management | Supports the distinction between agent-generated proposals and governed project decisions. |
+| Decision / ADR Semantics | Provides the semantic contracts used to record and relate governed decisions. |
+| Freeze | Establishes and validates the governed project state. |
+| Validation | Runs deterministic GTT validation rather than relying on an AI agent to decide whether the project is structurally valid. |
+| ADE Integration | Provides the integration surfaces required for AI Development Environments participating in the project. |
+| Multi-ADE State | Tracks participating ADEs while preserving a single GTT governance model. |
+| Primary ADE | Identifies the ADE used as the primary workflow participant without granting it governance authority. |
+| Templates | Provides Bootstrap-owned templates used during project initialization and GTT workflows. |
+| Initial Design Questionnaire | Provides a Bootstrap-owned questionnaire when the project does not have sufficient initial design or source material. |
+| Source Manifest | Provides the structure required to identify and manage initial project source material. |
+| Working Agreements | Provides Bootstrap-owned structures for project working agreements without confusing them with GTT governance authority. |
+| Status | Derives operational project and GTT state from actual project artifacts. |
+| Session Context | Derives operational continuity information from actual project state, so work can be resumed without making agent memory the project's authority. |
+| Technical Index | Maintains the machine-oriented project indexing needed by GTT services. |
+| Query / Retrieval | Provides structured access to indexed project information. |
+| Reconciliation | Detects and reconciles relevant differences between GTT-managed state and project state according to Bootstrap contracts. |
+| GTTGuard | Provides the GTT protection and guard synchronization mechanisms defined by Bootstrap. |
+| Clean Export | Defines what GTT-owned material can be excluded when producing a clean delivery artifact. |
+| Recovery | Defines the portable recovery information required to reconstruct a GTT installation and operational state. |
+| Session Memory Adapter Contracts | Defines the integration boundary for session-memory mechanisms without transferring project governance authority to an ADE's private memory. |
+
+### Bootstrap architecture
+
+\`\`\`
+                         GTT METHOD
+                             │
+                             ▼
+                    GTT BOOTSTRAP 1.x
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+          ▼                  ▼                  ▼
+      Governance          Engine / Domain     ADE Services
+      Evidence            Validation          Templates
+      Provenance          Status              Questionnaire
+      Architecture        Freeze              Integrations
+      Proposals           Query               Session
+      Decisions           Reconcile           Recovery
+          │                  │                  │
+          └──────────────────┼──────────────────┘
+                             │
+                             ▼
+                    Versioned Contracts
+                             │
+                             ▼
+                         GTT CLI
+\`\`\`
+
+Because the semantics live in Bootstrap behind versioned contracts, the CLI stays small.
+
+## GTT CLI
+
+> GTT CLI is the operational surface of GTT.
+
+It provides the command-line lifecycle for discovering, installing, configuring, validating, operating, updating, resuming, freezing, exporting and recovering a GTT project through the GTT Bootstrap contracts.
+
+GTT CLI is not a second GTT engine. It consumes and orchestrates Bootstrap, and it does not reproduce GTT methodology semantics. Every command is deterministic and needs no LLM.
+
+### What the CLI solves
+
+- Installation complexity: one consistent way to initialize GTT in a project and install a compatible Bootstrap.
+- Bootstrap resolution: resolves the required Bootstrap and verifies compatibility.
+- ADE discovery: detects available ADEs and manages their GTT integration.
+- Primary ADE selection: establishes one Primary ADE, which has no governance authority.
+- Initial source selection: discovers candidate design documents and asks for an explicit selection.
+- Missing design source: requests the Bootstrap-owned Initial Design Questionnaire.
+- Operational lifecycle: validation, status, inspection, resume, freeze and update, all delegated to Bootstrap contracts.
+- Recovery, clean export and clean removal of GTT from a project.
+- CI/CD: non-interactive, machine-readable workflows suitable for automation.
+
+### CLI service catalog
+
+| Service | What it does |
+|---|---|
+| Project Discovery | Detects the host project and determines whether GTT is already present. |
+| Bootstrap Resolution | Finds and resolves a compatible GTT Bootstrap release. |
+| Compatibility | Verifies CLI/Bootstrap compatibility before unsafe operations. |
+| ADE Detection | Detects supported ADEs represented in the project or environment. |
+| ADE Installation | Installs the GTT integration surfaces for the participating ADEs. |
+| Primary ADE Configuration | Establishes exactly one Primary ADE for the project's workflow. |
+| Source Discovery | Finds candidate project and design source documents during initialization. |
+| Initial Source Selection | Allows explicit selection of the source material used to initialize the GTT project. |
+| Method Plan Selection | Selects the Method Plan. The CLI selects it; Bootstrap defines its meaning. |
+| Project Initialization | gtt init orchestrates the complete initialization workflow. |
+| Status | gtt status exposes deterministic project and GTT state. |
+| Inspection | gtt inspect exposes installation topology and operational state. |
+| Validation | gtt validate delegates validation to Bootstrap. |
+| Resume | gtt resume supports continuation from deterministic project state. |
+| Freeze | gtt freeze invokes the Bootstrap freeze contract. |
+| Doctor | gtt doctor provides operational diagnostics. |
+| Audit | gtt audit exposes operational traceability according to Bootstrap contracts. |
+| Update | gtt update manages safe Bootstrap updates and compatibility. |
+| Clean Export | gtt export --clean produces a clean delivery artifact while leaving the development project intact. |
+| Clean | gtt clean removes GTT from the current project after explicit confirmation. |
+| Recovery | Recovery snapshots hold the portable information needed to reconstruct the GTT installation and operational state. |
+| Version | gtt version reports the CLI version. |
+
+### Command surface
+
+\`\`\`
+gtt init
+gtt status
+gtt inspect
+gtt validate
+gtt resume
+gtt freeze
+gtt doctor
+gtt audit
+gtt update
+gtt export --clean
+gtt clean
+gtt version
+\`\`\`
+
+This page is not a command reference. Installation and command details are on the GTT CLI page: https://gtt-community.github.io/cli
+
+### Initialization flow
+
+\`\`\`
+gtt init
+   │
+   ├── detect project
+   ├── detect existing GTT
+   ├── resolve Bootstrap
+   ├── verify Bootstrap
+   ├── check compatibility
+   ├── detect ADEs
+   ├── choose participating ADEs
+   ├── choose Primary ADE
+   ├── choose language
+   ├── discover source documents
+   ├── select initial sources
+   ├── if insufficient → Bootstrap questionnaire
+   ├── choose Method Plan
+   ├── install Core
+   ├── install ADE integrations
+   ├── persist operational state
+   ├── validate
+   ├── create Bootstrap handoff
+   └── optionally invoke Primary ADE
+\`\`\`
+
+The CLI does not design the system. It initializes and orchestrates the GTT environment.
+
+### Deterministic state
+
+\`\`\`
+GTT Project State
+       │
+       ▼
+Bootstrap / CLI
+       │
+       ▼
+Derived operational status
+\`\`\`
+
+Never the other way around: agent prose does not become project truth. The CLI derives operational and session information from real project state. Agent memory remains an ADE-level mechanism; GTT governance remains in the project and in the Bootstrap contracts.
+
+### Clean export and recovery
+
+\`\`\`
+GTT Development Project
+        │
+        ▼
+gtt export --clean
+        │
+        ▼
+Clean delivery artifact
+\`\`\`
+
+- Clean export produces a clean delivery artifact while preserving the development project.
+- gtt clean removes GTT from the current project. It is destructive, so it requires explicit confirmation and offers a recovery snapshot.
+- Recovery preserves the portable information needed to reconstruct the GTT installation and operational state. It is not a full repository backup.
+
+### CI/CD
+
+GTT CLI is designed for automation: deterministic and non-interactive validation, stable operational behavior, machine-readable output, version and compatibility checks, and safe lifecycle operations.
+
+## Method vs Bootstrap vs CLI
+
+| Layer | What it is | Main responsibility |
+|---|---|---|
+| GTT Method | Methodology | Defines how AI-assisted development is governed. |
+| GTT Bootstrap | Reference implementation | Implements GTT semantics, governance and versioned capabilities. |
+| GTT CLI | Operational tool | Installs, orchestrates, validates, operates, updates, exports and recovers GTT projects. |
+| ADE / Agent | Development environment | Performs development work within the governed project. |
+
+> The CLI must not become the mind of GTT.
+
+## What GTT is not
+
+- Not an LLM. GTT does not generate software by itself.
+- Not an AI coding agent. GTT does not replace Claude Code, Codex, Kiro, Copilot or other ADEs.
+- Not an IDE. GTT is independent of the development environment used by the developer.
+- Not only a CLI. The CLI is the operational surface of the methodology.
+- Not only Bootstrap. Bootstrap is the implementation of the methodology.
+- Not a prompt library. GTT is a governance methodology with explicit project state, evidence, proposals, decisions, validation and change control.
+
+## Get started
+
+- Read the methodology: https://github.com/GTT-Community/gtt-method
+- Explore the reference implementation: https://github.com/GTT-Community/gtt-bootstrap
+- Install and operate with the CLI: https://gtt-community.github.io/cli
+
+## References
+
+- GTT Method: https://github.com/GTT-Community/gtt-method
+- GTT Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+- GTT Bootstrap: https://github.com/GTT-Community/gtt-bootstrap
+- GTT CLI: https://github.com/GTT-Community/gtt-cli
+- GTT CLI releases: https://github.com/GTT-Community/gtt-cli/releases/latest
+
+## In one page
+
+GTT is the methodology: it defines how AI-assisted software development is governed. GTT Bootstrap implements that methodology and provides the semantic and governance capabilities a GTT project requires. GTT CLI provides the operational surface for installing, configuring, validating, operating, updating, recovering and exporting GTT projects. AI Development Environments and agents perform the development work inside that governed environment.
+
+\`\`\`
+                    GTT METHOD
+             Methodology / Governance
+                          │
+                          ▼
+                  GTT BOOTSTRAP
+             Reference Implementation
+                          │
+                          ▼
+                      GTT CLI
+               Operational Surface
+                          │
+                          ▼
+                    ADE / Agents
+                          │
+                          ▼
+                  Software Development
+\`\`\``,
+    contentEs: `GTT es una metodología para gobernar el desarrollo de software cuando agentes de IA participan en el proceso de desarrollo. Establece el modelo de gobernanza para el contexto del proyecto, la evidencia, la arquitectura, las propuestas, las decisiones, las restricciones, las reglas, la validación, el freeze y el cambio controlado.
+
+Se implementa mediante GTT Bootstrap y se opera mediante GTT CLI.
+
+\`\`\`
+GTT Method
+Metodología y Gobernanza
+        ↓
+GTT Bootstrap
+Implementación de Referencia
+        ↓
+GTT CLI
+Herramienta Operativa
+        ↓
+ADEs + Humano
+\`\`\`
+
+> Canónico de Gobernanza GTT: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+
+## ¿Qué es GTT?
+
+> GTT es una metodología para el desarrollo de software asistido por IA, gobernado.
+
+Define cómo se gestionan el contexto del proyecto, la evidencia, la arquitectura, las reglas, las restricciones, las propuestas, las decisiones, la validación y el cambio controlado cuando Entornos de Desarrollo con IA (ADEs) y agentes de programación participan en el desarrollo de software.
+
+GTT está diseñado en torno a la separación entre cuatro cosas:
+
+- La metodología y su semántica de gobernanza.
+- La implementación de esa semántica.
+- Las herramientas operativas que la instalan y la operan.
+- Los ADEs y agentes que realizan el trabajo de desarrollo.
+
+Esa separación es la que permite que GTT siga siendo independiente de cualquier entorno de desarrollo con IA en particular.
+
+## El problema que resuelve GTT
+
+Los agentes de IA producen software a gran velocidad. Esa velocidad crea problemas concretos de ingeniería y de gobernanza, y GTT aborda cada uno de forma explícita.
+
+\`\`\`
+Agentes de IA
+    │
+    ▼
+Producción de software a alta velocidad
+    │
+    ├── Deriva de contexto
+    ├── Deriva de arquitectura
+    ├── Supuestos no controlados
+    ├── Discontinuidad entre sesiones
+    ├── Múltiples ADEs
+    └── Trazabilidad débil
+            │
+            ▼
+          GTT
+            │
+    ┌───────┼────────┐
+    ▼       ▼        ▼
+Gobierno Evidencia  Cambio
+    │       │        │
+    └───────┼────────┘
+            ▼
+   Desarrollo con IA gobernado
+\`\`\`
+
+### El contexto no es gobernanza automáticamente
+
+Un agente de IA puede recibir grandes cantidades de información sin que esa información tenga una autoridad definida. GTT aporta un modelo explícito para determinar qué participa en el contexto de desarrollo gobernado y cómo se usa ese contexto.
+
+### La evidencia y el razonamiento deben poder distinguirse
+
+GTT establece una frontera de evidencia. El sistema debe poder distinguir:
+
+- Lo que proviene de evidencia autorizada.
+- Lo que falta.
+- Lo que entra en conflicto.
+- Lo que está propuesto.
+- Lo que realmente se ha decidido.
+
+Así se evita que el razonamiento generado se convierta silenciosamente en autoridad del proyecto.
+
+### Las propuestas no son decisiones
+
+Los agentes de IA pueden generar propuestas de arquitectura y de implementación. GTT separa las propuestas de las decisiones ratificadas: el agente puede razonar y proponer, y el estado gobernado del proyecto se establece a través del proceso de decisión de GTT.
+
+### La arquitectura debe seguir gobernada
+
+GTT impide que la implementación producida por un agente se convierta silenciosamente en la nueva autoridad arquitectónica del proyecto. La intención arquitectónica, las restricciones y las decisiones siguen siendo artefactos GTT explícitos.
+
+### El freeze debe establecer autoridad
+
+GTT usa un mecanismo de freeze para establecer el estado gobernado. Un freeze no es simplemente una operación de Git: es una frontera de gobernanza. Después del freeze, los cambios deben seguir el proceso de cambio de GTT en lugar de reescribir silenciosamente el estado gobernado.
+
+### Varios ADEs necesitan un solo modelo de gobernanza
+
+Un proyecto puede ser tocado por varios entornos de desarrollo, por ejemplo Claude Code, Codex, GitHub Copilot, Kiro y otros ADEs soportados. Por eso GTT usa:
+
+\`\`\`
+un modelo de gobernanza GTT
++
+múltiples superficies de integración de ADE
++
+exactamente un ADE Primario
+\`\`\`
+
+El ADE Primario es una identidad de flujo de trabajo. No recibe autoridad de gobernanza.
+
+### El desarrollo debe ser recuperable
+
+GTT también aborda la continuidad operativa. El estado del proyecto puede inspeccionarse y el contexto de sesión puede derivarse del estado real del proyecto. El objetivo no es convertir la memoria privada de un agente en la autoridad: el proyecto sigue siendo la fuente de la verdad gobernada.
+
+## La metodología GTT
+
+GTT es una metodología de gobernanza, no un producto de línea de comandos. La metodología establece las reglas y los contratos semánticos en torno a:
+
+\`\`\`
+GTT METHOD
+│
+├── Gobernanza
+├── Contexto
+├── Evidencia
+├── Grounding
+├── Procedencia
+├── Arquitectura / Intención
+├── Propuestas
+├── Decisiones
+├── Semántica de ADR
+├── Reglas
+├── Restricciones
+├── Validación
+├── Freeze
+├── Cambio
+├── Participación de ADEs
+├── Contexto de sesión
+└── Gobernanza del ciclo de vida
+\`\`\`
+
+Esta semántica pertenece al GTT Method y está implementada en GTT Bootstrap. La CLI no la duplica.
+
+## Cómo funciona GTT
+
+\`\`\`
+                   GTT METHOD
+                       │
+                       ▼
+              Contexto del Proyecto
+                       │
+                       ▼
+                    GROUNDING
+                       │
+                       ▼
+               Evidencia / Contexto
+                       │
+                       ▼
+                     THINK
+                       │
+              ┌────────┴────────┐
+              ▼                 ▼
+          Propuestas         Vacíos /
+          Análisis           Conflictos
+              │                 │
+              └────────┬────────┘
+                       ▼
+                Decisión Humana
+                       │
+                       ▼
+                    FREEZE
+                       │
+                       ▼
+                      WORK
+                       │
+                       ▼
+             Descubrimiento de Cambio
+                       │
+                       ▼
+               Solicitud de Cambio
+                       │
+                       ▼
+                     THINK
+                       │
+                       ▼
+                 Nueva Decisión
+                       │
+                       ▼
+                  Nuevo FREEZE
+\`\`\`
+
+THINK no es una fase que ocurre una sola vez. El modo de razonamiento es reentrante: cada vez que un cambio requiere gobernanza, el proyecto vuelve a THINK.
+
+### Evidencia y procedencia
+
+GTT separa la recuperación y la evidencia del razonamiento.
+
+\`\`\`
+FUENTES AUTORIZADAS
+        │
+        ▼
+    GROUNDING
+        │
+        ▼
+EVIDENCIA / CONTEXTO
+        │
+        ▼
+  THINK / AGENTES
+        │
+        ▼
+   PROPUESTAS
+        │
+        ▼
+ DECISIÓN HUMANA
+        │
+        ▼
+      FREEZE
+\`\`\`
+
+> El razonamiento generado por un agente no debe convertirse silenciosamente en evidencia ni en verdad gobernada del proyecto.
+
+GTT distingue evidencia, propuestas y decisiones. Es uno de los mecanismos de gobernanza centrales de la metodología.
+
+### Freeze y cambio controlado
+
+\`\`\`
+FREEZE
+  ↓
+Estado gobernado del proyecto
+  ↓
+WORK
+  ↓
+Descubrimiento de un cambio
+  ↓
+SOLICITUD DE CAMBIO
+  ↓
+THINK
+  ↓
+Decisión
+  ↓
+NUEVO FREEZE
+\`\`\`
+
+En GTT no existe un flujo de "unfreeze". El modelo de gobernanza se basa en la reentrada controlada y en un nuevo freeze, no en apagar la gobernanza.
+
+### Method Plans
+
+GTT se aplica a través de un Method Plan, que se elige una vez por proyecto:
+
+\`\`\`
+LIGHT
+MEDIUM
+HARD
+TEAM
+\`\`\`
+
+Un Method Plan es un perfil operativo, no un nivel de calidad, y ningún plan apaga la gobernanza. La CLI permite al proyecto seleccionar el plan; Bootstrap es dueño de lo que significa cada uno. Los planes están documentados en el repositorio de Bootstrap: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.es.md
+
+### Continuidad de sesión
+
+GTT ofrece capacidades de contexto de sesión para ayudar a recuperar dónde está el trabajo y qué queda por hacer. Dos cosas se mantienen separadas:
+
+\`\`\`
+ESTADO GOBERNADO DEL PROYECTO
+        │
+        ├── Arquitectura
+        ├── Decisiones
+        ├── Restricciones
+        └── Estado validado
+\`\`\`
+
+\`\`\`
+CONTEXTO DE SESIÓN / OPERATIVO
+        │
+        ├── Trabajo actual
+        ├── Progreso actual
+        ├── Trabajo pendiente
+        └── Orientación operativa
+\`\`\`
+
+El contexto de sesión no es una autoridad de arquitectura alternativa. Esto importa sobre todo cuando un proyecto usa varios ADEs.
+
+## GTT + ADEs
+
+GTT es independiente del ADE.
+
+\`\`\`
+                       GTT
+                Metodología / Gobernanza
+                           │
+                           ▼
+                    GTT Bootstrap
+                           │
+                           ▼
+                       GTT CLI
+                           │
+          ┌────────────────┼────────────────┐
+          ▼                ▼                ▼
+     Claude Code         Codex            Kiro
+          │                │                │
+          └────────────────┼────────────────┘
+                           ▼
+                  Trabajo del Proyecto
+\`\`\`
+
+> El ADE es el entorno de desarrollo. GTT es el modelo de gobernanza.
+
+Bootstrap soporta varias superficies de integración de ADE (hoy Claude Code, GitHub Copilot, Codex y Kiro) manteniendo un solo modelo de gobernanza y un solo ADE Primario. El ADE Primario es un rol de flujo de trabajo, no un rol de gobernanza. Los ADEs secundarios no se ignoran: si participan en el proyecto, su integración GTT se representa según los contratos de Bootstrap.
+
+## GTT Bootstrap
+
+> GTT Bootstrap es la implementación de referencia del GTT Method.
+
+Contiene los contratos semánticos y operativos necesarios para aplicar GTT a un proyecto de software real: gobernanza, evidencia, semántica de arquitectura y contexto, propuestas, decisiones, validación, freeze, integración de ADEs y servicios del ciclo de vida del proyecto.
+
+Bootstrap es la fuente de verdad de la implementación de la semántica GTT. La CLI consume Bootstrap; no reimplementa GTT.
+
+### Qué resuelve Bootstrap
+
+- Base de gobernanza del proyecto: la estructura y los contratos necesarios para operar GTT.
+- Semántica de gobernanza: la gobernanza se implementa en Bootstrap, no queda a interpretación de la CLI.
+- Frontera de evidencia: semántica de grounding, evidencia y procedencia.
+- Semántica de arquitectura y contexto: el modelo con el que se gobiernan la arquitectura y el contexto.
+- Propuestas frente a decisiones: las propuestas se mantienen separadas de las decisiones gobernadas.
+- Freeze: la semántica del freeze y la validación que rodea al estado gobernado.
+- Integración de ADEs y coordinación multi-ADE: varios ADEs participantes, un solo ADE Primario.
+- Validación determinística, estado y contexto de sesión derivados del estado real del proyecto.
+- Contratos de índice, recuperación de información, reconciliación, sincronización de guardas, exportación y recuperación.
+
+### Catálogo de servicios de Bootstrap
+
+| Servicio | Propósito |
+|---|---|
+| Motor de Gobernanza | Implementa la semántica de gobernanza GTT que define cómo se manejan el contexto, la evidencia, las propuestas, las decisiones, la arquitectura y el freeze. |
+| Evidencia y Grounding | Establece la frontera entre material fuente autorizado, evidencia y razonamiento generado. |
+| Procedencia | Mantiene la relación entre las afirmaciones del proyecto y la evidencia o el estado de gobernanza que las respalda. |
+| Semántica de Arquitectura / Contexto | Aporta el modelo semántico para gobernar la arquitectura, el contexto y la intención del proyecto. |
+| Gestión de Propuestas | Sostiene la distinción entre las propuestas generadas por agentes y las decisiones gobernadas del proyecto. |
+| Semántica de Decisiones / ADR | Aporta los contratos semánticos con los que se registran y relacionan las decisiones gobernadas. |
+| Freeze | Establece y valida el estado gobernado del proyecto. |
+| Validación | Ejecuta validación GTT determinística en lugar de depender de que un agente de IA decida si el proyecto es estructuralmente válido. |
+| Integración de ADEs | Aporta las superficies de integración que necesitan los Entornos de Desarrollo con IA que participan en el proyecto. |
+| Estado Multi-ADE | Registra los ADEs participantes preservando un único modelo de gobernanza GTT. |
+| ADE Primario | Identifica el ADE usado como participante principal del flujo de trabajo, sin otorgarle autoridad de gobernanza. |
+| Plantillas | Aporta las plantillas, propiedad de Bootstrap, usadas en la inicialización del proyecto y en los flujos GTT. |
+| Cuestionario de Diseño Inicial | Aporta un cuestionario, propiedad de Bootstrap, para cuando el proyecto no tiene suficiente material de diseño inicial. |
+| Manifiesto de Fuentes | Aporta la estructura necesaria para identificar y gestionar el material fuente inicial del proyecto. |
+| Acuerdos de Trabajo | Aporta estructuras, propiedad de Bootstrap, para los acuerdos de trabajo del proyecto, sin confundirlos con la autoridad de gobernanza GTT. |
+| Estado | Deriva el estado operativo del proyecto y de GTT a partir de los artefactos reales del proyecto. |
+| Contexto de Sesión | Deriva la información de continuidad operativa del estado real del proyecto, para retomar el trabajo sin convertir la memoria del agente en la autoridad del proyecto. |
+| Índice Técnico | Mantiene la indexación del proyecto, orientada a máquinas, que necesitan los servicios GTT. |
+| Consulta / Recuperación | Da acceso estructurado a la información indexada del proyecto. |
+| Reconciliación | Detecta y reconcilia las diferencias relevantes entre el estado gestionado por GTT y el estado del proyecto, según los contratos de Bootstrap. |
+| GTTGuard | Aporta los mecanismos de protección y de sincronización de guardas definidos por Bootstrap. |
+| Exportación Limpia | Define qué material propiedad de GTT puede excluirse al producir un artefacto de entrega limpio. |
+| Recuperación | Define la información portable de recuperación necesaria para reconstruir una instalación GTT y su estado operativo. |
+| Contratos de Adaptadores de Memoria de Sesión | Define la frontera de integración de los mecanismos de memoria de sesión, sin transferir la autoridad de gobernanza del proyecto a la memoria privada de un ADE. |
+
+### Arquitectura de Bootstrap
+
+\`\`\`
+                         GTT METHOD
+                             │
+                             ▼
+                    GTT BOOTSTRAP 1.x
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+          ▼                  ▼                  ▼
+      Gobernanza          Motor / Dominio     Servicios ADE
+      Evidencia           Validación          Plantillas
+      Procedencia         Estado              Cuestionario
+      Arquitectura        Freeze              Integraciones
+      Propuestas          Consulta            Sesión
+      Decisiones          Reconciliación      Recuperación
+          │                  │                  │
+          └──────────────────┼──────────────────┘
+                             │
+                             ▼
+                   Contratos Versionados
+                             │
+                             ▼
+                         GTT CLI
+\`\`\`
+
+Como la semántica vive en Bootstrap, detrás de contratos versionados, la CLI se mantiene pequeña.
+
+## GTT CLI
+
+> GTT CLI es la superficie operativa de GTT.
+
+Aporta el ciclo de vida por línea de comandos para descubrir, instalar, configurar, validar, operar, actualizar, reanudar, congelar, exportar y recuperar un proyecto GTT a través de los contratos de GTT Bootstrap.
+
+GTT CLI no es un segundo motor de GTT. Consume y orquesta Bootstrap, y no reproduce la semántica de la metodología. Todos los comandos son determinísticos y no necesitan un LLM.
+
+### Qué resuelve la CLI
+
+- Complejidad de instalación: una forma consistente de inicializar GTT en un proyecto e instalar un Bootstrap compatible.
+- Resolución de Bootstrap: resuelve el Bootstrap requerido y verifica la compatibilidad.
+- Descubrimiento de ADEs: detecta los ADEs disponibles y gestiona su integración GTT.
+- Selección del ADE Primario: establece un ADE Primario, que no tiene autoridad de gobernanza.
+- Selección de fuentes iniciales: descubre documentos de diseño candidatos y pide una selección explícita.
+- Falta de fuente de diseño: solicita el Cuestionario de Diseño Inicial, propiedad de Bootstrap.
+- Ciclo de vida operativo: validación, estado, inspección, reanudación, freeze y actualización, todo delegado a los contratos de Bootstrap.
+- Recuperación, exportación limpia y eliminación limpia de GTT de un proyecto.
+- CI/CD: flujos no interactivos y legibles por máquina, aptos para automatización.
+
+### Catálogo de servicios de la CLI
+
+| Servicio | Qué hace |
+|---|---|
+| Descubrimiento del Proyecto | Detecta el proyecto anfitrión y determina si GTT ya está presente. |
+| Resolución de Bootstrap | Encuentra y resuelve una versión compatible de GTT Bootstrap. |
+| Compatibilidad | Verifica la compatibilidad entre CLI y Bootstrap antes de operaciones inseguras. |
+| Detección de ADEs | Detecta los ADEs soportados presentes en el proyecto o en el entorno. |
+| Instalación de ADEs | Instala las superficies de integración GTT de los ADEs participantes. |
+| Configuración del ADE Primario | Establece exactamente un ADE Primario para el flujo de trabajo del proyecto. |
+| Descubrimiento de Fuentes | Encuentra documentos fuente candidatos, de proyecto y de diseño, durante la inicialización. |
+| Selección de Fuentes Iniciales | Permite seleccionar de forma explícita el material fuente con el que se inicializa el proyecto GTT. |
+| Selección de Method Plan | Selecciona el Method Plan. La CLI lo selecciona; Bootstrap define su significado. |
+| Inicialización del Proyecto | gtt init orquesta el flujo completo de inicialización. |
+| Estado | gtt status expone el estado determinístico del proyecto y de GTT. |
+| Inspección | gtt inspect expone la topología de la instalación y el estado operativo. |
+| Validación | gtt validate delega la validación en Bootstrap. |
+| Reanudación | gtt resume permite continuar a partir del estado determinístico del proyecto. |
+| Freeze | gtt freeze invoca el contrato de freeze de Bootstrap. |
+| Doctor | gtt doctor ofrece diagnósticos operativos. |
+| Auditoría | gtt audit expone la trazabilidad operativa según los contratos de Bootstrap. |
+| Actualización | gtt update gestiona actualizaciones seguras de Bootstrap y su compatibilidad. |
+| Exportación Limpia | gtt export --clean produce un artefacto de entrega limpio y deja intacto el proyecto de desarrollo. |
+| Limpieza | gtt clean elimina GTT del proyecto actual tras una confirmación explícita. |
+| Recuperación | Los snapshots de recuperación guardan la información portable necesaria para reconstruir la instalación GTT y su estado operativo. |
+| Versión | gtt version informa la versión de la CLI. |
+
+### Superficie de comandos
+
+\`\`\`
+gtt init
+gtt status
+gtt inspect
+gtt validate
+gtt resume
+gtt freeze
+gtt doctor
+gtt audit
+gtt update
+gtt export --clean
+gtt clean
+gtt version
+\`\`\`
+
+Esta página no es una referencia de comandos. La instalación y el detalle de cada comando están en la página de GTT CLI: https://gtt-community.github.io/cli
+
+### Flujo de inicialización
+
+\`\`\`
+gtt init
+   │
+   ├── detectar el proyecto
+   ├── detectar un GTT existente
+   ├── resolver Bootstrap
+   ├── verificar Bootstrap
+   ├── comprobar compatibilidad
+   ├── detectar ADEs
+   ├── elegir los ADEs participantes
+   ├── elegir el ADE Primario
+   ├── elegir el idioma
+   ├── descubrir documentos fuente
+   ├── seleccionar las fuentes iniciales
+   ├── si no alcanzan → cuestionario de Bootstrap
+   ├── elegir el Method Plan
+   ├── instalar el Core
+   ├── instalar las integraciones de ADE
+   ├── persistir el estado operativo
+   ├── validar
+   ├── crear el handoff de Bootstrap
+   └── opcionalmente invocar al ADE Primario
+\`\`\`
+
+La CLI no diseña el sistema. Inicializa y orquesta el entorno GTT.
+
+### Estado determinístico
+
+\`\`\`
+Estado del Proyecto GTT
+       │
+       ▼
+Bootstrap / CLI
+       │
+       ▼
+Estado operativo derivado
+\`\`\`
+
+Nunca al revés: la prosa de un agente no se convierte en verdad del proyecto. La CLI deriva la información operativa y de sesión del estado real del proyecto. La memoria del agente sigue siendo un mecanismo a nivel de ADE; la gobernanza GTT permanece en el proyecto y en los contratos de Bootstrap.
+
+### Exportación limpia y recuperación
+
+\`\`\`
+Proyecto de Desarrollo GTT
+        │
+        ▼
+gtt export --clean
+        │
+        ▼
+Artefacto de entrega limpio
+\`\`\`
+
+- La exportación limpia produce un artefacto de entrega limpio y preserva el proyecto de desarrollo.
+- gtt clean elimina GTT del proyecto actual. Es destructivo, por eso exige confirmación explícita y ofrece un snapshot de recuperación.
+- La recuperación preserva la información portable necesaria para reconstruir la instalación GTT y su estado operativo. No es un respaldo completo del repositorio.
+
+### CI/CD
+
+GTT CLI está diseñado para la automatización: validación determinística y no interactiva, comportamiento operativo estable, salida legible por máquina, comprobaciones de versión y compatibilidad, y operaciones de ciclo de vida seguras.
+
+## Method vs Bootstrap vs CLI
+
+| Capa | Qué es | Responsabilidad principal |
+|---|---|---|
+| GTT Method | Metodología | Define cómo se gobierna el desarrollo asistido por IA. |
+| GTT Bootstrap | Implementación de referencia | Implementa la semántica, la gobernanza y las capacidades versionadas de GTT. |
+| GTT CLI | Herramienta operativa | Instala, orquesta, valida, opera, actualiza, exporta y recupera proyectos GTT. |
+| ADE / Agente | Entorno de desarrollo | Realiza el trabajo de desarrollo dentro del proyecto gobernado. |
+
+> La CLI no debe convertirse en la mente de GTT.
+
+## Lo que GTT no es
+
+- No es un LLM. GTT no genera software por sí mismo.
+- No es un agente de programación con IA. GTT no reemplaza a Claude Code, Codex, Kiro, Copilot ni a otros ADEs.
+- No es un IDE. GTT es independiente del entorno de desarrollo que use el desarrollador.
+- No es solo una CLI. La CLI es la superficie operativa de la metodología.
+- No es solo Bootstrap. Bootstrap es la implementación de la metodología.
+- No es una biblioteca de prompts. GTT es una metodología de gobernanza con estado de proyecto explícito, evidencia, propuestas, decisiones, validación y control de cambios.
+
+## Comenzar
+
+- Lee la metodología: https://github.com/GTT-Community/gtt-method
+- Explora la implementación de referencia: https://github.com/GTT-Community/gtt-bootstrap
+- Instala y opera con la CLI: https://gtt-community.github.io/cli
+
+## Referencias
+
+- GTT Method: https://github.com/GTT-Community/gtt-method
+- GTT Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+- GTT Bootstrap: https://github.com/GTT-Community/gtt-bootstrap
+- GTT CLI: https://github.com/GTT-Community/gtt-cli
+- Versiones de GTT CLI: https://github.com/GTT-Community/gtt-cli/releases/latest
+
+## En una página
+
+GTT es la metodología: define cómo se gobierna el desarrollo de software asistido por IA. GTT Bootstrap implementa esa metodología y aporta las capacidades semánticas y de gobernanza que requiere un proyecto GTT. GTT CLI aporta la superficie operativa para instalar, configurar, validar, operar, actualizar, recuperar y exportar proyectos GTT. Los Entornos de Desarrollo con IA y los agentes realizan el trabajo de desarrollo dentro de ese entorno gobernado.
+
+\`\`\`
+                    GTT METHOD
+             Metodología / Gobernanza
+                          │
+                          ▼
+                  GTT BOOTSTRAP
+           Implementación de Referencia
+                          │
+                          ▼
+                      GTT CLI
+               Superficie Operativa
+                          │
+                          ▼
+                   ADE / Agentes
+                          │
+                          ▼
+                Desarrollo de Software
+\`\`\``,
+    searchableEn: "methodology GTT Method governed AI-assisted software development governance evidence grounding provenance proposals decisions freeze change request ADE Primary ADE Bootstrap CLI Method Plan session context validation",
+    searchableEs: "metodología GTT Method desarrollo de software asistido por IA gobernado gobernanza evidencia grounding procedencia propuestas decisiones freeze solicitud de cambio ADE Primario Bootstrap CLI Method Plan contexto de sesión validación",
   },
   {
     slug: "gtt-method-2-1",

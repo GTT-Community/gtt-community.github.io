@@ -231,7 +231,7 @@
 }
 
 @media (max-width: 767px) {
-  .hero-stage { padding-inline: 1.25rem; }
+  .hero-stage { padding-inline: 0.5rem; }
   .hero-stage > img { object-position: 64% center; opacity: 0.48; }
   .bg-hero-wash { background: linear-gradient(90deg, var(--background) 0%, color-mix(in oklab, var(--background) 86%, transparent) 68%, transparent 100%); }
 }

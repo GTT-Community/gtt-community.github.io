@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages, searchContent } from "@/lib/gttContent";
+import { SITE_URL } from "@/lib/links";
 import { ArrowLeft, Terminal } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -22,6 +23,19 @@ function linkify(text: string) {
     )
   );
 }
+
+// Heading text -> anchor id, shared by the page index and the rendered h2s.
+function headingId(heading: string) {
+  return heading
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// Pages with fewer sections than this read fine without an index.
+const INDEX_MIN_SECTIONS = 6;
 
 export const Route = createFileRoute("/$slug")({
   head: ({ params }) => {
@@ -48,6 +62,7 @@ export const Route = createFileRoute("/$slug")({
         { property: "og:title", content: `${title} | GTT-Method` },
         { property: "og:description", content: description },
       ],
+      links: [{ rel: "canonical", href: `${SITE_URL}/${page.slug}` }],
     };
   },
   component: ContentPage,
@@ -78,6 +93,10 @@ function ContentPage() {
   const title = language === "en" ? page.titleEn : page.titleEs;
   const description = language === "en" ? page.descriptionEn : page.descriptionEs;
   const content = language === "en" ? page.contentEn : page.contentEs;
+  const sections = content
+    .split("\n\n")
+    .filter((paragraph) => /^##\s/.test(paragraph.trim()))
+    .map((paragraph) => paragraph.trim().replace(/^#+\s*/, ""));
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -94,6 +113,24 @@ function ContentPage() {
           <p className="text-lg text-muted-foreground">{description}</p>
         </header>
 
+        {sections.length >= INDEX_MIN_SECTIONS && (
+          <nav aria-label={language === "en" ? "On this page" : "En esta página"} className="mb-12 rounded-md border border-border bg-muted/50 px-6 py-5">
+            <h2 className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+              {language === "en" ? "On this page" : "En esta página"}
+            </h2>
+            <ol className="mt-4 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
+              {sections.map((heading, i) => (
+                <li key={heading} className="flex gap-3">
+                  <span className="w-5 shrink-0 text-right tabular-nums text-muted-foreground">{i + 1}</span>
+                  <a href={`#${headingId(heading)}`} className="font-medium underline-offset-2 hover:underline">
+                    {heading}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
         <article className="prose dark:prose-invert max-w-none">
           <div className="space-y-6 text-base leading-relaxed">
             {content.split("\n\n").map((paragraph, index) => {
@@ -103,7 +140,7 @@ function ContentPage() {
                 const HeadingTag = level === 2 ? "h2" : level === 3 ? "h3" : "h4";
 
                 return (
-                  <HeadingTag key={index} className={level === 2 ? "text-2xl font-bold mt-8 mb-4" : level === 3 ? "text-xl font-semibold mt-6 mb-3" : "text-lg font-semibold mt-4 mb-2"}>
+                  <HeadingTag key={index} id={level === 2 ? headingId(heading) : undefined} className={level === 2 ? "scroll-mt-6 text-2xl font-bold mt-8 mb-4" : level === 3 ? "text-xl font-semibold mt-6 mb-3" : "text-lg font-semibold mt-4 mb-2"}>
                     {heading}
                   </HeadingTag>
                 );

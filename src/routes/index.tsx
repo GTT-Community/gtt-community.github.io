@@ -91,7 +91,7 @@ const methodSectionContent = {
 };
 
 function ArrowLink({ children }: { children: React.ReactNode }) {
-  return <a href="#method" className="inline-flex items-center gap-3 border-b border-foreground pb-0.5 text-sm font-medium">{children}<ArrowRight size={15} /></a>;
+  return <Link to="/$slug" params={{ slug: "methodology" }} className="inline-flex items-center gap-3 border-b border-foreground pb-0.5 text-sm font-medium">{children}<ArrowRight size={15} /></Link>;
 }
 
 function Index() {
@@ -101,7 +101,7 @@ function Index() {
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <Header />
 
-      <section id="top" className="hero-stage relative mx-auto max-w-[1600px] px-8 xl:px-12">
+      <section id="top" className="hero-stage relative mx-3 max-w-[1600px] overflow-hidden rounded-3xl px-4 sm:mx-4 xl:px-8 min-[1632px]:mx-auto">
         <img src={heroImage} width={1920} height={900} className="absolute inset-0 h-full w-full object-cover object-center" alt="Orca leaping from the ocean before alpine mountains" />
         <div className="absolute inset-0 bg-hero-wash" />
         <div className="relative z-10 flex min-h-[425px] flex-col justify-center pb-8 pt-12">
@@ -118,7 +118,7 @@ function Index() {
           )}
           <div className="mt-6 flex flex-wrap gap-4">
             <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark px-8">{heroContent[language].ctaPrimary} <ArrowRight size={17} /></a>
-            <a href="#method" className="cta-light">{heroContent[language].ctaSecondary}</a>
+            <Link to="/$slug" params={{ slug: "methodology" }} className="cta-light">{heroContent[language].ctaSecondary}</Link>
             <Link to="/$slug" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
             <Link to="/$slug" params={{ slug: "prompts" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrompts}</Link>
           </div>

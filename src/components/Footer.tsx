@@ -3,6 +3,61 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { pages } from "@/lib/gttContent";
 import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL } from "@/lib/links";
 
+// Open-source projects GTT is built with, grouped by where they are used.
+// Every link is the project's own GitHub home.
+const credits = [
+  {
+    titleEn: "GTT CLI",
+    titleEs: "GTT CLI",
+    items: [
+      { name: "Go", roleEn: "language", roleEs: "lenguaje", href: "https://github.com/golang/go" },
+      { name: "Cobra", roleEn: "command framework", roleEs: "framework de comandos", href: "https://github.com/spf13/cobra" },
+      { name: "GoReleaser", roleEn: "release builds", roleEs: "builds de release", href: "https://github.com/goreleaser/goreleaser" },
+    ],
+  },
+  {
+    titleEn: "GTT Bootstrap",
+    titleEs: "GTT Bootstrap",
+    items: [
+      { name: "Python", roleEn: "engine and validation", roleEs: "motor y validación", href: "https://github.com/python/cpython" },
+      { name: "Bash", roleEn: "service scripts", roleEs: "scripts de servicio" },
+      { name: "Git", roleEn: "versioned project state", roleEs: "estado versionado del proyecto", href: "https://github.com/git/git" },
+    ],
+  },
+  {
+    titleEn: "This site",
+    titleEs: "Este sitio",
+    items: [
+      { name: "TypeScript", roleEn: "language", roleEs: "lenguaje", href: "https://github.com/microsoft/TypeScript" },
+      { name: "React", roleEn: "UI", roleEs: "interfaz", href: "https://github.com/facebook/react" },
+      { name: "TanStack Start", roleEn: "routing and prerender", roleEs: "rutas y prerender", href: "https://github.com/TanStack/router" },
+      { name: "Vite", roleEn: "build", roleEs: "build", href: "https://github.com/vitejs/vite" },
+      { name: "Tailwind CSS", roleEn: "styling", roleEs: "estilos", href: "https://github.com/tailwindlabs/tailwindcss" },
+      { name: "Radix UI", roleEn: "primitives", roleEs: "primitivas", href: "https://github.com/radix-ui/primitives" },
+      { name: "Lucide", roleEn: "icons", roleEs: "iconos", href: "https://github.com/lucide-icons/lucide" },
+    ],
+  },
+  {
+    titleEn: "Platform",
+    titleEs: "Plataforma",
+    items: [
+      { name: "GitHub", roleEn: "source and community", roleEs: "código y comunidad", href: "https://github.com/github" },
+      { name: "GitHub Actions", roleEn: "CI and releases", roleEs: "CI y releases", href: "https://github.com/actions" },
+      { name: "GitHub Pages", roleEn: "hosting", roleEs: "hosting", href: "https://github.com/actions/deploy-pages" },
+      { name: "Ubuntu", roleEn: "CI runners", roleEs: "runners de CI", href: "https://github.com/ubuntu" },
+      { name: "Debian", roleEn: "the base Ubuntu builds on", roleEs: "la base de Ubuntu", href: "https://github.com/Debian" },
+      { name: "Node.js", roleEn: "build runtime", roleEs: "runtime de build", href: "https://github.com/nodejs/node" },
+    ],
+  },
+];
+
+const licenses = [
+  { name: "GTT Method", license: "Apache-2.0", href: "https://github.com/GTT-Community/gtt-method/blob/main/LICENSE" },
+  { name: "GTT Bootstrap", license: "MIT", href: "https://github.com/GTT-Community/gtt-bootstrap/blob/main/LICENSE" },
+  { name: "GTT CLI", license: "Apache-2.0", href: "https://github.com/GTT-Community/gtt-cli/blob/main/LICENSE" },
+  { name: "gtt-community.github.io", license: "MIT", href: "https://github.com/GTT-Community/gtt-community.github.io/blob/main/LICENSE" },
+];
+
 export function Footer() {
   const { language, t } = useLanguage();
 
@@ -38,6 +93,50 @@ export function Footer() {
               : <>Personas<br />Contexto<br />Inteligencia<br />Impacto</>}
           </div>
         </div>
+        <section id="credits" aria-labelledby="credits-heading" className="border-t border-footer-foreground pt-8">
+          <h2 id="credits-heading" className="text-sm font-semibold">
+            {language === "en" ? "Built with open source" : "Construido con código abierto"}
+          </h2>
+          <p className="mt-1 max-w-2xl text-xs leading-relaxed opacity-80">
+            {language === "en"
+              ? "GTT stands on the work of these projects. Thank you to their maintainers and communities."
+              : "GTT se apoya en el trabajo de estos proyectos. Gracias a sus mantenedores y comunidades."}
+          </p>
+          <div className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+            {credits.map((group) => (
+              <div key={group.titleEn} className="border-l border-footer-foreground pl-8">
+                <h3 className="text-[9px] font-semibold uppercase tracking-[0.28em]">
+                  {language === "en" ? group.titleEn : group.titleEs}
+                </h3>
+                <ul className="mt-3 flex flex-col gap-1.5 text-xs">
+                  {group.items.map((item) => (
+                    <li key={item.name}>
+                      {item.href ? (
+                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="font-semibold hover:opacity-70 transition-opacity">{item.name}</a>
+                      ) : (
+                        <span className="font-semibold">{item.name}</span>
+                      )}
+                      <span className="opacity-70"> · {language === "en" ? item.roleEn : item.roleEs}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 flex flex-wrap gap-x-6 gap-y-1 text-[11px]">
+            <span className="opacity-70">{language === "en" ? "Licenses" : "Licencias"}</span>
+            {licenses.map((l) => (
+              <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+                {l.name} <span className="opacity-70">· {l.license}</span>
+              </a>
+            ))}
+          </p>
+          <p className="mt-3 text-[11px] leading-relaxed opacity-70">
+            {language === "en"
+              ? "All project names and trademarks belong to their respective owners. Listing them here is a credit, not an endorsement."
+              : "Todos los nombres de proyecto y marcas pertenecen a sus respectivos dueños. Listarlos aquí es un crédito, no un respaldo."}
+          </p>
+        </section>
       </div>
     </footer>
   );
