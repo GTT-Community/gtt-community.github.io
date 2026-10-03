@@ -173,10 +173,10 @@ function ContentPage() {
           </div>
         </article>
 
-        {slug === "agent-prompts" && (
-          <div className="mt-10">
+        {slug === "prompts" && (
+          <div className="mt-6">
             <Link to="/$slug" params={{ slug: "cli" }} className="cta-green">
-              <Terminal size={17} /> {language === "en" ? "GTT CLI install commands" : "Comandos de instalación de GTT CLI"}
+              <Terminal size={17} /> {language === "en" ? "Install GTT CLI" : "Instalar GTT CLI"}
             </Link>
           </div>
         )}

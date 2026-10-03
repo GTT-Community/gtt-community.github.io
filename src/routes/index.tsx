@@ -72,7 +72,7 @@ const heroContent = {
     ctaPrimary: "Get Started",
     ctaSecondary: "Read the Method",
     ctaCli: "Install GTT CLI",
-    ctaPrompts: "Agent Prompts",
+    ctaPrompts: "Implement with Prompts",
     badges: ["Open Source", "Community Driven", "Real Projects"],
   },
   es: {
@@ -80,7 +80,7 @@ const heroContent = {
     ctaPrimary: "Comenzar",
     ctaSecondary: "Leer el Método",
     ctaCli: "Instalar GTT CLI",
-    ctaPrompts: "Prompts para el Agente",
+    ctaPrompts: "Implementar con Prompts",
     badges: ["Código Abierto", "Impulsado por la Comunidad", "Proyectos Reales"],
   },
 };
@@ -120,7 +120,7 @@ function Index() {
             <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark px-8">{heroContent[language].ctaPrimary} <ArrowRight size={17} /></a>
             <a href="#method" className="cta-light">{heroContent[language].ctaSecondary}</a>
             <Link to="/$slug" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
-            <Link to="/$slug" params={{ slug: "agent-prompts" }} className="cta-light gap-3"><Bot size={17} /> {heroContent[language].ctaPrompts}</Link>
+            <Link to="/$slug" params={{ slug: "prompts" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrompts}</Link>
           </div>
           <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
             <span className="flex items-center gap-2 pr-7"><Code2 size={20} /> {heroContent[language].badges[0]}</span>

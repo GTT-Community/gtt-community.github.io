@@ -1438,42 +1438,27 @@ Código fuente y documentación: https://github.com/GTT-Community/gtt-cli`,
     searchableEs: "cli gtt línea de comandos instalar curl powershell uv npm go windows macos linux binario",
   },
   {
-    slug: "agent-prompts",
-    titleEn: "Agent Prompts",
-    titleEs: "Prompts para el Agente",
-    descriptionEn: "Ready-to-copy prompts to have your AI agent install GTT CLI and implement GTT-Method in a project.",
-    descriptionEs: "Prompts listos para copiar para que tu agente de IA instale GTT CLI e implemente GTT-Method en un proyecto.",
-    contentEn: `Copy these prompts and give them to your AI agent or ADE (Claude Code, GitHub Copilot, Codex, Cursor, Kiro and others). Each one tells the agent where the official source is, so it does not have to guess.
+    slug: "prompts",
+    titleEn: "Implement GTT with Prompts",
+    titleEs: "Implementa GTT con Prompts",
+    descriptionEn: "Different ways to implement GTT-Method in a project by prompting your AI agent.",
+    descriptionEs: "Distintas formas de implementar GTT-Method en un proyecto mediante prompts a tu agente de IA.",
+    contentEn: `You can implement GTT-Method in a project just by talking to your AI agent or ADE (Claude Code, GitHub Copilot, Codex, Cursor, Kiro and others). Give it the Bootstrap repository and one of the prompts below.
 
-## 1. Install GTT CLI
+GTT-Method Bootstrap repository: https://github.com/GTT-Community/gtt-bootstrap
 
-Ask the agent to install the gtt command-line tool on your machine.
+## 1. The short way
 
-\`\`\`
-Install GTT CLI on this machine.
-Follow the official installation instructions at https://github.com/GTT-Community/gtt-cli
-and use the method that matches my operating system.
-When it finishes, run: gtt version
-and show me the output. Do not invent commands; if something fails, stop and tell me.
-\`\`\`
-
-## 2. Implement GTT-Method with the CLI
-
-With the CLI installed, ask the agent to initialize GTT-Method in your project.
+The minimum the agent needs: the instruction and the URL.
 
 \`\`\`
-In the root of this project, run: gtt init
-Then run: gtt status
-Show me the output of both commands.
-Use my initial design document as the source for the GTT-Method Bootstrap.
-Do not invent decisions; if information is missing, ask me.
+Implement GTT-Method in this project.
+This is the GitHub URL: https://github.com/GTT-Community/gtt-bootstrap
 \`\`\`
 
-## 3. Implement GTT-Method without the CLI
+## 2. With an initial design document
 
-Give the agent the Bootstrap repository: https://github.com/GTT-Community/gtt-bootstrap
-
-Ask:
+Recommended. Keep a design document in the project root (vision, objective, main functionality, architecture, stack, constraints and known decisions) and ask:
 
 \`\`\`
 Clone/incorporate GTT-Method Bootstrap into this project from https://github.com/GTT-Community/gtt-bootstrap
@@ -1482,42 +1467,53 @@ as the source for performing the GTT-Method Bootstrap.
 Do not invent decisions; if information is missing, ask me.
 \`\`\`
 
-## Before you start
+## 3. Without a design document
 
-- Keep an initial design document in the project root: vision, objective, main functionality, architecture, stack, constraints and known decisions.
-- After Bootstrap, review what the agent produced and confirm it before freezing the context.
-- The full flow is described in the Quick User Manual.`,
-    contentEs: `Copia estos prompts y entrégalos a tu agente de IA o ADE (Claude Code, GitHub Copilot, Codex, Cursor, Kiro y otros). Cada uno le indica al agente dónde está la fuente oficial, para que no tenga que adivinar.
-
-## 1. Instalar GTT CLI
-
-Pídele al agente que instale la herramienta de línea de comandos gtt en tu equipo.
+If you have no document yet, let the agent build the context with you through conversation.
 
 \`\`\`
-Instala GTT CLI en este equipo.
-Sigue las instrucciones oficiales de instalación en https://github.com/GTT-Community/gtt-cli
-y usa el método que corresponda a mi sistema operativo.
-Al terminar, ejecuta: gtt version
-y muéstrame la salida. No inventes comandos; si algo falla, detente y avísame.
+Implement GTT-Method in this project from https://github.com/GTT-Community/gtt-bootstrap
+I do not have a design document yet.
+Ask me what you need to know about the vision, architecture, stack and constraints,
+and do not invent decisions on my behalf.
 \`\`\`
 
-## 2. Implementar GTT-Method con el CLI
+## 4. In a project that already has code
 
-Con el CLI instalado, pídele al agente que inicialice GTT-Method en tu proyecto.
+Have the agent read what exists before proposing the governed context.
 
 \`\`\`
-En la raíz de este proyecto, ejecuta: gtt init
-Luego ejecuta: gtt status
-Muéstrame la salida de ambos comandos.
-Usa mi documento de diseño inicial como fuente para el GTT-Method Bootstrap.
-No inventes decisiones; si falta información, pregúntame.
+Incorporate GTT-Method Bootstrap into this existing project from https://github.com/GTT-Community/gtt-bootstrap
+Inspect the current code first.
+Do not overwrite, move or delete any existing file without asking me.
+Show me the context you propose so I can confirm it before it is frozen.
 \`\`\`
 
-## 3. Implementar GTT-Method sin el CLI
+## After the prompt
 
-Entrega al agente el repositorio de Bootstrap: https://github.com/GTT-Community/gtt-bootstrap
+- Review what the agent produced: vision, architecture, stack, principles, constraints and glossary.
+- Correct anything that is wrong and confirm it before freezing the context.
+- The full flow is described in the Quick User Manual.
 
-Y pídele:
+## Prefer the command line?
+
+GTT CLI downloads and operates GTT Bootstrap for you.`,
+    contentEs: `Puedes implementar GTT-Method en un proyecto simplemente conversando con tu agente de IA o ADE (Claude Code, GitHub Copilot, Codex, Cursor, Kiro y otros). Entrégale el repositorio de Bootstrap y uno de los prompts de abajo.
+
+Repositorio de GTT-Method Bootstrap: https://github.com/GTT-Community/gtt-bootstrap
+
+## 1. La forma corta
+
+Lo mínimo que necesita el agente: la instrucción y la URL.
+
+\`\`\`
+Implementa GTT-Method en este proyecto.
+Esta es la URL de GitHub: https://github.com/GTT-Community/gtt-bootstrap
+\`\`\`
+
+## 2. Con un documento de diseño inicial
+
+Recomendado. Deja en la raíz del proyecto un documento de diseño (visión, objetivo, funcionalidad principal, arquitectura, stack, restricciones y decisiones conocidas) y pídele:
 
 \`\`\`
 Clona/incorpora GTT-Method Bootstrap en este proyecto desde https://github.com/GTT-Community/gtt-bootstrap
@@ -1526,13 +1522,39 @@ como fuente para ejecutar el GTT-Method Bootstrap.
 No inventes decisiones; si falta información, pregúntame.
 \`\`\`
 
-## Antes de empezar
+## 3. Sin documento de diseño
 
-- Deja en la raíz del proyecto un documento de diseño inicial: visión, objetivo, funcionalidad principal, arquitectura, stack, restricciones y decisiones conocidas.
-- Después del Bootstrap, revisa lo que produjo el agente y confírmalo antes de congelar el contexto.
-- El flujo completo está descrito en el Manual de Usuario Rápido.`,
-    searchableEn: "agent prompts ade bootstrap cli install implement gtt init project",
-    searchableEs: "prompts agente ade bootstrap cli instalar implementar gtt init proyecto",
+Si todavía no tienes un documento, deja que el agente construya el contexto contigo conversando.
+
+\`\`\`
+Implementa GTT-Method en este proyecto desde https://github.com/GTT-Community/gtt-bootstrap
+Todavía no tengo un documento de diseño.
+Pregúntame lo que necesites saber sobre la visión, arquitectura, stack y restricciones,
+y no inventes decisiones por mí.
+\`\`\`
+
+## 4. En un proyecto que ya tiene código
+
+Haz que el agente lea lo que existe antes de proponer el contexto gobernado.
+
+\`\`\`
+Incorpora GTT-Method Bootstrap en este proyecto existente desde https://github.com/GTT-Community/gtt-bootstrap
+Inspecciona primero el código actual.
+No sobrescribas, muevas ni elimines ningún archivo existente sin preguntarme.
+Muéstrame el contexto que propones para confirmarlo antes de congelarlo.
+\`\`\`
+
+## Después del prompt
+
+- Revisa lo que produjo el agente: visión, arquitectura, stack, principios, restricciones y glosario.
+- Corrige lo que esté mal y confírmalo antes de congelar el contexto.
+- El flujo completo está descrito en el Manual de Usuario Rápido.
+
+## ¿Prefieres la línea de comandos?
+
+GTT CLI descarga y opera GTT Bootstrap por ti.`,
+    searchableEn: "prompts agent ade bootstrap implement gtt project github url",
+    searchableEs: "prompts agente ade bootstrap implementar gtt proyecto url github",
   },
 ];
 
