@@ -191,12 +191,12 @@
   justify-content: center;
   gap: 0.75rem;
   border-radius: var(--radius);
-  background: oklch(0.5 0.24 262.881);
+  background: oklch(0.45 0.22 262.881);
   color: #fff;
   padding-inline: 2rem;
   font-size: 0.78rem;
   font-weight: 600;
-  box-shadow: 0 8px 20px color-mix(in oklab, oklch(0.5 0.24 262.881) 25%, transparent);
+  box-shadow: 0 8px 20px color-mix(in oklab, oklch(0.45 0.22 262.881) 25%, transparent);
 }
 
 @utility cta-light {
