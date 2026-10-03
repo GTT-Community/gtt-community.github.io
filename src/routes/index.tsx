@@ -9,6 +9,7 @@ import {
   Leaf,
   Rocket,
   Shield,
+  Terminal,
   Users,
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -70,12 +71,14 @@ const heroContent = {
     eyebrow: "Open methodology for the AI era",
     ctaPrimary: "Get Started",
     ctaSecondary: "Read the Method",
+    ctaCli: "Install GTT CLI",
     badges: ["Open Source", "Community Driven", "Real Projects"],
   },
   es: {
     eyebrow: "Metodología abierta para la era de la IA",
     ctaPrimary: "Comenzar",
     ctaSecondary: "Leer el Método",
+    ctaCli: "Instalar GTT CLI",
     badges: ["Código Abierto", "Impulsado por la Comunidad", "Proyectos Reales"],
   },
 };
@@ -114,6 +117,7 @@ function Index() {
           <div className="mt-6 flex flex-wrap gap-4">
             <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark px-8">{heroContent[language].ctaPrimary} <ArrowRight size={17} /></a>
             <a href="#method" className="cta-light">{heroContent[language].ctaSecondary}</a>
+            <Link to="/$slug" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
           </div>
           <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
             <span className="flex items-center gap-2 pr-7"><Code2 size={20} /> {heroContent[language].badges[0]}</span>

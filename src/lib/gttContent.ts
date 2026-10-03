@@ -1180,6 +1180,263 @@ Recuerda: define la intención, confirma el contexto, toma las decisiones, deleg
     searchableEn: "manual quick user guide bootstrap freeze change request workflow",
     searchableEs: "manual guía de usuario rápida bootstrap freeze solicitud de cambio flujo de trabajo",
   },
+  {
+    slug: "cli",
+    titleEn: "GTT CLI",
+    titleEs: "GTT CLI",
+    descriptionEn: "Install and use the gtt command-line tool on Linux, macOS and Windows.",
+    descriptionEs: "Instala y usa la herramienta de línea de comandos gtt en Linux, macOS y Windows.",
+    contentEn: `GTT CLI is a single binary (gtt) for Linux, macOS and Windows (x86_64 and arm64). Every method installs the same binary from the latest published release at https://github.com/GTT-Community/gtt-cli/releases/latest and verifies its SHA-256 checksum.
+
+## Install GTT CLI
+
+### Linux and macOS (curl)
+
+\`\`\`
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | sh
+\`\`\`
+
+### Windows (PowerShell)
+
+\`\`\`
+irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+\`\`\`
+
+### uv (Python)
+
+\`\`\`
+uv tool install gtt-cli
+\`\`\`
+
+### npm (Node.js 18+)
+
+\`\`\`
+npm install -g gtt-cli
+\`\`\`
+
+### Go 1.27+
+
+\`\`\`
+go install github.com/GTT-Community/gtt-cli/cmd/gtt@latest
+\`\`\`
+
+## Verify the installation
+
+\`\`\`
+gtt version
+\`\`\`
+
+## Try it without installing
+
+\`\`\`
+uvx --from gtt-cli gtt version
+npx gtt-cli version
+\`\`\`
+
+## Update
+
+### curl / PowerShell
+
+Run the same install command again.
+
+### uv
+
+\`\`\`
+uv tool upgrade gtt-cli
+\`\`\`
+
+### npm
+
+\`\`\`
+npm update -g gtt-cli
+\`\`\`
+
+## Install a specific version (example: 1.0.1)
+
+### curl
+
+\`\`\`
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.0.1 sh
+\`\`\`
+
+### PowerShell
+
+\`\`\`
+$env:GTT_VERSION="1.0.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+\`\`\`
+
+### uv
+
+\`\`\`
+uv tool install gtt-cli==1.0.1
+\`\`\`
+
+### npm
+
+\`\`\`
+npm install -g gtt-cli@1.0.1
+\`\`\`
+
+## Where it is installed (curl and PowerShell)
+
+- Linux/macOS: /usr/local/bin if it is writable; otherwise ~/.local/bin (change it with GTT_INSTALL_DIR)
+- Windows: %LOCALAPPDATA%\\Programs\\gtt, which is added to the user PATH (open a new terminal)
+
+## Requirements
+
+GTT CLI needs nothing else to run, but GTT Bootstrap (which the CLI downloads and operates) uses:
+
+- git
+- bash and python3
+- On Windows: Git for Windows (provides bash) and Python 3
+
+On Windows the CLI uses Git Bash automatically and never the WSL bash. To use a different bash, set GTT_BASH to the path of bash.exe.
+
+## Manual download
+
+Per-platform files are available at https://github.com/GTT-Community/gtt-cli/releases/latest
+
+- gtt_linux_amd64.tar.gz, gtt_linux_arm64.tar.gz
+- gtt_darwin_amd64.tar.gz (macOS Intel), gtt_darwin_arm64.tar.gz (macOS Apple Silicon)
+- gtt_windows_amd64.zip, gtt_windows_arm64.zip
+- checksums.txt (SHA-256)
+
+## First use
+
+\`\`\`
+cd my-project
+gtt init
+gtt status
+\`\`\`
+
+Source code and documentation: https://github.com/GTT-Community/gtt-cli`,
+    contentEs: `GTT CLI es un único binario (gtt) para Linux, macOS y Windows (x86_64 y arm64). Todos los métodos instalan el mismo binario desde la última versión publicada en https://github.com/GTT-Community/gtt-cli/releases/latest y verifican su checksum SHA-256.
+
+## Instalar GTT CLI
+
+### Linux y macOS (curl)
+
+\`\`\`
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | sh
+\`\`\`
+
+### Windows (PowerShell)
+
+\`\`\`
+irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+\`\`\`
+
+### uv (Python)
+
+\`\`\`
+uv tool install gtt-cli
+\`\`\`
+
+### npm (Node.js 18+)
+
+\`\`\`
+npm install -g gtt-cli
+\`\`\`
+
+### Go 1.27+
+
+\`\`\`
+go install github.com/GTT-Community/gtt-cli/cmd/gtt@latest
+\`\`\`
+
+## Comprobar la instalación
+
+\`\`\`
+gtt version
+\`\`\`
+
+## Probar sin instalar
+
+\`\`\`
+uvx --from gtt-cli gtt version
+npx gtt-cli version
+\`\`\`
+
+## Actualizar
+
+### curl / PowerShell
+
+Vuelve a ejecutar el mismo comando de instalación.
+
+### uv
+
+\`\`\`
+uv tool upgrade gtt-cli
+\`\`\`
+
+### npm
+
+\`\`\`
+npm update -g gtt-cli
+\`\`\`
+
+## Instalar una versión específica (ejemplo: 1.0.1)
+
+### curl
+
+\`\`\`
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.0.1 sh
+\`\`\`
+
+### PowerShell
+
+\`\`\`
+$env:GTT_VERSION="1.0.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+\`\`\`
+
+### uv
+
+\`\`\`
+uv tool install gtt-cli==1.0.1
+\`\`\`
+
+### npm
+
+\`\`\`
+npm install -g gtt-cli@1.0.1
+\`\`\`
+
+## Dónde se instala (curl y PowerShell)
+
+- Linux/macOS: /usr/local/bin si se puede escribir; si no, ~/.local/bin (cambiar con GTT_INSTALL_DIR)
+- Windows: %LOCALAPPDATA%\\Programs\\gtt, que se agrega al PATH del usuario (abrir una terminal nueva)
+
+## Requisitos
+
+GTT CLI no necesita nada más para ejecutarse, pero GTT Bootstrap (que el CLI descarga y opera) usa:
+
+- git
+- bash y python3
+- En Windows: Git for Windows (aporta bash) y Python 3
+
+En Windows el CLI usa Git Bash automáticamente y nunca el bash de WSL. Para usar otro bash, define GTT_BASH con la ruta a bash.exe.
+
+## Descarga manual
+
+Archivos por plataforma disponibles en https://github.com/GTT-Community/gtt-cli/releases/latest
+
+- gtt_linux_amd64.tar.gz, gtt_linux_arm64.tar.gz
+- gtt_darwin_amd64.tar.gz (macOS Intel), gtt_darwin_arm64.tar.gz (macOS Apple Silicon)
+- gtt_windows_amd64.zip, gtt_windows_arm64.zip
+- checksums.txt (SHA-256)
+
+## Primer uso
+
+\`\`\`
+cd mi-proyecto
+gtt init
+gtt status
+\`\`\`
+
+Código fuente y documentación: https://github.com/GTT-Community/gtt-cli`,
+    searchableEn: "cli gtt command line install curl powershell uv npm go windows macos linux binary",
+    searchableEs: "cli gtt línea de comandos instalar curl powershell uv npm go windows macos linux binario",
+  },
 ];
 
 export function searchContent(query: string, language: "en" | "es"): ContentPage[] {

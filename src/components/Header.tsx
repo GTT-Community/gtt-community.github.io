@@ -26,7 +26,9 @@ export function Header({ activeSlug }: HeaderProps) {
 
   const navItems: NavItem[] = [
     { label: t("nav.home"), isHome: true },
-    ...pages.map((p) =>
+    // GTT CLI is reached from the hero CTA and the footer; keeping it out of
+    // the header avoids overflowing the desktop nav.
+    ...pages.filter((p) => p.slug !== "cli").map((p) =>
       p.slug === "gtt-method-2-1"
         ? { label: "GTT-Method 2.1 / Canonical", href: GTT_METHOD_CANONICAL_URL }
         : { label: language === "en" ? p.titleEn : p.titleEs, slug: p.slug },
