@@ -180,132 +180,208 @@ Reporta un bug, propone una idea o deja un comentario en el tablero de la comuni
     slug: "problem",
     titleEn: "The Problem",
     titleEs: "El Problema",
-    descriptionEn: "Understanding why context and governance matter when AI agents participate in software development.",
-    descriptionEs: "Entendiendo por qué el contexto y la gobernanza importan cuando agentes de IA participan en desarrollo de software.",
-    contentEn: `AI Agents Are Powerful But Context-Dependent
+    descriptionEn: "The problems GTT solves when AI agents take part in software development: agent reasoning becoming authority, architectural drift, uncontrolled changes, context overload and lost session continuity.",
+    descriptionEs: "Los problemas que GTT resuelve cuando agentes de IA participan en el desarrollo de software: razonamiento convertido en autoridad, desviación arquitectónica, cambios incontrolados, exceso de contexto y pérdida de continuidad.",
+    contentEn: `AI agents write software fast. They do not know what your project has decided.
 
-AI coding agents can implement complete features rapidly. But software development requires more than generating code.
+AI coding agents can implement complete features in minutes. But software development is more than generating code: it is keeping a system coherent with the decisions, architecture and constraints its team has accepted. These are the problems that appear when agents take part in development without governance, and what GTT does about each one.
 
-## Context Loss
+## Agent reasoning becomes project authority
 
-Agents can lose important architectural, business and technical context during development sessions, leading to decisions that ignore project constraints.
+An agent reasons, reaches a conclusion and applies it. Nobody approved it, yet it is now part of the system. Repeated across sessions, the agent ends up deciding the architecture by default.
 
-## Uncontrolled Changes
+GTT separates reasoning from decision authority: agent reasoning is not change authorization. Agents analyze and propose; a human approves, rejects or modifies. A proposal only becomes part of the project through a human decision.
 
-Without explicit boundaries, an agent may modify critical infrastructure, configuration files, or architectural components it should not touch.
+## Evidence, assumptions and guesses look the same
 
-## Inconsistent Decisions
+An agent's answer mixes what the project's sources say with what the agent inferred or invented, and gaps and contradictions get resolved silently. The reader cannot tell which is which.
 
-Different prompts and sessions produce different implementations of the same feature or pattern, breaking architectural consistency.
+GTT establishes an evidence boundary. Authorized sources are grounded into an evidence dossier, and provenance markers distinguish sourced evidence, gaps, conflicts and proposals. A conflict between sources is exposed, never silently resolved.
 
-## Architectural Drift
+## Architectural drift
 
-Individually reasonable AI-generated changes gradually move a system away from its intended design without anyone noticing until it's too late.
+Individually reasonable AI-generated changes gradually move a system away from its intended design, and nobody notices until it is expensive to undo.
 
-## Governance Gap
+GTT makes architectural intent explicit through ADRs, specifications, rules, constraints and governed state, so drift is surfaced instead of silently accepted.
 
-Traditional development doesn't have mechanisms to govern AI agent behavior. There are no explicit rules, responsibilities or controlled context.
+## Accepted decisions get reopened without anyone deciding
 
-## No Session Continuity
+What the team agreed last week is quietly rewritten this week, because nothing marks it as settled.
 
-Context established in one session can be lost when the agent is invoked again, requiring humans to re-explain the same constraints repeatedly.
+In GTT, freeze establishes a boundary around the accepted governed state. After a freeze, a change follows a governed path: change request, impact analysis, THINK, proposal, human decision and a new freeze. There is no "unfreeze".
 
-## The Deep Problem
+## Critical code gets modified autonomously
+
+Without explicit boundaries, an agent can rewrite a payment calculation, a security check or an architectural boundary as a side effect of an unrelated task.
+
+GTTGuard protects files, classes and methods. The agent can still read, analyze and propose changes to a protected artifact, but the change needs explicit human approval. GTT Enforcement evaluates operations that affect governed state against the applicable rules before they become accepted changes.
+
+## Too much context, not just too little
+
+Agents lose important context during a session, and the usual fix is to load everything. That fills the context window with irrelevant, duplicated and conflicting material, costs tokens and lets unrelated text act as if it were authority.
+
+GTT treats context efficiency as a governance concern. It distinguishes the Governed Context, the authoritative body of information, from the Execution Context, the minimum relevant subset selected for an operation. The principle is minimum sufficient governed context, not maximum available context, and reducing context never removes an applicable constraint, decision or protection.
+
+## No continuity between sessions
+
+Context established in one session is lost in the next, so people re-explain the same constraints, or rely on a memory the agent wrote for itself and treat it as truth.
+
+GTT generates session state from the actual state of the project: Git history, the last freeze, active proposals and change requests, open items and validation status. That state is an operational handoff, not authority, and it is portable across ADEs.
+
+## Inconsistent decisions across prompts and sessions
+
+Different prompts and sessions produce different implementations of the same feature or pattern, breaking consistency.
+
+Because every session works from the same governed context and the same frozen decisions, the answer depends on the project and not on how the prompt was phrased.
+
+## Governance that depends on an AI supervising an AI
+
+Asking one model to check another gives a probabilistic answer to a question that often has a deterministic one.
+
+GTT validates deterministically wherever a rule can be expressed: protected artifacts, proposal paths, provenance structure, unresolved blocking items, and freeze and governed state consistency. The machine checks whether the governance structure is valid; the human judges whether the architectural decision is correct.
+
+## Governance tied to one tool
+
+Rules written into the memory, hooks or instruction files of one AI Development Environment stop applying when the team uses another, and each tool ends up with its own version of the truth.
+
+GTT is independent of any agent or ADE. Each ADE connects through an adapter that translates its operations into the GTT contract, and several ADEs can work on the same project under one governance model.
+
+## The deep problem
 
 The fundamental issue is not that agents generate incorrect code.
 
-Agents operate on context → Context can be incomplete, inconsistent, stale, ambiguous, or uncontrolled → Unpredictable behavior
+Agents operate on context → context can be incomplete, inconsistent, stale, ambiguous or uncontrolled → behavior becomes unpredictable. And when nothing separates reasoning from authority, that unpredictable behavior becomes the accepted state of the project.
 
-## Why Traditional Approaches Fall Short
+## Why traditional approaches fall short
 
-Reviewing agent output after it's generated is reactive and doesn't address the root cause.
+Reviewing agent output after it is generated is reactive and does not address the root cause.
 
-### Code Review Alone
+### Code review alone
 
-Reviewing the output doesn't help the agent make better decisions next time. The context governance problem persists.
+Reviewing the output does not change what the agent works from next time. The same problem returns in the next session.
 
-### Better Prompts
+### Better prompts
 
-More detailed prompts help temporarily, but they're not persistent, reviewable, or governance mechanisms.
+More detailed prompts help temporarily, but they are not persistent, reviewable or enforceable.
 
-### Trust in the Agent
+### Trust in the agent
 
-Trusting the agent to "follow the architecture" doesn't work when the architecture isn't explicitly governed and protected.
+Trusting the agent to "follow the architecture" does not work when the architecture is not explicitly governed and protected.
 
-### Manual Oversight
+### Manual oversight
 
-Humans manually reviewing every change doesn't scale and misses the real issue: lack of governed context.
+People reviewing every change by hand does not scale, and it misses the real issue: the lack of governed context and of a decision boundary.
 
-## The Solution
+## What GTT does about it
 
-Make context explicit, governed and protected.
+Human decides, GTT governs, Agent/ADE executes within the boundary.
 
-GTT-Method addresses this by treating context as an engineering asset that can be structured, governed, protected and validated.
+GTT does not try to make agents smarter, and it does not make them less capable. It makes their capability operate inside an explicit, traceable, efficient, deterministic and human-governed boundary: it governs what context and evidence an agent may rely on, and what changes an agent or ADE may cause to governed project state.
 
-Instead of trying to make agents "smarter", GTT-Method makes the development environment more reliable by establishing explicit rules, protecting critical context, and detecting drift.`,
-    contentEs: `Agentes de IA: Poderosos pero Dependientes del Contexto
+- How it works: https://gtt-method.org/approach/
+- The methodology: https://gtt-method.org/methodology/
+- Frequent questions: https://gtt-method.org/faq/`,
+    contentEs: `Los agentes de IA escriben software rápido. No saben qué ha decidido tu proyecto.
 
-Los agentes de IA pueden implementar características completas rápidamente. Pero el desarrollo de software requiere más que generar código.
+Los agentes de IA pueden implementar funcionalidades completas en minutos. Pero desarrollar software es más que generar código: es mantener un sistema coherente con las decisiones, la arquitectura y las restricciones que su equipo aceptó. Estos son los problemas que aparecen cuando los agentes participan en el desarrollo sin gobernanza, y lo que GTT hace frente a cada uno.
 
-## Pérdida de Contexto
+## El razonamiento del agente se convierte en autoridad del proyecto
 
-Los agentes pueden perder contexto arquitectónico, empresarial y técnico importante durante las sesiones, generando decisiones que ignoran restricciones del proyecto.
+Un agente razona, llega a una conclusión y la aplica. Nadie la aprobó, pero ya es parte del sistema. Repetido sesión tras sesión, el agente termina decidiendo la arquitectura por omisión.
 
-## Cambios Incontrolados
+GTT separa el razonamiento de la autoridad de decisión: el razonamiento de un agente no es autorización de cambio. Los agentes analizan y proponen; un humano aprueba, rechaza o modifica. Una propuesta solo pasa a ser parte del proyecto mediante una decisión humana.
 
-Sin límites explícitos, un agente puede modificar infraestructura crítica, archivos de configuración o componentes arquitectónicos que no debería tocar.
+## Evidencia, supuestos y conjeturas se ven iguales
 
-## Decisiones Inconsistentes
+La respuesta de un agente mezcla lo que dicen las fuentes del proyecto con lo que el agente infirió o inventó, y los vacíos y contradicciones se resuelven en silencio. Quien lee no puede distinguir una cosa de otra.
 
-Diferentes indicaciones y sesiones producen implementaciones diferentes de la misma funcionalidad o patrón, rompiendo la consistencia arquitectónica.
+GTT establece una frontera de evidencia. Las fuentes autorizadas pasan por grounding y se consolidan en un dossier de evidencia, y los marcadores de procedencia distinguen la evidencia con fuente, los vacíos, los conflictos y las propuestas. Un conflicto entre fuentes se expone, nunca se resuelve en silencio.
 
-## Desviación Arquitectónica
+## Desviación arquitectónica
 
-Cambios individuales razonables generados por IA pueden alejar gradualmente un sistema de su diseño previsto sin que nadie lo note hasta que sea demasiado tarde.
+Cambios individualmente razonables generados por IA alejan gradualmente al sistema de su diseño previsto, y nadie lo nota hasta que deshacerlo es caro.
 
-## Brecha de Gobernanza
+GTT hace explícita la intención arquitectónica mediante ADRs, especificaciones, reglas, restricciones y estado gobernado, de modo que la desviación se expone en lugar de aceptarse en silencio.
 
-El desarrollo tradicional no tiene mecanismos específicos para gobernar el comportamiento de los agentes de IA. No existen reglas, responsabilidades o contexto controlado explícitos.
+## Las decisiones aceptadas se reabren sin que nadie lo decida
 
-## Sin Continuidad de Sesión
+Lo que el equipo acordó la semana pasada se reescribe esta semana sin aviso, porque nada lo marca como resuelto.
 
-El contexto establecido en una sesión puede perderse cuando el agente se invoca nuevamente, obligando a los humanos a explicar repetidamente las mismas restricciones.
+En GTT, el freeze establece una frontera alrededor del estado gobernado aceptado. Después de un freeze, un cambio sigue un camino gobernado: solicitud de cambio, análisis de impacto, THINK, propuesta, decisión humana y un nuevo freeze. No existe "unfreeze".
 
-## El Problema Profundo
+## El código crítico se modifica de forma autónoma
+
+Sin límites explícitos, un agente puede reescribir un cálculo de pagos, un control de seguridad o una frontera arquitectónica como efecto secundario de una tarea no relacionada.
+
+GTTGuard protege archivos, clases y métodos. El agente puede seguir leyendo, analizando y proponiendo cambios a un artefacto protegido, pero el cambio requiere aprobación humana explícita. GTT Enforcement evalúa las operaciones que afectan el estado gobernado contra las reglas aplicables antes de que se conviertan en cambios aceptados.
+
+## Demasiado contexto, no solo muy poco
+
+Los agentes pierden contexto importante durante una sesión, y el remedio habitual es cargarlo todo. Eso llena la ventana de contexto con material irrelevante, duplicado y contradictorio, cuesta tokens y permite que texto no relacionado actúe como si fuera autoridad.
+
+GTT trata la eficiencia de contexto como un asunto de gobernanza. Distingue el Contexto Gobernado, el cuerpo autoritativo de información, del Contexto de Ejecución, el subconjunto mínimo relevante seleccionado para una operación. El principio es contexto gobernado mínimo suficiente, no el máximo disponible, y reducir el contexto nunca elimina una restricción, decisión o protección aplicable.
+
+## Sin continuidad entre sesiones
+
+El contexto establecido en una sesión se pierde en la siguiente, así que las personas vuelven a explicar las mismas restricciones, o confían en una memoria que el agente escribió para sí mismo y la tratan como verdad.
+
+GTT genera el estado de sesión a partir del estado real del proyecto: historial de Git, último freeze, propuestas y solicitudes de cambio activas, ítems abiertos y estado de validación. Ese estado es un traspaso operativo, no autoridad, y es portable entre ADEs.
+
+## Decisiones inconsistentes entre prompts y sesiones
+
+Distintos prompts y sesiones producen implementaciones distintas de la misma funcionalidad o patrón, y se rompe la consistencia.
+
+Como cada sesión trabaja desde el mismo contexto gobernado y las mismas decisiones congeladas, la respuesta depende del proyecto y no de cómo se redactó el prompt.
+
+## Gobernanza que depende de una IA supervisando a otra IA
+
+Pedirle a un modelo que revise a otro da una respuesta probabilística a una pregunta que muchas veces tiene una respuesta determinista.
+
+GTT valida de forma determinista todo lo que puede expresarse como regla: artefactos protegidos, rutas de propuestas, estructura de procedencia, ítems bloqueantes sin resolver y consistencia del freeze y del estado gobernado. La máquina verifica si la estructura de gobernanza es válida; el humano juzga si la decisión arquitectónica es correcta.
+
+## Gobernanza atada a una sola herramienta
+
+Las reglas escritas en la memoria, los hooks o los archivos de instrucciones de un entorno de desarrollo con IA dejan de aplicar cuando el equipo usa otro, y cada herramienta termina con su propia versión de la verdad.
+
+GTT es independiente de cualquier agente o ADE. Cada ADE se conecta mediante un adaptador que traduce sus operaciones al contrato de GTT, y varios ADEs pueden trabajar en el mismo proyecto bajo un único modelo de gobernanza.
+
+## El problema de fondo
 
 El problema fundamental no es que los agentes generen código incorrecto.
 
-Los agentes operan sobre contexto → El contexto puede ser incompleto, inconsistente, obsoleto, ambiguo o no controlado → Comportamiento impredecible
+Los agentes operan sobre contexto → el contexto puede ser incompleto, inconsistente, obsoleto, ambiguo o no controlado → el comportamiento se vuelve impredecible. Y cuando nada separa el razonamiento de la autoridad, ese comportamiento impredecible se convierte en el estado aceptado del proyecto.
 
-## Por qué los Enfoques Tradicionales son Insuficientes
+## Por qué los enfoques tradicionales son insuficientes
 
-Revisar la salida después de que se genera es reactivo y no aborda la causa raíz.
+Revisar la salida del agente después de generada es reactivo y no aborda la causa raíz.
 
-### Solo Code Review
+### Solo code review
 
-Revisar la salida no ayuda al agente a tomar mejores decisiones la próxima vez. El problema de gobernanza del contexto permanece.
+Revisar la salida no cambia aquello desde lo que el agente trabaja la próxima vez. El mismo problema vuelve en la sesión siguiente.
 
-### Mejores Prompts
+### Mejores prompts
 
-Prompts más detallados ayudan temporalmente, pero no son mecanismos persistentes, revisables ni de gobernanza.
+Prompts más detallados ayudan temporalmente, pero no son persistentes, revisables ni exigibles.
 
-### Confiar en el Agente
+### Confiar en el agente
 
 Confiar en que el agente "seguirá la arquitectura" no funciona cuando la arquitectura no está explícitamente gobernada y protegida.
 
-### Supervisión Manual
+### Supervisión manual
 
-Revisar manualmente cada cambio no escala y no aborda el problema real: falta de contexto gobernado.
+Que las personas revisen cada cambio a mano no escala, y deja fuera el problema real: la falta de contexto gobernado y de una frontera de decisión.
 
-## La Solución
+## Lo que GTT hace al respecto
 
-Hacer el contexto explícito, gobernado y protegido.
+El humano decide, GTT gobierna, el agente/ADE ejecuta dentro de la frontera.
 
-GTT-Method trata el contexto como un activo de ingeniería que puede estructurarse, gobernarse, protegerse y validarse.
+GTT no intenta hacer más inteligentes a los agentes, ni los hace menos capaces. Hace que su capacidad opere dentro de una frontera explícita, trazable, eficiente, determinista y gobernada por humanos: gobierna en qué contexto y evidencia puede apoyarse un agente, y qué cambios puede causar un agente o ADE en el estado gobernado del proyecto.
 
-En lugar de intentar hacer que los agentes sean "más inteligentes", GTT-Method hace más confiable el entorno de desarrollo mediante reglas explícitas, protección del contexto crítico y detección de desviación.`,
-    searchableEn: "problem architectural drift context loss uncontrolled changes inconsistent decisions governance gap",
-    searchableEs: "problema desviación arquitectónica pérdida de contexto cambios incontrolados decisiones inconsistentes brecha de gobernanza",
+- Cómo funciona: https://gtt-method.org/approach/
+- La metodología: https://gtt-method.org/methodology/
+- Preguntas frecuentes: https://gtt-method.org/faq/`,
+    searchableEn: "problem architectural drift context loss context overload uncontrolled changes inconsistent decisions governance gap agent authority evidence provenance freeze GTTGuard session continuity vendor lock-in",
+    searchableEs: "problema desviación arquitectónica pérdida de contexto exceso de contexto cambios incontrolados decisiones inconsistentes brecha de gobernanza autoridad del agente evidencia procedencia freeze GTTGuard continuidad de sesión",
   },
   {
     slug: "approach",
