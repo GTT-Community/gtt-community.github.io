@@ -29,10 +29,19 @@ data table in source, plus the home route (`/`).
 
 ## Integration strategy
 
-No external services are called at runtime. The only "integrations" are
-outbound links to GitHub (the `GTT-Community` org's repositories page and
-the `GTT-Community/gtt-bootstrap` repository). There is no API layer, no
-auth, no messaging — `@tanstack/react-query`'s
+One external service is called at runtime: the Cloudflare Web Analytics
+beacon (ADR-002). The visitor's browser loads
+`https://static.cloudflareinsights.com/beacon.min.js` and reports page views
+and web-vitals measurements to Cloudflare. It is one identical snippet with a
+single site token, placed immediately before `</body>` in the root shell
+(`src/routes/__root.tsx`, covering every prerendered page) and in the
+standalone `public/404.html`. No other third-party script or runtime call is
+permitted. The site does not depend on the beacon: if it is blocked or
+unavailable, pages behave identically.
+
+The only other "integrations" are outbound links to GitHub (the
+`GTT-Community` org's repositories page and the `GTT-Community/gtt-bootstrap`
+repository). There is no API layer, no auth, no messaging — `@tanstack/react-query`'s
 `QueryClientProvider` is present in the shell but nothing in the current
 codebase issues a query through it.
 

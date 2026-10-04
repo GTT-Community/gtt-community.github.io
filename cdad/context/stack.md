@@ -5,7 +5,7 @@
 > same commit as the ADR that approves it.
 
 - **Last verified:** `2026-09-21` — run the `cdad-audit` skill to refresh
-- **Governing ADRs:** ADR-001
+- **Governing ADRs:** ADR-001, ADR-002
 
 ---
 
@@ -27,7 +27,7 @@
 | Secrets | None required for build or runtime | — | — |
 | IaC | None — infrastructure is the GitHub Pages / Cloudflare Pages platform config (`wrangler.toml`), not provisioned via IaC tooling | — | ADR-001 |
 | CI/CD | GitHub Actions (`.github/workflows/`) → GitHub Pages, on push to `main` | actions/deploy-pages@v4 | ADR-001 |
-| Observability | Browser `console.error` + a Lovable error-reporting hook (`src/lib/lovable-error-reporting.ts`) on route error boundaries. No metrics/traces/alerting pipeline. | — | ADR-001 |
+| Observability | Browser `console.error` + a Lovable error-reporting hook (`src/lib/lovable-error-reporting.ts`) on route error boundaries. Cloudflare Web Analytics beacon for page-view and web-vitals metrics (third-party script, cookieless). No traces/alerting pipeline. | — | ADR-001, ADR-002 |
 | Testing | None configured — no test runner, no test script in `package.json` | — | — |
 
 "Locked by" points at the ADR that made the decision. A row with no ADR is a
@@ -47,14 +47,17 @@ flowchart LR
     end
 
     GH["GitHub\n(GTT-Community org + gtt-bootstrap repo)"]
+    CFWA["Cloudflare Web Analytics\n(static.cloudflareinsights.com)"]
 
     Browser -->|HTTPS GET| Pages
     Browser -->|HTTPS GET, alt target| CFPages
     Browser -->|HTTPS, outbound link only| GH
+    Browser -->|HTTPS, beacon script + usage metrics| CFWA
 ```
 
 There is no application server, API gateway, or datastore in this solution —
-every route is built to static assets ahead of time.
+every route is built to static assets ahead of time. The Cloudflare Web
+Analytics beacon (ADR-002) is the only third-party call made at runtime.
 
 ---
 
@@ -86,7 +89,7 @@ flowchart TB
 | Signal | Emitted by | Collected via | Stored in | Retention |
 |---|---|---|---|---|
 | Logs | `console.error` in route `ErrorComponent` | Browser devtools only | Not persisted | N/A |
-| Metrics | None | — | — | — |
+| Metrics | Cloudflare Web Analytics beacon in the visitor's browser (page views, visits, referrers, web vitals) | Beacon script from `static.cloudflareinsights.com` | Cloudflare dashboard | Set by Cloudflare, not configured here |
 | Traces | None | — | — | — |
 | Audit events | None (no auth, no mutating operations) | — | — | — |
 
@@ -114,6 +117,7 @@ flowchart TB
 | Date | ADR | What changed in this map |
 |---|---|---|
 | 2026-09-21 | ADR-001 | Initial stack map recorded at bootstrap, reflecting the codebase as built (TanStack Start static site, no backend). |
+| 2026-10-04 | ADR-002 | Cloudflare Web Analytics beacon added as the single third-party runtime call: Observability row, Metrics signal, and component map edge Browser → Cloudflare Web Analytics. |
 
 ---
 

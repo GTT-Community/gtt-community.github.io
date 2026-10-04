@@ -20,7 +20,10 @@ decision. Delete every line you have not actually committed to.
   + TanStack Start/Router in the browser.
 - Datastore: none. Page content lives in `src/lib/gttContent.ts`.
 - Communication style: none — no backend calls at runtime. The only network
-  activity from the site is outbound links to GitHub.
+  activity from the site is outbound links to GitHub and the Cloudflare Web
+  Analytics beacon (ADR-002). No other third-party script or runtime call.
+  The beacon is one identical snippet, loaded from the root shell
+  (`src/routes/__root.tsx`) and from `public/404.html`.
 - This repo is connected to Lovable (see `AGENTS.md`): never force-push or
   rewrite published history on `main` — commits sync back into the Lovable
   editor.
@@ -32,7 +35,9 @@ decision. Delete every line you have not actually committed to.
 
 ## Regulatory and organizational
 
-- Data residency: not applicable — no user data is collected or stored.
+- Data residency: not applicable — no user accounts, and no personal data
+  stored by the site. Cloudflare Web Analytics collects aggregate, cookieless
+  usage metrics, held by Cloudflare (ADR-002).
 - Compliance regime: none applicable — public static content site.
 - Budget or quota ceilings that constrain design: none known; both deploy
   targets (GitHub Pages, Cloudflare Pages free tier) are effectively free at
