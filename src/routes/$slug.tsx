@@ -38,20 +38,26 @@ function CodeBlock({ code, language }: { code: string; language: "en" | "es" }) 
     }
   };
 
-  const label = copied ? (language === "en" ? "Copied" : "Copiado") : language === "en" ? "Copy" : "Copiar";
+  const label = copied
+    ? language === "en"
+      ? "Copied"
+      : "Copiado"
+    : language === "en"
+      ? "Copy to clipboard"
+      : "Copiar al portapapeles";
 
   return (
     <div className="relative my-4">
       <button
         type="button"
         onClick={copy}
-        aria-label={language === "en" ? "Copy to clipboard" : "Copiar al portapapeles"}
-        className="absolute right-2 top-2 inline-flex items-center gap-1.5 rounded border border-border bg-background px-2 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+        aria-label={label}
+        title={label}
+        className="absolute right-2 top-2 inline-flex size-7 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition-colors hover:text-foreground"
       >
-        {copied ? <Check size={13} /> : <Copy size={13} />}
-        <span aria-live="polite">{label}</span>
+        {copied ? <Check size={14} /> : <Copy size={14} />}
       </button>
-      <pre className="bg-muted p-4 pt-10 rounded-md overflow-x-auto">
+      <pre className="bg-muted p-4 pr-12 rounded-xl overflow-x-auto">
         <code className="text-xs">{code}</code>
       </pre>
     </div>
