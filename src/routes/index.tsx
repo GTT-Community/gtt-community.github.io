@@ -72,7 +72,7 @@ const pillars = {
   ],
 };
 
-const tools = ["✺ Claude Code", "● GitHub Copilot", "◎ OpenAI Codex", "◐ Kiro", "⬢ Cursor", "⬡ Continue", "〰 Windsurf", "◈ VS Code"];
+const tools = ["✺ Claude Code", "● GitHub Copilot", "◎ OpenAI Codex", "◐ Kiro", "⬢ Cursor", "⬡ Continue", "〰 Windsurf", "△ Antigravity", "◈ VS Code"];
 
 const heroContent = {
   en: {
