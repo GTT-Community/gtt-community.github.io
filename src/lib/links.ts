@@ -6,3 +6,4 @@ export const SITE_URL = "https://gtt-method.org";
 export const GITHUB_COMMUNITY_URL = "https://github.com/GTT-Community";
 export const GTT_CANONICAL_DOC_URL = "https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md";
 export const FEEDBACK_URL = "https://gtt-method.feedlog.ai/";
+export const FORUM_URL = "https://forum.gtt-method.org";

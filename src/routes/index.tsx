@@ -5,6 +5,7 @@ import {
   Bot,
   Boxes,
   BrainCircuit,
+  Bug,
   Code2,
   Leaf,
   Rocket,
@@ -16,7 +17,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import heroImage from "@/assets/orca-hero.jpg";
-import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL, FEEDBACK_URL } from "@/lib/links";
+import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL, FEEDBACK_URL, FORUM_URL } from "@/lib/links";
 import { SITE_DESCRIPTION, homeJsonLd, pageUrl } from "@/lib/seo";
 
 const HOME_TITLE = "GTT-Method | Governance Through Thinking for AI-Assisted Software Development";
@@ -58,14 +59,16 @@ const pillars = {
   en: [
     { icon: BookOpen, title: "Documentation", text: "Guides, templates and practical examples to apply GTT in real projects.", link: "Browse Docs", href: DOCS_URL },
     { icon: Code2, title: "Open Source", text: "Built in the open. Contribute, learn and grow with the community.", link: "View on GitHub", href: GITHUB_ORG_URL },
-    { icon: Users, title: "Community", text: "A space for builders, learners and practitioners.", link: "Join the Community", href: GITHUB_ORG_URL },
+    { icon: Users, title: "Community", text: "A space for builders, learners and practitioners.", link: "Join the Community", href: FORUM_URL },
     { icon: Rocket, title: "Real Impact", text: "From ideas to working software, with governance and purpose.", link: "See Examples", slug: "gtt-method-2-1" as const },
+    { icon: Bug, title: "Feedback", text: "Found a bug or have an idea? Help us improve GTT.", link: "Report a Bug or Idea", href: FEEDBACK_URL },
   ],
   es: [
     { icon: BookOpen, title: "Documentación", text: "Guías, plantillas y ejemplos prácticos para aplicar GTT en proyectos reales.", link: "Ver Documentación", href: DOCS_URL },
     { icon: Code2, title: "Código Abierto", text: "Construido en abierto. Contribuye, aprende y crece con la comunidad.", link: "Ver en GitHub", href: GITHUB_ORG_URL },
-    { icon: Users, title: "Comunidad", text: "Un espacio para constructores, aprendices y profesionales.", link: "Únete a la Comunidad", href: GITHUB_ORG_URL },
+    { icon: Users, title: "Comunidad", text: "Un espacio para constructores, aprendices y profesionales.", link: "Únete a la Comunidad", href: FORUM_URL },
     { icon: Rocket, title: "Impacto Real", text: "De las ideas al software funcional, con gobernanza y propósito.", link: "Ver Ejemplos", slug: "gtt-method-2-1" as const },
+    { icon: Bug, title: "Feedback", text: "¿Encontraste un bug o tienes una idea? Ayúdanos a mejorar GTT.", link: "Reportar un Bug o Idea", href: FEEDBACK_URL },
   ],
 };
 
@@ -130,14 +133,14 @@ function Index() {
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
               <span className="flex items-center gap-2 pr-7"><Code2 size={20} /> {heroContent[language].badges[0]}</span>
-              <a href={FEEDBACK_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-l border-border px-7 underline underline-offset-4"><Users size={20} /> {heroContent[language].badges[1]}</a>
+              <a href={FORUM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-l border-border px-7 underline underline-offset-4"><Users size={20} /> {heroContent[language].badges[1]}</a>
               <span className="flex items-center gap-2 border-l border-border pl-7"><Leaf size={20} /> {heroContent[language].badges[2]}</span>
             </div>
           </div>
           {language === "en" ? (
-            <div className="absolute right-16 top-12 z-10 hidden w-28 text-[10px] font-semibold uppercase leading-[1.65] tracking-[0.3em] xl:block">Deeper<br />Context<br />Higher<br />Impact<div className="my-4 h-px w-8 bg-foreground" /><span className="text-[8px]">Human direction<br />AI amplification</span></div>
+            <div className="absolute right-16 top-12 z-10 hidden w-32 text-[10px] font-semibold uppercase leading-[1.65] tracking-[0.3em] xl:block">Governance<br />of design<br />and human<br />intent<div className="my-4 h-px w-8 bg-foreground" /><span className="text-[8px]">For modern<br />software development</span></div>
           ) : (
-            <div className="absolute right-16 top-12 z-10 hidden w-28 text-[10px] font-semibold uppercase leading-[1.65] tracking-[0.3em] xl:block">Más<br />Contexto<br />Mayor<br />Impacto<div className="my-4 h-px w-8 bg-foreground" /><span className="text-[8px]">Dirección humana<br />Amplificación de IA</span></div>
+            <div className="absolute right-16 top-12 z-10 hidden w-32 text-[10px] font-semibold uppercase leading-[1.65] tracking-[0.3em] xl:block">Gobernanza<br />del diseño y<br />la intención<br />humana<div className="my-4 h-px w-8 bg-foreground" /><span className="text-[8px]">Para el desarrollo<br />moderno de software</span></div>
           )}
         </section>
       </div>
@@ -160,7 +163,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="docs" className="mx-auto grid max-w-[1500px] px-8 py-5 sm:grid-cols-2 xl:grid-cols-4 xl:px-12">
+      <section id="docs" className="mx-auto grid max-w-[1500px] px-8 py-5 sm:grid-cols-2 xl:grid-cols-5 xl:px-12">
         {pillars[language].map(({ icon: Icon, title, text, link, href, slug }, index) => <article id={index === 2 ? "community" : index === 3 ? "examples" : undefined} key={title} className="flex gap-5 border-border px-5 py-2 first:pl-3 xl:border-r xl:last:border-r-0">
           <Icon size={30} strokeWidth={2.3} className="shrink-0" />
           <div>

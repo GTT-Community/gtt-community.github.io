@@ -15,8 +15,8 @@ export const pages: ContentPage[] = [
     slug: "about",
     titleEn: "About GTT-Method",
     titleEs: "Acerca de GTT-Method",
-    descriptionEn: "What GTT is today: a methodology for governed AI-assisted software development, its reference implementation (GTT Bootstrap) and its operational tool (GTT CLI).",
-    descriptionEs: "Qué es GTT hoy: una metodología para el desarrollo de software asistido por IA gobernado, su implementación de referencia (GTT Bootstrap) y su herramienta operativa (GTT CLI).",
+    descriptionEn: "GTT-Method is a modern methodology for software development in the age of Artificial Intelligence, focused on governing and protecting design, human intent and code against the intervention of AI agents, LLMs and ADEs, while guiding the design and construction of solutions through proven, well-established engineering methodologies. Its reference implementation is GTT Bootstrap, and its operational tool is GTT CLI.",
+    descriptionEs: "GTT-Method es una metodología moderna para el desarrollo de software en la era de la Inteligencia Artificial, enfocada en gobernar y proteger el diseño, la intención humana y el código frente a la intervención de agentes de IA, LLMs y ADEs, mientras guía el diseño y construcción de soluciones mediante metodologías de ingeniería conocidas y depuradas. Su implementación de referencia es GTT Bootstrap, y su herramienta operativa es GTT CLI.",
     contentEn: `GTT (Governance Through Thinking) is an open-source methodology for governing software development when AI agents participate in it.
 
 Today GTT is three things, in a deliberate order: a methodology, its reference implementation, and the tool that operates it.
