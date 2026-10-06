@@ -58,7 +58,7 @@ export function Header({ activeSlug }: HeaderProps) {
 
   const logoInner = (
     <>
-      <img src={orcaMark} width={74} height={74} className="h-16 w-16 object-contain" alt="Orca GTT Method" />
+      <img src={orcaMark} width={230} height={244} className="h-16 w-16 object-contain" alt="Orca GTT Method" />
       <div>
         <div className="text-[27px] font-extrabold leading-none tracking-tight">
           GTT-<span className="font-light">Method</span>
