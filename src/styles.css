@@ -271,8 +271,10 @@
 .gtt-methodology__tree-item span { text-align: right; }
 .gtt-methodology__tree-item--methodology { margin-bottom: .2rem; border: 1px solid #cfcfcf; border-radius: 4px; background: #eee; color: #111; font-weight: 650; }
 .gtt-methodology__tree-item--methodology code { font-weight: 750; }
+.gtt-methodology__tree-item--nested { padding-left: 1rem; }
 .gtt-methodology__domain-list { margin-top: .8rem; }
 .gtt-methodology__file-guide { margin: .9rem 0 -.2rem; color: #666; font-size: .61rem; font-weight: 650; letter-spacing: .04em; }
+.gtt-methodology__repo-note { margin: .85rem 0 0; padding: .75rem; border: 1px solid #e1e1e1; background: #f7f7f7; color: #444; font-size: .66rem; line-height: 1.5; }
 .gtt-methodology__domain { display: grid; grid-template-columns: 1.5rem 1.1rem minmax(0, 1fr); gap: .55rem; align-items: start; padding: .7rem .15rem; border-bottom: 1px solid #e8e8e8; }
 .gtt-methodology__domain:last-child { border-bottom: 0; }
 .gtt-methodology__domain-index { padding-top: .08rem; color: #777; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: .65rem; }
