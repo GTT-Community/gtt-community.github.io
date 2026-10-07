@@ -7,11 +7,19 @@ import {
   BrainCircuit,
   Bug,
   Code2,
+  Compass,
+  FolderTree,
+  History,
+  Layers3,
   Leaf,
   Rocket,
+  Settings2,
   Shield,
+  ShieldCheck,
   Terminal,
+  TrendingUp,
   Users,
+  Workflow,
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Footer } from "@/components/Footer";
@@ -96,6 +104,95 @@ const heroContent = {
 const methodSectionContent = {
   en: { heading: "The GTT Method", subtitle: "A practical flow for AI-assisted software development.", explore: "Explore the method" },
   es: { heading: "El Método GTT", subtitle: "Un flujo práctico para el desarrollo de software asistido por IA.", explore: "Explorar el método" },
+};
+
+const methodologyContent = {
+  en: {
+    eyebrow: "GTT-Method · Engine and governed domain",
+    title: <>GTT-Method governs a project<br />through <code>gtt-domain/</code></>,
+    intro: "GTT-Method is the engine: it defines how governance works. gtt-domain/ is the project space it governs: what is being governed.",
+    engineLabel: "GTT-Method · Engine",
+    engineText: "How GTT works: method, governance and change process.",
+    domainLabel: "gtt-domain/ · Governed project",
+    domainText: "What GTT governs: this project's context, intent, decisions and state.",
+    workspace: "Project workspace",
+    workspaceText: "When GTT is applied, its project setup establishes gtt-domain/ as the home of the project's methodological context.",
+    here: "GTT methodology lives here",
+    source: "Source code", tests: "Tests", docs: "Documentation", scripts: "Scripts & tools", actions: "CI/CD", more: "and more…",
+    contents: "Inside gtt-domain/",
+    contentsText: "An adaptable set of project artifacts: each file gives people and agents a clear, reusable piece of context.",
+    fileGuide: "Example artifacts · adapted to each project's needs",
+    domains: [
+      { icon: Compass, name: "Foundation", dir: "01-foundation/", files: [["mission.md", "Project purpose and reason for existing."], ["goals.md", "Outcomes the project aims to achieve."], ["scope.md", "What is included and what is out of scope."], ["context.md", "Domain, users and conditions around the project."]], text: "Why the project exists and what it aims to achieve." },
+      { icon: Layers3, name: "Architecture", dir: "02-architecture/", files: [["architecture.md", "System structure and its key components."], ["decisions.md", "Important choices and the reasons behind them."], ["diagrams/", "Visual views of structure and relationships."]], text: "How the system is designed and why." },
+      { icon: Settings2, name: "Standards", dir: "03-standards/", files: [["coding-standards.md", "Conventions for readable, consistent code."], ["tech-stack.md", "Selected technologies and their intended use."], ["naming.md", "Shared names for files, concepts and components."]], text: "Conventions that keep the work consistent." },
+      { icon: ShieldCheck, name: "Rules", dir: "04-rules/", files: [["agent-rules.md", "How AI agents should work in this project."], ["file-protection.md", "Files or areas that need special care."], ["change-policy.md", "Constraints and expectations for making changes."]], text: "Boundaries and guidance for people and agents." },
+      { icon: Workflow, name: "Workflow", dir: "05-workflow/", files: [["development-flow.md", "Steps from an idea to a delivered change."], ["review-process.md", "How work is checked and approved."], ["release-process.md", "How validated changes are delivered."]], text: "How changes are developed, reviewed and released." },
+      { icon: TrendingUp, name: "Evolution", dir: "06-evolution/", files: [["changelog.md", "A record of meaningful project changes."], ["lessons-learned.md", "Knowledge gained from project work."], ["future-ideas.md", "Potential directions and opportunities."]], text: "How the project learns and evolves over time." },
+    ],
+    meaningEyebrow: "The governed domain",
+    meaningTitle: "the project itself",
+    meaning: "gtt-domain/ is the project space governed by GTT-Method. It preserves the governed context, intent, decisions, pending proposals, change rules, development line, methodological state and governance traceability.",
+    callout: "GTT-Method is the engine. gtt-domain/ is the project it governs.",
+    why: "Why multiple files?",
+    whyText: "Because a methodology needs an explicit, structured and reusable place for context that might otherwise be scattered across conversations, memory and separate documents.",
+    reasons: [
+      { icon: Compass, title: "Capture decisions", text: "Architecture, design and direction." },
+      { icon: ShieldCheck, title: "Preserve intent", text: "Keep context from being lost as work changes." },
+      { icon: Users, title: "Align people and agents", text: "A shared context guides everyone’s work." },
+      { icon: History, title: "Keep traceability", text: "Record changes, learning and evolution." },
+    ],
+    shared: "People and agents work from the same methodological context.",
+    artifacts: "The domain's files make project context explicit, reviewable and reusable by people and agents.",
+    lifecycleTitle: "GTT guides the project through its lifecycle",
+    lifecycleText: "From initial intent to continuous evolution.",
+    lifecycle: [
+      ["Intent", "Vision and goals"], ["Design", "Architecture, decisions and rules"], ["Decision", "Human judgment when it matters"], ["Build", "Work aligned with context"], ["Evolution", "Learning and continuous improvement"],
+    ],
+  },
+  es: {
+    eyebrow: "GTT-Method · Motor y dominio gobernado",
+    title: <>GTT-Method gobierna un proyecto<br />a través de <code>gtt-domain/</code></>,
+    intro: "GTT-Method es el motor: define cómo funciona la gobernanza. gtt-domain/ es el espacio del proyecto que gobierna: qué está siendo gobernado.",
+    engineLabel: "GTT-Method · Motor",
+    engineText: "Cómo funciona GTT: método, gobernanza y proceso de cambio.",
+    domainLabel: "gtt-domain/ · Proyecto gobernado",
+    domainText: "Qué gobierna GTT: el contexto, la intención, las decisiones y el estado de este proyecto.",
+    workspace: "Workspace del proyecto",
+    workspaceText: "Al aplicar GTT, la configuración del proyecto establece gtt-domain/ como el lugar de su contexto metodológico.",
+    here: "Aquí vive la metodología GTT",
+    source: "Código fuente", tests: "Pruebas", docs: "Documentación", scripts: "Scripts y herramientas", actions: "CI/CD", more: "y más…",
+    contents: "Dentro de gtt-domain/",
+    contentsText: "Un conjunto adaptable de artefactos del proyecto: cada archivo aporta contexto claro y reutilizable a personas y agentes.",
+    fileGuide: "Artefactos de ejemplo · se adaptan a las necesidades del proyecto",
+    domains: [
+      { icon: Compass, name: "Foundation · Fundamentos", dir: "01-foundation/", files: [["mission.md", "Propósito y razón de ser del proyecto."], ["goals.md", "Resultados que el proyecto busca lograr."], ["scope.md", "Qué incluye el proyecto y qué queda fuera."], ["context.md", "Dominio, usuarios y condiciones del proyecto."]], text: "Por qué existe el proyecto y qué busca lograr." },
+      { icon: Layers3, name: "Architecture · Arquitectura", dir: "02-architecture/", files: [["architecture.md", "Estructura del sistema y sus componentes."], ["decisions.md", "Decisiones relevantes y sus fundamentos."], ["diagrams/", "Vistas visuales de estructuras y relaciones."]], text: "Cómo está diseñado el sistema y por qué." },
+      { icon: Settings2, name: "Standards · Estándares", dir: "03-standards/", files: [["coding-standards.md", "Convenciones para un código claro y consistente."], ["tech-stack.md", "Tecnologías elegidas y cómo se usan."], ["naming.md", "Nombres compartidos para archivos y conceptos."]], text: "Convenciones que mantienen la consistencia." },
+      { icon: ShieldCheck, name: "Rules · Reglas", dir: "04-rules/", files: [["agent-rules.md", "Cómo deben trabajar los agentes de IA."], ["file-protection.md", "Archivos y áreas que requieren cuidado especial."], ["change-policy.md", "Límites y expectativas para hacer cambios."]], text: "Límites y orientación para personas y agentes." },
+      { icon: Workflow, name: "Workflow · Flujo de trabajo", dir: "05-workflow/", files: [["development-flow.md", "Pasos desde una idea hasta un cambio entregado."], ["review-process.md", "Cómo se revisa y valida el trabajo."], ["release-process.md", "Cómo se publican cambios ya validados."]], text: "Cómo se desarrolla, revisa y entrega el trabajo." },
+      { icon: TrendingUp, name: "Evolution · Evolución", dir: "06-evolution/", files: [["changelog.md", "Registro de cambios relevantes del proyecto."], ["lessons-learned.md", "Conocimiento obtenido durante el trabajo."], ["future-ideas.md", "Posibles direcciones y oportunidades futuras."]], text: "Cómo aprende y evoluciona el proyecto." },
+    ],
+    meaningEyebrow: "El dominio gobernado",
+    meaningTitle: "el proyecto mismo",
+    meaning: "gtt-domain/ es el espacio del proyecto gobernado por GTT-Method. Preserva el contexto gobernado, la intención, las decisiones, las propuestas pendientes, las reglas de cambio, la línea de desarrollo, el estado metodológico y la trazabilidad de la gobernanza.",
+    callout: "GTT-Method es el motor. gtt-domain/ es el proyecto que gobierna.",
+    why: "¿Por qué tantos archivos?",
+    whyText: "Porque una metodología necesita un lugar explícito, estructurado y reutilizable para el contexto que, de otro modo, quedaría disperso en conversaciones, memoria y documentos aislados.",
+    reasons: [
+      { icon: Compass, title: "Capturan decisiones", text: "De arquitectura, diseño y dirección." },
+      { icon: ShieldCheck, title: "Protegen la intención", text: "Evitan perder contexto a medida que cambia el trabajo." },
+      { icon: Users, title: "Alinean personas y agentes", text: "Un contexto compartido orienta el trabajo de todos." },
+      { icon: History, title: "Mantienen trazabilidad", text: "Registran cambios, aprendizaje y evolución." },
+    ],
+    shared: "Personas y agentes trabajan desde el mismo contexto metodológico.",
+    artifacts: "Los archivos del dominio hacen explícito el contexto del proyecto para que personas y agentes puedan consultarlo, revisarlo y reutilizarlo.",
+    lifecycleTitle: "GTT guía el ciclo de vida del proyecto",
+    lifecycleText: "Desde la intención inicial hasta la evolución continua.",
+    lifecycle: [
+      ["Intención", "Visión y objetivos"], ["Diseño", "Arquitectura, decisiones y reglas"], ["Decisión", "Juicio humano cuando importa"], ["Construcción", "Trabajo alineado al contexto"], ["Evolución", "Aprendizaje y mejora continua"],
+    ],
+  },
 };
 
 function ArrowLink({ children }: { children: React.ReactNode }) {
@@ -190,7 +287,88 @@ function Index() {
         </div>
       </section>
 
+      <MethodologySection language={language} />
+
       <Footer />
     </main>
+  );
+}
+
+function MethodologySection({ language }: { language: "en" | "es" }) {
+  const content = methodologyContent[language];
+
+  return (
+    <section className="gtt-methodology" aria-labelledby="gtt-methodology-title">
+      <header className="gtt-methodology__intro">
+        <p className="gtt-methodology__eyebrow">{content.eyebrow}</p>
+        <h2 id="gtt-methodology-title" className="gtt-methodology__title">{content.title}</h2>
+        <p className="gtt-methodology__lead">{content.intro}</p>
+      </header>
+
+      <div className="gtt-methodology__model" aria-label={language === "es" ? "GTT-Method gobierna gtt-domain" : "GTT-Method governs gtt-domain"}>
+        <div><span>01 · ENGINE</span><strong>{content.engineLabel}</strong><p>{content.engineText}</p></div>
+        <span className="gtt-methodology__model-arrow" aria-hidden="true">→</span>
+        <div><span>02 · DOMAIN</span><strong>{content.domainLabel}</strong><p>{content.domainText}</p></div>
+      </div>
+
+      <div className="gtt-methodology__grid">
+        <article className="gtt-methodology__panel gtt-methodology__workspace">
+          <div className="gtt-methodology__panel-head">
+            <FolderTree size={19} aria-hidden="true" />
+            <div><h3>{content.workspace}</h3><p>{content.workspaceText}</p></div>
+          </div>
+          <div className="gtt-methodology__tree" aria-label={language === "es" ? "Ejemplo de estructura del workspace" : "Example workspace structure"}>
+            <div className="gtt-methodology__tree-root">my-project/</div>
+            <div className="gtt-methodology__tree-item gtt-methodology__tree-item--methodology"><code>├── gtt-domain/</code><span>← {content.here}</span></div>
+            <div className="gtt-methodology__tree-item"><code>├── src/</code><span>{content.source}</span></div>
+            <div className="gtt-methodology__tree-item"><code>├── tests/</code><span>{content.tests}</span></div>
+            <div className="gtt-methodology__tree-item"><code>├── docs/</code><span>{content.docs}</span></div>
+            <div className="gtt-methodology__tree-item"><code>├── scripts/</code><span>{content.scripts}</span></div>
+            <div className="gtt-methodology__tree-item"><code>├── .github/</code><span>{content.actions}</span></div>
+            <div className="gtt-methodology__tree-item"><code>└── …</code><span>{content.more}</span></div>
+          </div>
+        </article>
+
+        <article className="gtt-methodology__panel gtt-methodology__domains">
+          <div className="gtt-methodology__panel-head">
+            <Layers3 size={19} aria-hidden="true" />
+            <div><h3>{content.contents}</h3><p>{content.contentsText}</p></div>
+          </div>
+          <p className="gtt-methodology__file-guide">{content.fileGuide}</p>
+          <div className="gtt-methodology__domain-list">
+            {content.domains.map(({ icon: Icon, name, dir, files, text }, index) => (
+              <div className="gtt-methodology__domain" key={dir}>
+                <span className="gtt-methodology__domain-index">0{index + 1}</span>
+                <Icon size={17} strokeWidth={1.7} aria-hidden="true" />
+                <div className="gtt-methodology__domain-copy">
+                  <h4>{name}</h4><p>{text}</p>
+                  <ul>{files.map(([file, description]) => <li key={file}><code>{dir}{file}</code><span>{description}</span></li>)}</ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="gtt-methodology__panel gtt-methodology__meaning">
+          <p className="gtt-methodology__eyebrow">{content.meaningEyebrow}</p>
+          <h3>{content.meaningTitle}</h3>
+          <p className="gtt-methodology__meaning-text">{content.meaning}</p>
+          <p className="gtt-methodology__callout">{content.callout}</p>
+          <h4 className="gtt-methodology__why-title">{content.why}</h4>
+          <p className="gtt-methodology__why-text">{content.whyText}</p>
+          <ul className="gtt-methodology__reasons">
+            {content.reasons.map(({ icon: Icon, title, text }) => <li key={title}><Icon size={17} strokeWidth={1.8} aria-hidden="true" /><span><strong>{title}</strong><small>{text}</small></span></li>)}
+          </ul>
+          <p className="gtt-methodology__shared"><Users size={16} aria-hidden="true" />{content.shared}</p>
+        </article>
+      </div>
+
+      <p className="gtt-methodology__artifacts">{content.artifacts}</p>
+
+      <div className="gtt-methodology__lifecycle">
+        <div className="gtt-methodology__lifecycle-heading"><h3>{content.lifecycleTitle}</h3><p>{content.lifecycleText}</p></div>
+        <ol>{content.lifecycle.map(([title, text], index) => <li key={title}><span>0{index + 1}</span><strong>{title}</strong><small>{text}</small></li>)}</ol>
+      </div>
+    </section>
   );
 }
