@@ -386,9 +386,9 @@ GTT no intenta hacer más inteligentes a los agentes, ni los hace menos capaces.
   {
     slug: "approach",
     titleEn: "The Approach",
-    titleEs: "GTT-Method: una metodología. Un dominio. Un proyecto gobernado.",
+    titleEs: "El Enfoque",
     descriptionEn: "How GTT-Method establishes reliable development environments through explicit context governance.",
-    descriptionEs: "GTT-Method crea el directorio gtt-domain/, en tu workspace, donde tu proyecto conserva su intención, diseño, decisiones y reglas de gobernanza.",
+    descriptionEs: "Cómo GTT-Method establece entornos de desarrollo confiables a través de gobernanza explícita del contexto.",
     contentEn: `## Core Concept: Governed Context
 
 GTT-Method addresses the problem by establishing governed context around AI-assisted software development.
@@ -443,21 +443,7 @@ Put each concern in the plane that can enforce it.
 An instruction saying "AI must not modify architecture files" is useful, but remains an instruction. A filesystem permission, hook or CI gate provides actual enforcement.
 
 GTT-Method combines instructional governance with deterministic controls wherever possible.`,
-    contentEs: `Metodología abierta para gobernar proyectos en tu workspace
-
-### 01 · ENGINE
-
-**.gtt/ · Motor GTT**
-
-Scripts y herramientas que implementan GTT y operan sobre el dominio gobernado.
-
-### 02 · DOMAIN
-
-**gtt-domain/ · Proyecto gobernado**
-
-Qué gobierna GTT: el contexto, la intención, las decisiones y el estado del proyecto.
-
-## Concepto Central: Contexto Gobernado
+    contentEs: `## Concepto Central: Contexto Gobernado
 
 GTT-Method aborda el problema estableciendo contexto gobernado alrededor del desarrollo de software asistido por IA.
 
