@@ -599,7 +599,38 @@ GTT-Method: Entire development process across multiple sessions.
 ### Relationship
 
 GTT-Method is not "better prompt engineering". It's a different approach addressing structural governance vs. instruction phrasing.`,
-    contentEs: `Metodología abierta para gobernar proyectos en tu workspace
+    contentEs: `### 01 · ENGINE
+
+.gtt/ · Motor GTT
+
+Scripts y herramientas que implementan GTT y operan sobre el dominio gobernado.
+
+→
+
+### 02 · DOMAIN
+
+gtt-domain/ · Proyecto gobernado
+
+Qué gobierna GTT: el contexto, la intención, las decisiones y el estado de este proyecto.
+
+## Workspace del proyecto
+
+GTT crea esta estructura durante la instalación. El equipo y sus agentes usan gtt-domain/ para trabajar con la información gobernada del proyecto.
+
+```text
+my-project/
+├── .gtt/
+│   Motor GTT: scripts y herramientas
+├── gtt-domain/
+│   ← Información del proyecto gobernado
+│   ├── context/
+│   ├── adr/
+│   ├── backlog.md
+│   └── proposals/
+└── src/
+```
+
+Metodología abierta para gobernar proyectos en tu workspace
 
 ### 01 · ENGINE
 
