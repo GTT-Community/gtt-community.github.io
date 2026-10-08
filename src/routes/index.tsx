@@ -149,9 +149,9 @@ const methodologyContent = {
     ],
   },
   es: {
-    eyebrow: "GTT-Method · Motor y dominio gobernado",
-    title: <>GTT-Method gobierna un proyecto<br />a través de <code>gtt-domain/</code></>,
-    intro: "GTT-Method es el motor: define cómo funciona la gobernanza. gtt-domain/ es el espacio del proyecto que gobierna: qué está siendo gobernado.",
+    eyebrow: "Metodología abierta para gobernar proyectos en tu workspace",
+    title: <>GTT-Method: una metodología.<br />Un dominio. Un proyecto gobernado.</>,
+    intro: "GTT-Method crea el directorio gtt-domain/, en tu workspace, donde tu proyecto conserva su intención, diseño, decisiones y reglas de gobernanza.",
     engineLabel: ".gtt/ · Motor GTT",
     engineText: "Scripts y herramientas que implementan GTT y operan sobre el dominio gobernado.",
     domainLabel: "gtt-domain/ · Proyecto gobernado",
