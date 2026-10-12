@@ -27,7 +27,7 @@ export function Header({ activeSlug }: HeaderProps) {
   const navItems: NavItem[] = [
     // The methodology, GTT CLI, the prompts page and the glossary are reached from the home page, the FAQ
     // and the footer; keeping them out of the header avoids overflowing the desktop nav.
-    ...pages.filter((p) => p.slug !== "cli" && p.slug !== "prompts" && p.slug !== "glossary" && p.slug !== "methodology").map((p) =>
+    ...pages.filter((p) => p.slug !== "cli" && p.slug !== "bootstrap" && p.slug !== "prompts" && p.slug !== "glossary" && p.slug !== "methodology").map((p) =>
       p.slug === "gtt-method-2-1"
         ? { label: "GTT-Method Canonical", href: GTT_METHOD_CANONICAL_URL }
         : { label: language === "en" ? p.titleEn : p.titleEs, slug: p.slug },

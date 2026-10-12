@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { pages, searchContent } from "@/lib/gttContent";
+import { SITE_URL } from "@/lib/links";
 import { pageJsonLd, pageTitle, pageUrl } from "@/lib/seo";
 import { useState } from "react";
 import { ArrowLeft, Check, Copy, Terminal } from "lucide-react";
@@ -17,7 +18,13 @@ function linkify(text: string) {
   // at odd indices — no need for a second, stateful regex test.
   return parts.map((part, i) =>
     i % 2 === 1 ? (
-      <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 hover:text-primary">
+      // Links to this site stay in the same tab; everything else opens a new one.
+      <a
+        key={i}
+        href={part}
+        {...(part.startsWith(`${SITE_URL}/`) ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+        className="text-foreground underline underline-offset-2 hover:text-primary"
+      >
         {part}
       </a>
     ) : (

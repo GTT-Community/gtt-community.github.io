@@ -2509,23 +2509,81 @@ La información portable necesaria para reconstruir una instalación GTT y su es
     slug: "cli",
     titleEn: "GTT CLI",
     titleEs: "GTT CLI",
-    descriptionEn: "Install and use the gtt command-line tool on Linux, macOS and Windows.",
-    descriptionEs: "Instala y usa la herramienta de línea de comandos gtt en Linux, macOS y Windows.",
-    contentEn: `GTT CLI is a single binary (gtt) for Linux, macOS and Windows (x86_64 and arm64). Every method installs the same binary from the latest published release at https://github.com/GTT-Community/gtt-cli/releases/latest and verifies its SHA-256 checksum.
+    descriptionEn: "Install the gtt command-line tool on Linux, macOS or Windows and set up your project with gtt init.",
+    descriptionEs: "Instala la herramienta de línea de comandos gtt en Linux, macOS o Windows y prepara tu proyecto con gtt init.",
+    contentEn: `GTT CLI is a single binary (gtt) for Linux, macOS and Windows (x86_64 and arm64). Getting started takes three steps: install the CLI, run gtt init in your project, and finish the Bootstrap with your ADE.
 
-## Install GTT CLI
+## 1. Install GTT CLI
 
-### Linux and macOS (curl)
+Pick your operating system. Each command installs the latest published release and verifies its SHA-256 checksum.
+
+### Linux
+
+Open a terminal and run:
 
 \`\`\`
 curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | sh
 \`\`\`
 
-### Windows (PowerShell)
+### macOS
+
+Open Terminal and run (Intel and Apple Silicon):
+
+\`\`\`
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | sh
+\`\`\`
+
+### Windows
+
+Open PowerShell and run:
 
 \`\`\`
 irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
+
+Then open a new terminal so the updated PATH is picked up.
+
+### Check that it works
+
+\`\`\`
+gtt version
+\`\`\`
+
+## 2. Run gtt init
+
+gtt init needs git, bash and python3, because GTT Bootstrap uses them. On Windows, install Git for Windows (it provides bash) and Python 3.
+
+Go to your project folder, new or existing, and run:
+
+\`\`\`
+cd my-project
+gtt init
+\`\`\`
+
+gtt init finds, downloads and verifies GTT Bootstrap, then asks only for the decisions that are yours:
+
+- Which ADEs participate (Claude Code, GitHub Copilot, Codex, Kiro) and which one is the Primary ADE
+- The language
+- The Method Plan: Light, Medium, Hard or Team
+- Your initial design documents, if you have any. If you have none, it offers the Initial Design Questionnaire
+
+It then installs GTT Bootstrap in the project, validates it and hands off to your Primary ADE. See where the project stands at any time:
+
+\`\`\`
+gtt status
+\`\`\`
+
+## 3. Finish the GTT Bootstrap
+
+Open your Primary ADE. It reads your design documents (or guides you through the questionnaire) and drafts the governed context for your review. Once you confirm it, freeze it:
+
+\`\`\`
+gtt freeze
+\`\`\`
+
+The full step-by-step guide to installing GTT Bootstrap is here: https://gtt-method.org/bootstrap/
+
+## Other ways to install
 
 ### uv (Python)
 
@@ -2545,13 +2603,7 @@ npm install -g gtt-cli
 go install github.com/GTT-Community/gtt-cli/cmd/gtt@latest
 \`\`\`
 
-## Verify the installation
-
-\`\`\`
-gtt version
-\`\`\`
-
-## Try it without installing
+### Try it without installing
 
 \`\`\`
 uvx --from gtt-cli gtt version
@@ -2560,60 +2612,35 @@ npx gtt-cli version
 
 ## Update
 
-### curl / PowerShell
-
-Run the same install command again.
-
-### uv
-
-\`\`\`
-uv tool upgrade gtt-cli
-\`\`\`
-
-### npm
-
-\`\`\`
-npm update -g gtt-cli
-\`\`\`
+- curl / PowerShell: run the same install command again
+- uv: uv tool upgrade gtt-cli
+- npm: npm update -g gtt-cli
 
 ## Install a specific version (example: 1.0.1)
 
-### curl
+### Linux and macOS
 
 \`\`\`
 curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.0.1 sh
 \`\`\`
 
-### PowerShell
+### Windows
 
 \`\`\`
 $env:GTT_VERSION="1.0.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
-### uv
+### uv and npm
 
 \`\`\`
 uv tool install gtt-cli==1.0.1
-\`\`\`
-
-### npm
-
-\`\`\`
 npm install -g gtt-cli@1.0.1
 \`\`\`
 
-## Where it is installed (curl and PowerShell)
+## Where it is installed
 
 - Linux/macOS: /usr/local/bin if it is writable; otherwise ~/.local/bin (change it with GTT_INSTALL_DIR)
-- Windows: %LOCALAPPDATA%\\Programs\\gtt, which is added to the user PATH (open a new terminal)
-
-## Requirements
-
-GTT CLI needs nothing else to run, but GTT Bootstrap (which the CLI downloads and operates) uses:
-
-- git
-- bash and python3
-- On Windows: Git for Windows (provides bash) and Python 3
+- Windows: %LOCALAPPDATA%\\Programs\\gtt, which is added to the user PATH
 
 On Windows the CLI uses Git Bash automatically and never the WSL bash. To use a different bash, set GTT_BASH to the path of bash.exe.
 
@@ -2626,30 +2653,80 @@ Per-platform files are available at https://github.com/GTT-Community/gtt-cli/rel
 - gtt_windows_amd64.zip, gtt_windows_arm64.zip
 - checksums.txt (SHA-256)
 
-## First use
-
-\`\`\`
-cd my-project
-gtt init
-gtt status
-\`\`\`
-
 Source code and documentation: https://github.com/GTT-Community/gtt-cli`,
-    contentEs: `GTT CLI es un único binario (gtt) para Linux, macOS y Windows (x86_64 y arm64). Todos los métodos instalan el mismo binario desde la última versión publicada en https://github.com/GTT-Community/gtt-cli/releases/latest y verifican su checksum SHA-256.
+    contentEs: `GTT CLI es un único binario (gtt) para Linux, macOS y Windows (x86_64 y arm64). Empezar toma tres pasos: instalar el CLI, ejecutar gtt init en tu proyecto y terminar el Bootstrap con tu ADE.
 
-## Instalar GTT CLI
+## 1. Instalar GTT CLI
 
-### Linux y macOS (curl)
+Elige tu sistema operativo. Cada comando instala la última versión publicada y verifica su checksum SHA-256.
+
+### Linux
+
+Abre una terminal y ejecuta:
 
 \`\`\`
 curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | sh
 \`\`\`
 
-### Windows (PowerShell)
+### macOS
+
+Abre Terminal y ejecuta (Intel y Apple Silicon):
+
+\`\`\`
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | sh
+\`\`\`
+
+### Windows
+
+Abre PowerShell y ejecuta:
 
 \`\`\`
 irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
+
+Luego abre una terminal nueva para que tome el PATH actualizado.
+
+### Comprobar que funciona
+
+\`\`\`
+gtt version
+\`\`\`
+
+## 2. Ejecutar gtt init
+
+gtt init necesita git, bash y python3, porque GTT Bootstrap los usa. En Windows, instala Git for Windows (aporta bash) y Python 3.
+
+Entra a la carpeta de tu proyecto, nuevo o existente, y ejecuta:
+
+\`\`\`
+cd mi-proyecto
+gtt init
+\`\`\`
+
+gtt init encuentra, descarga y verifica GTT Bootstrap, y luego te pide solo las decisiones que son tuyas:
+
+- Qué ADEs participan (Claude Code, GitHub Copilot, Codex, Kiro) y cuál es el ADE Primario
+- El idioma
+- El Method Plan: Light, Medium, Hard o Team
+- Tus documentos de diseño iniciales, si los tienes. Si no tienes ninguno, ofrece el Cuestionario de Diseño Inicial
+
+Después instala GTT Bootstrap en el proyecto, lo valida y entrega el control a tu ADE Primario. Revisa el estado del proyecto cuando quieras:
+
+\`\`\`
+gtt status
+\`\`\`
+
+## 3. Terminar el GTT Bootstrap
+
+Abre tu ADE Primario. Lee tus documentos de diseño (o te guía por el cuestionario) y redacta el contexto gobernado para tu revisión. Cuando lo confirmes, congélalo:
+
+\`\`\`
+gtt freeze
+\`\`\`
+
+La guía completa, paso a paso, para instalar GTT Bootstrap está aquí: https://gtt-method.org/bootstrap/
+
+## Otras formas de instalar
 
 ### uv (Python)
 
@@ -2669,13 +2746,7 @@ npm install -g gtt-cli
 go install github.com/GTT-Community/gtt-cli/cmd/gtt@latest
 \`\`\`
 
-## Comprobar la instalación
-
-\`\`\`
-gtt version
-\`\`\`
-
-## Probar sin instalar
+### Probar sin instalar
 
 \`\`\`
 uvx --from gtt-cli gtt version
@@ -2684,60 +2755,35 @@ npx gtt-cli version
 
 ## Actualizar
 
-### curl / PowerShell
-
-Vuelve a ejecutar el mismo comando de instalación.
-
-### uv
-
-\`\`\`
-uv tool upgrade gtt-cli
-\`\`\`
-
-### npm
-
-\`\`\`
-npm update -g gtt-cli
-\`\`\`
+- curl / PowerShell: vuelve a ejecutar el mismo comando de instalación
+- uv: uv tool upgrade gtt-cli
+- npm: npm update -g gtt-cli
 
 ## Instalar una versión específica (ejemplo: 1.0.1)
 
-### curl
+### Linux y macOS
 
 \`\`\`
 curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.0.1 sh
 \`\`\`
 
-### PowerShell
+### Windows
 
 \`\`\`
 $env:GTT_VERSION="1.0.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
-### uv
+### uv y npm
 
 \`\`\`
 uv tool install gtt-cli==1.0.1
-\`\`\`
-
-### npm
-
-\`\`\`
 npm install -g gtt-cli@1.0.1
 \`\`\`
 
-## Dónde se instala (curl y PowerShell)
+## Dónde se instala
 
 - Linux/macOS: /usr/local/bin si se puede escribir; si no, ~/.local/bin (cambiar con GTT_INSTALL_DIR)
-- Windows: %LOCALAPPDATA%\\Programs\\gtt, que se agrega al PATH del usuario (abrir una terminal nueva)
-
-## Requisitos
-
-GTT CLI no necesita nada más para ejecutarse, pero GTT Bootstrap (que el CLI descarga y opera) usa:
-
-- git
-- bash y python3
-- En Windows: Git for Windows (aporta bash) y Python 3
+- Windows: %LOCALAPPDATA%\\Programs\\gtt, que se agrega al PATH del usuario
 
 En Windows el CLI usa Git Bash automáticamente y nunca el bash de WSL. Para usar otro bash, define GTT_BASH con la ruta a bash.exe.
 
@@ -2750,17 +2796,196 @@ Archivos por plataforma disponibles en https://github.com/GTT-Community/gtt-cli/
 - gtt_windows_amd64.zip, gtt_windows_arm64.zip
 - checksums.txt (SHA-256)
 
-## Primer uso
+Código fuente y documentación: https://github.com/GTT-Community/gtt-cli`,
+    searchableEn: "cli gtt command line install curl powershell uv npm go windows macos linux binary gtt init quick start",
+    searchableEs: "cli gtt línea de comandos instalar curl powershell uv npm go windows macos linux binario gtt init inicio rápido",
+  },
+  {
+    slug: "bootstrap",
+    titleEn: "Install GTT Bootstrap",
+    titleEs: "Instalar GTT Bootstrap",
+    descriptionEn: "Step-by-step guide to installing GTT Bootstrap in a project and freezing its governed context.",
+    descriptionEs: "Guía paso a paso para instalar GTT Bootstrap en un proyecto y congelar su contexto gobernado.",
+    contentEn: `GTT Bootstrap is the reference implementation of GTT-Method. Installing it puts the GTT engine, the governed context and the integrations for your ADEs inside your project. This guide uses GTT CLI, which downloads and operates Bootstrap for you.
+
+Repository: https://github.com/GTT-Community/gtt-bootstrap
+
+## Before you start
+
+- GTT CLI installed: https://gtt-method.org/cli/
+- git, bash and python3. On Windows: Git for Windows (it provides bash) and Python 3
+- An ADE: Claude Code, GitHub Copilot, Codex or Kiro
+- A project folder, new or with existing code
+- Recommended: a finished design document in the project root. Any name and any common format works (.md, .txt, Word, PDF). It should describe the idea and goal, vision, requirements, architecture, technology stack, constraints and development rules
+
+No design document yet? Skip it. Bootstrap offers the Initial Design Questionnaire and your ADE guides you through it.
+
+## 1. Run gtt init
+
+\`\`\`
+cd my-project
+gtt init
+\`\`\`
+
+gtt init finds, downloads and verifies GTT Bootstrap. Nothing is installed until you answer its questions.
+
+## 2. Answer the questions
+
+- Participating ADEs: the ADEs it detects are only candidates. GTT installs the integrations you choose and no others
+- Primary ADE: the one that leads the workflow
+- Language
+- Method Plan: Light, Medium, Hard or Team. It decides how much operational work GTT does without asking. It is not a quality level, and no plan turns governance off
+- Initial design documents: the documents the governed context will be built from
+
+The Method Plans are described at https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.md
+
+## 3. Check the installation
+
+\`\`\`
+gtt status
+gtt doctor
+\`\`\`
+
+Your project now contains:
+
+- AGENTS.md: the contract your agents read
+- .gtt/: the GTT engine, its scripts and its documentation
+- gtt-domain/: the governed context, decisions (ADR), proposals and backlog
+- The integration of each participating ADE, for example .claude/ or .kiro/
+
+## 4. Build the governed context with your ADE
+
+Open your Primary ADE in the project. If it does not start on its own, ask it:
+
+\`\`\`
+Bootstrap GTT in this project
+\`\`\`
+
+The ADE then:
+
+- Reads your design document and writes a Design Assessment, area by area
+- Asks you to confirm that the design is complete and not a draft
+- Asks you directly for whatever the document does not answer, instead of inventing it
+- Maps the design into the six governed context files in gtt-domain/context/
+- Shows you a summary and waits for your confirmation before writing them
+- Keeps your original document as SOURCE-BRIEF in the project root
+
+## 5. Review and freeze
+
+Read the governed context and correct anything that is wrong. When it represents your design, freeze it:
+
+\`\`\`
+gtt freeze
+\`\`\`
+
+Freezing is a human act and there is no unfreeze. From that moment the governed context is protected from direct agent writes, and every change goes through a proposal that you approve.
+
+## Day to day
+
+\`\`\`
+gtt sync
+gtt resume
+\`\`\`
+
+- gtt sync keeps agent context, document tracking, the index and validation up to date in one run
+- gtt resume gives the session context derived from the real state of the project
+- gtt update updates GTT Bootstrap and preserves your project state and your local changes
+
+## Other ways to install
+
+- With a prompt to your AI agent, without the CLI: https://gtt-method.org/prompts/
+- Manually, copying the files yourself: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/installation.md`,
+    contentEs: `GTT Bootstrap es la implementación de referencia de GTT-Method. Instalarlo deja dentro de tu proyecto el motor de GTT, el contexto gobernado y las integraciones para tus ADEs. Esta guía usa GTT CLI, que descarga y opera Bootstrap por ti.
+
+Repositorio: https://github.com/GTT-Community/gtt-bootstrap
+
+## Antes de empezar
+
+- GTT CLI instalado: https://gtt-method.org/cli/
+- git, bash y python3. En Windows: Git for Windows (aporta bash) y Python 3
+- Un ADE: Claude Code, GitHub Copilot, Codex o Kiro
+- Una carpeta de proyecto, nueva o con código existente
+- Recomendado: un documento de diseño terminado en la raíz del proyecto. Sirve cualquier nombre y cualquier formato común (.md, .txt, Word, PDF). Debería describir la idea y el objetivo, la visión, los requisitos, la arquitectura, el stack tecnológico, las restricciones y las reglas de desarrollo
+
+¿Todavía no tienes un documento de diseño? Sáltalo. Bootstrap ofrece el Cuestionario de Diseño Inicial y tu ADE te guía para completarlo.
+
+## 1. Ejecutar gtt init
 
 \`\`\`
 cd mi-proyecto
 gtt init
-gtt status
 \`\`\`
 
-Código fuente y documentación: https://github.com/GTT-Community/gtt-cli`,
-    searchableEn: "cli gtt command line install curl powershell uv npm go windows macos linux binary",
-    searchableEs: "cli gtt línea de comandos instalar curl powershell uv npm go windows macos linux binario",
+gtt init encuentra, descarga y verifica GTT Bootstrap. No se instala nada hasta que respondas sus preguntas.
+
+## 2. Responder las preguntas
+
+- ADEs participantes: los ADEs que detecta son solo candidatos. GTT instala las integraciones que tú eliges y ninguna otra
+- ADE Primario: el que conduce el flujo de trabajo
+- Idioma
+- Method Plan: Light, Medium, Hard o Team. Define cuánto trabajo operativo hace GTT sin preguntar. No es un nivel de calidad, y ningún plan desactiva la gobernanza
+- Documentos de diseño iniciales: los documentos desde los que se construirá el contexto gobernado
+
+Los Method Plans están descritos en https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.es.md
+
+## 3. Comprobar la instalación
+
+\`\`\`
+gtt status
+gtt doctor
+\`\`\`
+
+Tu proyecto ahora contiene:
+
+- AGENTS.md: el contrato que leen tus agentes
+- .gtt/: el motor de GTT, sus scripts y su documentación
+- gtt-domain/: el contexto gobernado, las decisiones (ADR), las propuestas y el backlog
+- La integración de cada ADE participante, por ejemplo .claude/ o .kiro/
+
+## 4. Construir el contexto gobernado con tu ADE
+
+Abre tu ADE Primario en el proyecto. Si no empieza por sí solo, pídele:
+
+\`\`\`
+Haz el bootstrap de GTT en este proyecto
+\`\`\`
+
+Entonces el ADE:
+
+- Lee tu documento de diseño y escribe una Evaluación del Diseño, área por área
+- Te pide confirmar que el diseño está completo y no es un borrador
+- Te pregunta directamente lo que el documento no responde, en lugar de inventarlo
+- Mapea el diseño a los seis archivos de contexto gobernado en gtt-domain/context/
+- Te muestra un resumen y espera tu confirmación antes de escribirlos
+- Conserva tu documento original como SOURCE-BRIEF en la raíz del proyecto
+
+## 5. Revisar y congelar
+
+Lee el contexto gobernado y corrige lo que esté mal. Cuando represente tu diseño, congélalo:
+
+\`\`\`
+gtt freeze
+\`\`\`
+
+Congelar es un acto humano y no existe un unfreeze. Desde ese momento el contexto gobernado queda protegido contra escrituras directas de los agentes, y todo cambio pasa por una propuesta que tú apruebas.
+
+## Día a día
+
+\`\`\`
+gtt sync
+gtt resume
+\`\`\`
+
+- gtt sync mantiene al día el contexto de los agentes, el seguimiento de documentos, el índice y la validación en una sola ejecución
+- gtt resume entrega el contexto de sesión derivado del estado real del proyecto
+- gtt update actualiza GTT Bootstrap y conserva el estado de tu proyecto y tus cambios locales
+
+## Otras formas de instalar
+
+- Con un prompt a tu agente de IA, sin el CLI: https://gtt-method.org/prompts/
+- Manualmente, copiando tú mismo los archivos: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/installation.es.md`,
+    searchableEn: "bootstrap install gtt init guide governed context freeze method plan primary ade design document questionnaire",
+    searchableEs: "bootstrap instalar gtt init guía contexto gobernado freeze congelar method plan ade primario documento de diseño cuestionario",
   },
   {
     slug: "prompts",
