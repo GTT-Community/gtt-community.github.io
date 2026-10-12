@@ -10,6 +10,10 @@ export interface ContentPage {
   searchableEs: string;
 }
 
+// A paragraph holding only this marker is where the page renders its full-width
+// methodology section; the content before and after it flows around that section.
+export const METHODOLOGY_SECTION_MARKER = "{{methodology-section}}";
+
 export const pages: ContentPage[] = [
   {
     slug: "about",
@@ -506,7 +510,32 @@ GTT-Method combina gobernanza instructiva con controles deterministas siempre qu
     titleEs: "GTT-Method & el Ecosistema",
     descriptionEn: "GTT-Method is complementary to SDD, Context Engineering & AI Development.",
     descriptionEs: "GTT-Method es complementario a SDD, Context Engineering & AI Development.",
-    contentEn: `## GTT-Method Position
+    contentEn: `## From gtt init to governed context
+
+After you install GTT CLI and run gtt init, a guided process of questionnaire and questions begins. Your answers set up the project and define how the methodology will operate in it. Nothing is guessed: every decision is yours, and the process ends when you ratify the context with the freeze.
+
+| Step | Stage | What happens | Who |
+|---|---|---|---|
+| 0 | Install the CLI | Once per machine | User |
+| 1 | gtt init | Places the Bootstrap in the project: portable core, the .gtt/ engine and the gtt-domain/ skeleton | CLI |
+| 2 | Choose the ADEs | Detects the candidate ADEs and asks which ones participate and which one is Primary. It never guesses. Installs only those overlays | CLI or ADE (to be decided) |
+| 3 | Method Plan | Light, Medium, Hard or Team: how much operational work the user delegates to GTT. It is an operating profile, not a quality level | CLI or ADE (to be decided) |
+| 4 | Design sources | Looks for the design document. If there is none, it offers the Initial Design Questionnaire. If there are several, the user chooses to consolidate them or keep them as sources with declared precedence. Sources are recorded as immutable | ADE |
+| 5 | THINK Depth | QUICK, STANDARD or DEEP: how deeply the design is assessed | ADE asks, user chooses |
+| 6 | Design Assessment | Assesses each area (SOLID, THIN or MISSING), checks the minimum floor (stack and datastore decided) and gives a verdict: STRONG, ADEQUATE or POOR. If it is POOR, strengthening the design is mandatory | ADE |
+| 7 | Confirmation A | The user confirms that the design is complete and not a draft | User |
+| 8 | Mapping to context | Maps the design into the six context files and asks for whatever is missing | ADE |
+| 9 | Confirmation B | The user confirms that the six files represent the design | User |
+| 10 | Writing | Writes gtt-domain/context/ and preserves the SOURCE-BRIEF.* | ADE |
+| 11 | Freeze | The user ratifies with gtt-freeze.sh, which records the baseline and activates the governed regime | User |
+
+Install GTT CLI: https://gtt-method.org/cli/
+
+Step-by-step Bootstrap guide: https://gtt-method.org/bootstrap/
+
+${METHODOLOGY_SECTION_MARKER}
+
+## GTT-Method Position
 
 GTT-Method operates at the intersection of multiple disciplines, providing governance for AI-assisted development.
 
@@ -599,7 +628,32 @@ GTT-Method: Entire development process across multiple sessions.
 ### Relationship
 
 GTT-Method is not "better prompt engineering". It's a different approach addressing structural governance vs. instruction phrasing.`,
-    contentEs: `## Posición de GTT-Method
+    contentEs: `## De gtt init al contexto gobernado
+
+Después de instalar GTT CLI y ejecutar gtt init comienza un proceso guiado de cuestionario y preguntas. Con tus respuestas se configura el proyecto y se define cómo operará la metodología en él. Nada se adivina: cada decisión es tuya, y el proceso termina cuando ratificas el contexto con el freeze.
+
+| Paso | Etapa | Qué ocurre | Quién |
+|---|---|---|---|
+| 0 | Instalar el CLI | Una vez por máquina | Usuario |
+| 1 | gtt init | Coloca el Bootstrap en el proyecto: núcleo portable, motor .gtt/ y el esqueleto de gtt-domain/ | CLI |
+| 2 | Elegir los ADE | Detecta los ADE candidatos y pregunta cuáles participan y cuál es el Primary. Nunca lo adivina. Instala solo esos overlays | CLI o ADE (a decidir) |
+| 3 | Method Plan | Light, Medium, Hard o Team: cuánto trabajo operativo delega el usuario en GTT. Es un perfil de operación, no un nivel de calidad | CLI o ADE (a decidir) |
+| 4 | Fuentes de diseño | Busca el documento de diseño. Si no hay, ofrece el Initial Design Questionnaire. Si hay varios, el usuario elige consolidarlos o mantenerlos como fuentes con precedencia declarada. Las fuentes se registran como inmutables | ADE |
+| 5 | THINK Depth | QUICK, STANDARD o DEEP: qué tan profundo se evalúa el diseño | ADE pregunta, usuario elige |
+| 6 | Design Assessment | Evalúa cada área (SOLID, THIN o MISSING), revisa el piso mínimo (stack y datastore decididos) y da un veredicto STRONG, ADEQUATE o POOR. Si es POOR, fortalecer el diseño es obligatorio | ADE |
+| 7 | Confirmación A | El usuario confirma que el diseño está completo y no es un borrador | Usuario |
+| 8 | Mapeo al contexto | Lleva el diseño a los seis archivos de contexto y pregunta lo que falta | ADE |
+| 9 | Confirmación B | El usuario confirma que los seis archivos representan el diseño | Usuario |
+| 10 | Escritura | Escribe gtt-domain/context/ y preserva el SOURCE-BRIEF.* | ADE |
+| 11 | Freeze | El usuario ratifica con gtt-freeze.sh, que registra la línea base y activa el régimen gobernado | Usuario |
+
+Instalar GTT CLI: https://gtt-method.org/cli/
+
+Guía paso a paso del Bootstrap: https://gtt-method.org/bootstrap/
+
+${METHODOLOGY_SECTION_MARKER}
+
+## Posición de GTT-Method
 
 GTT-Method opera en la intersección de múltiples disciplinas, proporcionando gobernanza para desarrollo asistido por IA.
 

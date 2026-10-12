@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { pages, searchContent } from "@/lib/gttContent";
+import { METHODOLOGY_SECTION_MARKER, pages, searchContent } from "@/lib/gttContent";
 import { SITE_URL } from "@/lib/links";
 import { pageJsonLd, pageTitle, pageUrl } from "@/lib/seo";
 import { useState } from "react";
@@ -150,13 +150,122 @@ function ContentPage() {
     .filter((paragraph) => /^##\s/.test(paragraph.trim()))
     .map((paragraph) => paragraph.trim().replace(/^#+\s*/, ""));
 
+  // Pages with a methodology marker render that full-width section between the two halves of their content.
+  const [lead = "", rest] = content.split(`\n\n${METHODOLOGY_SECTION_MARKER}\n\n`);
+
+  const renderBody = (text: string) => (
+    <article className="prose dark:prose-invert max-w-none">
+      <div className="space-y-6 text-base leading-relaxed">
+        {text.split("\n\n").map((paragraph, index) => {
+          if (paragraph.trim().startsWith("##")) {
+            const heading = paragraph.trim().replace(/^#+\s*/, "");
+            const level = paragraph.match(/^#+/)?.[0].length || 2;
+            const HeadingTag = level === 2 ? "h2" : level === 3 ? "h3" : "h4";
+
+            return (
+              <HeadingTag key={index} id={level === 2 ? headingId(heading) : undefined} className={level === 2 ? "scroll-mt-6 text-2xl font-bold mt-8 mb-4" : level === 3 ? "text-xl font-semibold mt-6 mb-3" : "text-lg font-semibold mt-4 mb-2"}>
+                {heading}
+              </HeadingTag>
+            );
+          }
+
+          if (paragraph.trim().startsWith("-") || paragraph.trim().match(/^\d+\./)) {
+            return (
+              <ul key={index} className="list-disc list-inside space-y-2 ml-2">
+                {paragraph.split("\n").map((line, i) => (
+                  <li key={i} className="text-muted-foreground">
+                    {linkify(line.replace(/^[-•*]\s*|\d+\.\s*/, ""))}
+                  </li>
+                ))}
+              </ul>
+            );
+          }
+
+          if (paragraph.trim().startsWith("|")) {
+            return (
+              <div key={index} className="overflow-x-auto my-4">
+                <table className="w-full text-sm border-collapse border border-border">
+                  <tbody>
+                    {paragraph.split("\n").map((line, i) => {
+                      if (line.trim().startsWith("|") && !line.includes("---")) {
+                        const cells = line.split("|").filter((cell) => cell.trim());
+                        return (
+                          <tr key={i} className="border-b border-border">
+                            {cells.map((cell, j) => (
+                              <td key={j} className={`px-3 py-2 text-xs ${i === 0 ? "font-semibold bg-muted" : ""}`}>
+                                {cell.trim()}
+                              </td>
+                            ))}
+                          </tr>
+                        );
+                      }
+                      return null;
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            );
+          }
+
+          if (paragraph.trim().startsWith("```")) {
+            const code = paragraph.replace(/```[\w-]*\n?|\n?```/g, "").trim();
+            return <CodeBlock key={index} code={code} language={language} />;
+          }
+
+          if (paragraph.trim().startsWith(">")) {
+            return (
+              <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4">
+                {linkify(paragraph.replace(/^>\s*/, ""))}
+              </blockquote>
+            );
+          }
+
+          return (
+            <p key={index} className="text-muted-foreground">
+              {linkify(paragraph.trim())}
+            </p>
+          );
+        })}
+      </div>
+    </article>
+  );
+
+  const pageEnd = (
+    <>
+      {slug === "prompts" && (
+        <div className="mt-6">
+          <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green">
+            <Terminal size={17} /> {language === "en" ? "Install GTT CLI" : "Instalar GTT CLI"}
+          </Link>
+        </div>
+      )}
+
+      <nav className="mt-12 pt-8 border-t border-border">
+        <div className="flex flex-wrap gap-4">
+          {pages.map((p) => (
+            <Link
+              key={p.slug}
+              to="/$slug/"
+              params={{ slug: p.slug }}
+              className={`px-3 py-2 rounded text-sm font-medium transition-colors ${
+                p.slug === slug
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
+              }`}
+            >
+              {language === "en" ? p.titleEn : p.titleEs}
+            </Link>
+          ))}
+        </div>
+      </nav>
+    </>
+  );
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Header activeSlug={slug} />
 
-      {slug === "ecosystem" && <MethodologySection language={language} />}
-
-      <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-12 md:px-8 md:py-16">
+      <div className={`mx-auto w-full max-w-3xl px-6 pt-12 md:px-8 md:pt-16 ${rest === undefined ? "flex-1 pb-12 md:pb-16" : ""}`}>
         <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">
           <ArrowLeft size={16} />
           {language === "en" ? "Back to home" : "Volver al inicio"}
@@ -185,108 +294,20 @@ function ContentPage() {
           </nav>
         )}
 
-        <article className="prose dark:prose-invert max-w-none">
-          <div className="space-y-6 text-base leading-relaxed">
-            {content.split("\n\n").map((paragraph, index) => {
-              if (paragraph.trim().startsWith("##")) {
-                const heading = paragraph.trim().replace(/^#+\s*/, "");
-                const level = paragraph.match(/^#+/)?.[0].length || 2;
-                const HeadingTag = level === 2 ? "h2" : level === 3 ? "h3" : "h4";
+        {renderBody(lead)}
 
-                return (
-                  <HeadingTag key={index} id={level === 2 ? headingId(heading) : undefined} className={level === 2 ? "scroll-mt-6 text-2xl font-bold mt-8 mb-4" : level === 3 ? "text-xl font-semibold mt-6 mb-3" : "text-lg font-semibold mt-4 mb-2"}>
-                    {heading}
-                  </HeadingTag>
-                );
-              }
-
-              if (paragraph.trim().startsWith("-") || paragraph.trim().match(/^\d+\./)) {
-                return (
-                  <ul key={index} className="list-disc list-inside space-y-2 ml-2">
-                    {paragraph.split("\n").map((line, i) => (
-                      <li key={i} className="text-muted-foreground">
-                        {linkify(line.replace(/^[-•*]\s*|\d+\.\s*/, ""))}
-                      </li>
-                    ))}
-                  </ul>
-                );
-              }
-
-              if (paragraph.trim().startsWith("|")) {
-                return (
-                  <div key={index} className="overflow-x-auto my-4">
-                    <table className="w-full text-sm border-collapse border border-border">
-                      <tbody>
-                        {paragraph.split("\n").map((line, i) => {
-                          if (line.trim().startsWith("|") && !line.includes("---")) {
-                            const cells = line.split("|").filter((cell) => cell.trim());
-                            return (
-                              <tr key={i} className="border-b border-border">
-                                {cells.map((cell, j) => (
-                                  <td key={j} className={`px-3 py-2 text-xs ${i === 0 ? "font-semibold bg-muted" : ""}`}>
-                                    {cell.trim()}
-                                  </td>
-                                ))}
-                              </tr>
-                            );
-                          }
-                          return null;
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                );
-              }
-
-              if (paragraph.trim().startsWith("```")) {
-                const code = paragraph.replace(/```[\w-]*\n?|\n?```/g, "").trim();
-                return <CodeBlock key={index} code={code} language={language} />;
-              }
-
-              if (paragraph.trim().startsWith(">")) {
-                return (
-                  <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4">
-                    {linkify(paragraph.replace(/^>\s*/, ""))}
-                  </blockquote>
-                );
-              }
-
-              return (
-                <p key={index} className="text-muted-foreground">
-                  {linkify(paragraph.trim())}
-                </p>
-              );
-            })}
-          </div>
-        </article>
-
-        {slug === "prompts" && (
-          <div className="mt-6">
-            <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green">
-              <Terminal size={17} /> {language === "en" ? "Install GTT CLI" : "Instalar GTT CLI"}
-            </Link>
-          </div>
-        )}
-
-        <nav className="mt-12 pt-8 border-t border-border">
-          <div className="flex flex-wrap gap-4">
-            {pages.map((p) => (
-              <Link
-                key={p.slug}
-                to="/$slug/"
-                params={{ slug: p.slug }}
-                className={`px-3 py-2 rounded text-sm font-medium transition-colors ${
-                  p.slug === slug
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
-                }`}
-              >
-                {language === "en" ? p.titleEn : p.titleEs}
-              </Link>
-            ))}
-          </div>
-        </nav>
+        {rest === undefined && pageEnd}
       </div>
+
+      {rest !== undefined && (
+        <>
+          <MethodologySection language={language} />
+          <div className="mx-auto w-full max-w-3xl flex-1 px-6 pb-12 md:px-8 md:pb-16">
+            {renderBody(rest)}
+            {pageEnd}
+          </div>
+        </>
+      )}
 
       <Footer />
     </div>

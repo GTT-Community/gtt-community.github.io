@@ -1,4 +1,4 @@
-import { pages, type ContentPage } from "@/lib/gttContent";
+import { METHODOLOGY_SECTION_MARKER, pages, type ContentPage } from "@/lib/gttContent";
 import { GITHUB_COMMUNITY_URL, GTT_CANONICAL_DOC_URL, SITE_URL } from "@/lib/links";
 
 export const SITE_NAME = "GTT-Method";
@@ -136,7 +136,7 @@ export function llmsFullTxt() {
 Canonical source: ${GTT_CANONICAL_DOC_URL}
 
 ${pages
-  .map((page) => `---\n\n# ${page.titleEn}\n\nURL: ${pageUrl(page.slug)}\n\n${page.descriptionEn}\n\n${page.contentEn}`)
+  .map((page) => `---\n\n# ${page.titleEn}\n\nURL: ${pageUrl(page.slug)}\n\n${page.descriptionEn}\n\n${page.contentEn.replace(`${METHODOLOGY_SECTION_MARKER}\n\n`, "")}`)
   .join("\n\n")}
 `;
 }
