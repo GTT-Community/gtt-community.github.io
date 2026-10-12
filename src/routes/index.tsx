@@ -221,7 +221,7 @@ function Index() {
             <div className="mt-6 flex flex-wrap gap-4">
               <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark px-8">{heroContent[language].ctaPrimary} <ArrowRight size={17} /></a>
               <Link to="/$slug/" params={{ slug: "methodology" }} className="cta-light">{heroContent[language].ctaSecondary}</Link>
-              <Link to="/$slug/" params={{ slug: "cli" }} className="cta-blue"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
+              <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
               <span className="flex items-center gap-2 pr-7"><Code2 size={20} /> {heroContent[language].badges[0]}</span>
