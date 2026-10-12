@@ -503,9 +503,9 @@ GTT-Method combina gobernanza instructiva con controles deterministas siempre qu
   {
     slug: "ecosystem",
     titleEn: "GTT-Method & the Ecosystem",
-    titleEs: "GTT-Method: una metodología. Un dominio. Un proyecto gobernado.",
+    titleEs: "GTT-Method & el Ecosistema",
     descriptionEn: "GTT-Method is complementary to SDD, Context Engineering & AI Development.",
-    descriptionEs: "GTT-Method crea el directorio gtt-domain/, en tu workspace, donde tu proyecto conserva su intención, diseño, decisiones y reglas de gobernanza.",
+    descriptionEs: "GTT-Method es complementario a SDD, Context Engineering & AI Development.",
     contentEn: `## GTT-Method Position
 
 GTT-Method operates at the intersection of multiple disciplines, providing governance for AI-assisted development.
@@ -599,52 +599,7 @@ GTT-Method: Entire development process across multiple sessions.
 ### Relationship
 
 GTT-Method is not "better prompt engineering". It's a different approach addressing structural governance vs. instruction phrasing.`,
-    contentEs: `### 01 · ENGINE
-
-.gtt/ · Motor GTT
-
-Scripts y herramientas que implementan GTT y operan sobre el dominio gobernado.
-
-→
-
-### 02 · DOMAIN
-
-gtt-domain/ · Proyecto gobernado
-
-Qué gobierna GTT: el contexto, la intención, las decisiones y el estado de este proyecto.
-
-## Workspace del proyecto
-
-GTT crea esta estructura durante la instalación. El equipo y sus agentes usan gtt-domain/ para trabajar con la información gobernada del proyecto.
-
-```text
-my-project/
-├── .gtt/
-│   Motor GTT: scripts y herramientas
-├── gtt-domain/
-│   ← Información del proyecto gobernado
-│   ├── context/
-│   ├── adr/
-│   ├── backlog.md
-│   └── proposals/
-└── src/
-```
-
-Metodología abierta para gobernar proyectos en tu workspace
-
-### 01 · ENGINE
-
-**.gtt/ · Motor GTT**
-
-Scripts y herramientas que implementan GTT y operan sobre el dominio gobernado.
-
-### 02 · DOMAIN
-
-**gtt-domain/ · Proyecto gobernado**
-
-Qué gobierna GTT: el contexto, la intención, las decisiones y el estado del proyecto.
-
-## Posición de GTT-Method
+    contentEs: `## Posición de GTT-Method
 
 GTT-Method opera en la intersección de múltiples disciplinas, proporcionando gobernanza para desarrollo asistido por IA.
 

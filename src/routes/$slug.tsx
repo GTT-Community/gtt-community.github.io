@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ArrowLeft, Check, Copy, Terminal } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { MethodologySection } from "./index";
 
 const URL_PATTERN = /(https?:\/\/[^\s)<>"']+)/g;
 
@@ -145,6 +146,8 @@ function ContentPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Header activeSlug={slug} />
+
+      {slug === "ecosystem" && <MethodologySection language={language} />}
 
       <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-12 md:px-8 md:py-16">
         <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">
