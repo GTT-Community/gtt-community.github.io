@@ -506,248 +506,352 @@ GTT-Method combina gobernanza instructiva con controles deterministas siempre qu
   },
   {
     slug: "ecosystem",
-    titleEn: "GTT-Method & the Ecosystem",
-    titleEs: "GTT-Method & el Ecosistema",
-    descriptionEn: "GTT-Method is complementary to SDD, Context Engineering & AI Development.",
-    descriptionEs: "GTT-Method es complementario a SDD, Context Engineering & AI Development.",
-    contentEn: `## From gtt init to governed context
+    titleEn: "GTT-Method Guide",
+    titleEs: "Guía de GTT-Method",
+    descriptionEn: "A phase-by-phase guide: from installing GTT and running gtt init to working in a governed project, and how GTT-Method fits with SDD, Context Engineering and AI development.",
+    descriptionEs: "Una guía fase por fase: desde instalar GTT y ejecutar gtt init hasta trabajar en un proyecto gobernado, y cómo encaja GTT-Method con SDD, Context Engineering y el desarrollo con IA.",
+    contentEn: `After you install GTT CLI and run gtt init, a guided process of questionnaire and questions begins. Your answers set up the project and define how the methodology will operate in it. Nothing is guessed: every decision is yours, and the process ends when you ratify the context with the freeze.
 
-After you install GTT CLI and run gtt init, a guided process of questionnaire and questions begins. Your answers set up the project and define how the methodology will operate in it. Nothing is guessed: every decision is yours, and the process ends when you ratify the context with the freeze.
+## 1. Install GTT and run gtt init
+
+> You are here if you have not installed GTT yet, or you are about to start a project with it.
+
+The CLI is installed once per machine. gtt init runs once per project and places GTT Bootstrap in it.
 
 | Step | Stage | What happens | Who |
 |---|---|---|---|
 | 0 | Install the CLI | Once per machine | User |
 | 1 | gtt init | Places the Bootstrap in the project: portable core, the .gtt/ engine and the gtt-domain/ skeleton | CLI |
-| 2 | Choose the ADEs | Detects the candidate ADEs and asks which ones participate and which one is Primary. It never guesses. Installs only those overlays | CLI or ADE (to be decided) |
-| 3 | Method Plan | Light, Medium, Hard or Team: how much operational work the user delegates to GTT. It is an operating profile, not a quality level | CLI or ADE (to be decided) |
-| 4 | Design sources | Looks for the design document. If there is none, it offers the Initial Design Questionnaire. If there are several, the user chooses to consolidate them or keep them as sources with declared precedence. Sources are recorded as immutable | ADE |
-| 5 | THINK Depth | QUICK, STANDARD or DEEP: how deeply the design is assessed | ADE asks, user chooses |
-| 6 | Design Assessment | Assesses each area (SOLID, THIN or MISSING), checks the minimum floor (stack and datastore decided) and gives a verdict: STRONG, ADEQUATE or POOR. If it is POOR, strengthening the design is mandatory | ADE |
-| 7 | Confirmation A | The user confirms that the design is complete and not a draft | User |
-| 8 | Mapping to context | Maps the design into the six context files and asks for whatever is missing | ADE |
-| 9 | Confirmation B | The user confirms that the six files represent the design | User |
-| 10 | Writing | Writes gtt-domain/context/ and preserves the SOURCE-BRIEF.* | ADE |
-| 11 | Freeze | The user ratifies with gtt-freeze.sh, which records the baseline and activates the governed regime | User |
 
 Install GTT CLI: https://gtt-method.org/cli/
 
 Step-by-step Bootstrap guide: https://gtt-method.org/bootstrap/
 
+## 2. Set up the project
+
+> You are here if gtt init already placed the Bootstrap and the project still has to be set up.
+
+Two decisions set up the project: which ADEs take part, and how much operational work you delegate to GTT.
+
+| Step | Stage | What happens | Who |
+|---|---|---|---|
+| 2 | Choose the ADEs | Detects the candidate ADEs and asks which ones participate and which one is Primary. It never guesses. Installs only those overlays | CLI |
+| 3 | Method Plan | Light, Medium, Hard or Team: how much operational work the user delegates to GTT. It is an operating profile, not a quality level | CLI |
+
+## 3. Bring and assess the design
+
+> You are here if the project is set up and it is time to work on your design.
+
+The governed context is built from your design, so the design is found, assessed and confirmed first.
+
+| Step | Stage | What happens | Who |
+|---|---|---|---|
+| 4 | Design sources | Looks for the design document. If there is none, it offers the Initial Design Questionnaire. If there are several, the user chooses to consolidate them or keep them as sources with declared precedence. Sources are recorded as immutable | ADE |
+| 5 | THINK Depth | QUICK, STANDARD or DEEP: how deeply the design is assessed | ADE asks, user chooses |
+| 6 | Design Assessment | Assesses each area (SOLID, THIN or MISSING), checks the minimum floor (stack and datastore decided) and gives a verdict: STRONG, ADEQUATE or POOR. If it is POOR, strengthening the design is mandatory | ADE |
+| 7 | Confirmation A | The user confirms that the design is complete and not a draft | User |
+
+## 4. Build the governed context
+
+> You are here if you confirmed that your design is complete.
+
+The confirmed design becomes the six context files of the project.
+
+| Step | Stage | What happens | Who |
+|---|---|---|---|
+| 8 | Mapping to context | Maps the design into the six context files and asks for whatever is missing | ADE |
+| 9 | Confirmation B | The user confirms that the six files represent the design | User |
+| 10 | Writing | Writes gtt-domain/context/ and preserves the SOURCE-BRIEF.* | ADE |
+
+## 5. Freeze
+
+> You are here if the six context files are written and you have reviewed them.
+
+The freeze closes the process, and it is yours alone.
+
+| Step | Stage | What happens | Who |
+|---|---|---|---|
+| 11 | Freeze | The user ratifies with gtt freeze, which records the baseline and activates the governed regime | User |
+
+## 6. Work in the governed project
+
+> You are here if the context is frozen and you and your agents build on it.
+
+From here on, GTT-Method governs the project through gtt-domain/. This is what you now have in your workspace, what each file is for and how the project moves through its lifecycle.
+
 ${METHODOLOGY_SECTION_MARKER}
 
-## GTT-Method Position
+## GTT-Method in the ecosystem
+
+> You are here if you are still evaluating GTT and want to know how it fits with what you already use.
+
+GTT-Method is complementary to SDD, Context Engineering & AI Development. This is how it relates to each one.
+
+### GTT-Method Position
 
 GTT-Method operates at the intersection of multiple disciplines, providing governance for AI-assisted development.
 
-AI-Assisted Software Development: SDD (Specifications) + Context Engineering + AI Coding Agents + Software Architecture = GTT-Method (Governed Context + Governance Layer)
+> AI-Assisted Software Development: SDD (Specifications) + Context Engineering + AI Coding Agents + Software Architecture = GTT-Method (Governed Context + Governance Layer)
 
-## GTT-Method vs SDD
+### GTT-Method vs SDD
 
 Spec-Driven Development and GTT-Method answer different questions.
 
-### SDD
+#### SDD
 
 Question: What should be built? What behavior is required?
 Focus: Explicit specifications and expected outcomes.
 
-### GTT-Method
+#### GTT-Method
 
 Question: How should the context govern AI development? What boundaries protect architecture?
 Focus: Governed context and agent governance.
 
-### Together
+#### Together
 
 SDD defines WHAT to build. GTT-Method governs HOW an AI agent should operate while building it. They complement each other.
 
-### Not Replacement
+#### Not Replacement
 
 GTT-Method does not replace SDD. You can use both methodologies in the same project effectively.
 
-## GTT-Method vs Context Engineering
+### GTT-Method vs Context Engineering
 
 Context Engineering is a broader discipline. GTT-Method applies it specifically to AI-assisted development.
 
-### Context Engineering
+#### Context Engineering
 
 Broad discipline focusing on designing and supplying useful context to AI systems in general.
 
-### GTT-Method
+#### GTT-Method
 
 Applies context engineering specifically to software development with AI agents, adding governance, architecture and protection patterns.
 
-### Relationship
+#### Relationship
 
 GTT-Method is Context Engineering + Software Architecture + Governance + Protection Patterns applied to AI-assisted development.
 
-### Integration
+#### Integration
 
 GTT-Method uses context engineering principles but adds software development-specific governance mechanisms.
 
-## GTT-Method vs RAG
+### GTT-Method vs RAG
 
 RAG and GTT-Method solve different problems at different layers.
 
-### RAG (Retrieval-Augmented Generation)
+#### RAG (Retrieval-Augmented Generation)
 
 A retrieval technique for supplying relevant information to an AI system.
 Solves: "How do I give the AI better information?"
 
-### GTT-Method
+#### GTT-Method
 
 A development methodology for governing AI-assisted software development.
 Solves: "How do I keep the architecture consistent while AI builds?"
 
-### Can Complement
+#### Can Complement
 
 GTT-Method can use RAG to retrieve context. But GTT-Method is not RAG. GTT-Method is governance; RAG is retrieval.
 
-### Different Concerns
+#### Different Concerns
 
 RAG: Information retrieval.
 GTT-Method: Context governance, architectural intent, rules enforcement.
 
-## GTT-Method vs Prompt Engineering
+### GTT-Method vs Prompt Engineering
 
 Prompt engineering and GTT-Method operate at different levels of abstraction.
 
-### Prompt Engineering
+#### Prompt Engineering
 
 Asks: "How should I phrase instructions so the AI understands them better?"
 Focus: Instruction quality and phrasing.
 
-### GTT-Method
+#### GTT-Method
 
 Asks: "How should the development environment itself be structured so the AI behaves correctly?"
 Focus: Context governance and architectural protection.
 
-### Scope Difference
+#### Scope Difference
 
 Prompt engineering: One interaction.
 GTT-Method: Entire development process across multiple sessions.
 
-### Relationship
+#### Relationship
 
 GTT-Method is not "better prompt engineering". It's a different approach addressing structural governance vs. instruction phrasing.`,
-    contentEs: `## De gtt init al contexto gobernado
+    contentEs: `Después de instalar GTT CLI y ejecutar gtt init comienza un proceso guiado de cuestionario y preguntas. Con tus respuestas se configura el proyecto y se define cómo operará la metodología en él. Nada se adivina: cada decisión es tuya, y el proceso termina cuando ratificas el contexto con el freeze.
 
-Después de instalar GTT CLI y ejecutar gtt init comienza un proceso guiado de cuestionario y preguntas. Con tus respuestas se configura el proyecto y se define cómo operará la metodología en él. Nada se adivina: cada decisión es tuya, y el proceso termina cuando ratificas el contexto con el freeze.
+## 1. Instalar GTT y ejecutar gtt init
+
+> Estás aquí si todavía no instalaste GTT, o si vas a empezar un proyecto con él.
+
+El CLI se instala una vez por máquina. gtt init se ejecuta una vez por proyecto y coloca GTT Bootstrap en él.
 
 | Paso | Etapa | Qué ocurre | Quién |
 |---|---|---|---|
 | 0 | Instalar el CLI | Una vez por máquina | Usuario |
 | 1 | gtt init | Coloca el Bootstrap en el proyecto: núcleo portable, motor .gtt/ y el esqueleto de gtt-domain/ | CLI |
-| 2 | Elegir los ADE | Detecta los ADE candidatos y pregunta cuáles participan y cuál es el Primary. Nunca lo adivina. Instala solo esos overlays | CLI o ADE (a decidir) |
-| 3 | Method Plan | Light, Medium, Hard o Team: cuánto trabajo operativo delega el usuario en GTT. Es un perfil de operación, no un nivel de calidad | CLI o ADE (a decidir) |
-| 4 | Fuentes de diseño | Busca el documento de diseño. Si no hay, ofrece el Initial Design Questionnaire. Si hay varios, el usuario elige consolidarlos o mantenerlos como fuentes con precedencia declarada. Las fuentes se registran como inmutables | ADE |
-| 5 | THINK Depth | QUICK, STANDARD o DEEP: qué tan profundo se evalúa el diseño | ADE pregunta, usuario elige |
-| 6 | Design Assessment | Evalúa cada área (SOLID, THIN o MISSING), revisa el piso mínimo (stack y datastore decididos) y da un veredicto STRONG, ADEQUATE o POOR. Si es POOR, fortalecer el diseño es obligatorio | ADE |
-| 7 | Confirmación A | El usuario confirma que el diseño está completo y no es un borrador | Usuario |
-| 8 | Mapeo al contexto | Lleva el diseño a los seis archivos de contexto y pregunta lo que falta | ADE |
-| 9 | Confirmación B | El usuario confirma que los seis archivos representan el diseño | Usuario |
-| 10 | Escritura | Escribe gtt-domain/context/ y preserva el SOURCE-BRIEF.* | ADE |
-| 11 | Freeze | El usuario ratifica con gtt-freeze.sh, que registra la línea base y activa el régimen gobernado | Usuario |
 
 Instalar GTT CLI: https://gtt-method.org/cli/
 
 Guía paso a paso del Bootstrap: https://gtt-method.org/bootstrap/
 
+## 2. Configurar el proyecto
+
+> Estás aquí si gtt init ya colocó el Bootstrap y falta configurar el proyecto.
+
+Dos decisiones configuran el proyecto: qué ADE participan y cuánto trabajo operativo delegas en GTT.
+
+| Paso | Etapa | Qué ocurre | Quién |
+|---|---|---|---|
+| 2 | Elegir los ADE | Detecta los ADE candidatos y pregunta cuáles participan y cuál es el Primary. Nunca lo adivina. Instala solo esos overlays | CLI |
+| 3 | Method Plan | Light, Medium, Hard o Team: cuánto trabajo operativo delega el usuario en GTT. Es un perfil de operación, no un nivel de calidad | CLI |
+
+## 3. Aportar y evaluar el diseño
+
+> Estás aquí si el proyecto ya está configurado y toca trabajar tu diseño.
+
+El contexto gobernado se construye desde tu diseño; por eso primero se busca, se evalúa y se confirma.
+
+| Paso | Etapa | Qué ocurre | Quién |
+|---|---|---|---|
+| 4 | Fuentes de diseño | Busca el documento de diseño. Si no hay, ofrece el Initial Design Questionnaire. Si hay varios, el usuario elige consolidarlos o mantenerlos como fuentes con precedencia declarada. Las fuentes se registran como inmutables | ADE |
+| 5 | THINK Depth | QUICK, STANDARD o DEEP: qué tan profundo se evalúa el diseño | ADE pregunta, usuario elige |
+| 6 | Design Assessment | Evalúa cada área (SOLID, THIN o MISSING), revisa el piso mínimo (stack y datastore decididos) y da un veredicto STRONG, ADEQUATE o POOR. Si es POOR, fortalecer el diseño es obligatorio | ADE |
+| 7 | Confirmación A | El usuario confirma que el diseño está completo y no es un borrador | Usuario |
+
+## 4. Construir el contexto gobernado
+
+> Estás aquí si ya confirmaste que tu diseño está completo.
+
+El diseño confirmado se convierte en los seis archivos de contexto del proyecto.
+
+| Paso | Etapa | Qué ocurre | Quién |
+|---|---|---|---|
+| 8 | Mapeo al contexto | Lleva el diseño a los seis archivos de contexto y pregunta lo que falta | ADE |
+| 9 | Confirmación B | El usuario confirma que los seis archivos representan el diseño | Usuario |
+| 10 | Escritura | Escribe gtt-domain/context/ y preserva el SOURCE-BRIEF.* | ADE |
+
+## 5. Freeze
+
+> Estás aquí si los seis archivos de contexto ya están escritos y los revisaste.
+
+El freeze cierra el proceso, y es solo tuyo.
+
+| Paso | Etapa | Qué ocurre | Quién |
+|---|---|---|---|
+| 11 | Freeze | El usuario ratifica con gtt freeze, que registra la línea base y activa el régimen gobernado | Usuario |
+
+## 6. Trabajar en el proyecto gobernado
+
+> Estás aquí si el contexto ya está congelado y tú y tus agentes construyen sobre él.
+
+Desde aquí, GTT-Method gobierna el proyecto a través de gtt-domain/. Esto es lo que ahora tienes en tu workspace, para qué sirve cada archivo y cómo avanza el proyecto en su ciclo de vida.
+
 ${METHODOLOGY_SECTION_MARKER}
 
-## Posición de GTT-Method
+## GTT-Method en el ecosistema
+
+> Estás aquí si todavía estás evaluando GTT y quieres saber cómo encaja con lo que ya usas.
+
+GTT-Method es complementario a SDD, Context Engineering & AI Development. Así se relaciona con cada uno.
+
+### Posición de GTT-Method
 
 GTT-Method opera en la intersección de múltiples disciplinas, proporcionando gobernanza para desarrollo asistido por IA.
 
-Desarrollo de Software Asistido por IA: SDD (Especificaciones) + Context Engineering + Agentes de IA + Arquitectura de Software = GTT-Method (Contexto Gobernado + Capa de Gobernanza)
+> Desarrollo de Software Asistido por IA: SDD (Especificaciones) + Context Engineering + Agentes de IA + Arquitectura de Software = GTT-Method (Contexto Gobernado + Capa de Gobernanza)
 
-## GTT-Method vs SDD
+### GTT-Method vs SDD
 
 Spec-Driven Development y GTT-Method responden diferentes preguntas.
 
-### SDD
+#### SDD
 
 Pregunta: ¿Qué debe construirse? ¿Qué comportamiento se requiere?
 Enfoque: Especificaciones explícitas y resultados esperados.
 
-### GTT-Method
+#### GTT-Method
 
 Pregunta: ¿Cómo debe el contexto gobernar el desarrollo de IA? ¿Qué límites protegen la arquitectura?
 Enfoque: Contexto gobernado y gobernanza de agentes.
 
-### Juntos
+#### Juntos
 
 SDD define QUÉ construir. GTT-Method gobierna CÓMO un agente de IA debe operar mientras lo construye. Se complementan.
 
-### No es reemplazo
+#### No es reemplazo
 
 GTT-Method no reemplaza SDD. Puedes usar ambas metodologías en el mismo proyecto de manera efectiva.
 
-## GTT-Method vs Context Engineering
+### GTT-Method vs Context Engineering
 
 Context Engineering es una disciplina más amplia. GTT-Method la aplica específicamente a desarrollo asistido por IA.
 
-### Context Engineering
+#### Context Engineering
 
 Disciplina amplia enfocada en diseñar y suministrar contexto útil a sistemas de IA en general.
 
-### GTT-Method
+#### GTT-Method
 
 Aplica context engineering específicamente a desarrollo de software con agentes de IA, agregando gobernanza, arquitectura y patrones de protección.
 
-### Relación
+#### Relación
 
 GTT-Method es Context Engineering + Arquitectura de Software + Gobernanza + Patrones de Protección aplicado a desarrollo asistido por IA.
 
-### Integración
+#### Integración
 
 GTT-Method usa principios de context engineering pero agrega mecanismos de gobernanza específicos del desarrollo de software.
 
-## GTT-Method vs RAG
+### GTT-Method vs RAG
 
 RAG y GTT-Method resuelven diferentes problemas en diferentes capas.
 
-### RAG (Retrieval-Augmented Generation)
+#### RAG (Retrieval-Augmented Generation)
 
 Una técnica de recuperación para suministrar información relevante a un sistema de IA.
 Resuelve: "¿Cómo doy mejor información a la IA?"
 
-### GTT-Method
+#### GTT-Method
 
 Una metodología de desarrollo para gobernar desarrollo asistido por IA.
 Resuelve: "¿Cómo mantengo la arquitectura consistente mientras la IA construye?"
 
-### Pueden complementarse
+#### Pueden complementarse
 
 GTT-Method puede usar RAG para recuperar contexto. Pero GTT-Method no es RAG. GTT-Method es gobernanza; RAG es recuperación.
 
-### Preocupaciones diferentes
+#### Preocupaciones diferentes
 
 RAG: Recuperación de información.
 GTT-Method: Gobernanza de contexto, intención arquitectónica, aplicación de reglas.
 
-## GTT-Method vs Ingeniería de Indicaciones
+### GTT-Method vs Ingeniería de Indicaciones
 
 La ingeniería de indicaciones y GTT-Method operan en diferentes niveles de abstracción.
 
-### Ingeniería de Indicaciones
+#### Ingeniería de Indicaciones
 
 Pregunta: "¿Cómo debo formular instrucciones para que la IA las entienda mejor?"
 Enfoque: Calidad y formulación de instrucciones.
 
-### GTT-Method
+#### GTT-Method
 
 Pregunta: "¿Cómo debe estructurarse el entorno de desarrollo para que la IA se comporte correctamente?"
 Enfoque: Gobernanza de contexto y protección arquitectónica.
 
-### Diferencia de Alcance
+#### Diferencia de Alcance
 
 Ingeniería de indicaciones: Una interacción.
 GTT-Method: Proceso completo de desarrollo en múltiples sesiones.
 
-### Relación
+#### Relación
 
 GTT-Method no es "mejor ingeniería de indicaciones". Es un enfoque diferente que aborda gobernanza estructural frente a formulación de instrucciones.`,
-    searchableEn: "ecosystem SDD context engineering RAG prompt engineering AI development",
-    searchableEs: "ecosistema SDD context engineering RAG ingeniería de indicaciones desarrollo de IA",
+    searchableEn: "guide get started phases steps gtt init install freeze governed context gtt-domain ecosystem SDD context engineering RAG prompt engineering AI development",
+    searchableEs: "guía comenzar fases pasos gtt init instalar freeze contexto gobernado gtt-domain ecosistema SDD context engineering RAG ingeniería de indicaciones desarrollo de IA",
   },
   {
     slug: "methodology",

@@ -1,37 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { METHODOLOGY_SECTION_MARKER, pages, searchContent } from "@/lib/gttContent";
-import { SITE_URL } from "@/lib/links";
 import { pageJsonLd, pageTitle, pageUrl } from "@/lib/seo";
 import { useState } from "react";
 import { ArrowLeft, Check, Copy, Terminal } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { MethodologySection } from "./index";
-
-const URL_PATTERN = /(https?:\/\/[^\s)<>"']+)/g;
-
-function linkify(text: string) {
-  const parts = text.split(URL_PATTERN);
-  if (parts.length === 1) return text;
-  // split() with a single capturing group interleaves the captured matches
-  // at odd indices — no need for a second, stateful regex test.
-  return parts.map((part, i) =>
-    i % 2 === 1 ? (
-      // Links to this site stay in the same tab; everything else opens a new one.
-      <a
-        key={i}
-        href={part}
-        {...(part.startsWith(`${SITE_URL}/`) ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-        className="text-foreground underline underline-offset-2 hover:text-primary"
-      >
-        {part}
-      </a>
-    ) : (
-      part
-    )
-  );
-}
+import { EcosystemGuide } from "@/components/EcosystemGuide";
+import { linkify } from "@/components/linkify";
 
 function CodeBlock({ code, language }: { code: string; language: "en" | "es" }) {
   const [copied, setCopied] = useState(false);
@@ -150,13 +126,13 @@ function ContentPage() {
     .filter((paragraph) => /^##\s/.test(paragraph.trim()))
     .map((paragraph) => paragraph.trim().replace(/^#+\s*/, ""));
 
-  // Pages with a methodology marker render that full-width section between the two halves of their content.
-  const [lead = "", rest] = content.split(`\n\n${METHODOLOGY_SECTION_MARKER}\n\n`);
+  // A page whose content carries the methodology marker is laid out as a phase-by-phase guide.
+  const isGuide = content.includes(METHODOLOGY_SECTION_MARKER);
 
-  const renderBody = (text: string) => (
+  const body = (
     <article className="prose dark:prose-invert max-w-none">
       <div className="space-y-6 text-base leading-relaxed">
-        {text.split("\n\n").map((paragraph, index) => {
+        {content.split("\n\n").map((paragraph, index) => {
           if (paragraph.trim().startsWith("##")) {
             const heading = paragraph.trim().replace(/^#+\s*/, "");
             const level = paragraph.match(/^#+/)?.[0].length || 2;
@@ -230,42 +206,11 @@ function ContentPage() {
     </article>
   );
 
-  const pageEnd = (
-    <>
-      {slug === "prompts" && (
-        <div className="mt-6">
-          <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green">
-            <Terminal size={17} /> {language === "en" ? "Install GTT CLI" : "Instalar GTT CLI"}
-          </Link>
-        </div>
-      )}
-
-      <nav className="mt-12 pt-8 border-t border-border">
-        <div className="flex flex-wrap gap-4">
-          {pages.map((p) => (
-            <Link
-              key={p.slug}
-              to="/$slug/"
-              params={{ slug: p.slug }}
-              className={`px-3 py-2 rounded text-sm font-medium transition-colors ${
-                p.slug === slug
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
-              }`}
-            >
-              {language === "en" ? p.titleEn : p.titleEs}
-            </Link>
-          ))}
-        </div>
-      </nav>
-    </>
-  );
-
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Header activeSlug={slug} />
 
-      <div className={`mx-auto w-full max-w-3xl px-6 pt-12 md:px-8 md:pt-16 ${rest === undefined ? "flex-1 pb-12 md:pb-16" : ""}`}>
+      <div className={`mx-auto w-full flex-1 px-6 py-12 md:px-8 md:py-16 ${isGuide ? "max-w-5xl" : "max-w-3xl"}`}>
         <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">
           <ArrowLeft size={16} />
           {language === "en" ? "Back to home" : "Volver al inicio"}
@@ -276,38 +221,59 @@ function ContentPage() {
           <p className="text-lg text-muted-foreground">{description}</p>
         </header>
 
-        {sections.length >= INDEX_MIN_SECTIONS && (
-          <nav aria-label={language === "en" ? "On this page" : "En esta página"} className="mb-12 rounded-md border border-border bg-muted/50 px-6 py-5">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-              {language === "en" ? "On this page" : "En esta página"}
-            </h2>
-            <ol className="mt-4 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
-              {sections.map((heading, i) => (
-                <li key={heading} className="flex gap-3">
-                  <span className="w-5 shrink-0 text-right tabular-nums text-muted-foreground">{i + 1}</span>
-                  <a href={`#${headingId(heading)}`} className="font-medium underline-offset-2 hover:underline">
-                    {heading}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
+        {isGuide ? (
+          <EcosystemGuide content={content} language={language} />
+        ) : (
+          <>
+            {sections.length >= INDEX_MIN_SECTIONS && (
+              <nav aria-label={language === "en" ? "On this page" : "En esta página"} className="mb-12 rounded-md border border-border bg-muted/50 px-6 py-5">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+                  {language === "en" ? "On this page" : "En esta página"}
+                </h2>
+                <ol className="mt-4 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
+                  {sections.map((heading, i) => (
+                    <li key={heading} className="flex gap-3">
+                      <span className="w-5 shrink-0 text-right tabular-nums text-muted-foreground">{i + 1}</span>
+                      <a href={`#${headingId(heading)}`} className="font-medium underline-offset-2 hover:underline">
+                        {heading}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+
+            {body}
+          </>
         )}
 
-        {renderBody(lead)}
-
-        {rest === undefined && pageEnd}
-      </div>
-
-      {rest !== undefined && (
-        <>
-          <MethodologySection language={language} />
-          <div className="mx-auto w-full max-w-3xl flex-1 px-6 pb-12 md:px-8 md:pb-16">
-            {renderBody(rest)}
-            {pageEnd}
+        {slug === "prompts" && (
+          <div className="mt-6">
+            <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green">
+              <Terminal size={17} /> {language === "en" ? "Install GTT CLI" : "Instalar GTT CLI"}
+            </Link>
           </div>
-        </>
-      )}
+        )}
+
+        <nav className="mt-12 pt-8 border-t border-border">
+          <div className="flex flex-wrap gap-4">
+            {pages.map((p) => (
+              <Link
+                key={p.slug}
+                to="/$slug/"
+                params={{ slug: p.slug }}
+                className={`px-3 py-2 rounded text-sm font-medium transition-colors ${
+                  p.slug === slug
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
+                }`}
+              >
+                {language === "en" ? p.titleEn : p.titleEs}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      </div>
 
       <Footer />
     </div>
