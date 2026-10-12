@@ -23,7 +23,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import heroImage from "@/assets/orca-hero.jpg";
-import { BOOTSTRAP_URL, GITHUB_ORG_URL, DOCS_URL, FEEDBACK_URL, FORUM_URL } from "@/lib/links";
+import { GITHUB_ORG_URL, DOCS_URL, FEEDBACK_URL, FORUM_URL } from "@/lib/links";
 import { SITE_DESCRIPTION, homeJsonLd, pageUrl } from "@/lib/seo";
 
 const HOME_TITLE = "GTT-Method | Governance Through Thinking for AI-Assisted Software Development";
@@ -219,8 +219,8 @@ function Index() {
               <p className="mt-5 max-w-[610px] text-[17px] leading-snug">GTT-Method ayuda a personas y equipos a diseñar, construir y evolucionar<br className="hidden sm:block" /> software con IA, con un enfoque gobernado, reutilizable y centrado en las personas.</p>
             )}
             <div className="mt-6 flex flex-wrap gap-4">
-              <a href={BOOTSTRAP_URL} target="_blank" rel="noopener noreferrer" className="cta-dark px-8">{heroContent[language].ctaPrimary} <ArrowRight size={17} /></a>
-              <Link to="/$slug/" params={{ slug: "methodology" }} className="cta-light">{heroContent[language].ctaSecondary}</Link>
+              <Link to="/$slug/" params={{ slug: "methodology" }} className="cta-dark px-8">{heroContent[language].ctaSecondary}</Link>
+              <Link to="/$slug/" params={{ slug: "ecosystem" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrimary}</Link>
               <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
