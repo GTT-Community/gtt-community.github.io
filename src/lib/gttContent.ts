@@ -2673,7 +2673,7 @@ La información portable necesaria para reconstruir una instalación GTT y su es
 
 ## 1. Install GTT CLI
 
-Pick your operating system. Each command installs the latest published release and verifies its SHA-256 checksum.
+Pick your operating system, or install with uv or npm. Each operating system command installs the latest published release and verifies its SHA-256 checksum.
 
 ### Linux
 
@@ -2700,6 +2700,22 @@ irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | i
 \`\`\`
 
 Then open a new terminal so the updated PATH is picked up.
+
+### uv (PyPI)
+
+Install GTT CLI with uv (https://docs.astral.sh/uv/), on any operating system:
+
+\`\`\`
+uv tool install gtt-cli
+\`\`\`
+
+### npm (Node.js 18+)
+
+Install GTT CLI with npm (https://www.npmjs.com/), on any operating system:
+
+\`\`\`
+npm install -g @gtt-community/gtt-cli
+\`\`\`
 
 ### Check that it works
 
@@ -2743,18 +2759,6 @@ The full step-by-step guide to installing GTT Bootstrap is here: https://gtt-met
 
 ## Other ways to install
 
-### uv (Python)
-
-\`\`\`
-uv tool install gtt-cli
-\`\`\`
-
-### npm (Node.js 18+)
-
-\`\`\`
-npm install -g gtt-cli
-\`\`\`
-
 ### Go 1.27+
 
 \`\`\`
@@ -2765,14 +2769,14 @@ go install github.com/GTT-Community/gtt-cli/cmd/gtt@latest
 
 \`\`\`
 uvx --from gtt-cli gtt version
-npx gtt-cli version
+npx @gtt-community/gtt-cli version
 \`\`\`
 
 ## Update
 
 - curl / PowerShell: run the same install command again
 - uv: uv tool upgrade gtt-cli
-- npm: npm update -g gtt-cli
+- npm: npm update -g @gtt-community/gtt-cli
 
 ## Install a specific version (example: 1.0.1)
 
@@ -2792,7 +2796,7 @@ $env:GTT_VERSION="1.0.1"; irm https://raw.githubusercontent.com/GTT-Community/gt
 
 \`\`\`
 uv tool install gtt-cli==1.0.1
-npm install -g gtt-cli@1.0.1
+npm install -g @gtt-community/gtt-cli@1.0.1
 \`\`\`
 
 ## Where it is installed
@@ -2816,7 +2820,7 @@ Source code and documentation: https://github.com/GTT-Community/gtt-cli`,
 
 ## 1. Instalar GTT CLI
 
-Elige tu sistema operativo. Cada comando instala la última versión publicada y verifica su checksum SHA-256.
+Elige tu sistema operativo, o instala con uv o npm. Cada comando por sistema operativo instala la última versión publicada y verifica su checksum SHA-256.
 
 ### Linux
 
@@ -2843,6 +2847,22 @@ irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | i
 \`\`\`
 
 Luego abre una terminal nueva para que tome el PATH actualizado.
+
+### uv (PyPI)
+
+Instala GTT CLI con uv (https://docs.astral.sh/uv/), en cualquier sistema operativo:
+
+\`\`\`
+uv tool install gtt-cli
+\`\`\`
+
+### npm (Node.js 18+)
+
+Instala GTT CLI con npm (https://www.npmjs.com/), en cualquier sistema operativo:
+
+\`\`\`
+npm install -g @gtt-community/gtt-cli
+\`\`\`
 
 ### Comprobar que funciona
 
@@ -2886,18 +2906,6 @@ La guía completa, paso a paso, para instalar GTT Bootstrap está aquí: https:/
 
 ## Otras formas de instalar
 
-### uv (Python)
-
-\`\`\`
-uv tool install gtt-cli
-\`\`\`
-
-### npm (Node.js 18+)
-
-\`\`\`
-npm install -g gtt-cli
-\`\`\`
-
 ### Go 1.27+
 
 \`\`\`
@@ -2908,14 +2916,14 @@ go install github.com/GTT-Community/gtt-cli/cmd/gtt@latest
 
 \`\`\`
 uvx --from gtt-cli gtt version
-npx gtt-cli version
+npx @gtt-community/gtt-cli version
 \`\`\`
 
 ## Actualizar
 
 - curl / PowerShell: vuelve a ejecutar el mismo comando de instalación
 - uv: uv tool upgrade gtt-cli
-- npm: npm update -g gtt-cli
+- npm: npm update -g @gtt-community/gtt-cli
 
 ## Instalar una versión específica (ejemplo: 1.0.1)
 
@@ -2935,7 +2943,7 @@ $env:GTT_VERSION="1.0.1"; irm https://raw.githubusercontent.com/GTT-Community/gt
 
 \`\`\`
 uv tool install gtt-cli==1.0.1
-npm install -g gtt-cli@1.0.1
+npm install -g @gtt-community/gtt-cli@1.0.1
 \`\`\`
 
 ## Dónde se instala
