@@ -115,7 +115,7 @@ function Index() {
           <div className="relative z-10 flex min-h-[425px] flex-col justify-center pb-8 pt-12">
             <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.36em]">{heroContent[language].eyebrow}</p>
             <h1 className="max-w-[760px] tracking-tight">
-              <span className="block text-[clamp(2.5rem,4.4vw,4.4rem)] font-extrabold leading-[0.95]">GTT — Governance &amp; THINK</span>
+              <span className="block text-[clamp(2.15rem,3.8vw,3.8rem)] font-extrabold leading-[0.95]">GTT — Governed Thought Teamwork</span>
               <span className="mt-4 block text-[clamp(1.35rem,2.3vw,2.3rem)] font-light leading-[1.1]">Agentic Specification-Driven Development</span>
               <span className="mt-1 block text-[clamp(1.35rem,2.3vw,2.3rem)] font-light leading-[1.1]">AI Efficiency Governance</span>
             </h1>
