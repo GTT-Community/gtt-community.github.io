@@ -69,6 +69,16 @@ gtt status
 
 GTT CLI is not a second GTT engine: it orchestrates Bootstrap and contains no methodology of its own. Installation and commands are on the GTT CLI page: https://gtt-method.org/cli/
 
+## Method Governance
+
+Choose your development method and GTT enforces it. At setup you choose how you want to develop (Vertical Slice, DDD, Hexagonal...). GTT designs your Epics with that method, ratifies it in the governed context and checks that the design follows it.
+
+\`\`\`
+declare  ->  ratify  ->  verify
+\`\`\`
+
+The design and the backlog are checked at the freeze, and gtt check verifies the code with the language's own tool: JavaScript and TypeScript today, other languages declared-only. Details: https://gtt-method.org/development-methods/
+
 ## Works with your ADE
 
 GTT is independent of the development environment. Bootstrap currently ships integrations for Claude Code, GitHub Copilot, Codex and Kiro, and several can participate in the same project under one governance model.
@@ -146,6 +156,16 @@ gtt status
 \`\`\`
 
 GTT CLI no es un segundo motor de GTT: orquesta Bootstrap y no contiene metodología propia. La instalación y los comandos están en la página de GTT CLI: https://gtt-method.org/cli/
+
+## Method Governance
+
+Elige tu método de desarrollo y GTT lo hace cumplir. En el seteo eliges cómo quieres desarrollar (Vertical Slice, DDD, Hexagonal...). GTT diseña tus Epics con ese método, lo ratifica en el contexto gobernado y verifica que el diseño lo respete.
+
+\`\`\`
+declarar  ->  ratificar  ->  verificar
+\`\`\`
+
+El diseño y el backlog se verifican en el freeze, y gtt check verifica el código con la herramienta propia del lenguaje: hoy JavaScript y TypeScript, los demás lenguajes declared-only. Detalle: https://gtt-method.org/development-methods/
 
 ## Funciona con tu ADE
 
@@ -2740,6 +2760,7 @@ gtt init finds, downloads and verifies GTT Bootstrap, then asks only for the dec
 - The language
 - The Method Plan: Light, Medium, Hard or Team
 - Your initial design documents, if you have any. If you have none, it offers the Initial Design Questionnaire
+- The development method: how you want to develop (Vertical Slice, DDD, Hexagonal...) and how to start. If you are not sure, choose "help me choose": nothing is applied by default. Details: https://gtt-method.org/development-methods/
 
 It then installs GTT Bootstrap in the project, validates it and hands off to your Primary ADE. See where the project stands at any time:
 
@@ -2756,6 +2777,34 @@ gtt freeze
 \`\`\`
 
 The full step-by-step guide to installing GTT Bootstrap is here: https://gtt-method.org/bootstrap/
+
+## Changing the design in the middle of the work
+
+\`\`\`
+gtt change "Move sessions to Redis" --reason "Scale out"
+gtt proposals
+gtt promote <set>
+gtt undo
+\`\`\`
+
+- gtt change records a governed change request (design, architecture, stack, constraints or an Epic's goal or scope) with an id, and offers to open your Primary ADE. The agent is told to process it into a proposal on its first turn: it drafts, it never applies
+- gtt proposals lists what the agent drafted (proposals, ADR drafts, promotion sets) with their state and the request they answer. gtt proposals show <name> opens one, and gtt proposals withdraw <name> archives one you will not promote
+- gtt promote <set> shows the diff of a staged set and applies it only after you confirm
+- gtt undo puts back what the last promotion replaced, while its files are as it left them. If that promotion froze the project, a new freeze records the earlier state: there is still no unfreeze, and every baseline stays in the history. Going further back is a new change request
+- Ordinary work (code, refactors, tests, Stories) needs none of this
+
+## Development method commands
+
+\`\`\`
+gtt dev-method
+gtt dev-method list
+gtt check
+\`\`\`
+
+- gtt dev-method shows the development method in force, its status (ratified or open), the ADR that locks it and its verification level. It is read-only: after the freeze the method changes only through a change request
+- gtt dev-method list shows the available methods with their short text
+- gtt check verifies that the code respects the method's dependency rules, with the language's own tool. Today: JavaScript and TypeScript, with dependency-cruiser installed in the project. Other languages are reported as declared-only
+- gtt check exits 0 when the code respects the method, 1 when it finds a forbidden dependency, and 7 when the result cannot be determined because the tool is not installed. A violation is reported, never corrected
 
 ## Other ways to install
 
@@ -2887,6 +2936,7 @@ gtt init encuentra, descarga y verifica GTT Bootstrap, y luego te pide solo las 
 - El idioma
 - El Method Plan: Light, Medium, Hard o Team
 - Tus documentos de diseño iniciales, si los tienes. Si no tienes ninguno, ofrece el Cuestionario de Diseño Inicial
+- El método de desarrollo: cómo quieres desarrollar (Vertical Slice, DDD, Hexagonal...) y cómo empezar. Si no estás seguro, elige "ayúdame a elegir": nunca se aplica nada por defecto. Detalle: https://gtt-method.org/development-methods/
 
 Después instala GTT Bootstrap en el proyecto, lo valida y entrega el control a tu ADE Primario. Revisa el estado del proyecto cuando quieras:
 
@@ -2903,6 +2953,34 @@ gtt freeze
 \`\`\`
 
 La guía completa, paso a paso, para instalar GTT Bootstrap está aquí: https://gtt-method.org/bootstrap/
+
+## Cambiar el diseño en pleno desarrollo
+
+\`\`\`
+gtt change "Mover las sesiones a Redis" --reason "Escalar horizontalmente"
+gtt proposals
+gtt promote <set>
+gtt undo
+\`\`\`
+
+- gtt change registra un change request gobernado (diseño, arquitectura, stack, restricciones o el objetivo o alcance de un Epic) con un id, y te ofrece abrir tu ADE Primario. El agente recibe la orden de procesarlo como propuesta en su primer turno: redacta, nunca aplica
+- gtt proposals lista lo que redactó el agente (propuestas, borradores de ADR, sets de promoción) con su estado y el request que responden. gtt proposals show <nombre> abre uno, y gtt proposals withdraw <nombre> archiva uno que no vas a promover
+- gtt promote <set> muestra el diff de un set preparado y lo aplica solo cuando confirmas
+- gtt undo deshace lo que reemplazó la última promoción, mientras sus archivos sigan como los dejó. Si esa promoción congeló el proyecto, un nuevo freeze registra el estado anterior: sigue sin existir el unfreeze, y cada línea base queda en el historial. Ir más atrás es un nuevo change request
+- El trabajo ordinario (código, refactors, pruebas, Stories) no necesita nada de esto
+
+## Comandos del método de desarrollo
+
+\`\`\`
+gtt dev-method
+gtt dev-method list
+gtt check
+\`\`\`
+
+- gtt dev-method muestra el método de desarrollo vigente, su estado (ratificado u open), el ADR que lo fija y su nivel de verificación. Es de solo lectura: después del freeze el método solo cambia por change request
+- gtt dev-method list muestra los métodos disponibles con su texto corto
+- gtt check verifica que el código respete las reglas de dependencia del método, con la herramienta propia del lenguaje. Hoy: JavaScript y TypeScript, con dependency-cruiser instalado en el proyecto. Los demás lenguajes se reportan como declared-only
+- gtt check termina con 0 cuando el código respeta el método, 1 cuando encuentra una dependencia prohibida y 7 cuando el resultado no se puede determinar porque la herramienta no está instalada. Una violación se reporta, nunca se corrige
 
 ## Otras formas de instalar
 
@@ -3001,7 +3079,9 @@ gtt init finds, downloads and verifies GTT Bootstrap. Nothing is installed until
 - Primary ADE: the one that leads the workflow
 - Language
 - Method Plan: Light, Medium, Hard or Team. It decides how much operational work GTT does without asking. It is not a quality level, and no plan turns governance off
+- Development method: how you want to develop and how to start. Unanswered, it stays OPEN; nothing is applied by default
 - Initial design documents: the documents the governed context will be built from
+- Development method: how you want to develop and how to start. Unanswered, it stays OPEN; nothing is applied by default
 
 The Method Plans are described at https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.md
 
@@ -3029,6 +3109,7 @@ Bootstrap GTT in this project
 
 The ADE then:
 
+- If gtt init left the development method open, or you chose help me choose, proposes one with its reason and waits for you to confirm: https://gtt-method.org/development-methods/
 - Reads your design document and writes a Design Assessment, area by area
 - Asks you to confirm that the design is complete and not a draft
 - Asks you directly for whatever the document does not answer, instead of inventing it
@@ -3056,6 +3137,7 @@ gtt resume
 - gtt sync keeps agent context, document tracking, the index and validation up to date in one run
 - gtt resume gives the session context derived from the real state of the project
 - gtt update updates GTT Bootstrap and preserves your project state and your local changes
+- gtt change requests a governed change in the middle of the work; gtt proposals, gtt promote and gtt undo follow it: https://gtt-method.org/cli/
 
 ## Other ways to install
 
@@ -3091,6 +3173,7 @@ gtt init encuentra, descarga y verifica GTT Bootstrap. No se instala nada hasta 
 - Idioma
 - Method Plan: Light, Medium, Hard o Team. Define cuánto trabajo operativo hace GTT sin preguntar. No es un nivel de calidad, y ningún plan desactiva la gobernanza
 - Documentos de diseño iniciales: los documentos desde los que se construirá el contexto gobernado
+- Método de desarrollo: cómo quieres desarrollar y cómo empezar. Sin respuesta queda OPEN; nunca se aplica nada por defecto
 
 Los Method Plans están descritos en https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.es.md
 
@@ -3118,6 +3201,7 @@ Haz el bootstrap de GTT en este proyecto
 
 Entonces el ADE:
 
+- Si gtt init dejó abierto el método de desarrollo, o elegiste ayúdame a elegir, te propone uno con su razón y espera tu confirmación: https://gtt-method.org/development-methods/
 - Lee tu documento de diseño y escribe una Evaluación del Diseño, área por área
 - Te pide confirmar que el diseño está completo y no es un borrador
 - Te pregunta directamente lo que el documento no responde, en lugar de inventarlo
@@ -3145,6 +3229,7 @@ gtt resume
 - gtt sync mantiene al día el contexto de los agentes, el seguimiento de documentos, el índice y la validación en una sola ejecución
 - gtt resume entrega el contexto de sesión derivado del estado real del proyecto
 - gtt update actualiza GTT Bootstrap y conserva el estado de tu proyecto y tus cambios locales
+- gtt change pide un cambio gobernado en pleno desarrollo; gtt proposals, gtt promote y gtt undo lo siguen: https://gtt-method.org/cli/
 
 ## Otras formas de instalar
 
@@ -3152,6 +3237,315 @@ gtt resume
 - Manualmente, copiando tú mismo los archivos: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/installation.es.md`,
     searchableEn: "bootstrap install gtt init guide governed context freeze method plan primary ade design document questionnaire",
     searchableEs: "bootstrap instalar gtt init guía contexto gobernado freeze congelar method plan ade primario documento de diseño cuestionario",
+  },
+  {
+    // Method Governance. The method texts are copied from the Method Packs of GTT Bootstrap
+    // (.gtt/methods/); regenerate them from there, never reword them here.
+    slug: "development-methods",
+    titleEn: "Development Methods",
+    titleEs: "Métodos de Desarrollo",
+    descriptionEn: "Method Governance: choose how your solution is developed (Vertical Slice, DDD, Hexagonal, Layered, Event-First, Walking Skeleton). GTT designs your Epics with that method, ratifies it at the freeze and checks it.",
+    descriptionEs: "Method Governance: elige cómo se desarrolla tu solución (Vertical Slice, DDD, Hexagonal, Layered, Event-First, Walking Skeleton). GTT diseña tus Epics con ese método, lo ratifica en el freeze y lo verifica.",
+    contentEn: `Method Governance lets you choose, at setup, how your solution will be developed. That choice guides how the agent designs during THINK, it is ratified in the governed context at the freeze, and it is checked afterwards.
+
+\`\`\`
+declare (setup / THINK)  ->  ratify (freeze)  ->  verify (freeze check, validation, audit)
+\`\`\`
+
+Available since GTT 1.7.0 (GTT Bootstrap and GTT CLI). The texts of every method on this page are copied from its Method Pack, the single source: https://github.com/GTT-Community/gtt-bootstrap/tree/main/.gtt/methods
+
+## Why it matters
+
+Without a chosen method, an AI agent tends to design by layers, because that is the most common shape in its training, not the most suitable one for your project. Epics come out as "data model", "API" and "frontend", and nothing works end to end until the last one is done. When you choose the method, the agent designs with it, and GTT can check that the design follows it.
+
+## How you choose it
+
+gtt init asks two questions after the Method Plan. Without a terminal, answer them with flags; without an answer the method stays OPEN:
+
+\`\`\`
+gtt init --dev-method ddd,vertical-slice --start walking-skeleton
+gtt init --dev-method help
+\`\`\`
+
+## Question 1. How do you want to organise the development of your solution?
+
+Methods may be combined, for example DDD to define the Epics and Vertical Slice to cut them. A combination the packs declare incompatible is refused, and you are asked to change it.
+
+### Vertical Slice (recommended)
+
+The system is organised by complete features, not by technical layers. Each slice is one use case that crosses everything it needs (input, logic, data) and lives together in its own folder. Adding a feature is adding a slice, not touching five layers.
+
+Fits when: You will deliver end-to-end features one at a time and want each change contained in one place.
+
+### Domain-Driven Design
+
+The system is divided into bounded contexts: areas of the business with their own model and language. Each context owns its data and rules, and the others use it only through its public contract. It combines well with Vertical Slice: DDD defines the Epics and Vertical Slice cuts them.
+
+Fits when: The business is complex, has areas with their own rules and vocabulary, and getting the model wrong is costly.
+
+### Event-First
+
+Design starts from the facts of the business: the events that happen ("order confirmed", "payment rejected"), the commands that cause them and the policies that react to them. Modules talk by publishing and consuming events, not by calling into each other.
+
+Fits when: The business is a flow of steps over time, with several parts reacting to the same thing or long-running processes.
+
+### Hexagonal (Ports and Adapters)
+
+The domain sits at the centre and knows nothing of technology. It talks to the outside through ports (interfaces it defines), and adapters connect those ports to the database, the web, queues or external services. Changing a technology is changing an adapter.
+
+Fits when: The business logic must outlive changes of database, framework or providers, and you want to test it without infrastructure.
+
+### Layered
+
+The system is organised in stacked technical layers: presentation, application and data. Each layer uses only the one below and knows nothing of those above. It is the best-known form and the one most frameworks ship with.
+
+Fits when: Your team and framework already work in layers and the system is mostly forms and data with little business logic.
+
+### I am not sure, help me choose
+
+Nothing is chosen now. During THINK the agent reads your sources, proposes a method as a [PROPUESTA] with its reason, and you confirm. Without your confirmation the method stays OPEN.
+
+## Question 2. How do you want to start?
+
+### Walking Skeleton (recommended)
+
+Before building features, build the thinnest version of the system that works end to end: one input, one minimal rule, one stored datum, deployed and tested. Each later Epic then puts flesh on that skeleton instead of inventing the structure as it goes.
+
+Fits when: The stack, the deployment or the integrations carry risk and you want to find the problems in the first week, not at the end.
+
+### Straight to the main functionality
+
+No skeleton Epic first: the first Epic is the most important functionality.
+
+## Help me choose decides nothing
+
+- The agent reads your sources and proposes one method as a [PROPUESTA], with its reason and the parts of your documents it rests on
+- It designs no Epic until you answer
+- If you do not confirm, the method stays OPEN. An OPEN method does not block the freeze, but it is recorded as an open gap and shown as OPEN in the stack map
+- The recommended method is never applied by default
+
+## The same Epic, two ways
+
+An online shop, Epic "Customers can buy". Designed by layers, it becomes three Epics that only work when all three are finished:
+
+\`\`\`
+EPIC-001  Data model: products, carts, orders
+EPIC-002  REST API for carts and orders
+EPIC-003  Frontend: catalog, cart and checkout screens
+\`\`\`
+
+Designed with Vertical Slice and a Walking Skeleton, the first Epic is the thinnest path through the whole system, and each later slice delivers something a customer can use:
+
+\`\`\`
+EPIC-001  Walking skeleton: one product, one order, deployed and tested end to end
+EPIC-002  Customers can buy
+          S-1  Add a product to the cart
+          S-2  Pay for the cart
+          S-3  See the order confirmation
+\`\`\`
+
+Each slice in the Epic design records its use case, input and output, logic, the data it touches, its acceptance criterion and what stays out of it.
+
+## The Method Lock
+
+When you confirm the context, the chosen method is written in the governed context and ratified at the freeze:
+
+- architecture.md states the method and why, in words, plus a small block that scripts read
+- An ADR locks it when the method is an architectural style. A start strategy such as Walking Skeleton needs no ADR
+- The stack map shows a Development method row, and its dependency rules are written with your project's real folders, for example "src/features/* must not depend on another slice"
+
+## What is checked, and where
+
+| Check | Where | Status |
+|---|---|---|
+| The lock is well formed and names existing methods | freeze, validation | checked |
+| The ADR the method requires exists | freeze, validation | checked |
+| No incompatible combination | setup, freeze | checked |
+| No Epic cut by technical layer (Vertical Slice) | freeze | checked |
+| The first Epic is the skeleton (Walking Skeleton) | freeze | checked |
+| Every approved design has the method's sections | freeze | checked |
+| The method's dependency rules are in the stack map | freeze | checked |
+| The code respects those dependency rules | gtt check, through the language's own tool | checked for JavaScript and TypeScript (dependency-cruiser); other languages: declared-only |
+| Slices are really thin, contexts keep one language | audit | human judgment |
+
+gtt check reads the ratified method and verifies its dependency rules in the code with the language's own tool. GTT has no import analyser of its own:
+
+\`\`\`
+gtt check
+\`\`\`
+
+- JavaScript and TypeScript: dependency-cruiser, installed in your project (npm install --save-dev dependency-cruiser). GTT never downloads it for you
+- Without the tool installed, gtt check says the result cannot be determined (exit 7). It never reports a pass it did not verify
+- Any other language has no adapter yet: the method is reported as declared-only for the code. That is reported, never hidden
+- gtt dev-method shows the method in force, its status, the ADR that locks it and its verification level
+
+The verification level each method declares:
+
+| Method | Kind | Locked by an ADR | Incompatible with | Verification |
+|---|---|---|---|---|
+| Vertical Slice | architecture-style | yes | layered | partial |
+| Domain-Driven Design | architecture-style | yes | none | partial |
+| Event-First | architecture-style | yes | none | partial |
+| Hexagonal (Ports and Adapters) | architecture-style | yes | layered | partial |
+| Layered | architecture-style | yes | vertical-slice, hexagonal | partial |
+| Walking Skeleton | decomposition-strategy | no | none | partial |
+
+A violation is reported as a conflict, with the rule, the source file and the forbidden dependency, and gtt check exits 1. GTT never corrects your code or your context on its own.
+
+## Changing the method after the freeze
+
+The ratified method is not changed directly, and gtt init does not ask the questions again. A change is a change request with an impact analysis: which slices or modules move, which rules of the stack map change, which ADR is replaced. You decide, and a new freeze ratifies it.`,
+    contentEs: `Method Governance te permite elegir, en el seteo, cómo se va a desarrollar tu solución. Esa elección guía cómo diseña el agente durante THINK, queda ratificada en el contexto gobernado en el freeze y se verifica después.
+
+\`\`\`
+declarar (seteo / THINK)  ->  ratificar (freeze)  ->  verificar (chequeo del freeze, validación, audit)
+\`\`\`
+
+Disponible desde GTT 1.7.0 (GTT Bootstrap y GTT CLI). Los textos de cada método en esta página están copiados de su Method Pack, la fuente única: https://github.com/GTT-Community/gtt-bootstrap/tree/main/.gtt/methods
+
+## Por qué importa
+
+Sin un método elegido, un agente de IA tiende a diseñar por capas, porque es la forma más común en lo que aprendió, no la más adecuada para tu proyecto. Los Epics salen como "modelo de datos", "API" y "frontend", y nada funciona de punta a punta hasta que se termina el último. Cuando eliges el método, el agente diseña con él y GTT puede verificar que el diseño lo siga.
+
+## Cómo se elige
+
+gtt init hace dos preguntas después del Method Plan. Sin terminal, respóndelas con flags; sin respuesta el método queda OPEN:
+
+\`\`\`
+gtt init --dev-method ddd,vertical-slice --start walking-skeleton
+gtt init --dev-method help
+\`\`\`
+
+## Pregunta 1. ¿Cómo quieres organizar el desarrollo de tu solución?
+
+Los métodos se pueden combinar, por ejemplo DDD para definir los Epics y Vertical Slice para cortarlos. Una combinación que los packs declaran incompatible se rechaza, y se te pide cambiarla.
+
+### Vertical Slice (recomendado)
+
+El sistema se organiza por funcionalidades completas, no por capas técnicas. Cada slice es un caso de uso que atraviesa todo lo que necesita (entrada, lógica, datos) y vive junto en su propia carpeta. Agregar una funcionalidad es agregar un slice, no tocar cinco capas.
+
+Conviene si: Vas a entregar funcionalidades de punta a punta, una a la vez, y quieres que cada cambio quede contenido en un solo lugar.
+
+### Domain-Driven Design
+
+El sistema se divide en bounded contexts: zonas del negocio con su propio modelo y su propio lenguaje. Cada contexto es dueño de sus datos y reglas, y los demás lo usan solo por su contrato público. Se combina bien con Vertical Slice: DDD define los Epics y Vertical Slice los corta.
+
+Conviene si: El negocio es complejo, tiene áreas con reglas y vocabulario propios, y equivocarse en el modelo cuesta caro.
+
+### Event-First
+
+El diseño parte de los hechos del negocio: los eventos que ocurren ("pedido confirmado", "pago rechazado"), los comandos que los provocan y las políticas que reaccionan a ellos. Los módulos se comunican publicando y consumiendo eventos, no llamándose por dentro.
+
+Conviene si: El negocio es un flujo de pasos que ocurren en el tiempo, con varias partes que reaccionan a lo mismo o procesos que tardan.
+
+### Hexagonal (Ports and Adapters)
+
+El dominio queda en el centro y no conoce la tecnología. Se comunica con el exterior por puertos (interfaces que él define), y los adaptadores conectan esos puertos con la base de datos, la web, las colas o los servicios externos. Cambiar una tecnología es cambiar un adaptador.
+
+Conviene si: La lógica de negocio debe sobrevivir a cambios de base de datos, framework o proveedores, y quieres probarla sin infraestructura.
+
+### Layered
+
+El sistema se organiza en capas técnicas apiladas: presentación, aplicación y datos. Cada capa usa solo la de abajo y no conoce las de arriba. Es la forma más conocida y la que la mayoría de los frameworks trae por defecto.
+
+Conviene si: Tu equipo y tu framework ya trabajan por capas y el sistema es sobre todo formularios y datos con poca lógica de negocio.
+
+### No estoy seguro, ayúdame a elegir
+
+No se elige nada ahora. Durante THINK el agente analiza tu fuente, te propone un método como [PROPUESTA] con su razón y tú confirmas. Sin tu confirmación el método queda OPEN.
+
+## Pregunta 2. ¿Cómo quieres empezar?
+
+### Walking Skeleton (recomendado)
+
+Antes de construir funcionalidades se construye la versión más delgada del sistema que funciona de punta a punta: una entrada, una regla mínima, un dato guardado, desplegada y con su prueba. Después, cada Epic agrega carne a ese esqueleto en vez de inventar la estructura sobre la marcha.
+
+Conviene si: El stack, el despliegue o las integraciones tienen riesgo y quieres descubrir los problemas en la primera semana, no al final.
+
+### Directo a la funcionalidad principal
+
+Sin un Epic de esqueleto previo: el primer Epic es la funcionalidad más importante.
+
+## Ayúdame a elegir no decide nada
+
+- El agente lee tus fuentes y te propone un método como [PROPUESTA], con su razón y las partes de tus documentos en que se apoya
+- No diseña ningún Epic hasta que respondas
+- Si no confirmas, el método queda OPEN. Un método OPEN no bloquea el freeze, pero queda registrado como un gap abierto y se ve como OPEN en el mapa del stack
+- El método recomendado nunca se aplica por defecto
+
+## El mismo Epic, de dos formas
+
+Una tienda en línea, Epic "Los clientes pueden comprar". Diseñado por capas, se convierte en tres Epics que solo funcionan cuando están los tres terminados:
+
+\`\`\`
+EPIC-001  Modelo de datos: productos, carritos, pedidos
+EPIC-002  API REST de carritos y pedidos
+EPIC-003  Frontend: pantallas de catálogo, carrito y pago
+\`\`\`
+
+Diseñado con Vertical Slice y un Walking Skeleton, el primer Epic es el recorrido más delgado por todo el sistema, y cada slice posterior entrega algo que un cliente puede usar:
+
+\`\`\`
+EPIC-001  Walking skeleton: un producto, un pedido, desplegado y probado de punta a punta
+EPIC-002  Los clientes pueden comprar
+          S-1  Agregar un producto al carrito
+          S-2  Pagar el carrito
+          S-3  Ver la confirmación del pedido
+\`\`\`
+
+Cada slice del diseño del Epic registra su caso de uso, entrada y salida, lógica, los datos que toca, su criterio de aceptación y lo que queda fuera de él.
+
+## El Method Lock
+
+Cuando confirmas el contexto, el método elegido se escribe en el contexto gobernado y se ratifica en el freeze:
+
+- architecture.md declara el método y su razón, en palabras, más un pequeño bloque que leen los scripts
+- Un ADR lo fija cuando el método es un estilo arquitectónico. Una estrategia de inicio como Walking Skeleton no lleva ADR
+- El mapa del stack muestra una fila Development method, y sus reglas de dependencia se escriben con las carpetas reales de tu proyecto, por ejemplo "src/features/* no depende de otro slice"
+
+## Qué se verifica y dónde
+
+| Chequeo | Dónde | Estado |
+|---|---|---|
+| El lock está bien formado y nombra métodos existentes | freeze, validación | verificado |
+| Existe el ADR que el método exige | freeze, validación | verificado |
+| Ninguna combinación incompatible | seteo, freeze | verificado |
+| Ningún Epic cortado por capa técnica (Vertical Slice) | freeze | verificado |
+| El primer Epic es el esqueleto (Walking Skeleton) | freeze | verificado |
+| Cada diseño aprobado tiene las secciones del método | freeze | verificado |
+| Las reglas de dependencia del método están en el mapa del stack | freeze | verificado |
+| El código respeta esas reglas de dependencia | gtt check, con la herramienta propia del lenguaje | verificado para JavaScript y TypeScript (dependency-cruiser); otros lenguajes: declared-only |
+| Los slices son de verdad delgados, los contextos mantienen un lenguaje | audit | juicio humano |
+
+gtt check lee el método ratificado y verifica sus reglas de dependencia en el código con la herramienta propia del lenguaje. GTT no tiene un analizador de imports propio:
+
+\`\`\`
+gtt check
+\`\`\`
+
+- JavaScript y TypeScript: dependency-cruiser, instalado en tu proyecto (npm install --save-dev dependency-cruiser). GTT nunca lo descarga por ti
+- Sin la herramienta instalada, gtt check dice que el resultado no se puede determinar (exit 7). Nunca informa un éxito que no verificó
+- Cualquier otro lenguaje todavía no tiene adaptador: el método se reporta como declared-only para el código. Eso se informa, nunca se oculta
+- gtt dev-method muestra el método vigente, su estado, el ADR que lo fija y su nivel de verificación
+
+El nivel de verificación que declara cada método:
+
+| Método | Tipo | Lo fija un ADR | Incompatible con | Verificación |
+|---|---|---|---|---|
+| Vertical Slice | architecture-style | sí | layered | partial |
+| Domain-Driven Design | architecture-style | sí | ninguno | partial |
+| Event-First | architecture-style | sí | ninguno | partial |
+| Hexagonal (Ports and Adapters) | architecture-style | sí | layered | partial |
+| Layered | architecture-style | sí | vertical-slice, hexagonal | partial |
+| Walking Skeleton | decomposition-strategy | no | ninguno | partial |
+
+Una violación se reporta como un conflicto, con la regla, el archivo de origen y la dependencia prohibida, y gtt check termina con 1. GTT nunca corrige tu código ni tu contexto por su cuenta.
+
+## Cambiar de método después del freeze
+
+El método ratificado no se cambia directamente, y gtt init no vuelve a hacer las preguntas. Un cambio es un change request con análisis de impacto: qué slices o módulos se mueven, qué reglas del mapa del stack cambian, qué ADR se reemplaza. Tú decides, y un nuevo freeze lo ratifica.`,
+    searchableEn: "gtt check gtt dev-method dependency-cruiser method governance development method vertical slice ddd domain-driven design hexagonal ports adapters layered event-first walking skeleton method lock method pack freeze adr verification declared-only",
+    searchableEs: "gtt check gtt dev-method dependency-cruiser method governance método de desarrollo vertical slice ddd domain-driven design hexagonal puertos adaptadores capas layered event-first walking skeleton method lock method pack freeze adr verificación declared-only",
   },
   {
     slug: "prompts",
