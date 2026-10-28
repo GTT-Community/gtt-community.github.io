@@ -68,9 +68,9 @@ const credits = [
 
 const licenses = [
   { name: "GTT Method", license: "Apache-2.0", href: "https://github.com/GTT-Community/gtt-method/blob/main/LICENSE" },
-  { name: "GTT Bootstrap", license: "MIT", href: "https://github.com/GTT-Community/gtt-bootstrap/blob/main/LICENSE" },
+  { name: "GTT Bootstrap", license: "Apache-2.0", href: "https://github.com/GTT-Community/gtt-bootstrap/blob/main/LICENSE" },
   { name: "GTT CLI", license: "Apache-2.0", href: "https://github.com/GTT-Community/gtt-cli/blob/main/LICENSE" },
-  { name: "gtt-community.github.io", license: "MIT", href: "https://github.com/GTT-Community/gtt-community.github.io/blob/main/LICENSE" },
+  { name: "gtt-community.github.io", license: "Apache-2.0", href: "https://github.com/GTT-Community/gtt-community.github.io/blob/main/LICENSE" },
 ];
 
 export function Footer() {

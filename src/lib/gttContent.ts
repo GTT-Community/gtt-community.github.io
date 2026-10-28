@@ -106,9 +106,9 @@ Report a bug, propose an idea or leave a comment on the community board: https:/
 ## Open source licenses
 
 - GTT Method: Apache-2.0
-- GTT Bootstrap: MIT
+- GTT Bootstrap: Apache-2.0
 - GTT CLI: Apache-2.0
-- This website: MIT`,
+- This website: Apache-2.0`,
     contentEs: `GTT (Governance Through Thinking) es una metodología de código abierto para gobernar el desarrollo de software cuando participan agentes de IA.
 
 Hoy GTT son tres cosas, en un orden deliberado: una metodología, su implementación de referencia y la herramienta que la opera.
@@ -194,9 +194,9 @@ Reporta un bug, propone una idea o deja un comentario en el tablero de la comuni
 ## Licencias de código abierto
 
 - GTT Method: Apache-2.0
-- GTT Bootstrap: MIT
+- GTT Bootstrap: Apache-2.0
 - GTT CLI: Apache-2.0
-- Este sitio web: MIT`,
+- Este sitio web: Apache-2.0`,
     searchableEn: "GTT-Method Governance Through Thinking AI assisted development architecture drift context engineering Bootstrap CLI ADE license community feedback",
     searchableEs: "GTT-Method Governance Through Thinking desarrollo asistido por IA desviación arquitectónica context engineering Bootstrap CLI ADE licencia comunidad feedback",
   },
@@ -556,7 +556,7 @@ Two decisions set up the project: which ADEs take part, and how much operational
 | Step | Stage | What happens | Who |
 |---|---|---|---|
 | 2 | Choose the ADEs | Detects the candidate ADEs and asks which ones participate and which one is Primary. It never guesses. Installs only those overlays | CLI |
-| 3 | Method Plan | Light, Medium, Hard or Team: how much operational work the user delegates to GTT. It is an operating profile, not a quality level | CLI |
+| 3 | Autonomy Profile | Light, Medium, Hard or Team: how much operational work the user delegates to GTT. It is an operating profile, not a quality level | CLI |
 
 ## 3. Bring and assess the design
 
@@ -726,7 +726,7 @@ Dos decisiones configuran el proyecto: qué ADE participan y cuánto trabajo ope
 | Paso | Etapa | Qué ocurre | Quién |
 |---|---|---|---|
 | 2 | Elegir los ADE | Detecta los ADE candidatos y pregunta cuáles participan y cuál es el Primary. Nunca lo adivina. Instala solo esos overlays | CLI |
-| 3 | Method Plan | Light, Medium, Hard o Team: cuánto trabajo operativo delega el usuario en GTT. Es un perfil de operación, no un nivel de calidad | CLI |
+| 3 | Autonomy Profile | Light, Medium, Hard o Team: cuánto trabajo operativo delega el usuario en GTT. Es un perfil de operación, no un nivel de calidad | CLI |
 
 ## 3. Aportar y evaluar el diseño
 
@@ -896,7 +896,7 @@ Operational Tooling
 ADEs + Human
 \`\`\`
 
-> GTT Governance Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+> GTT Governance Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 
 ## What is GTT?
 
@@ -1118,9 +1118,9 @@ NEW FREEZE
 
 There is no "unfreeze" workflow in GTT. The governance model is based on controlled re-entry and re-freeze, not on turning governance off.
 
-### Method Plans
+### Autonomy Profiles
 
-GTT is applied through a Method Plan, chosen once per project:
+GTT is applied through a Autonomy Profile, chosen once per project:
 
 \`\`\`
 LIGHT
@@ -1129,7 +1129,7 @@ HARD
 TEAM
 \`\`\`
 
-A Method Plan is an operating profile, not a quality level, and no plan turns governance off. The CLI lets the project select the plan; Bootstrap owns what each plan means. The plans are documented in the Bootstrap repository: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.md
+A Autonomy Profile is an operating profile, not a quality level, and no plan turns governance off. The CLI lets the project select the plan; Bootstrap owns what each plan means. The plans are documented in the Bootstrap repository: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.md
 
 ### Session continuity
 
@@ -1292,7 +1292,7 @@ GTT CLI is not a second GTT engine. It consumes and orchestrates Bootstrap, and 
 | Primary ADE Configuration | Establishes exactly one Primary ADE for the project's workflow. |
 | Source Discovery | Finds candidate project and design source documents during initialization. |
 | Initial Source Selection | Allows explicit selection of the source material used to initialize the GTT project. |
-| Method Plan Selection | Selects the Method Plan. The CLI selects it; Bootstrap defines its meaning. |
+| Autonomy Profile Selection | Selects the Autonomy Profile. The CLI selects it; Bootstrap defines its meaning. |
 | Project Initialization | gtt init orchestrates the complete initialization workflow. |
 | Status | gtt status exposes deterministic project and GTT state. |
 | Inspection | gtt inspect exposes installation topology and operational state. |
@@ -1343,7 +1343,7 @@ gtt init
    ├── discover source documents
    ├── select initial sources
    ├── if insufficient → Bootstrap questionnaire
-   ├── choose Method Plan
+   ├── choose Autonomy Profile
    ├── install Core
    ├── install ADE integrations
    ├── persist operational state
@@ -1417,7 +1417,7 @@ GTT CLI is designed for automation: deterministic and non-interactive validation
 ## References
 
 - GTT Method: https://github.com/GTT-Community/gtt-method
-- GTT Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+- GTT Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 - GTT Bootstrap: https://github.com/GTT-Community/gtt-bootstrap
 - GTT CLI: https://github.com/GTT-Community/gtt-cli
 - GTT CLI releases: https://github.com/GTT-Community/gtt-cli/releases/latest
@@ -1461,7 +1461,7 @@ Herramienta Operativa
 ADEs + Humano
 \`\`\`
 
-> Canónico de Gobernanza GTT: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+> Canónico de Gobernanza GTT: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 
 ## ¿Qué es GTT?
 
@@ -1683,9 +1683,9 @@ NUEVO FREEZE
 
 En GTT no existe un flujo de "unfreeze". El modelo de gobernanza se basa en la reentrada controlada y en un nuevo freeze, no en apagar la gobernanza.
 
-### Method Plans
+### Autonomy Profiles
 
-GTT se aplica a través de un Method Plan, que se elige una vez por proyecto:
+GTT se aplica a través de un Autonomy Profile, que se elige una vez por proyecto:
 
 \`\`\`
 LIGHT
@@ -1694,7 +1694,7 @@ HARD
 TEAM
 \`\`\`
 
-Un Method Plan es un perfil operativo, no un nivel de calidad, y ningún plan apaga la gobernanza. La CLI permite al proyecto seleccionar el plan; Bootstrap es dueño de lo que significa cada uno. Los planes están documentados en el repositorio de Bootstrap: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.es.md
+Un Autonomy Profile es un perfil operativo, no un nivel de calidad, y ningún plan apaga la gobernanza. La CLI permite al proyecto seleccionar el plan; Bootstrap es dueño de lo que significa cada uno. Los planes están documentados en el repositorio de Bootstrap: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.es.md
 
 ### Continuidad de sesión
 
@@ -1857,7 +1857,7 @@ GTT CLI no es un segundo motor de GTT. Consume y orquesta Bootstrap, y no reprod
 | Configuración del ADE Primario | Establece exactamente un ADE Primario para el flujo de trabajo del proyecto. |
 | Descubrimiento de Fuentes | Encuentra documentos fuente candidatos, de proyecto y de diseño, durante la inicialización. |
 | Selección de Fuentes Iniciales | Permite seleccionar de forma explícita el material fuente con el que se inicializa el proyecto GTT. |
-| Selección de Method Plan | Selecciona el Method Plan. La CLI lo selecciona; Bootstrap define su significado. |
+| Selección de Autonomy Profile | Selecciona el Autonomy Profile. La CLI lo selecciona; Bootstrap define su significado. |
 | Inicialización del Proyecto | gtt init orquesta el flujo completo de inicialización. |
 | Estado | gtt status expone el estado determinístico del proyecto y de GTT. |
 | Inspección | gtt inspect expone la topología de la instalación y el estado operativo. |
@@ -1908,7 +1908,7 @@ gtt init
    ├── descubrir documentos fuente
    ├── seleccionar las fuentes iniciales
    ├── si no alcanzan → cuestionario de Bootstrap
-   ├── elegir el Method Plan
+   ├── elegir el Autonomy Profile
    ├── instalar el Core
    ├── instalar las integraciones de ADE
    ├── persistir el estado operativo
@@ -1982,7 +1982,7 @@ GTT CLI está diseñado para la automatización: validación determinística y n
 ## Referencias
 
 - GTT Method: https://github.com/GTT-Community/gtt-method
-- GTT Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+- GTT Canonical: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 - GTT Bootstrap: https://github.com/GTT-Community/gtt-bootstrap
 - GTT CLI: https://github.com/GTT-Community/gtt-cli
 - Versiones de GTT CLI: https://github.com/GTT-Community/gtt-cli/releases/latest
@@ -2009,147 +2009,91 @@ GTT es la metodología: define cómo se gobierna el desarrollo de software asist
                           ▼
                 Desarrollo de Software
 \`\`\``,
-    searchableEn: "methodology GTT Method governed AI-assisted software development governance evidence grounding provenance proposals decisions freeze change request ADE Primary ADE Bootstrap CLI Method Plan session context validation",
-    searchableEs: "metodología GTT Method desarrollo de software asistido por IA gobernado gobernanza evidencia grounding procedencia propuestas decisiones freeze solicitud de cambio ADE Primario Bootstrap CLI Method Plan contexto de sesión validación",
+    searchableEn: "methodology GTT Method governed AI-assisted software development governance evidence grounding provenance proposals decisions freeze change request ADE Primary ADE Bootstrap CLI Autonomy Profile session context validation",
+    searchableEs: "metodología GTT Method desarrollo de software asistido por IA gobernado gobernanza evidencia grounding procedencia propuestas decisiones freeze solicitud de cambio ADE Primario Bootstrap CLI Autonomy Profile contexto de sesión validación",
   },
   {
     slug: "gtt-method-2-1",
-    titleEn: "GTT-Method 2.1",
-    titleEs: "GTT-Method 2.1",
-    descriptionEn: "Current Reference Implementation with workspace structure.",
-    descriptionEs: "Implementación de referencia actual con estructura de workspace.",
-    contentEn: `## What is GTT-Method 2.1?
+    titleEn: "GTT 3.0",
+    titleEs: "GTT 3.0",
+    descriptionEn: "The current generation of the method: its lifecycle, where things live in a project, and what changed from 2.1.",
+    descriptionEs: "La generación vigente del método: su ciclo de vida, dónde está cada cosa en un proyecto y qué cambió desde 2.1.",
+    contentEn: `## GTT 3.0
 
-GTT-Method 2.1 is a concrete implementation of the GTT-Method methodology providing governance structure and integration with AI coding agents.
+GTT 3.0 is the current generation of the method, defined by one canonical document: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md . The GTT suite (Bootstrap, CLI and this site) implements it; what each release implements is listed capability by capability in the conformance matrix: https://github.com/GTT-Community/gtt-method/blob/main/CONFORMANCE.md
 
-The bootstrap introduces a governed workspace containing governance and context artifacts such as:
+## The lifecycle
 
-- AGENTS.md — Agent instructions and governance
-- CHANGE-REQUEST.md — Template for proposed changes
-- gtt-method/context/ — Governed project context (L0)
-- gtt-method/adr/ — Architecture Decision Records (L1)
-- gtt-method/proposals/ — Pending proposals under review
-- gtt-method/scripts/ — Validation and governance scripts
-- .claude/, .kiro/ — Agent-specific configuration
+1. **Setup** - \`gtt init\`: the ADEs you use, the autonomy profile (how much GTT does without asking) and the development method (how the solution is organized).
+2. **Elicitation** - your design documents, or the guided Initial Design Questionnaire. Stack and datastore are always decided by a person.
+3. **THINK** - an agent proposes the governed design and one design per Epic, each statement traced to evidence or marked as a gap, a conflict or a proposal.
+4. **Freeze** - a person ratifies the design. It becomes the authority.
+5. **Build and observe** - the agent works freely. GTT compares the work with the frozen design: a datastore, framework or module the design does not declare, or a broken dependency rule, is reported; only what the design declares BLOCKING stops.
+6. **Change** - a change request, a proposal, a human decision, and \`gtt promote\` applies it and freezes again.
 
-## Workspace Structure
+## Where things live in a project
 
-\`\`\`
-/
-├── INDEX.md
-├── AGENTS.md
-├── CHANGE-REQUEST.md
-│
-├── gtt-method/
-│   ├── README.md
-│   ├── context/          (L0: Governed)
-│   │   ├── stack.md
-│   │   ├── principles.md
-│   │   └── constraints.md
-│   ├── adr/              (L1: Decisions)
-│   ├── proposals/        (Under review)
-│   └── scripts/          (Governance)
-│
-├── .claude/             (Claude Code config)
-└── .kiro/               (Kiro config)
+\`\`\`text
+AGENTS.md                  # the agent contract (joined to yours as one block if you had one)
+readme-gtt.md              # quickstart
+gtt-domain/
+  context/                 # the governed design: vision, principles, architecture, stack, constraints, glossary
+  context/design/          # one design per Epic
+  adr/                     # architecture decision records
+  backlog.md               # Epics (governed) and Stories (the agent's working plan)
+  change-request.md        # what you want changed
+  proposals/               # what the agent proposes
+  governance-backlog.json  # observations and your decisions on them
+  .frozen                  # the freeze record
+.gtt/                      # the engine: scripts, contracts, Method Packs, documentation
 \`\`\`
 
-## Supported Agents
+## What changed from 2.1
 
-### Claude Code
+- The canon now defines what was already shipped: Method Governance, the change flow, the questionnaire, THINK, Epics and Stories.
+- Out-of-design changes are observed from the design itself, without hand-written rules.
+- An existing AGENTS.md is joined, never taken over.
+- "Method Plan" is now **Autonomy Profile**.
+- GTT means **Governance Through Thinking**.`,
+    contentEs: `## GTT 3.0
 
-Configuration via \`.claude/\` directory with CLAUDE.md rules and settings.json governance.
+GTT 3.0 es la generación vigente del método, definida por un único documento canónico: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md . La suite GTT (Bootstrap, CLI y este sitio) lo implementa; qué implementa cada versión se lista, capacidad por capacidad, en la matriz de conformidad: https://github.com/GTT-Community/gtt-method/blob/main/CONFORMANCE.md
 
-### Kiro
+## El ciclo de vida
 
-Configuration via \`.kiro/\` directory with steering manifests and governance directives.
+1. **Setup** - \`gtt init\`: los ADEs que usas, el perfil de autonomía (cuánto hace GTT sin preguntar) y el método de desarrollo (cómo se organiza la solución).
+2. **Elicitación** - tus documentos de diseño, o el Cuestionario de Diseño Inicial guiado. El stack y el datastore siempre los decide una persona.
+3. **THINK** - un agente propone el diseño gobernado y un diseño por Epic, con cada afirmación trazada a evidencia o marcada como vacío, conflicto o propuesta.
+4. **Freeze** - una persona ratifica el diseño. Pasa a ser la autoridad.
+5. **Construcción y observación** - el agente trabaja con libertad. GTT compara el trabajo con el diseño congelado: un datastore, framework o módulo que el diseño no declara, o una regla de dependencias rota, se reporta; solo se detiene lo que el diseño declara BLOCKING.
+6. **Cambio** - una solicitud de cambio, una propuesta, una decisión humana, y \`gtt promote\` la aplica y vuelve a congelar.
 
-### Cursor & Others
+## Dónde está cada cosa en un proyecto
 
-Portable approach to governance works with other AI coding agents and development environments.
-
-### Methodology First
-
-GTT-Method is not tied to any specific agent. The methodology is portable across tools.
-
-## Getting Started
-
-Official Bootstrap Repository: https://github.com/GTT-Community/gtt-bootstrap
-
-The bootstrap project is the authoritative reference implementation. Clone it, adapt to your project, and follow the documented setup process.
-
-1. **Initialize** - Clone bootstrap and adapt the workspace structure to your project.
-2. **Establish Context** - Define architecture, principles and constraints explicitly in \`gtt-method/context/\`.
-3. **Agent Integration** - Configure \`.claude/\` or \`.kiro/\` with governance rules specific to your agents.
-4. **Freeze** - Review and ratify your governed context through the freeze process.
-5. **Work** - Begin development with agents working within the governed boundaries.`,
-    contentEs: `## Qué es GTT-Method 2.1?
-
-GTT-Method 2.1 es una implementación concreta de la metodología GTT-Method que proporciona una estructura de gobernanza e integración con agentes de IA de codificación.
-
-El bootstrap introduce un workspace gobernado con:
-
-- AGENTS.md — Instrucciones y gobernanza para agentes.
-- CHANGE-REQUEST.md — Plantilla para cambios propuestos.
-- gtt-method/context/ — Contexto gobernado del proyecto (L0).
-- gtt-method/adr/ — Architecture Decision Records (L1).
-- gtt-method/proposals/ — Propuestas pendientes de revisión.
-- gtt-method/scripts/ — Scripts de validación y gobernanza.
-- .claude/, .kiro/ — Configuración específica de agentes.
-
-## Estructura del Workspace
-
-\`\`\`
-/
-├── INDEX.md
-├── AGENTS.md
-├── CHANGE-REQUEST.md
-│
-├── gtt-method/
-│   ├── README.md
-│   ├── context/          (L0: Governed)
-│   │   ├── stack.md
-│   │   ├── principles.md
-│   │   └── constraints.md
-│   ├── adr/              (L1: Decisions)
-│   ├── proposals/        (Under review)
-│   └── scripts/          (Governance)
-│
-├── .claude/             (Claude Code config)
-└── .kiro/               (Kiro config)
+\`\`\`text
+AGENTS.md                  # el contrato del agente (unido al tuyo como un bloque si ya tenías uno)
+readme-gtt.md              # inicio rápido
+gtt-domain/
+  context/                 # el diseño gobernado: visión, principios, arquitectura, stack, restricciones, glosario
+  context/design/          # un diseño por Epic
+  adr/                     # registros de decisiones de arquitectura
+  backlog.md               # Epics (gobernadas) y Stories (el plan de trabajo del agente)
+  change-request.md        # lo que quieres cambiar
+  proposals/               # lo que propone el agente
+  governance-backlog.json  # observaciones y tus decisiones sobre ellas
+  .frozen                  # el registro del freeze
+.gtt/                      # el motor: scripts, contratos, Method Packs, documentación
 \`\`\`
 
-## Agentes soportados
+## Qué cambió desde 2.1
 
-### Claude Code
-
-Configuración mediante \`.claude/\` con reglas CLAUDE.md y gobernanza de settings.json.
-
-### Kiro
-
-Configuración mediante \`.kiro/\` con manifests de steering y directivas de gobernanza.
-
-### Cursor y otros
-
-El enfoque portable de gobernanza funciona con otros agentes de IA y entornos de desarrollo.
-
-### Metodología primero
-
-GTT-Method no está ligado a un agente específico. La metodología es portable entre herramientas.
-
-## Cómo comenzar
-
-Repositorio oficial: https://github.com/GTT-Community/gtt-bootstrap
-
-El proyecto bootstrap es la implementación de referencia autoritativa. Clónalo, adapta a tu proyecto y sigue el proceso de configuración documentado.
-
-1. **Inicializar** - Clona bootstrap y adapta la estructura del workspace a tu proyecto.
-2. **Establecer Contexto** - Define arquitectura, principios y restricciones explícitamente en \`gtt-method/context/\`.
-3. **Integración del Agente** - Configura \`.claude/\` o \`.kiro/\` con reglas específicas de gobernanza.
-4. **Freeze** - Revisa y ratifica el contexto gobernado mediante el proceso de freeze.
-5. **Work** - Comienza el desarrollo con agentes trabajando dentro de los límites gobernados.`,
-    searchableEn: "GTT-Method 2.1 bootstrap workspace structure AGENTS CHANGE-REQUEST governed context",
-    searchableEs: "GTT-Method 2.1 bootstrap workspace estructura AGENTS CHANGE-REQUEST contexto gobernado",
+- El canon ahora define lo que ya se publicaba: Method Governance, el flujo de cambios, el cuestionario, THINK, Epics y Stories.
+- Los cambios fuera del diseño se observan a partir del propio diseño, sin reglas escritas a mano.
+- Un AGENTS.md existente se une, nunca se reemplaza.
+- "Method Plan" pasa a llamarse **Perfil de Autonomía** (Autonomy Profile).
+- GTT significa **Governance Through Thinking**.`,
+    searchableEn: "GTT 3.0 generation lifecycle setup elicitation THINK freeze observe change project layout gtt-domain AGENTS",
+    searchableEs: "GTT 3.0 generación ciclo de vida setup elicitación THINK freeze observación cambio estructura gtt-domain AGENTS",
   },
   {
     slug: "faq",
@@ -2163,11 +2107,11 @@ GTT-Method (Governance Through Thinking) is an open-source methodology and gover
 
 Its central distinction is that agent reasoning is not change authorization: agents analyze, propose and implement within the authority GTT grants, and the human remains the authority for governed decisions.
 
-GTT is implemented through GTT Bootstrap and operated through GTT CLI. Its canonical definition is https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+GTT is implemented through GTT Bootstrap and operated through GTT CLI. Its canonical definition is https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 
 ## Which version of GTT is current?
 
-GTT 2.1 is the current released generation, defined by a single canonical document. Anything that document does not define is not a GTT 2.1 capability, even if it appears in code, a website, a prompt or a proposal. Future generations are defined separately and are not current until formally released.
+GTT 3.0 is the current released generation, defined by a single canonical document. Anything that document does not define is not a GTT 3.0 capability, even if it appears in code, a website, a prompt or a proposal. Future generations are defined separately and are not current until formally released.
 
 ## What problem does GTT-Method solve?
 
@@ -2199,7 +2143,7 @@ Through the governed change path: change request, impact analysis, THINK, propos
 
 GTTGuard is the GTT capability that protects files, classes and methods from autonomous modification. The developer declares the protection on the source artifact itself, for example with a @GTTGuard annotation, and GTT normalizes it into a machine-readable registry that records what is protected, why, under which policy and where the protection originated.
 
-GTTGuard does not hide code from agents; it protects the authority to change it. An agent may read, analyze and propose changes to a protected artifact, and the proposal is written under gtt/proposals/ for a human to approve, reject or modify. The current policy is HUMAN_APPROVAL.
+GTTGuard does not hide code from agents; it protects the authority to change it. An agent may read, analyze and propose changes to a protected artifact, and the proposal is written under gtt-domain/proposals/ for a human to approve, reject or modify. The current policy is HUMAN_APPROVAL.
 
 ## What is GTT Enforcement?
 
@@ -2241,9 +2185,9 @@ GTT CLI is the operational tool of GTT: a single gtt binary for Linux, macOS and
 
 Install and command details: https://gtt-method.org/cli/
 
-## What are Method Plans?
+## What are Autonomy Profiles?
 
-Method Plans (Light, Medium, Hard and Team) decide how much GTT does without asking you. Whatever the plan, destructive operations and governed decisions always need a human. You choose the plan in gtt init and can review or change it with gtt method.
+Autonomy Profiles (Light, Medium, Hard and Team) decide how much GTT does without asking you. Whatever the profile, destructive operations and governed decisions always need a human. You choose the plan in gtt init and can review or change it with gtt autonomy.
 
 ## How does GTT relate to AI agents and ADEs?
 
@@ -2269,7 +2213,7 @@ Yes. GTT CLI is built for pipelines: gtt validate --ci runs the Bootstrap valida
 
 ## How do I start a GTT project?
 
-Install GTT CLI, then run gtt init inside your project. It resolves and verifies GTT Bootstrap, asks which ADEs participate and which one is Primary, the language, the Method Plan and your initial design documents, installs, validates and hands off to your Primary ADE. If you have no design document, your ADE guides you through the Initial Design Questionnaire.
+Install GTT CLI, then run gtt init inside your project. It resolves and verifies GTT Bootstrap, asks which ADEs participate and which one is Primary, the language, the Autonomy Profile and your initial design documents, installs, validates and hands off to your Primary ADE. If you have no design document, your ADE guides you through the Initial Design Questionnaire.
 
 The Primary ADE drafts the governed context for your review, and once you confirm it you freeze it with gtt freeze.
 
@@ -2282,7 +2226,7 @@ In the glossary: https://gtt-method.org/glossary/
 
 ## What licenses does GTT use?
 
-GTT Method and GTT CLI are Apache-2.0. GTT Bootstrap and this website are MIT.
+GTT Method, GTT Bootstrap, GTT CLI and this website are all Apache-2.0.
 
 ## Where do I report a bug or propose an idea?
 
@@ -2293,11 +2237,11 @@ GTT-Method (Governance Through Thinking) es una metodología de código abierto 
 
 Su distinción central es que el razonamiento de un agente no es autorización de cambio: los agentes analizan, proponen e implementan dentro de la autoridad que GTT les otorga, y el humano sigue siendo la autoridad en las decisiones gobernadas.
 
-GTT se implementa mediante GTT Bootstrap y se opera mediante GTT CLI. Su definición canónica es https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+GTT se implementa mediante GTT Bootstrap y se opera mediante GTT CLI. Su definición canónica es https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 
 ## ¿Cuál es la versión vigente de GTT?
 
-GTT 2.1 es la generación publicada vigente, definida por un único documento canónico. Lo que ese documento no define no es una capacidad de GTT 2.1, aunque aparezca en código, en un sitio web, en un prompt o en una propuesta. Las generaciones futuras se definen por separado y no son vigentes hasta su publicación formal.
+GTT 3.0 es la generación publicada vigente, definida por un único documento canónico. Lo que ese documento no define no es una capacidad de GTT 3.0, aunque aparezca en código, en un sitio web, en un prompt o en una propuesta. Las generaciones futuras se definen por separado y no son vigentes hasta su publicación formal.
 
 ## ¿Qué problema resuelve GTT-Method?
 
@@ -2329,7 +2273,7 @@ Por el camino de cambio gobernado: solicitud de cambio, análisis de impacto, TH
 
 GTTGuard es la capacidad de GTT que protege archivos, clases y métodos frente a la modificación autónoma. El desarrollador declara la protección en el propio artefacto fuente, por ejemplo con una anotación @GTTGuard, y GTT la normaliza en un registro legible por máquina que indica qué está protegido, por qué, bajo qué política y dónde se originó la protección.
 
-GTTGuard no oculta el código a los agentes; protege la autoridad para cambiarlo. Un agente puede leer, analizar y proponer cambios a un artefacto protegido, y la propuesta se escribe en gtt/proposals/ para que un humano la apruebe, la rechace o la modifique. La política vigente es HUMAN_APPROVAL.
+GTTGuard no oculta el código a los agentes; protege la autoridad para cambiarlo. Un agente puede leer, analizar y proponer cambios a un artefacto protegido, y la propuesta se escribe en gtt-domain/proposals/ para que un humano la apruebe, la rechace o la modifique. La política vigente es HUMAN_APPROVAL.
 
 ## ¿Qué es GTT Enforcement?
 
@@ -2371,9 +2315,9 @@ GTT CLI es la herramienta operacional de GTT: un único binario gtt para Linux, 
 
 Instalación y comandos: https://gtt-method.org/cli/
 
-## ¿Qué son los Method Plans?
+## ¿Qué son los Autonomy Profiles?
 
-Los Method Plans (Light, Medium, Hard y Team) definen cuánto hace GTT sin preguntarte. Sea cual sea el plan, las operaciones destructivas y las decisiones gobernadas siempre requieren a un humano. Eliges el plan en gtt init y puedes revisarlo o cambiarlo con gtt method.
+Los Perfiles de Autonomía (Light, Medium, Hard y Team) definen cuánto hace GTT sin preguntarte. Sea cual sea el perfil, las operaciones destructivas y las decisiones gobernadas siempre requieren a un humano. Eliges el plan en gtt init y puedes revisarlo o cambiarlo con gtt autonomy.
 
 ## ¿Cómo se relaciona GTT con los agentes de IA y los ADEs?
 
@@ -2399,7 +2343,7 @@ Sí. GTT CLI está hecho para pipelines: gtt validate --ci ejecuta la validació
 
 ## ¿Cómo empiezo un proyecto GTT?
 
-Instala GTT CLI y ejecuta gtt init dentro de tu proyecto. Resuelve y verifica GTT Bootstrap, pregunta qué ADEs participan y cuál es el Primario, el idioma, el Method Plan y tus documentos iniciales de diseño, instala, valida y entrega el control a tu ADE Primario. Si no tienes un documento de diseño, tu ADE te guía por el Cuestionario de Diseño Inicial.
+Instala GTT CLI y ejecuta gtt init dentro de tu proyecto. Resuelve y verifica GTT Bootstrap, pregunta qué ADEs participan y cuál es el Primario, el idioma, el Autonomy Profile y tus documentos iniciales de diseño, instala, valida y entrega el control a tu ADE Primario. Si no tienes un documento de diseño, tu ADE te guía por el Cuestionario de Diseño Inicial.
 
 El ADE Primario redacta el contexto gobernado para tu revisión y, una vez que lo confirmas, lo congelas con gtt freeze.
 
@@ -2412,13 +2356,13 @@ En el glosario: https://gtt-method.org/glossary/
 
 ## ¿Qué licencias usa GTT?
 
-GTT Method y GTT CLI son Apache-2.0. GTT Bootstrap y este sitio web son MIT.
+GTT Method, GTT Bootstrap, GTT CLI y este sitio web son todos Apache-2.0.
 
 ## ¿Dónde reporto un bug o propongo una idea?
 
 En el tablero de la comunidad: https://gtt-method.feedlog.ai/ o en los repositorios de GitHub: https://github.com/orgs/GTT-Community/repositories`,
-    searchableEn: "faq frequently asked questions GTT-Method methodology concepts control plane enforcement GTTGuard context efficiency session continuity validation method plans CI",
-    searchableEs: "preguntas frecuentes FAQ GTT-Method metodología conceptos plano de control enforcement GTTGuard eficiencia de contexto continuidad de sesión validación method plans CI",
+    searchableEn: "faq frequently asked questions GTT-Method methodology concepts control plane enforcement GTTGuard context efficiency session continuity validation autonomy profiles CI",
+    searchableEs: "preguntas frecuentes FAQ GTT-Method metodología conceptos plano de control enforcement GTTGuard eficiencia de contexto continuidad de sesión validación autonomy profiles CI",
   },
   {
     slug: "glossary",
@@ -2426,7 +2370,7 @@ En el tablero de la comunidad: https://gtt-method.feedlog.ai/ o en los repositor
     titleEs: "Glosario GTT",
     descriptionEn: "Definitions of the GTT-Method terms: governed context, evidence boundary, THINK, proposal, freeze, GTTGuard, ADE, Primary ADE, GTT Bootstrap, GTT CLI and more.",
     descriptionEs: "Definiciones de los términos de GTT-Method: contexto gobernado, frontera de evidencia, THINK, propuesta, freeze, GTTGuard, ADE, ADE Primario, GTT Bootstrap, GTT CLI y más.",
-    contentEn: `The terms GTT uses, each with one definition. Definitions follow the GTT Canonical v2.1 and the published GTT Bootstrap and GTT CLI documentation; where this page and the canonical differ, the canonical is right: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+    contentEn: `The terms GTT uses, each with one definition. Definitions follow the GTT Canonical v3.0 and the published GTT Bootstrap and GTT CLI documentation; where this page and the canonical differ, the canonical is right: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 
 ## Method, implementation and tooling
 
@@ -2436,7 +2380,7 @@ GTT (Governance Through Thinking) is a methodology and governance control plane 
 
 ### GTT Canonical
 
-The single canonical definition of the current GTT generation (GTT 2.1). If an implementation, website, manual or CLI contradicts it, the contradiction must be surfaced and resolved. Source: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+The single canonical definition of the current GTT generation (GTT 3.0). If an implementation, website, manual or CLI contradicts it, the contradiction must be surfaced and resolved. Source: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 
 ### GTT Bootstrap
 
@@ -2446,7 +2390,7 @@ The reference implementation of the GTT Method. It owns the GTT semantics and ex
 
 The operational surface of GTT: the gtt command-line tool that installs, validates, operates, updates, exports and recovers GTT projects through the Bootstrap contracts. It is not a second GTT engine. See https://gtt-method.org/cli/
 
-### Method Plan
+### Autonomy Profile
 
 The operating profile chosen for a project: Light, Medium, Hard or Team. It sets how much operational work is delegated to GTT. It is not a quality level, and no plan turns governance off.
 
@@ -2553,7 +2497,7 @@ The portable information needed to reconstruct a GTT installation and its operat
 - Methodology: https://gtt-method.org/methodology/
 - FAQ: https://gtt-method.org/faq/
 - GTT CLI: https://gtt-method.org/cli/`,
-    contentEs: `Los términos que usa GTT, cada uno con una sola definición. Las definiciones siguen el GTT Canonical v2.1 y la documentación publicada de GTT Bootstrap y GTT CLI; si esta página y el canónico difieren, el canónico tiene razón: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+    contentEs: `Los términos que usa GTT, cada uno con una sola definición. Las definiciones siguen el GTT Canonical v3.0 y la documentación publicada de GTT Bootstrap y GTT CLI; si esta página y el canónico difieren, el canónico tiene razón: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 
 ## Método, implementación y herramientas
 
@@ -2563,7 +2507,7 @@ GTT (Governance Through Thinking) es una metodología y un plano de control de g
 
 ### GTT Canonical
 
-La única definición canónica de la generación actual de GTT (GTT 2.1). Si una implementación, un sitio web, un manual o la CLI la contradicen, la contradicción debe exponerse y resolverse. Fuente: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v2.1.md
+La única definición canónica de la generación actual de GTT (GTT 3.0). Si una implementación, un sitio web, un manual o la CLI la contradicen, la contradicción debe exponerse y resolverse. Fuente: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL.md
 
 ### GTT Bootstrap
 
@@ -2573,7 +2517,7 @@ La implementación de referencia del GTT Method. Es dueña de la semántica GTT 
 
 La superficie operativa de GTT: la herramienta de línea de comandos gtt que instala, valida, opera, actualiza, exporta y recupera proyectos GTT a través de los contratos de Bootstrap. No es un segundo motor de GTT. Ver https://gtt-method.org/cli/
 
-### Method Plan
+### Autonomy Profile
 
 El perfil operativo elegido para un proyecto: Light, Medium, Hard o Team. Define cuánto trabajo operativo se delega a GTT. No es un nivel de calidad, y ningún plan apaga la gobernanza.
 
@@ -2680,8 +2624,8 @@ La información portable necesaria para reconstruir una instalación GTT y su es
 - Metodología: https://gtt-method.org/methodology/
 - Preguntas frecuentes: https://gtt-method.org/faq/
 - GTT CLI: https://gtt-method.org/cli/`,
-    searchableEn: "glossary terms definitions governed context execution context evidence boundary grounding dossier provenance THINK proposal freeze change request GTTGuard ADE Primary ADE Method Plan session continuity",
-    searchableEs: "glosario términos definiciones contexto gobernado contexto de ejecución frontera de evidencia grounding dossier procedencia THINK propuesta freeze solicitud de cambio GTTGuard ADE Primario Method Plan continuidad de sesión",
+    searchableEn: "glossary terms definitions governed context execution context evidence boundary grounding dossier provenance THINK proposal freeze change request GTTGuard ADE Primary ADE Autonomy Profile session continuity",
+    searchableEs: "glosario términos definiciones contexto gobernado contexto de ejecución frontera de evidencia grounding dossier procedencia THINK propuesta freeze solicitud de cambio GTTGuard ADE Primario Autonomy Profile continuidad de sesión",
   },
   {
     slug: "cli",
@@ -2758,7 +2702,7 @@ gtt init finds, downloads and verifies GTT Bootstrap, then asks only for the dec
 
 - Which ADEs participate (Claude Code, GitHub Copilot, Codex, Kiro) and which one is the Primary ADE
 - The language
-- The Method Plan: Light, Medium, Hard or Team
+- The Autonomy Profile: Light, Medium, Hard or Team
 - Your initial design documents, if you have any. If you have none, it offers the Initial Design Questionnaire
 - The development method: how you want to develop (Vertical Slice, DDD, Hexagonal...) and how to start. If you are not sure, choose "help me choose": nothing is applied by default. Details: https://gtt-method.org/development-methods/
 
@@ -2827,25 +2771,25 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Install a specific version (example: 1.0.1)
+## Install a specific version (example: 1.8.0)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.0.1 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.8.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.0.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.8.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.0.1
-npm install -g @gtt-community/gtt-cli@1.0.1
+uv tool install gtt-cli==1.8.0
+npm install -g @gtt-community/gtt-cli@1.8.0
 \`\`\`
 
 ## Where it is installed
@@ -2934,7 +2878,7 @@ gtt init encuentra, descarga y verifica GTT Bootstrap, y luego te pide solo las 
 
 - Qué ADEs participan (Claude Code, GitHub Copilot, Codex, Kiro) y cuál es el ADE Primario
 - El idioma
-- El Method Plan: Light, Medium, Hard o Team
+- El Autonomy Profile: Light, Medium, Hard o Team
 - Tus documentos de diseño iniciales, si los tienes. Si no tienes ninguno, ofrece el Cuestionario de Diseño Inicial
 - El método de desarrollo: cómo quieres desarrollar (Vertical Slice, DDD, Hexagonal...) y cómo empezar. Si no estás seguro, elige "ayúdame a elegir": nunca se aplica nada por defecto. Detalle: https://gtt-method.org/development-methods/
 
@@ -3003,25 +2947,25 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Instalar una versión específica (ejemplo: 1.0.1)
+## Instalar una versión específica (ejemplo: 1.8.0)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.0.1 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.8.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.0.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.8.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.0.1
-npm install -g @gtt-community/gtt-cli@1.0.1
+uv tool install gtt-cli==1.8.0
+npm install -g @gtt-community/gtt-cli@1.8.0
 \`\`\`
 
 ## Dónde se instala
@@ -3078,12 +3022,12 @@ gtt init finds, downloads and verifies GTT Bootstrap. Nothing is installed until
 - Participating ADEs: the ADEs it detects are only candidates. GTT installs the integrations you choose and no others
 - Primary ADE: the one that leads the workflow
 - Language
-- Method Plan: Light, Medium, Hard or Team. It decides how much operational work GTT does without asking. It is not a quality level, and no plan turns governance off
+- Autonomy Profile: Light, Medium, Hard or Team. It decides how much operational work GTT does without asking. It is not a quality level, and no plan turns governance off
 - Development method: how you want to develop and how to start. Unanswered, it stays OPEN; nothing is applied by default
 - Initial design documents: the documents the governed context will be built from
 - Development method: how you want to develop and how to start. Unanswered, it stays OPEN; nothing is applied by default
 
-The Method Plans are described at https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.md
+The Autonomy Profiles are described at https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.md
 
 ## 3. Check the installation
 
@@ -3171,11 +3115,11 @@ gtt init encuentra, descarga y verifica GTT Bootstrap. No se instala nada hasta 
 - ADEs participantes: los ADEs que detecta son solo candidatos. GTT instala las integraciones que tú eliges y ninguna otra
 - ADE Primario: el que conduce el flujo de trabajo
 - Idioma
-- Method Plan: Light, Medium, Hard o Team. Define cuánto trabajo operativo hace GTT sin preguntar. No es un nivel de calidad, y ningún plan desactiva la gobernanza
+- Autonomy Profile: Light, Medium, Hard o Team. Define cuánto trabajo operativo hace GTT sin preguntar. No es un nivel de calidad, y ningún plan desactiva la gobernanza
 - Documentos de diseño iniciales: los documentos desde los que se construirá el contexto gobernado
 - Método de desarrollo: cómo quieres desarrollar y cómo empezar. Sin respuesta queda OPEN; nunca se aplica nada por defecto
 
-Los Method Plans están descritos en https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.es.md
+Los Autonomy Profiles están descritos en https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.es.md
 
 ## 3. Comprobar la instalación
 
@@ -3235,8 +3179,8 @@ gtt resume
 
 - Con un prompt a tu agente de IA, sin el CLI: https://gtt-method.org/prompts/
 - Manualmente, copiando tú mismo los archivos: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/installation.es.md`,
-    searchableEn: "bootstrap install gtt init guide governed context freeze method plan primary ade design document questionnaire",
-    searchableEs: "bootstrap instalar gtt init guía contexto gobernado freeze congelar method plan ade primario documento de diseño cuestionario",
+    searchableEn: "bootstrap install gtt init guide governed context freeze autonomy profile primary ade design document questionnaire",
+    searchableEs: "bootstrap instalar gtt init guía contexto gobernado freeze congelar autonomy profile ade primario documento de diseño cuestionario",
   },
   {
     // Method Governance. The method texts are copied from the Method Packs of GTT Bootstrap
@@ -3260,7 +3204,7 @@ Without a chosen method, an AI agent tends to design by layers, because that is 
 
 ## How you choose it
 
-gtt init asks two questions after the Method Plan. Without a terminal, answer them with flags; without an answer the method stays OPEN:
+gtt init asks two questions after the Autonomy Profile. Without a terminal, answer them with flags; without an answer the method stays OPEN:
 
 \`\`\`
 gtt init --dev-method ddd,vertical-slice --start walking-skeleton
@@ -3409,7 +3353,7 @@ Sin un método elegido, un agente de IA tiende a diseñar por capas, porque es l
 
 ## Cómo se elige
 
-gtt init hace dos preguntas después del Method Plan. Sin terminal, respóndelas con flags; sin respuesta el método queda OPEN:
+gtt init hace dos preguntas después del Autonomy Profile. Sin terminal, respóndelas con flags; sin respuesta el método queda OPEN:
 
 \`\`\`
 gtt init --dev-method ddd,vertical-slice --start walking-skeleton

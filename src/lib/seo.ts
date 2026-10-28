@@ -108,7 +108,7 @@ GTT is a methodology first. GTT Bootstrap is its reference implementation and ow
 
 ## Canonical source
 
-- [GTT Canonical v2.1](${GTT_CANONICAL_DOC_URL}): the single canonical definition of the current GTT generation. If this site contradicts it, the canonical document is right.
+- [GTT Canonical](${GTT_CANONICAL_DOC_URL}) (current generation: GTT 3.0): the single canonical definition of the current GTT generation. If this site contradicts it, the canonical document is right.
 
 ## Pages
 
@@ -117,7 +117,7 @@ ${pages.map((page) => `- [${page.titleEn}](${pageUrl(page.slug)}): ${page.descri
 ## Repositories
 
 - [gtt-method](https://github.com/GTT-Community/gtt-method): the methodology and its canonical definition (Apache-2.0)
-- [gtt-bootstrap](https://github.com/GTT-Community/gtt-bootstrap): the reference implementation (MIT)
+- [gtt-bootstrap](https://github.com/GTT-Community/gtt-bootstrap): the reference implementation (Apache-2.0)
 - [gtt-cli](https://github.com/GTT-Community/gtt-cli): the operational command-line tool (Apache-2.0)
 - [gtt-docs](https://github.com/GTT-Community/gtt-docs): documentation and normative specification (MIT)
 
