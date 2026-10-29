@@ -77,11 +77,11 @@ Choose your development method and GTT enforces it. At setup you choose how you 
 declare  ->  ratify  ->  verify
 \`\`\`
 
-The design and the backlog are checked at the freeze, and gtt check verifies the code with the language's own tool: JavaScript and TypeScript today, other languages declared-only. Details: https://gtt-method.org/development-methods/
+The design and the backlog are checked at the freeze, and gtt check verifies the code with the language's own tool: Go, Java/Kotlin, PHP, Python, JavaScript and TypeScript; other languages, .NET included, declared-only. Details: https://gtt-method.org/development-methods/
 
 ## Works with your ADE
 
-GTT is independent of the development environment. Bootstrap currently ships integrations for Claude Code, GitHub Copilot, Codex and Kiro, and several can participate in the same project under one governance model.
+GTT is independent of the development environment. Bootstrap currently ships integrations for Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity and OpenHands, and several can participate in the same project under one governance model.
 
 ## What GTT is not
 
@@ -165,11 +165,11 @@ Elige tu método de desarrollo y GTT lo hace cumplir. En el seteo eliges cómo q
 declarar  ->  ratificar  ->  verificar
 \`\`\`
 
-El diseño y el backlog se verifican en el freeze, y gtt check verifica el código con la herramienta propia del lenguaje: hoy JavaScript y TypeScript, los demás lenguajes declared-only. Detalle: https://gtt-method.org/development-methods/
+El diseño y el backlog se verifican en el freeze, y gtt check verifica el código con la herramienta propia del lenguaje: Go, Java/Kotlin, PHP, Python, JavaScript y TypeScript; los demás lenguajes, incluido .NET, declared-only. Detalle: https://gtt-method.org/development-methods/
 
 ## Funciona con tu ADE
 
-GTT es independiente del entorno de desarrollo. Bootstrap incluye hoy integraciones para Claude Code, GitHub Copilot, Codex y Kiro, y varios pueden participar en el mismo proyecto bajo un solo modelo de gobernanza.
+GTT es independiente del entorno de desarrollo. Bootstrap incluye hoy integraciones para Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity y OpenHands, y varios pueden participar en el mismo proyecto bajo un solo modelo de gobernanza.
 
 ## Lo que GTT no es
 
@@ -464,7 +464,7 @@ Put each concern in the plane that can enforce it.
 | Instruction Plane | Agent rules | Probabilistic |
 | Procedural Plane | Skills & workflows | On demand |
 
-An instruction saying "AI must not modify architecture files" is useful, but remains an instruction. A filesystem permission, hook or CI gate provides actual enforcement.
+An instruction saying "AI must not modify architecture files" is useful, but remains an instruction. A filesystem permission, hook or CI gate provides actual enforcement. Real-time blocking is verified in Claude Code; Kiro, GitHub Copilot, Cursor, OpenHands and Google Antigravity get a pre-tool hook not yet verified inside the ADE, and Codex relies on the CI gate. For every ADE but Claude Code, the CI gate is the layer that holds.
 
 GTT-Method combines instructional governance with deterministic controls wherever possible.`,
     contentEs: `## Concepto Central: Contexto Gobernado
@@ -518,7 +518,7 @@ Poner cada preocupación en el plano que puede hacerla cumplir.
 | Instruction Plane | Reglas del agente | Probabilista |
 | Procedural Plane | Skills & workflows | Bajo demanda |
 
-Una instrucción diciendo "la IA no debe modificar archivos de arquitectura" es útil, pero permanece como instrucción. Un permiso de archivo, hook o puerta CI proporciona aplicación real.
+Una instrucción diciendo "la IA no debe modificar archivos de arquitectura" es útil, pero permanece como instrucción. Un permiso de archivo, hook o puerta CI proporciona aplicación real. El bloqueo en tiempo real está verificado en Claude Code; Kiro, GitHub Copilot, Cursor, OpenHands y Google Antigravity reciben un hook previo a cada herramienta aún no verificado dentro del ADE, y Codex depende de la puerta CI. En todo ADE salvo Claude Code, la puerta CI es la capa que garantiza.
 
 GTT-Method combina gobernanza instructiva con controles deterministas siempre que sea posible.`,
     searchableEn: "approach governed context architecture governance enforcement control plane build plane",
@@ -551,7 +551,7 @@ Step-by-step Bootstrap guide: https://gtt-method.org/bootstrap/
 
 > You are here if gtt init already placed the Bootstrap and the project still has to be set up.
 
-Two decisions set up the project: which ADEs take part, and how much operational work you delegate to GTT.
+Three decisions set up the project: which ADEs take part, how much operational work you delegate to GTT, and the development method (unanswered, it stays OPEN).
 
 | Step | Stage | What happens | Who |
 |---|---|---|---|
@@ -721,7 +721,7 @@ Guía paso a paso del Bootstrap: https://gtt-method.org/bootstrap/
 
 > Estás aquí si gtt init ya colocó el Bootstrap y falta configurar el proyecto.
 
-Dos decisiones configuran el proyecto: qué ADE participan y cuánto trabajo operativo delegas en GTT.
+Tres decisiones configuran el proyecto: qué ADE participan, cuánto trabajo operativo delegas en GTT y el método de desarrollo (sin respuesta, queda OPEN).
 
 | Paso | Etapa | Qué ocurre | Quién |
 |---|---|---|---|
@@ -1120,7 +1120,7 @@ There is no "unfreeze" workflow in GTT. The governance model is based on control
 
 ### Autonomy Profiles
 
-GTT is applied through a Autonomy Profile, chosen once per project:
+GTT is applied through an Autonomy Profile, chosen at gtt init and changeable with gtt autonomy (after the freeze, only to a stricter one without a change request):
 
 \`\`\`
 LIGHT
@@ -1180,7 +1180,7 @@ GTT is ADE-independent.
 
 > The ADE is the development environment. GTT is the governance model.
 
-Bootstrap supports several ADE integration surfaces (currently Claude Code, GitHub Copilot, Codex and Kiro) while maintaining one governance model and one Primary ADE. The Primary ADE is a workflow role, not a governance role. Secondary ADEs are not ignored: if they participate in the project, their GTT integration is represented according to Bootstrap contracts.
+Bootstrap supports several ADE integration surfaces (currently Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity and OpenHands) while maintaining one governance model and one Primary ADE. The Primary ADE is a workflow role, not a governance role. Secondary ADEs are not ignored: if they participate in the project, their GTT integration is represented according to Bootstrap contracts.
 
 ## GTT Bootstrap
 
@@ -1305,7 +1305,7 @@ GTT CLI is not a second GTT engine. It consumes and orchestrates Bootstrap, and 
 | Clean Export | gtt export --clean produces a clean delivery artifact while leaving the development project intact. |
 | Clean | gtt clean removes GTT from the current project after explicit confirmation. |
 | Recovery | Recovery snapshots hold the portable information needed to reconstruct the GTT installation and operational state. |
-| Version | gtt version reports the CLI version. |
+| Version | gtt version reports the CLI version, the Bootstrap it ships with and the one installed. |
 
 ### Command surface
 
@@ -1322,6 +1322,15 @@ gtt update
 gtt export --clean
 gtt clean
 gtt version
+gtt change
+gtt proposals
+gtt promote <set>
+gtt undo
+gtt check
+gtt dev-method
+gtt autonomy
+gtt design
+gtt sync
 \`\`\`
 
 This page is not a command reference. Installation and command details are on the GTT CLI page: https://gtt-method.org/cli/
@@ -1685,7 +1694,7 @@ En GTT no existe un flujo de "unfreeze". El modelo de gobernanza se basa en la r
 
 ### Autonomy Profiles
 
-GTT se aplica a través de un Autonomy Profile, que se elige una vez por proyecto:
+GTT se aplica a través de un Autonomy Profile, que se elige en gtt init y puede cambiarse con gtt autonomy (tras el freeze, solo a uno más estricto sin change request):
 
 \`\`\`
 LIGHT
@@ -1745,7 +1754,7 @@ GTT es independiente del ADE.
 
 > El ADE es el entorno de desarrollo. GTT es el modelo de gobernanza.
 
-Bootstrap soporta varias superficies de integración de ADE (hoy Claude Code, GitHub Copilot, Codex y Kiro) manteniendo un solo modelo de gobernanza y un solo ADE Primario. El ADE Primario es un rol de flujo de trabajo, no un rol de gobernanza. Los ADEs secundarios no se ignoran: si participan en el proyecto, su integración GTT se representa según los contratos de Bootstrap.
+Bootstrap soporta varias superficies de integración de ADE (hoy Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity y OpenHands) manteniendo un solo modelo de gobernanza y un solo ADE Primario. El ADE Primario es un rol de flujo de trabajo, no un rol de gobernanza. Los ADEs secundarios no se ignoran: si participan en el proyecto, su integración GTT se representa según los contratos de Bootstrap.
 
 ## GTT Bootstrap
 
@@ -1870,7 +1879,7 @@ GTT CLI no es un segundo motor de GTT. Consume y orquesta Bootstrap, y no reprod
 | Exportación Limpia | gtt export --clean produce un artefacto de entrega limpio y deja intacto el proyecto de desarrollo. |
 | Limpieza | gtt clean elimina GTT del proyecto actual tras una confirmación explícita. |
 | Recuperación | Los snapshots de recuperación guardan la información portable necesaria para reconstruir la instalación GTT y su estado operativo. |
-| Versión | gtt version informa la versión de la CLI. |
+| Versión | gtt version informa la versión de la CLI, el Bootstrap con que se distribuye y el instalado. |
 
 ### Superficie de comandos
 
@@ -1887,6 +1896,15 @@ gtt update
 gtt export --clean
 gtt clean
 gtt version
+gtt change
+gtt proposals
+gtt promote <set>
+gtt undo
+gtt check
+gtt dev-method
+gtt autonomy
+gtt design
+gtt sync
 \`\`\`
 
 Esta página no es una referencia de comandos. La instalación y el detalle de cada comando están en la página de GTT CLI: https://gtt-method.org/cli/
@@ -2205,7 +2223,7 @@ No. GTT-Method complements SDD. SDD defines what to build; GTT-Method governs th
 
 ## Does GTT-Method depend on one vendor?
 
-No. GTT is independent of any particular agent or ADE, and does not require the memory, hook or permission system of any of them. GTT Bootstrap currently ships integrations for Claude Code, GitHub Copilot, Codex and Kiro.
+No. GTT is independent of any particular agent or ADE, and does not require the memory, hook or permission system of any of them. GTT Bootstrap currently ships integrations for Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity and OpenHands.
 
 ## Can I use GTT in CI?
 
@@ -2213,7 +2231,7 @@ Yes. GTT CLI is built for pipelines: gtt validate --ci runs the Bootstrap valida
 
 ## How do I start a GTT project?
 
-Install GTT CLI, then run gtt init inside your project. It resolves and verifies GTT Bootstrap, asks which ADEs participate and which one is Primary, the language, the Autonomy Profile and your initial design documents, installs, validates and hands off to your Primary ADE. If you have no design document, your ADE guides you through the Initial Design Questionnaire.
+Install GTT CLI, then run gtt init inside your project. It resolves and verifies GTT Bootstrap, asks which ADEs participate and which one is Primary, the language, the Autonomy Profile, the development method and your initial design documents, installs, validates and hands off to your Primary ADE. If you have no design document, your ADE guides you through the Initial Design Questionnaire.
 
 The Primary ADE drafts the governed context for your review, and once you confirm it you freeze it with gtt freeze.
 
@@ -2335,7 +2353,7 @@ No. GTT-Method complementa a SDD. SDD define qué construir; GTT-Method gobierna
 
 ## ¿GTT-Method depende de un proveedor?
 
-No. GTT es independiente de cualquier agente o ADE en particular, y no requiere el sistema de memoria, hooks o permisos de ninguno de ellos. GTT Bootstrap incluye hoy integraciones para Claude Code, GitHub Copilot, Codex y Kiro.
+No. GTT es independiente de cualquier agente o ADE en particular, y no requiere el sistema de memoria, hooks o permisos de ninguno de ellos. GTT Bootstrap incluye hoy integraciones para Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity y OpenHands.
 
 ## ¿Puedo usar GTT en CI?
 
@@ -2343,7 +2361,7 @@ Sí. GTT CLI está hecho para pipelines: gtt validate --ci ejecuta la validació
 
 ## ¿Cómo empiezo un proyecto GTT?
 
-Instala GTT CLI y ejecuta gtt init dentro de tu proyecto. Resuelve y verifica GTT Bootstrap, pregunta qué ADEs participan y cuál es el Primario, el idioma, el Autonomy Profile y tus documentos iniciales de diseño, instala, valida y entrega el control a tu ADE Primario. Si no tienes un documento de diseño, tu ADE te guía por el Cuestionario de Diseño Inicial.
+Instala GTT CLI y ejecuta gtt init dentro de tu proyecto. Resuelve y verifica GTT Bootstrap, pregunta qué ADEs participan y cuál es el Primario, el idioma, el Autonomy Profile, el método de desarrollo y tus documentos iniciales de diseño, instala, valida y entrega el control a tu ADE Primario. Si no tienes un documento de diseño, tu ADE te guía por el Cuestionario de Diseño Inicial.
 
 El ADE Primario redacta el contexto gobernado para tu revisión y, una vez que lo confirmas, lo congelas con gtt freeze.
 
@@ -2700,7 +2718,7 @@ gtt init
 
 gtt init finds, downloads and verifies GTT Bootstrap, then asks only for the decisions that are yours:
 
-- Which ADEs participate (Claude Code, GitHub Copilot, Codex, Kiro) and which one is the Primary ADE
+- Which ADEs participate (Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity, OpenHands) and which one is the Primary ADE
 - The language
 - The Autonomy Profile: Light, Medium, Hard or Team
 - Your initial design documents, if you have any. If you have none, it offers the Initial Design Questionnaire
@@ -2734,6 +2752,7 @@ gtt undo
 - gtt change records a governed change request (design, architecture, stack, constraints or an Epic's goal or scope) with an id, and offers to open your Primary ADE. The agent is told to process it into a proposal on its first turn: it drafts, it never applies
 - gtt proposals lists what the agent drafted (proposals, ADR drafts, promotion sets) with their state and the request they answer. gtt proposals show <name> opens one, and gtt proposals withdraw <name> archives one you will not promote
 - gtt promote <set> shows the diff of a staged set and applies it only after you confirm
+- promote, undo, freeze, change, proposals withdraw, design reset, clean, init and update are human acts: an agent is refused them, even with --yes. Run them in your own terminal (in Claude Code you can also type them after ! in the prompt). If an agent's shell or MCP command changes the frozen design or GTT's protection anyway, GTT puts it back, archives what it wrote and tells you; gtt validate fails if a protection hook was tampered with
 - gtt undo puts back what the last promotion replaced, while its files are as it left them. If that promotion froze the project, a new freeze records the earlier state: there is still no unfreeze, and every baseline stays in the history. Going further back is a new change request
 - Ordinary work (code, refactors, tests, Stories) needs none of this
 
@@ -2747,7 +2766,7 @@ gtt check
 
 - gtt dev-method shows the development method in force, its status (ratified or open), the ADR that locks it and its verification level. It is read-only: after the freeze the method changes only through a change request
 - gtt dev-method list shows the available methods with their short text
-- gtt check verifies that the code respects the method's dependency rules, with the language's own tool. Today: JavaScript and TypeScript, with dependency-cruiser installed in the project. Other languages are reported as declared-only
+- gtt check verifies that the code respects the method's dependency rules, with the language's own tool. Today: Go (go list), Java/Kotlin (jdeps), PHP (deptrac), Python (import-linter), JavaScript and TypeScript (dependency-cruiser), with the tool installed in the project. Other languages, .NET included, are reported as declared-only
 - gtt check exits 0 when the code respects the method, 1 when it finds a forbidden dependency, and 7 when the result cannot be determined because the tool is not installed. A violation is reported, never corrected
 
 ## Other ways to install
@@ -2771,25 +2790,25 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Install a specific version (example: 1.9.0)
+## Install a specific version (example: 1.9.1)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.9.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.9.1 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.9.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.9.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.9.0
-npm install -g @gtt-community/gtt-cli@1.9.0
+uv tool install gtt-cli==1.9.1
+npm install -g @gtt-community/gtt-cli@1.9.1
 \`\`\`
 
 ## Where it is installed
@@ -2876,7 +2895,7 @@ gtt init
 
 gtt init encuentra, descarga y verifica GTT Bootstrap, y luego te pide solo las decisiones que son tuyas:
 
-- Qué ADEs participan (Claude Code, GitHub Copilot, Codex, Kiro) y cuál es el ADE Primario
+- Qué ADEs participan (Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity, OpenHands) y cuál es el ADE Primario
 - El idioma
 - El Autonomy Profile: Light, Medium, Hard o Team
 - Tus documentos de diseño iniciales, si los tienes. Si no tienes ninguno, ofrece el Cuestionario de Diseño Inicial
@@ -2910,6 +2929,7 @@ gtt undo
 - gtt change registra un change request gobernado (diseño, arquitectura, stack, restricciones o el objetivo o alcance de un Epic) con un id, y te ofrece abrir tu ADE Primario. El agente recibe la orden de procesarlo como propuesta en su primer turno: redacta, nunca aplica
 - gtt proposals lista lo que redactó el agente (propuestas, borradores de ADR, sets de promoción) con su estado y el request que responden. gtt proposals show <nombre> abre uno, y gtt proposals withdraw <nombre> archiva uno que no vas a promover
 - gtt promote <set> muestra el diff de un set preparado y lo aplica solo cuando confirmas
+- promote, undo, freeze, change, proposals withdraw, design reset, clean, init y update son actos humanos: a un agente se le niegan, incluso con --yes. Ejecútalos en tu propia terminal (en Claude Code también puedes escribirlos después de ! en el prompt). Si un comando de shell o MCP de un agente cambia igual el diseño congelado o la protección de GTT, GTT lo restaura, archiva lo que escribió y te avisa; gtt validate falla si un hook de protección fue alterado
 - gtt undo deshace lo que reemplazó la última promoción, mientras sus archivos sigan como los dejó. Si esa promoción congeló el proyecto, un nuevo freeze registra el estado anterior: sigue sin existir el unfreeze, y cada línea base queda en el historial. Ir más atrás es un nuevo change request
 - El trabajo ordinario (código, refactors, pruebas, Stories) no necesita nada de esto
 
@@ -2923,7 +2943,7 @@ gtt check
 
 - gtt dev-method muestra el método de desarrollo vigente, su estado (ratificado u open), el ADR que lo fija y su nivel de verificación. Es de solo lectura: después del freeze el método solo cambia por change request
 - gtt dev-method list muestra los métodos disponibles con su texto corto
-- gtt check verifica que el código respete las reglas de dependencia del método, con la herramienta propia del lenguaje. Hoy: JavaScript y TypeScript, con dependency-cruiser instalado en el proyecto. Los demás lenguajes se reportan como declared-only
+- gtt check verifica que el código respete las reglas de dependencia del método, con la herramienta propia del lenguaje. Hoy: Go (go list), Java/Kotlin (jdeps), PHP (deptrac), Python (import-linter), JavaScript y TypeScript (dependency-cruiser), con la herramienta instalada en el proyecto. Los demás lenguajes, incluido .NET, se reportan como declared-only
 - gtt check termina con 0 cuando el código respeta el método, 1 cuando encuentra una dependencia prohibida y 7 cuando el resultado no se puede determinar porque la herramienta no está instalada. Una violación se reporta, nunca se corrige
 
 ## Otras formas de instalar
@@ -2947,25 +2967,25 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Instalar una versión específica (ejemplo: 1.9.0)
+## Instalar una versión específica (ejemplo: 1.9.1)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.9.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.9.1 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.9.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.9.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.9.0
-npm install -g @gtt-community/gtt-cli@1.9.0
+uv tool install gtt-cli==1.9.1
+npm install -g @gtt-community/gtt-cli@1.9.1
 \`\`\`
 
 ## Dónde se instala
@@ -3002,7 +3022,7 @@ Repository: https://github.com/GTT-Community/gtt-bootstrap
 
 - GTT CLI installed: https://gtt-method.org/cli/
 - git, bash and python3. On Windows: Git for Windows (it provides bash) and Python 3
-- An ADE: Claude Code, GitHub Copilot, Codex or Kiro
+- An ADE: Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity or OpenHands
 - A project folder, new or with existing code
 - Recommended: a finished design document in the project root. Any name and any common format works (.md, .txt, Word, PDF). It should describe the idea and goal, vision, requirements, architecture, technology stack, constraints and development rules
 
@@ -3025,7 +3045,6 @@ gtt init finds, downloads and verifies GTT Bootstrap. Nothing is installed until
 - Autonomy Profile: Light, Medium, Hard or Team. It decides how much operational work GTT does without asking. It is not a quality level, and no plan turns governance off
 - Development method: how you want to develop and how to start. Unanswered, it stays OPEN; nothing is applied by default
 - Initial design documents: the documents the governed context will be built from
-- Development method: how you want to develop and how to start. Unanswered, it stays OPEN; nothing is applied by default
 
 The Autonomy Profiles are described at https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/method-plans.md
 
@@ -3095,7 +3114,7 @@ Repositorio: https://github.com/GTT-Community/gtt-bootstrap
 
 - GTT CLI instalado: https://gtt-method.org/cli/
 - git, bash y python3. En Windows: Git for Windows (aporta bash) y Python 3
-- Un ADE: Claude Code, GitHub Copilot, Codex o Kiro
+- Un ADE: Claude Code, GitHub Copilot, Codex, Kiro, Cursor, Google Antigravity u OpenHands
 - Una carpeta de proyecto, nueva o con código existente
 - Recomendado: un documento de diseño terminado en la raíz del proyecto. Sirve cualquier nombre y cualquier formato común (.md, .txt, Word, PDF). Debería describir la idea y el objetivo, la visión, los requisitos, la arquitectura, el stack tecnológico, las restricciones y las reglas de desarrollo
 
@@ -3309,7 +3328,7 @@ When you confirm the context, the chosen method is written in the governed conte
 | The first Epic is the skeleton (Walking Skeleton) | freeze | checked |
 | Every approved design has the method's sections | freeze | checked |
 | The method's dependency rules are in the stack map | freeze | checked |
-| The code respects those dependency rules | gtt check, through the language's own tool | checked for JavaScript and TypeScript (dependency-cruiser); other languages: declared-only |
+| The code respects those dependency rules | gtt check, through the language's own tool | checked for Go, Java/Kotlin, PHP, Python, JavaScript and TypeScript; other languages, .NET included: declared-only |
 | Slices are really thin, contexts keep one language | audit | human judgment |
 
 gtt check reads the ratified method and verifies its dependency rules in the code with the language's own tool. GTT has no import analyser of its own:
@@ -3318,9 +3337,14 @@ gtt check reads the ratified method and verifies its dependency rules in the cod
 gtt check
 \`\`\`
 
-- JavaScript and TypeScript: dependency-cruiser, installed in your project (npm install --save-dev dependency-cruiser). GTT never downloads it for you
+- Go: the go toolchain itself (go list); nothing else to install
+- Java/Kotlin: jdeps from a JDK 11+; it reads compiled classes, so build first (mvn compile or gradle classes)
+- PHP: deptrac (composer require --dev deptrac/deptrac)
+- Python: import-linter (pip install import-linter)
+- JavaScript and TypeScript: dependency-cruiser, installed in your project (npm install --save-dev dependency-cruiser)
+- GTT never downloads a tool for you
 - Without the tool installed, gtt check says the result cannot be determined (exit 7). It never reports a pass it did not verify
-- Any other language has no adapter yet: the method is reported as declared-only for the code. That is reported, never hidden
+- Any other language, .NET included, has no adapter yet: the method is reported as declared-only for the code. That is reported, never hidden
 - gtt dev-method shows the method in force, its status, the ADR that locks it and its verification level
 
 The verification level each method declares:
@@ -3458,7 +3482,7 @@ Cuando confirmas el contexto, el método elegido se escribe en el contexto gober
 | El primer Epic es el esqueleto (Walking Skeleton) | freeze | verificado |
 | Cada diseño aprobado tiene las secciones del método | freeze | verificado |
 | Las reglas de dependencia del método están en el mapa del stack | freeze | verificado |
-| El código respeta esas reglas de dependencia | gtt check, con la herramienta propia del lenguaje | verificado para JavaScript y TypeScript (dependency-cruiser); otros lenguajes: declared-only |
+| El código respeta esas reglas de dependencia | gtt check, con la herramienta propia del lenguaje | verificado para Go, Java/Kotlin, PHP, Python, JavaScript y TypeScript; otros lenguajes, incluido .NET: declared-only |
 | Los slices son de verdad delgados, los contextos mantienen un lenguaje | audit | juicio humano |
 
 gtt check lee el método ratificado y verifica sus reglas de dependencia en el código con la herramienta propia del lenguaje. GTT no tiene un analizador de imports propio:
@@ -3467,9 +3491,14 @@ gtt check lee el método ratificado y verifica sus reglas de dependencia en el c
 gtt check
 \`\`\`
 
-- JavaScript y TypeScript: dependency-cruiser, instalado en tu proyecto (npm install --save-dev dependency-cruiser). GTT nunca lo descarga por ti
+- Go: la propia toolchain de go (go list); nada más que instalar
+- Java/Kotlin: jdeps de un JDK 11+; lee clases compiladas, así que compila antes (mvn compile o gradle classes)
+- PHP: deptrac (composer require --dev deptrac/deptrac)
+- Python: import-linter (pip install import-linter)
+- JavaScript y TypeScript: dependency-cruiser, instalado en tu proyecto (npm install --save-dev dependency-cruiser)
+- GTT nunca descarga una herramienta por ti
 - Sin la herramienta instalada, gtt check dice que el resultado no se puede determinar (exit 7). Nunca informa un éxito que no verificó
-- Cualquier otro lenguaje todavía no tiene adaptador: el método se reporta como declared-only para el código. Eso se informa, nunca se oculta
+- Cualquier otro lenguaje, incluido .NET, todavía no tiene adaptador: el método se reporta como declared-only para el código. Eso se informa, nunca se oculta
 - gtt dev-method muestra el método vigente, su estado, el ADR que lo fija y su nivel de verificación
 
 El nivel de verificación que declara cada método:
@@ -3547,6 +3576,7 @@ Show me the context you propose so I can confirm it before it is frozen.
 
 - Review what the agent produced: vision, architecture, stack, principles, constraints and glossary.
 - Correct anything that is wrong and confirm it before freezing the context.
+- Then freeze it yourself, in your terminal: gtt freeze (without the CLI: bash .gtt/scripts/gtt-freeze.sh). The agent cannot freeze.
 
 ## Prefer the command line?
 
@@ -3601,6 +3631,7 @@ Muéstrame el contexto que propones para confirmarlo antes de congelarlo.
 
 - Revisa lo que produjo el agente: visión, arquitectura, stack, principios, restricciones y glosario.
 - Corrige lo que esté mal y confírmalo antes de congelar el contexto.
+- Luego congélalo tú, en tu terminal: gtt freeze (sin la CLI: bash .gtt/scripts/gtt-freeze.sh). El agente no puede congelar.
 
 ## ¿Prefieres la línea de comandos?
 
