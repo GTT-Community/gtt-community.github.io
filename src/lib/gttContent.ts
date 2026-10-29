@@ -2771,25 +2771,25 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Install a specific version (example: 1.8.0)
+## Install a specific version (example: 1.9.0)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.8.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.9.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.8.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.9.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.8.0
-npm install -g @gtt-community/gtt-cli@1.8.0
+uv tool install gtt-cli==1.9.0
+npm install -g @gtt-community/gtt-cli@1.9.0
 \`\`\`
 
 ## Where it is installed
@@ -2947,25 +2947,25 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Instalar una versión específica (ejemplo: 1.8.0)
+## Instalar una versión específica (ejemplo: 1.9.0)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.8.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.9.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.8.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.9.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.8.0
-npm install -g @gtt-community/gtt-cli@1.8.0
+uv tool install gtt-cli==1.9.0
+npm install -g @gtt-community/gtt-cli@1.9.0
 \`\`\`
 
 ## Dónde se instala
