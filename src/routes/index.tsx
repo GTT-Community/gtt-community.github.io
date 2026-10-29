@@ -79,6 +79,9 @@ const tools = ["✺ Claude Code", "● GitHub Copilot", "◎ OpenAI Codex", "◐
 const heroContent = {
   en: {
     eyebrow: `Open methodology for the AI era · GTT ${GTT_GENERATION} · Suite ${SUITE_VERSION}`,
+    // The canon: "GTT is the governance layer over SDD" (GTT-CANONICAL-v3.0.md).
+    tagline: "The governance layer over Spec-Driven Development",
+    subtagline: "AI Efficiency Governance",
     ctaPrimary: "Get Started",
     ctaSecondary: "Read the Method",
     ctaCli: "Install GTT CLI",
@@ -86,6 +89,8 @@ const heroContent = {
   },
   es: {
     eyebrow: `Metodología abierta para la era de la IA · GTT ${GTT_GENERATION} · Suite ${SUITE_VERSION}`,
+    tagline: "La capa de gobernanza sobre Spec-Driven Development",
+    subtagline: "Gobernanza de la eficiencia con IA",
     ctaPrimary: "Comenzar",
     ctaSecondary: "Leer el Método",
     ctaCli: "Instalar GTT CLI",
@@ -117,8 +122,8 @@ function Index() {
             <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.36em]">{heroContent[language].eyebrow}</p>
             <h1 className="max-w-[760px] tracking-tight">
               <span className="block text-[clamp(2.15rem,3.8vw,3.8rem)] font-extrabold leading-[0.95]">GTT — Governance Through Thinking</span>
-              <span className="mt-4 block text-[clamp(1.35rem,2.3vw,2.3rem)] font-light leading-[1.1]">Agentic Specification-Driven Development</span>
-              <span className="mt-1 block text-[clamp(1.35rem,2.3vw,2.3rem)] font-light leading-[1.1]">AI Efficiency Governance</span>
+              <span className="mt-4 block text-[clamp(1.35rem,2.3vw,2.3rem)] font-light leading-[1.1]">{heroContent[language].tagline}</span>
+              <span className="mt-1 block text-[clamp(1.35rem,2.3vw,2.3rem)] font-light leading-[1.1]">{heroContent[language].subtagline}</span>
             </h1>
             {language === "en" ? (
               <p className="mt-5 max-w-[610px] text-[17px] leading-snug">GTT-Method helps individuals and teams design, build and evolve<br className="hidden sm:block" /> software with AI, using a governed, reusable and human-centered approach.</p>
