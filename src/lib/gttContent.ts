@@ -2769,6 +2769,20 @@ gtt check
 - gtt check verifies that the code respects the method's dependency rules, with the language's own tool. Today: Go (go list), Java/Kotlin (jdeps), PHP (deptrac), Python (import-linter), JavaScript and TypeScript (dependency-cruiser), with the tool installed in the project. Other languages, .NET included, are reported as declared-only
 - gtt check exits 0 when the code respects the method, 1 when it finds a forbidden dependency, and 7 when the result cannot be determined because the tool is not installed. A violation is reported, never corrected
 
+## Delivery planning commands
+
+\`\`\`
+gtt delivery
+gtt delivery set --who solo-multi --lanes 3 --horizon weeks
+gtt plan
+gtt plan --lanes
+gtt report
+\`\`\`
+
+- gtt delivery shows who builds, the parallel fronts, the deadline and the cap per Epic; gtt delivery set changes them at any time
+- gtt plan shows the plan per front, the estimated finish against the deadline and the levers when it does not fit; --lanes prints one summary per front and the git worktree add commands to copy. GTT creates no agents. Details: https://gtt-method.org/delivery-plan/
+- gtt report shows percent per Epic, real against estimated time and the open DLV signals
+
 ## Other ways to install
 
 ### Go 1.27+
@@ -2790,25 +2804,25 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Install a specific version (example: 1.9.1)
+## Install a specific version (example: 1.10.0)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.9.1 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.10.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.9.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.10.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.9.1
-npm install -g @gtt-community/gtt-cli@1.9.1
+uv tool install gtt-cli==1.10.0
+npm install -g @gtt-community/gtt-cli@1.10.0
 \`\`\`
 
 ## Where it is installed
@@ -2946,6 +2960,20 @@ gtt check
 - gtt check verifica que el código respete las reglas de dependencia del método, con la herramienta propia del lenguaje. Hoy: Go (go list), Java/Kotlin (jdeps), PHP (deptrac), Python (import-linter), JavaScript y TypeScript (dependency-cruiser), con la herramienta instalada en el proyecto. Los demás lenguajes, incluido .NET, se reportan como declared-only
 - gtt check termina con 0 cuando el código respeta el método, 1 cuando encuentra una dependencia prohibida y 7 cuando el resultado no se puede determinar porque la herramienta no está instalada. Una violación se reporta, nunca se corrige
 
+## Comandos de planificación de entrega
+
+\`\`\`
+gtt delivery
+gtt delivery set --who solo-multi --lanes 3 --horizon weeks
+gtt plan
+gtt plan --lanes
+gtt report
+\`\`\`
+
+- gtt delivery muestra quién construye, los frentes en paralelo, el plazo y el tope por Epic; gtt delivery set los cambia en cualquier momento
+- gtt plan muestra el plan por frente, la fecha estimada contra el plazo y las palancas si no cabe; --lanes imprime un resumen por frente y los comandos git worktree add para copiar. GTT no crea agentes. Detalle: https://gtt-method.org/delivery-plan/
+- gtt report muestra el % por Epic, el tiempo real contra el estimado y las señales DLV abiertas
+
 ## Otras formas de instalar
 
 ### Go 1.27+
@@ -2967,25 +2995,25 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Instalar una versión específica (ejemplo: 1.9.1)
+## Instalar una versión específica (ejemplo: 1.10.0)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.9.1 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.10.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.9.1"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.10.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.9.1
-npm install -g @gtt-community/gtt-cli@1.9.1
+uv tool install gtt-cli==1.10.0
+npm install -g @gtt-community/gtt-cli@1.10.0
 \`\`\`
 
 ## Dónde se instala
@@ -3519,6 +3547,108 @@ Una violación se reporta como un conflicto, con la regla, el archivo de origen 
 El método ratificado no se cambia directamente, y gtt init no vuelve a hacer las preguntas. Un cambio es un change request con análisis de impacto: qué slices o módulos se mueven, qué reglas del mapa del stack cambian, qué ADR se reemplaza. Tú decides, y un nuevo freeze lo ratifica.`,
     searchableEn: "gtt check gtt dev-method dependency-cruiser method governance development method vertical slice ddd domain-driven design hexagonal ports adapters layered event-first walking skeleton method lock method pack freeze adr verification declared-only",
     searchableEs: "gtt check gtt dev-method dependency-cruiser method governance método de desarrollo vertical slice ddd domain-driven design hexagonal puertos adaptadores capas layered event-first walking skeleton method lock method pack freeze adr verificación declared-only",
+  },
+  {
+    // Delivery Planning. Texts follow .gtt/docs/delivery.md of GTT Bootstrap; never reword them here.
+    slug: "delivery-plan",
+    titleEn: "Delivery Plan",
+    titleEs: "Plan de Entrega",
+    descriptionEn: "Delivery Planning: GTT turns your design into a plan with hours, parallel fronts and a finish date, warns before you start if it does not fit your deadline, and measures real time against the estimate without spending tokens.",
+    descriptionEs: "Planificación de entrega: GTT convierte tu diseño en un plan con horas, frentes paralelos y fecha estimada, avisa antes de empezar si no cabe en tu plazo y mide el tiempo real contra la estimación sin gastar tokens.",
+    contentEn: `Before the work starts, GTT turns your design into a plan with hours, fronts and a finish date, and tells you whether it fits the time you have. While the work runs, it measures real time against the estimate without spending a token. Everything is computed by scripts from your files; the agent only explains and proposes, and you decide.
+
+Available since GTT 1.10.0 (GTT Bootstrap and GTT CLI). Details: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/delivery.md
+
+## The six questions
+
+GTT asks them at the start, one at a time, and "I do not know yet" is always valid: nothing is invented.
+
+- Who builds this: you with one agent, you with several agents in parallel, or a team of people each with their agent.
+- How many parallel fronts you can sustain (it depends on the usage limits of your agent plan). If it is a team, their names: they own the fronts.
+- When you need a first usable version: in days, in 1-2 weeks, in a month or more, or no date.
+- What you prioritise: arrive fast, balance, or build everything in-house.
+- Whether you can use third-party services for the generic parts (login, payments, email, files).
+- The cap per Epic before GTT warns you: one full agent day (8 hours) by default.
+
+\`gtt init\` asks the first three right after the Autonomy Profile; the Initial Design Questionnaire asks the rest. You can change any answer later with \`gtt delivery set\`, because it is operation, not architecture.
+
+## The plan before you start
+
+During THINK the agent estimates each Epic in **agent hours plus human decision points**, never in weeks of a person. For each generic capability it compares building with integrating a service, with a dated source: an integration is an architecture decision and needs an ADR. It then splits the Epics into fronts that do not touch the same paths, and names the first vertical slice that delivers value.
+
+\`gtt plan\` computes the rest: the plan per front, the longest chain of dependencies and the estimated finish. If it does not fit, it says so before you start and lists the levers with the hours each saves: parallel fronts, buying instead of building, cutting an Epic. Every lever is a proposal.
+
+\`gtt plan --lanes\` prints one summary per front (its Epics, the paths it may touch, the interfaces it depends on, its Done when) and the \`git worktree add\` commands to copy. GTT does not create agents, sessions or worktrees: that belongs to your ADE.
+
+## Measuring while you work
+
+Every change of status of a Story or Epic is appended, with its time, actor and front, to \`gtt-domain/delivery-log.jsonl\`. A script writes it from what the backlog says; the agent cannot write it. After three measured Stories the plan calibrates: the estimated finish uses the real/estimated ratio of your own Stories. Until then it says "uncalibrated".
+
+\`gtt report\` shows percent per Epic, real against estimated time, the ratio and the forecast.
+
+## Signals
+
+Observation raises these when they happen. What each means depends on your Autonomy Profile.
+
+| Signal | Condition |
+|---|---|
+| DLV-STORY-OVER | A Story In Progress for more than 1.5 times its estimate |
+| DLV-EPIC-BUDGET | An Epic over its cap with no decision recorded |
+| DLV-FORECAST | The estimated finish is after the deadline |
+| DLV-HUMAN-WAIT | An action only you can do has waited more than 24 hours |
+| DLV-LANE-CROSS | Epics of different fronts declare overlapping paths |
+| DLV-NO-VALUE | No Epic delivers an end-to-end flow (with a development method declared) |
+| DLV-UNCALIBRATED | Fewer than 3 Stories measured |
+
+At the freeze, the same rules are checked: Light only warns, Medium requires the decisions, Hard and Team block. A project that never declared delivery planning is not obstructed.`,
+    contentEs: `Antes de empezar, GTT convierte tu diseño en un plan con horas, frentes y fecha estimada, y te dice si cabe en el tiempo que tienes. Mientras se trabaja, mide el tiempo real contra la estimación sin gastar un token. Todo lo calculan scripts desde tus archivos; el agente solo explica y propone, y tú decides.
+
+Disponible desde GTT 1.10.0 (GTT Bootstrap y GTT CLI). Detalle: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/delivery.es.md
+
+## Las seis preguntas
+
+GTT las hace al inicio, una por vez, y "Aún no sé" siempre es válida: nunca se inventa nada.
+
+- Quién va a construir esto: tú con un agente, tú con varios agentes en paralelo, o un equipo de personas, cada una con su agente.
+- Cuántos frentes en paralelo puedes sostener (depende de los límites de uso de tu plan del agente). Si es un equipo, sus nombres: serán los dueños de cada frente.
+- Para cuándo necesitas una primera versión usable: en días, en 1-2 semanas, en un mes o más, o sin fecha.
+- Qué priorizas: llegar rápido, equilibrio, o construir todo propio.
+- Si puedes usar servicios de terceros para lo genérico (login, cobros, correo, archivos).
+- El tope por Epic antes de que GTT avise: un día completo de agente (8 horas) por defecto.
+
+\`gtt init\` hace las tres primeras justo después del Autonomy Profile; el cuestionario inicial hace el resto. Puedes cambiar cualquier respuesta después con \`gtt delivery set\`, porque es operación y no arquitectura.
+
+## El plan antes de empezar
+
+Durante THINK el agente estima cada Epic en **horas de agente más puntos de decisión humana**, nunca en semanas de persona. Para cada capacidad genérica compara construir con integrar un servicio, con una fuente fechada: integrar es una decisión de arquitectura y lleva ADR. Luego reparte los Epics en frentes que no tocan las mismas rutas y nombra la primera tajada vertical que entrega valor.
+
+\`gtt plan\` calcula el resto: el plan por frente, la cadena de dependencias más larga y la fecha estimada. Si no cabe, lo dice antes de empezar y lista las palancas con las horas que ahorra cada una: frentes paralelos, comprar en vez de construir, recortar un Epic. Toda palanca es una propuesta.
+
+\`gtt plan --lanes\` imprime un resumen por frente (sus Epics, las rutas que puede tocar, las interfaces de las que depende, su Done when) y los comandos \`git worktree add\` para copiar. GTT no crea agentes, sesiones ni worktrees: eso le corresponde a tu ADE.
+
+## Medir mientras se trabaja
+
+Cada cambio de estado de una Story o un Epic se agrega, con su hora, actor y frente, a \`gtt-domain/delivery-log.jsonl\`. Lo escribe un script a partir de lo que dice el backlog; el agente no puede escribirlo. Tras tres Stories medidas el plan se calibra: la fecha estimada usa la razón real/estimado de tus propias Stories. Hasta entonces dice "sin calibrar".
+
+\`gtt report\` muestra el % por Epic, el tiempo real contra el estimado, la razón y la fecha estimada.
+
+## Señales
+
+La observación las levanta cuando ocurren. Qué significa cada una depende de tu Autonomy Profile.
+
+| Señal | Condición |
+|---|---|
+| DLV-STORY-OVER | Una Story In Progress por más de 1.5 veces su estimación |
+| DLV-EPIC-BUDGET | Un Epic sobre su tope sin decisión registrada |
+| DLV-FORECAST | La fecha estimada es posterior al plazo |
+| DLV-HUMAN-WAIT | Una acción que solo tú puedes hacer espera más de 24 horas |
+| DLV-LANE-CROSS | Epics de frentes distintos declaran rutas que se cruzan |
+| DLV-NO-VALUE | Ningún Epic entrega un flujo de punta a punta (con método de desarrollo declarado) |
+| DLV-UNCALIBRATED | Menos de 3 Stories medidas |
+
+En el freeze se revisan las mismas reglas: Light solo avisa, Medium exige las decisiones, Hard y Team bloquean. Un proyecto que nunca declaró planificación de entrega no se obstruye.`,
+    searchableEn: "delivery plan planning estimate agent hours parallel fronts lanes worktree deadline forecast calibration buy or build gtt plan gtt report gtt delivery DLV signals",
+    searchableEs: "plan de entrega planificación estimación horas de agente frentes paralelos worktree plazo fecha estimada calibración comprar o construir gtt plan gtt report gtt delivery señales DLV",
   },
   {
     slug: "prompts",
