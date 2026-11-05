@@ -2804,25 +2804,39 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Install a specific version (example: 1.10.0)
+## Size, questions and hand-over commands
+
+\`\`\`
+gtt delivery review
+gtt pending
+gtt answer 14 1
+gtt run
+gtt run 3
+\`\`\`
+
+- gtt delivery review reports the size of the backlog against the cap and the minimum you declared, and lets you keep, cap, make it fuller, slim down or work in one pass
+- gtt pending lists what waits for you; gtt answer gives your answer (the agent can never write it)
+- gtt run lists the scripts waiting for you; gtt run <n> runs one. The script is generated from a plan, sealed and reviewed, and only you run it
+
+## Install a specific version (example: 1.17.0)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.10.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.17.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.10.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.17.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.10.0
-npm install -g @gtt-community/gtt-cli@1.10.0
+uv tool install gtt-cli==1.17.0
+npm install -g @gtt-community/gtt-cli@1.17.0
 \`\`\`
 
 ## Where it is installed
@@ -2995,25 +3009,39 @@ npx @gtt-community/gtt-cli version
 - uv: uv tool upgrade gtt-cli
 - npm: npm update -g @gtt-community/gtt-cli
 
-## Instalar una versión específica (ejemplo: 1.10.0)
+## Comandos de tamaño, preguntas y entrega de tareas
+
+\`\`\`
+gtt delivery review
+gtt pending
+gtt answer 14 1
+gtt run
+gtt run 3
+\`\`\`
+
+- gtt delivery review reporta el tamaño del backlog contra el tope y el mínimo que declaraste, y te deja mantenerlo, poner tope, hacerlo más completo, adelgazarlo o trabajar en una sola pasada
+- gtt pending lista lo que te espera; gtt answer da tu respuesta (el agente nunca puede escribirla)
+- gtt run lista los scripts que te esperan; gtt run <n> ejecuta uno. El script se genera desde un plan, se sella y se revisa, y solo tú lo ejecutas
+
+## Instalar una versión específica (ejemplo: 1.17.0)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.10.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.17.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.10.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.17.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.10.0
-npm install -g @gtt-community/gtt-cli@1.10.0
+uv tool install gtt-cli==1.17.0
+npm install -g @gtt-community/gtt-cli@1.17.0
 \`\`\`
 
 ## Dónde se instala
@@ -3599,6 +3627,25 @@ Observation raises these when they happen. What each means depends on your Auton
 | DLV-LANE-CROSS | Epics of different fronts declare overlapping paths |
 | DLV-NO-VALUE | No Epic delivers an end-to-end flow (with a development method declared) |
 | DLV-UNCALIBRATED | Fewer than 3 Stories measured |
+| DLV-NO-PLAN | 8 or more open Stories and fewer than half with a duration. It fires even when delivery planning was never declared: nobody can say how long the backlog takes |
+| DLV-STALE-STATUS | A Story that is not Done while a recent commit already closes it by name |
+| DLV-GROWTH | The backlog grew by 50% (adjustable) or more since the reference size taken when you declared the plan |
+| DLV-OVER-TARGET | The remaining estimated hours exceed the cap you declared |
+| DLV-UNDER-TARGET | The total estimated hours are below the minimum you declared: the plan is lighter than you expected |
+| DLV-PACE-DRIFT | A plan document speaks in another rhythm than the one declared (days or continuous flow) |
+
+## How big the project is, and how to change your mind
+
+GTT measures; you decide what is too much. \`gtt delivery review\` reports the open Stories, the remaining agent hours (or "not measurable" when the Epics have no estimate: never 0), the capacity until your date, the growth since the reference size and your own cap. GTT judges only against numbers you declared, and these signals only warn: they never stop a project.
+
+- \`gtt delivery review --scope-cap <hours|none>\`: how many agent hours are too much.
+- \`gtt delivery review --scope-min <hours|none>\`: how few would be too little. Making it fuller is the agent's work (detail, split, estimate); a new Epic is your decision.
+- \`gtt delivery set --growth-pct <n>\`: how much the backlog may grow before GTT warns.
+- \`gtt delivery review --keep\`: keep it as it is; today's size becomes the reference.
+- \`gtt delivery review --single-pass\`: one continuous pass, with no date and no day-by-day schedule.
+- To slim down, GTT shows the levers (cut, merge, buy ready-made); cutting an Epic is a proposal you decide.
+
+If the plan is long, light or unsized, GTT tells you once, in the first report of the session, and offers the review.
 
 At the freeze, the same rules are checked: Light only warns, Medium requires the decisions, Hard and Team block. A project that never declared delivery planning is not obstructed.`,
     contentEs: `Antes de empezar, GTT convierte tu diseño en un plan con horas, frentes y fecha estimada, y te dice si cabe en el tiempo que tienes. Mientras se trabaja, mide el tiempo real contra la estimación sin gastar un token. Todo lo calculan scripts desde tus archivos; el agente solo explica y propone, y tú decides.
@@ -3645,10 +3692,85 @@ La observación las levanta cuando ocurren. Qué significa cada una depende de t
 | DLV-LANE-CROSS | Epics de frentes distintos declaran rutas que se cruzan |
 | DLV-NO-VALUE | Ningún Epic entrega un flujo de punta a punta (con método de desarrollo declarado) |
 | DLV-UNCALIBRATED | Menos de 3 Stories medidas |
+| DLV-NO-PLAN | 8 o más Stories abiertas y menos de la mitad con duración. Se levanta aunque nunca se haya declarado planificación: nadie puede decir cuánto demora el backlog |
+| DLV-STALE-STATUS | Una Story que no está Done mientras un commit reciente ya la cierra por su nombre |
+| DLV-GROWTH | El backlog creció un 50% (ajustable) o más desde el tamaño de referencia tomado al declarar el plan |
+| DLV-OVER-TARGET | Las horas estimadas que faltan superan el tope que declaraste |
+| DLV-UNDER-TARGET | Las horas estimadas totales están bajo el mínimo que declaraste: el plan es más liviano de lo que esperabas |
+| DLV-PACE-DRIFT | Un documento del plan habla en otro ritmo que el declarado (días o flujo continuo) |
+
+## Qué tan grande es el proyecto y cómo cambiar de idea
+
+GTT mide; tú decides qué es demasiado. \`gtt delivery review\` reporta las Stories abiertas, las horas de agente que faltan (o «no medible» si los Epics no tienen estimación: nunca 0), la capacidad hasta tu fecha, el crecimiento desde el tamaño de referencia y tu propio tope. GTT solo juzga contra números que tú declaraste, y estas señales solo avisan: nunca detienen un proyecto.
+
+- \`gtt delivery review --scope-cap <horas|none>\`: cuántas horas de agente son demasiadas.
+- \`gtt delivery review --scope-min <horas|none>\`: cuántas serían muy poco. Hacerlo más completo es trabajo del agente (detallar, dividir, estimar); un Epic nuevo es decisión tuya.
+- \`gtt delivery set --growth-pct <n>\`: cuánto puede crecer el backlog antes de que GTT avise.
+- \`gtt delivery review --keep\`: mantenerlo como está; el tamaño de hoy pasa a ser la referencia.
+- \`gtt delivery review --single-pass\`: una sola pasada continua, sin fecha y sin cronograma por días.
+- Para adelgazar, GTT muestra las palancas (recortar, unir, comprar hecho); recortar un Epic es una propuesta que tú decides.
+
+Si el plan es largo, liviano o no está dimensionado, GTT te lo dice una vez, en el primer informe de la sesión, y ofrece la revisión.
 
 En el freeze se revisan las mismas reglas: Light solo avisa, Medium exige las decisiones, Hard y Team bloquean. Un proyecto que nunca declaró planificación de entrega no se obstruye.`,
     searchableEn: "delivery plan planning estimate agent hours parallel fronts lanes worktree deadline forecast calibration buy or build gtt plan gtt report gtt delivery DLV signals",
     searchableEs: "plan de entrega planificación estimación horas de agente frentes paralelos worktree plazo fecha estimada calibración comprar o construir gtt plan gtt report gtt delivery señales DLV",
+  },
+  {
+    // Pending events and Simple execution. Texts follow .gtt/docs/agents/operations.md of GTT Bootstrap.
+    slug: "questions-and-handover",
+    titleEn: "Questions and Hand-over",
+    titleEs: "Preguntas y Entrega de Tareas",
+    descriptionEn: "How GTT asks you only what is yours to decide, in one form, and hands you one command when you have to run something.",
+    descriptionEs: "Cómo GTT te pregunta solo lo que te toca decidir, siempre con la misma forma, y te entrega un solo comando cuando tienes que ejecutar algo.",
+    contentEn: `GTT interrupts you as little as possible. The agent settles on its own everything that governed context or a simple, reversible choice can settle. It asks you only what is yours, and when you have to run something it gives you one command.
+
+Available since GTT 1.11.0 (hand-over) and 1.12.0 (questions), refined in 1.15.0 and 1.16.0. Details: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/agents/operations.md
+
+## Questions: rare, and always in the same form
+
+A question exists only when something cannot continue without your answer and the decision is yours: an account, a key, money, a legal matter, a product matter or a governed file. A product or governed question names the Story or Epic it blocks; no question repeats an open one; at most four are open at once.
+
+Questions reach you in the chat, as one batch of up to four. Each has a short topic, the question with what your answer closes, two or three numbered options with what the agent will do if you choose each (the recommended one first), then "something else" and "talk about it in the chat". With no answer, the agent uses the recommended option and keeps working on everything that does not depend on it.
+
+Behind each question is one small file in \`gtt-domain/pending/\`. It is the silent record; the agent does not announce files. Normally the folder is empty.
+
+## Decisions you only need to hear
+
+When the agent decides something that changes scope, time, cost, security or the design, it tells you in one line. If you do not object in 7 days it is closed; an unanswered question is never deleted.
+
+## Your answer is only yours
+
+You answer in the chat (\`14: 1\`, "ok to all"), in the file, or with \`gtt answer 14 1\`. The agent can record your chat answer only with a real quote of your last messages, and it cannot write or overwrite an answer. An answer that looks like a key is refused: keys go in \`.env.local\`. An answer never ratifies the governed design: that stays \`gtt promote\`.
+
+## Hand-over: one line, one command
+
+A governed act keeps its own command (\`gtt promote <set>\`). Anything else that changes state or takes two or more commands becomes a run plan: the agent writes what it does, why and what it changes, and GTT generates the script from a fixed template, seals it and reviews it (no writes to governed paths, no Git history, no \`rm -rf\` outside temporary folders, no download piped into a shell). You get one line and \`gtt run <n>\`. The agent never writes the script, edits it or runs it; a hand-edited script is refused. Your run is logged and archived.`,
+    contentEs: `GTT te interrumpe lo menos posible. El agente resuelve solo todo lo que el contexto gobernado o una elección simple y reversible puede resolver. Solo te pregunta lo que es tuyo, y cuando tienes que ejecutar algo te da un solo comando.
+
+Disponible desde GTT 1.11.0 (entrega de tareas) y 1.12.0 (preguntas), refinado en 1.15.0 y 1.16.0. Detalle: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/agents/operations.md
+
+## Preguntas: pocas, y siempre con la misma forma
+
+Una pregunta existe solo cuando algo no puede continuar sin tu respuesta y la decisión es tuya: una cuenta, una clave, dinero, un tema legal, un tema de producto o un archivo gobernado. Una pregunta de producto o gobernada nombra la Story o el Epic que bloquea; ninguna repite una abierta; hay como máximo cuatro abiertas a la vez.
+
+Las preguntas te llegan en el chat, en un solo lote de hasta cuatro. Cada una tiene un tema corto, la pregunta con lo que cierra tu respuesta, dos o tres opciones numeradas con lo que hará el agente si eliges cada una (la recomendada primero), y luego «otra cosa» y «hablarlo en el chat». Sin respuesta, el agente usa la opción recomendada y sigue con todo lo que no depende de ella.
+
+Detrás de cada pregunta hay un archivo pequeño en \`gtt-domain/pending/\`. Es el registro silencioso; el agente no anuncia archivos. Normalmente la carpeta está vacía.
+
+## Decisiones que solo necesitas saber
+
+Cuando el agente decide algo que cambia el alcance, el tiempo, el costo, la seguridad o el diseño, te lo dice en una línea. Si no objetas en 7 días se cierra; una pregunta sin respuesta nunca se borra.
+
+## Tu respuesta es solo tuya
+
+Respondes en el chat (\`14: 1\`, «ok a todo»), en el archivo o con \`gtt answer 14 1\`. El agente solo puede anotar tu respuesta del chat con una cita real de tus últimos mensajes, y no puede escribir ni sobrescribir una respuesta. Una respuesta que parece una clave se rechaza: las claves van en \`.env.local\`. Una respuesta nunca ratifica el diseño gobernado: eso sigue siendo \`gtt promote\`.
+
+## Entrega de tareas: una línea, un comando
+
+Un acto gobernado conserva su propio comando (\`gtt promote <set>\`). Todo lo demás que cambia estado o toma dos o más comandos pasa a ser un plan de ejecución: el agente escribe qué hace, por qué y qué cambia, y GTT genera el script desde una plantilla fija, lo sella y lo revisa (sin escribir en rutas gobernadas, sin historia de Git, sin \`rm -rf\` fuera de carpetas temporales, sin descargas encadenadas a una shell). Recibes una línea y \`gtt run <n>\`. El agente nunca escribe el script, lo edita ni lo ejecuta; un script editado a mano se rechaza. Tu ejecución queda registrada y archivada.`,
+    searchableEn: "questions pending events ask answer decision gtt pending gtt answer hand-over simple execution gtt run run plan script sealed batch needs you",
+    searchableEs: "preguntas eventos pendientes responder decisión gtt pending gtt answer entrega de tareas ejecución simple gtt run plan de ejecución script sellado lote te necesita",
   },
   {
     slug: "prompts",
