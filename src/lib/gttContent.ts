@@ -2818,25 +2818,25 @@ gtt run 3
 - gtt pending lists what waits for you; gtt answer gives your answer (the agent can never write it)
 - gtt run lists the scripts waiting for you; gtt run <n> runs one. The script is generated from a plan, sealed and reviewed, and only you run it
 
-## Install a specific version (example: 1.17.0)
+## Install a specific version (example: 1.18.0)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.17.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.18.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.17.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.18.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.17.0
-npm install -g @gtt-community/gtt-cli@1.17.0
+uv tool install gtt-cli==1.18.0
+npm install -g @gtt-community/gtt-cli@1.18.0
 \`\`\`
 
 ## Where it is installed
@@ -3023,25 +3023,25 @@ gtt run 3
 - gtt pending lista lo que te espera; gtt answer da tu respuesta (el agente nunca puede escribirla)
 - gtt run lista los scripts que te esperan; gtt run <n> ejecuta uno. El script se genera desde un plan, se sella y se revisa, y solo tú lo ejecutas
 
-## Instalar una versión específica (ejemplo: 1.17.0)
+## Instalar una versión específica (ejemplo: 1.18.0)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.17.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.18.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.17.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.18.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.17.0
-npm install -g @gtt-community/gtt-cli@1.17.0
+uv tool install gtt-cli==1.18.0
+npm install -g @gtt-community/gtt-cli@1.18.0
 \`\`\`
 
 ## Dónde se instala
@@ -3633,6 +3633,7 @@ Observation raises these when they happen. What each means depends on your Auton
 | DLV-OVER-TARGET | The remaining estimated hours exceed the cap you declared |
 | DLV-UNDER-TARGET | The total estimated hours are below the minimum you declared: the plan is lighter than you expected |
 | DLV-PACE-DRIFT | A plan document speaks in another rhythm than the one declared (days or continuous flow) |
+| DLV-UNINTEGRATED | 3 or more Stories are Done with no commit or pull request in \`Closed:\` and 20 or more paths are uncommitted: finished work is piling up outside Git history. Said once; GTT never commits for you, and it stays silent with \`commits: never\` |
 
 ## How big the project is, and how to change your mind
 
@@ -3698,6 +3699,7 @@ La observación las levanta cuando ocurren. Qué significa cada una depende de t
 | DLV-OVER-TARGET | Las horas estimadas que faltan superan el tope que declaraste |
 | DLV-UNDER-TARGET | Las horas estimadas totales están bajo el mínimo que declaraste: el plan es más liviano de lo que esperabas |
 | DLV-PACE-DRIFT | Un documento del plan habla en otro ritmo que el declarado (días o flujo continuo) |
+| DLV-UNINTEGRATED | 3 o más Stories están Done sin commit ni pull request en \`Closed:\` y hay 20 o más rutas sin commitear: el trabajo terminado se acumula fuera de la historia de Git. Se dice una vez; GTT nunca hace commits por ti y calla con \`commits: never\` |
 
 ## Qué tan grande es el proyecto y cómo cambiar de idea
 
@@ -3725,7 +3727,7 @@ En el freeze se revisan las mismas reglas: Light solo avisa, Medium exige las de
     descriptionEs: "Cómo GTT te pregunta solo lo que te toca decidir, siempre con la misma forma, y te entrega un solo comando cuando tienes que ejecutar algo.",
     contentEn: `GTT interrupts you as little as possible. The agent settles on its own everything that governed context or a simple, reversible choice can settle. It asks you only what is yours, and when you have to run something it gives you one command.
 
-Available since GTT 1.11.0 (hand-over) and 1.12.0 (questions), refined in 1.15.0 and 1.16.0. Details: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/agents/operations.md
+Available since GTT 1.11.0 (hand-over) and 1.12.0 (questions), refined in 1.15.0, 1.16.0 and 1.18.0. Details: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/agents/operations.md
 
 ## Questions: rare, and always in the same form
 
@@ -3745,10 +3747,12 @@ You answer in the chat (\`14: 1\`, "ok to all"), in the file, or with \`gtt answ
 
 ## Hand-over: one line, one command
 
-A governed act keeps its own command (\`gtt promote <set>\`). Anything else that changes state or takes two or more commands becomes a run plan: the agent writes what it does, why and what it changes, and GTT generates the script from a fixed template, seals it and reviews it (no writes to governed paths, no Git history, no \`rm -rf\` outside temporary folders, no download piped into a shell). You get one line and \`gtt run <n>\`. The agent never writes the script, edits it or runs it; a hand-edited script is refused. Your run is logged and archived.`,
+A governed act keeps its own command (\`gtt promote <set>\`). Anything else that changes state or takes two or more commands becomes a run plan: the agent writes what it does, why and what it changes, and GTT generates the script from a fixed template, seals it and reviews it (no writes to governed paths, no Git history, no \`rm -rf\` outside temporary folders, no download piped into a shell). You get one line and \`gtt run <n>\`. The agent never writes the script, edits it or runs it; a hand-edited script is refused. Your run is logged and archived.
+
+Since 1.18.0 the script is also checked before it reaches you: it must parse, every script it calls must exist, and when its steps are the project's own scripts and basic file utilities it is rehearsed in a throwaway copy of the project, which must end with the project still validating. A plan that uses other tools (npm, docker, a test runner) is not rehearsed and is never blocked for that. Every other act that is yours (approve an Epic, accept, reject or defer an observation, freeze) reaches you in the same shape, built by a script so the command is exact: \`@gtt · For you\`, what is asked, what it changes, what it blocks, and the command. An id that does not exist is never handed over.`,
     contentEs: `GTT te interrumpe lo menos posible. El agente resuelve solo todo lo que el contexto gobernado o una elección simple y reversible puede resolver. Solo te pregunta lo que es tuyo, y cuando tienes que ejecutar algo te da un solo comando.
 
-Disponible desde GTT 1.11.0 (entrega de tareas) y 1.12.0 (preguntas), refinado en 1.15.0 y 1.16.0. Detalle: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/agents/operations.md
+Disponible desde GTT 1.11.0 (entrega de tareas) y 1.12.0 (preguntas), refinado en 1.15.0, 1.16.0 y 1.18.0. Detalle: https://github.com/GTT-Community/gtt-bootstrap/blob/main/.gtt/docs/agents/operations.md
 
 ## Preguntas: pocas, y siempre con la misma forma
 
@@ -3768,7 +3772,9 @@ Respondes en el chat (\`14: 1\`, «ok a todo»), en el archivo o con \`gtt answe
 
 ## Entrega de tareas: una línea, un comando
 
-Un acto gobernado conserva su propio comando (\`gtt promote <set>\`). Todo lo demás que cambia estado o toma dos o más comandos pasa a ser un plan de ejecución: el agente escribe qué hace, por qué y qué cambia, y GTT genera el script desde una plantilla fija, lo sella y lo revisa (sin escribir en rutas gobernadas, sin historia de Git, sin \`rm -rf\` fuera de carpetas temporales, sin descargas encadenadas a una shell). Recibes una línea y \`gtt run <n>\`. El agente nunca escribe el script, lo edita ni lo ejecuta; un script editado a mano se rechaza. Tu ejecución queda registrada y archivada.`,
+Un acto gobernado conserva su propio comando (\`gtt promote <set>\`). Todo lo demás que cambia estado o toma dos o más comandos pasa a ser un plan de ejecución: el agente escribe qué hace, por qué y qué cambia, y GTT genera el script desde una plantilla fija, lo sella y lo revisa (sin escribir en rutas gobernadas, sin historia de Git, sin \`rm -rf\` fuera de carpetas temporales, sin descargas encadenadas a una shell). Recibes una línea y \`gtt run <n>\`. El agente nunca escribe el script, lo edita ni lo ejecuta; un script editado a mano se rechaza. Tu ejecución queda registrada y archivada.
+
+Desde 1.18.0 el script también se verifica antes de llegar a ti: debe poder leerse, cada script que llama debe existir y, cuando sus pasos son scripts del propio proyecto y utilidades básicas de archivos, se ensaya en una copia temporal del proyecto, que debe terminar con el proyecto aún validando. Un plan que usa otras herramientas (npm, docker, un ejecutor de tests) no se ensaya y nunca se bloquea por eso. Todo otro acto tuyo (aprobar una Épica, aceptar, rechazar o diferir una observación, congelar) te llega con el mismo formato, armado por un script para que el comando sea exacto: \`@gtt · Para ti\`, qué se pide, qué cambia, qué bloquea y el comando. Un id que no existe nunca se entrega.`,
     searchableEn: "questions pending events ask answer decision gtt pending gtt answer hand-over simple execution gtt run run plan script sealed batch needs you",
     searchableEs: "preguntas eventos pendientes responder decisión gtt pending gtt answer entrega de tareas ejecución simple gtt run plan de ejecución script sellado lote te necesita",
   },
