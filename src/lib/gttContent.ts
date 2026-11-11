@@ -2818,25 +2818,36 @@ gtt run 3
 - gtt pending lists what waits for you; gtt answer gives your answer (the agent can never write it)
 - gtt run lists the scripts waiting for you; gtt run <n> runs one. The script is generated from a plan, sealed and reviewed, and only you run it
 
-## Install a specific version (example: 1.18.0)
+## Sonar and ideas (since 1.19.0)
+
+\`\`\`
+gtt sonar
+cd ~/dev && gtt sonar
+gtt idea add 'what I want to build next'
+\`\`\`
+
+- gtt sonar generates a read-only page of everything under way and what comes next, and opens it; in a folder of projects it shows all of them
+- gtt idea add writes down an idea exactly as you wrote it; the agent can only add one line saying what became of it
+
+## Install a specific version (example: 1.19.0)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.18.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.19.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.18.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.19.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.18.0
-npm install -g @gtt-community/gtt-cli@1.18.0
+uv tool install gtt-cli==1.19.0
+npm install -g @gtt-community/gtt-cli@1.19.0
 \`\`\`
 
 ## Where it is installed
@@ -3023,25 +3034,36 @@ gtt run 3
 - gtt pending lista lo que te espera; gtt answer da tu respuesta (el agente nunca puede escribirla)
 - gtt run lista los scripts que te esperan; gtt run <n> ejecuta uno. El script se genera desde un plan, se sella y se revisa, y solo tú lo ejecutas
 
-## Instalar una versión específica (ejemplo: 1.18.0)
+## Sonar e ideas (desde 1.19.0)
+
+\`\`\`
+gtt sonar
+cd ~/dev && gtt sonar
+gtt idea add 'lo que quiero construir después'
+\`\`\`
+
+- gtt sonar genera una página de solo lectura con todo lo que está en marcha y lo que viene, y la abre; en una carpeta de proyectos los muestra todos
+- gtt idea add anota una idea tal como la escribiste; el agente solo puede agregar una línea diciendo qué fue de ella
+
+## Instalar una versión específica (ejemplo: 1.19.0)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.18.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.19.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.18.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.19.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.18.0
-npm install -g @gtt-community/gtt-cli@1.18.0
+uv tool install gtt-cli==1.19.0
+npm install -g @gtt-community/gtt-cli@1.19.0
 \`\`\`
 
 ## Dónde se instala
@@ -3777,6 +3799,81 @@ Un acto gobernado conserva su propio comando (\`gtt promote <set>\`). Todo lo de
 Desde 1.18.0 el script también se verifica antes de llegar a ti: debe poder leerse, cada script que llama debe existir y, cuando sus pasos son scripts del propio proyecto y utilidades básicas de archivos, se ensaya en una copia temporal del proyecto, que debe terminar con el proyecto aún validando. Un plan que usa otras herramientas (npm, docker, un ejecutor de tests) no se ensaya y nunca se bloquea por eso. Todo otro acto tuyo (aprobar una Épica, aceptar, rechazar o diferir una observación, congelar) te llega con el mismo formato, armado por un script para que el comando sea exacto: \`@gtt · Para ti\`, qué se pide, qué cambia, qué bloquea y el comando. Un id que no existe nunca se entrega.`,
     searchableEn: "questions pending events ask answer decision gtt pending gtt answer hand-over simple execution gtt run run plan script sealed batch needs you",
     searchableEs: "preguntas eventos pendientes responder decisión gtt pending gtt answer entrega de tareas ejecución simple gtt run plan de ejecución script sellado lote te necesita",
+  },
+  {
+    slug: "sonar",
+    titleEn: "GTT Sonar",
+    titleEs: "GTT Sonar",
+    descriptionEn: "One read-only page with everything under way in your GTT projects and what comes next, without touching governance.",
+    descriptionEs: "Una página de solo lectura con todo lo que está en marcha en tus proyectos GTT y lo que viene, sin tocar el gobierno.",
+    contentEn: `GTT Sonar shows, on one screen, what is being done and what comes next in all your GTT projects. It works like the departures board of an airport: you see what leaves, what is late and what waits for you, but nothing is launched from the screen.
+
+Available since GTT 1.19.0. It comes with the Bootstrap: there is nothing else to install. Update an existing project with gtt update.
+
+## How you use it
+
+\`\`\`
+gtt sonar          # this repo's page, opened in your browser
+cd ~/dev && gtt sonar    # a folder of projects: shows them all, move between them in the page
+gtt sonar --log    # opened on the latest activity
+\`\`\`
+
+Inside a project it shows that project. In a folder that holds projects it finds every GTT project under it (to two levels), with nothing to register; a project with an older Bootstrap is read with the newer one, without touching it.
+
+Without the CLI: bash .gtt/scripts/gtt-sonar.sh render writes .gtt/local/sonar.html.
+
+## Three views
+
+- Portfolio: all your projects (phase, progress, estimated date, what needs you, signals) and *I need you*: only what holds work back (open questions, Epics with work already built or under way and no approval yet, promotion sets ready to apply), ordered by the open Stories each one unblocks, each with the exact command to copy, including the way to the project's folder. Epics with no movement wait in a collapsed list.
+- Project: what is coming (proposals and Epics to approve with a dashed border, the next planned Epic), the flow line per Epic with today, the estimated date and the deadline, and the Stories of an Epic by state.
+- Latest: what Claude, you and GTT did, by day, filterable by project and by who.
+
+## What it never does
+
+- It does not run anything: every act that is yours is a command with a copy button. You run it in the terminal, with its own dry run and confirmation.
+- It does not calculate: percentages, dates, weights and commands come from the scripts that own each fact. What GTT does not calculate yet shows as "no data".
+- It has no server and no network. The page is a derived file in .gtt/local/ (outside git): delete it and gtt sonar brings it back. Everything it shows is escaped and drawn as text, and a Content Security Policy only lets it run its own script.
+
+It stays almost live: it is regenerated when the state changes and the page reloads every 5 seconds, with a button to pause. A project whose Bootstrap does not have Sonar appears in the portfolio as "update GTT in this repo", and the rest goes on.
+
+## Ideas
+
+An idea is your own words in docs/ideas/IDEA-NNN.md. Write it from the page (the box *new idea* builds the command) or with gtt idea add. GTT keeps the text exactly as written. The agent can only add one line after it: covered by an Epic, turned into a proposal, a non-goal or a question. Parking and dropping an idea are yours.`,
+    contentEs: `GTT Sonar muestra, en una pantalla, lo que se está haciendo y lo que viene en todos tus proyectos GTT. Funciona como el tablero de salidas de un aeropuerto: ves qué sale, qué se atrasó y qué te espera, pero desde la pantalla no se despega nada.
+
+Disponible desde GTT 1.19.0. Viene con el Bootstrap: no hay nada más que instalar. Actualiza un proyecto existente con gtt update.
+
+## Cómo se usa
+
+\`\`\`
+gtt sonar          # la página de este repo, abierta en tu navegador
+cd ~/dev && gtt sonar    # una carpeta de proyectos: los muestra todos, te mueves entre ellos en la página
+gtt sonar --log    # abierta en lo último
+\`\`\`
+
+Dentro de un proyecto muestra ese proyecto. En una carpeta que contiene proyectos encuentra todos los proyectos GTT de abajo (hasta dos niveles), sin nada que registrar; un proyecto con un Bootstrap más antiguo se lee con el más nuevo, sin tocarlo.
+
+Sin el CLI: bash .gtt/scripts/gtt-sonar.sh render escribe .gtt/local/sonar.html.
+
+## Tres vistas
+
+- Portafolio: todos tus proyectos (fase, avance, fecha estimada, lo que te necesita, señales) y *te necesito*: solo lo que frena trabajo (preguntas abiertas, Epics con trabajo ya construido o en curso y sin aprobar, sets de promoción listos para aplicar), ordenado por las stories abiertas que destraba cada uno, cada uno con el comando exacto para copiar, incluido el camino a la carpeta del proyecto. Los Epics sin movimiento esperan en una lista plegada.
+- Proyecto: lo que viene (propuestas y Epics por aprobar con borde punteado, el próximo Epic del plan), la línea de flujo por Epic con hoy, la fecha estimada y el plazo, y las Stories de un Epic por estado.
+- Lo último: lo que hicieron Claude, tú y GTT, por día, con filtros por proyecto y por quién.
+
+## Lo que nunca hace
+
+- No ejecuta nada: cada acto que es tuyo es un comando con un botón copiar. Lo corres en la terminal, con su propio dry-run y confirmación.
+- No calcula: porcentajes, fechas, pesos y comandos vienen de los scripts dueños de cada dato. Lo que GTT aún no calcula se ve como "sin dato".
+- No tiene servidor ni red. La página es un archivo derivado en .gtt/local/ (fuera de git): si lo borras, gtt sonar lo devuelve. Todo lo que muestra va escapado y se pinta como texto, y una Content Security Policy solo le deja correr su propio script.
+
+Se mantiene casi en vivo: se regenera cuando cambia el estado y la página se recarga cada 5 segundos, con un botón para pausar. Un proyecto cuyo Bootstrap no tiene Sonar aparece en el portafolio como "actualiza GTT en este repo", y el resto sigue.
+
+## Ideas
+
+Una idea son tus propias palabras en docs/ideas/IDEA-NNN.md. Escríbela desde la página (el cuadro *nueva idea* arma el comando) o con gtt idea add. GTT guarda el texto tal cual. El agente solo puede agregar una línea después: cubierta por un Epic, convertida en propuesta, no-objetivo o pregunta. Aparcar y descartar una idea es tuyo.`,
+    searchableEn: "sonar gtt sonar dashboard board portfolio page read only view projects i need you latest ideas gtt idea add docs/ideas copy command",
+    searchableEs: "sonar gtt sonar tablero portafolio página solo lectura vista proyectos te necesito lo último ideas gtt idea add docs/ideas copiar comando",
   },
   {
     slug: "prompts",
