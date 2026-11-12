@@ -2828,26 +2828,27 @@ gtt idea add 'what I want to build next'
 
 - gtt sonar generates a read-only page of everything under way and what comes next, and opens it; in a folder of projects it shows all of them
 - gtt idea add writes down an idea exactly as you wrote it; the agent can only add one line saying what became of it
+- Since 1.20.0 the page also says how to unblock each thing that waits for you (one command per option), shows blocked Stories apart from planned ones, and the start of each session gives you one line with what waits and where the page is; opening the browser by itself is an option you turn on (\`gtt-sonar.sh prefs --open-on-start on\`)
 
-## Install a specific version (example: 1.19.0)
+## Install a specific version (example: 1.20.0)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.19.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.20.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.19.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.20.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.19.0
-npm install -g @gtt-community/gtt-cli@1.19.0
+uv tool install gtt-cli==1.20.0
+npm install -g @gtt-community/gtt-cli@1.20.0
 \`\`\`
 
 ## Where it is installed
@@ -3044,26 +3045,27 @@ gtt idea add 'lo que quiero construir después'
 
 - gtt sonar genera una página de solo lectura con todo lo que está en marcha y lo que viene, y la abre; en una carpeta de proyectos los muestra todos
 - gtt idea add anota una idea tal como la escribiste; el agente solo puede agregar una línea diciendo qué fue de ella
+- Desde 1.20.0 la página también dice cómo destrabar cada cosa que te espera (un comando por opción), muestra las historias bloqueadas aparte de las planeadas, y al empezar cada sesión recibes una línea con lo que te espera y dónde está la página; abrir el navegador solo es una opción que tú activas (\`gtt-sonar.sh prefs --open-on-start on\`)
 
-## Instalar una versión específica (ejemplo: 1.19.0)
+## Instalar una versión específica (ejemplo: 1.20.0)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.19.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.20.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.19.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.20.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.19.0
-npm install -g @gtt-community/gtt-cli@1.19.0
+uv tool install gtt-cli==1.20.0
+npm install -g @gtt-community/gtt-cli@1.20.0
 \`\`\`
 
 ## Dónde se instala
