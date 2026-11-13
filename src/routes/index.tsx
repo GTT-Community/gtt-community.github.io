@@ -82,7 +82,7 @@ const heroContent = {
     // The canon: "GTT is the governance layer over SDD" (GTT-CANONICAL-v3.0.md).
     tagline: "The governance layer over Spec-Driven Development",
     subtagline: "AI Efficiency Governance",
-    ctaPrimary: "Get Started",
+    ctaPrimary: "Install with a prompt",
     ctaSecondary: "Read the Method",
     ctaCli: "Install GTT CLI",
     badges: ["Open Source", "Community Driven", "Real Projects"],
@@ -91,7 +91,7 @@ const heroContent = {
     eyebrow: `Metodología abierta para la era de la IA · GTT ${GTT_GENERATION} · Suite ${SUITE_VERSION}`,
     tagline: "La capa de gobernanza sobre Spec-Driven Development",
     subtagline: "Gobernanza de la eficiencia con IA",
-    ctaPrimary: "Comenzar",
+    ctaPrimary: "Instalar con un prompt",
     ctaSecondary: "Leer el Método",
     ctaCli: "Instalar GTT CLI",
     badges: ["Código Abierto", "Impulsado por la Comunidad", "Proyectos Reales"],
@@ -132,7 +132,7 @@ function Index() {
             )}
             <div className="mt-6 flex flex-wrap gap-4">
               <Link to="/$slug/" params={{ slug: "methodology" }} className="cta-dark px-8">{heroContent[language].ctaSecondary}</Link>
-              <Link to="/$slug/" params={{ slug: "cli" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrimary}</Link>
+              <Link to="/$slug/" params={{ slug: "prompts" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrimary}</Link>
               <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
             </div>
             <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">

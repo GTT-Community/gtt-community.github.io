@@ -1322,6 +1322,10 @@ gtt update
 gtt export --clean
 gtt clean
 gtt version
+gtt idea add
+gtt adr new
+gtt inbox
+gtt answer
 gtt change
 gtt proposals
 gtt promote <set>
@@ -1896,6 +1900,10 @@ gtt update
 gtt export --clean
 gtt clean
 gtt version
+gtt idea add
+gtt adr new
+gtt inbox
+gtt answer
 gtt change
 gtt proposals
 gtt promote <set>
@@ -2059,7 +2067,7 @@ gtt-domain/
   context/design/          # one design per Epic
   adr/                     # architecture decision records
   backlog.md               # Epics (governed) and Stories (the agent's working plan)
-  change-request.md        # what you want changed
+  adr/drafts/              # ADR drafts written by an architect (docs/ideas/ holds your ideas and requests)
   proposals/               # what the agent proposes
   governance-backlog.json  # observations and your decisions on them
   .frozen                  # the freeze record
@@ -2096,7 +2104,7 @@ gtt-domain/
   context/design/          # un diseño por Epic
   adr/                     # registros de decisiones de arquitectura
   backlog.md               # Epics (gobernadas) y Stories (el plan de trabajo del agente)
-  change-request.md        # lo que quieres cambiar
+  adr/drafts/              # borradores de ADR del arquitecto (docs/ideas/ guarda tus ideas y solicitudes)
   proposals/               # lo que propone el agente
   governance-backlog.json  # observaciones y tus decisiones sobre ellas
   .frozen                  # el registro del freeze
@@ -2740,20 +2748,31 @@ gtt freeze
 
 The full step-by-step guide to installing GTT Bootstrap is here: https://gtt-method.org/bootstrap/
 
-## Changing the design in the middle of the work
+## The Inbox: changing the design in the middle of the work (since 1.23.0)
 
 \`\`\`
-gtt change "Move sessions to Redis" --reason "Scale out"
-gtt proposals
+gtt idea add "what I want to change"
+gtt idea add --type solicitud --change "Move sessions to Redis" --reason "Scale out"
+gtt adr new "Use Redis for sessions"
+gtt inbox
+gtt answer 15 1
 gtt promote <set>
 gtt undo
 \`\`\`
 
-- gtt change records a governed change request (design, architecture, stack, constraints or an Epic's goal or scope) with an id, and offers to open your Primary ADE. The agent is told to process it into a proposal on its first turn: it drafts, it never applies
-- gtt proposals lists what the agent drafted (proposals, ADR drafts, promotion sets) with their state and the request they answer. gtt proposals show <name> opens one, and gtt proposals withdraw <name> archives one you will not promote
+Everything that proposes a change goes through one pipeline, the Inbox. What a person writes is an \`IDEA-NNN\`: an idea, a request or an architect's ADR draft. What the agent writes is a \`PROP-NNN\`. Each entry moves through the same stages: new, in review, accepted, to ratify, in work, closed. Each step leaves one line (date and author) in the entry itself, and Sonar shows it.
+
+You do only three things. You write (\`gtt idea add\`, or \`gtt adr new\` if you are the architect). You decide (\`gtt answer\`, or in the chat). You ratify (\`gtt promote\`, \`gtt approve\` or \`gtt run\`).
+
+- gtt idea add writes an idea exactly as you wrote it. With --type solicitud and --change and --reason (optionally --trigger, --scope, --impact, --risk, --priority) it writes a request, and the triage is asked for in the first reply. change-request.md is retired as a desk; gtt change stays as a shortcut for the same command
+- gtt adr new writes an ADR draft from the template (--file registers one written elsewhere); the agent can read it but not write it. When it is complete it is accepted, because whoever wrote it has already decided, and the agent builds the package: your text as it is, the map change and the change-log row. You then run gtt promote ADR-NNN-slug
+- gtt adr adopt <file> takes an ADR written by hand in adr/ after the freeze into adr/drafts/, so it follows the same path. Sonar lists it in I need you as a hand-written ADR
+- gtt inbox lists the Inbox by stage (--all adds parked and rejected; --origin human or agent; --json). gtt inbox show REF opens an entry with its trail
+- gtt inbox park REF, reject REF, reopen REF and priority REF urgent|normal|low are yours alone; gtt idea drop REF (same as gtt inbox drop) discards an idea
+- gtt answer N k also answers a review: when the agent triages an entry it opens a review (REV) with the level, the route and the options, and your answer decides. gtt proposals stays as an alias of gtt inbox --origin agent
 - gtt promote <set> shows the diff of a staged set and applies it only after you confirm
-- promote, undo, freeze, change, proposals withdraw, design reset, clean, init and update are human acts: an agent is refused them, even with --yes. Run them in your own terminal (in Claude Code you can also type them after ! in the prompt). If an agent's shell or MCP command changes the frozen design or GTT's protection anyway, GTT puts it back, archives what it wrote and tells you; gtt validate fails if a protection hook was tampered with
-- gtt undo puts back what the last promotion replaced, while its files are as it left them. If that promotion froze the project, a new freeze records the earlier state: there is still no unfreeze, and every baseline stays in the history. Going further back is a new change request
+- promote, approve, run, undo, freeze, answer, inbox park/reject/reopen/priority, idea drop, adr adopt, change, design reset, clean, init and update are human acts: an agent is refused them, even with --yes. Run them in your own terminal (in Claude Code you can also type them after ! in the prompt). If an agent's shell or MCP command changes the frozen design or GTT's protection anyway, GTT puts it back, archives what it wrote and tells you; gtt validate fails if a protection hook was tampered with
+- gtt undo puts back what the last promotion replaced, while its files are as it left them. If that promotion froze the project, a new freeze records the earlier state: there is still no unfreeze, and every baseline stays in the history
 - Ordinary work (code, refactors, tests, Stories) needs none of this
 
 ## Development method commands
@@ -2815,7 +2834,7 @@ gtt run 3
 \`\`\`
 
 - gtt delivery review reports the size of the backlog against the cap and the minimum you declared, and lets you keep, cap, make it fuller, slim down or work in one pass
-- gtt pending lists what waits for you; gtt answer gives your answer (the agent can never write it)
+- gtt pending lists what waits for you; gtt answer gives your answer (the agent can never write it); since 1.23.0 it also answers the reviews of the Inbox
 - gtt run lists the scripts waiting for you; gtt run <n> runs one. The script is generated from a plan, sealed and reviewed, and only you run it
 
 ## Sonar and ideas (since 1.19.0)
@@ -2827,29 +2846,33 @@ gtt idea add 'what I want to build next'
 \`\`\`
 
 - gtt sonar generates a read-only page of everything under way and what comes next, and opens it; in a folder of projects it shows all of them
-- gtt idea add writes down an idea exactly as you wrote it; the agent can only add one line saying what became of it
+- gtt idea add writes down an idea exactly as you wrote it; the agent can only add one line saying what became of it (since 1.23.0 ideas, requests and ADR drafts travel through the Inbox, described above)
 - Since 1.20.0 the page also says how to unblock each thing that waits for you (one command per option), shows blocked Stories apart from planned ones, and the start of each session gives you one line with what waits and where the page is; opening the browser by itself is an option you turn on (\`gtt-sonar.sh prefs --open-on-start on\`)
 - Since 1.21.0 the page has a Backlog view: every Epic with its state, goal and approval, its Stories with state, owner, what makes each done and what closed it (filters by state and a search), and a Design tab where you read the stack, architecture, constraints, principles, ADRs and each Epic's design. It is read only: documents are shown as text, never run. Run \`gtt sonar\` inside the project to include the documents; the portfolio view leaves them out to stay light
 
-## Install a specific version (example: 1.21.0)
+- Since 1.22.0 the page stays fresh by itself (a watcher started with the session re-draws it when the backlog, the pending questions or git change; it says "generated at" when it is not live), shows progress by release and by hours (what is out of scope is left out of the main figure), what is in progress now with its front, the reason each blocked Story waits and, when the project leaves them, its own health checks; a project with an older Bootstrap says what it is missing and the command to fix it
+- Since 1.22.0 gtt looks for a newer release by itself (at most every 6 hours, one request for the public release page, nothing about you or your projects) and, in a terminal, upgrades itself; \`gtt upgrade --auto off\` or \`GTT_NO_UPDATE_CHECK=1\` turn it off, and inside a project it tells you when the project's Bootstrap is older than the one it ships (\`gtt update\`)
+- Since 1.23.0 the page has an Inbox panel (see Sonar) and *I need you* also lists the reviews waiting for your answer, the packages ready to ratify and the ADRs written by hand (\`gtt adr adopt\`)
+
+## Install a specific version (example: 1.23.0)
 
 ### Linux and macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.21.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.23.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.21.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.23.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv and npm
 
 \`\`\`
-uv tool install gtt-cli==1.21.0
-npm install -g @gtt-community/gtt-cli@1.21.0
+uv tool install gtt-cli==1.23.0
+npm install -g @gtt-community/gtt-cli@1.23.0
 \`\`\`
 
 ## Where it is installed
@@ -2958,20 +2981,31 @@ gtt freeze
 
 La guía completa, paso a paso, para instalar GTT Bootstrap está aquí: https://gtt-method.org/bootstrap/
 
-## Cambiar el diseño en pleno desarrollo
+## La Bandeja: cambiar el diseño en pleno desarrollo (desde 1.23.0)
 
 \`\`\`
-gtt change "Mover las sesiones a Redis" --reason "Escalar horizontalmente"
-gtt proposals
+gtt idea add "lo que quiero cambiar"
+gtt idea add --type solicitud --change "Mover las sesiones a Redis" --reason "Escalar horizontalmente"
+gtt adr new "Usar Redis para las sesiones"
+gtt inbox
+gtt answer 15 1
 gtt promote <set>
 gtt undo
 \`\`\`
 
-- gtt change registra un change request gobernado (diseño, arquitectura, stack, restricciones o el objetivo o alcance de un Epic) con un id, y te ofrece abrir tu ADE Primario. El agente recibe la orden de procesarlo como propuesta en su primer turno: redacta, nunca aplica
-- gtt proposals lista lo que redactó el agente (propuestas, borradores de ADR, sets de promoción) con su estado y el request que responden. gtt proposals show <nombre> abre uno, y gtt proposals withdraw <nombre> archiva uno que no vas a promover
+Todo lo que propone un cambio pasa por una sola tubería, la Bandeja. Lo que escribe una persona es una \`IDEA-NNN\`: una idea, una solicitud o un borrador de ADR del arquitecto. Lo que escribe el agente es una \`PROP-NNN\`. Cada entrada avanza por las mismas etapas: nueva, en revisión, aceptada, por ratificar, en trabajo, cerrada. Cada paso deja una línea (fecha y autor) en la misma entrada, y Sonar la muestra.
+
+La persona hace solo tres cosas. Escribe (\`gtt idea add\`, o \`gtt adr new\` si eres arquitecto). Decide (\`gtt answer\`, o en el chat). Ratifica (\`gtt promote\`, \`gtt approve\` o \`gtt run\`).
+
+- gtt idea add anota una idea tal como la escribiste. Con --type solicitud y --change y --reason (y, si quieres, --trigger, --scope, --impact, --risk, --priority) escribe una solicitud, y el triage se pide en la primera respuesta. change-request.md se retira como escritorio; gtt change queda como atajo del mismo comando
+- gtt adr new escribe un borrador de ADR desde la plantilla (--file registra uno escrito en otro lado); el agente puede leerlo pero no escribirlo. Cuando queda completo pasa a aceptada, porque quien lo escribió ya decidió, y el agente arma el paquete: tu texto tal cual, el cambio del mapa y la fila del change log. Luego corres gtt promote ADR-NNN-slug
+- gtt adr adopt <archivo> toma un ADR escrito a mano en adr/ después del freeze y lo mueve a adr/drafts/, para que siga el mismo camino. Sonar lo muestra en Te necesito como ADR escrito a mano
+- gtt inbox lista la Bandeja por etapa (--all suma las aparcadas y rechazadas; --origin human o agent; --json). gtt inbox show REF abre una entrada con su rastro
+- gtt inbox park REF, reject REF, reopen REF y priority REF urgent|normal|low son solo tuyos; gtt idea drop REF (igual que gtt inbox drop) descarta una idea
+- gtt answer N k también responde una revisión: cuando el agente triagea una entrada abre una revisión (REV) con el nivel, la ruta y las opciones, y tu respuesta decide. gtt proposals queda como alias de gtt inbox --origin agent
 - gtt promote <set> muestra el diff de un set preparado y lo aplica solo cuando confirmas
-- promote, undo, freeze, change, proposals withdraw, design reset, clean, init y update son actos humanos: a un agente se le niegan, incluso con --yes. Ejecútalos en tu propia terminal (en Claude Code también puedes escribirlos después de ! en el prompt). Si un comando de shell o MCP de un agente cambia igual el diseño congelado o la protección de GTT, GTT lo restaura, archiva lo que escribió y te avisa; gtt validate falla si un hook de protección fue alterado
-- gtt undo deshace lo que reemplazó la última promoción, mientras sus archivos sigan como los dejó. Si esa promoción congeló el proyecto, un nuevo freeze registra el estado anterior: sigue sin existir el unfreeze, y cada línea base queda en el historial. Ir más atrás es un nuevo change request
+- promote, approve, run, undo, freeze, answer, inbox park/reject/reopen/priority, idea drop, adr adopt, change, design reset, clean, init y update son actos humanos: a un agente se le niegan, incluso con --yes. Ejecútalos en tu propia terminal (en Claude Code también puedes escribirlos después de ! en el prompt). Si un comando de shell o MCP de un agente cambia igual el diseño congelado o la protección de GTT, GTT lo restaura, archiva lo que escribió y te avisa; gtt validate falla si un hook de protección fue alterado
+- gtt undo deshace lo que reemplazó la última promoción, mientras sus archivos sigan como los dejó. Si esa promoción congeló el proyecto, un nuevo freeze registra el estado anterior: sigue sin existir el unfreeze, y cada línea base queda en el historial
 - El trabajo ordinario (código, refactors, pruebas, Stories) no necesita nada de esto
 
 ## Comandos del método de desarrollo
@@ -3033,7 +3067,7 @@ gtt run 3
 \`\`\`
 
 - gtt delivery review reporta el tamaño del backlog contra el tope y el mínimo que declaraste, y te deja mantenerlo, poner tope, hacerlo más completo, adelgazarlo o trabajar en una sola pasada
-- gtt pending lista lo que te espera; gtt answer da tu respuesta (el agente nunca puede escribirla)
+- gtt pending lista lo que te espera; gtt answer da tu respuesta (el agente nunca puede escribirla); desde 1.23.0 también responde las revisiones de la Bandeja
 - gtt run lista los scripts que te esperan; gtt run <n> ejecuta uno. El script se genera desde un plan, se sella y se revisa, y solo tú lo ejecutas
 
 ## Sonar e ideas (desde 1.19.0)
@@ -3045,29 +3079,33 @@ gtt idea add 'lo que quiero construir después'
 \`\`\`
 
 - gtt sonar genera una página de solo lectura con todo lo que está en marcha y lo que viene, y la abre; en una carpeta de proyectos los muestra todos
-- gtt idea add anota una idea tal como la escribiste; el agente solo puede agregar una línea diciendo qué fue de ella
+- gtt idea add anota una idea tal como la escribiste; el agente solo puede agregar una línea diciendo qué fue de ella (desde 1.23.0 ideas, solicitudes y borradores de ADR viajan por la Bandeja, descrita arriba)
 - Desde 1.20.0 la página también dice cómo destrabar cada cosa que te espera (un comando por opción), muestra las historias bloqueadas aparte de las planeadas, y al empezar cada sesión recibes una línea con lo que te espera y dónde está la página; abrir el navegador solo es una opción que tú activas (\`gtt-sonar.sh prefs --open-on-start on\`)
 - Desde 1.21.0 la página tiene una vista Backlog: cada Épica con su estado, meta y aprobación, sus historias con estado, dueño, qué las da por hechas y qué las cerró (filtros por estado y una búsqueda), y una pestaña Diseño donde lees el stack, la arquitectura, las restricciones, los principios, los ADR y el diseño de cada Épica. Es de solo lectura: los documentos se muestran como texto, nunca se ejecutan. Corre \`gtt sonar\` dentro del proyecto para incluir los documentos; la vista de portafolio los omite para no pesar
 
-## Instalar una versión específica (ejemplo: 1.21.0)
+- Desde 1.22.0 la página se mantiene al día sola (un vigilante iniciado con la sesión la redibuja cuando cambian el backlog, las preguntas pendientes o git; dice «generado a las» cuando no está en vivo), muestra el avance por release y por horas (lo que queda fuera del alcance no cuenta en la cifra principal), lo que está en curso con su frente, la razón de cada Story bloqueada y, si el proyecto los deja, sus propios chequeos de salud; un proyecto con un Bootstrap más antiguo dice qué le falta y el comando para arreglarlo
+- Desde 1.22.0 gtt busca solo una versión nueva (como mucho cada 6 horas, una consulta a la página pública de releases, nada sobre ti ni tus proyectos) y, en una terminal, se actualiza solo; \`gtt upgrade --auto off\` o \`GTT_NO_UPDATE_CHECK=1\` lo apagan, y dentro de un proyecto avisa si su Bootstrap es más antiguo que el que trae (\`gtt update\`)
+- Desde 1.23.0 la página tiene un panel Bandeja (ver Sonar) y *Te necesito* también lista las revisiones que esperan tu respuesta, los paquetes listos para ratificar y los ADR escritos a mano (\`gtt adr adopt\`)
+
+## Instalar una versión específica (ejemplo: 1.23.0)
 
 ### Linux y macOS
 
 \`\`\`
-curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.21.0 sh
+curl -fsSL https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.sh | GTT_VERSION=1.23.0 sh
 \`\`\`
 
 ### Windows
 
 \`\`\`
-$env:GTT_VERSION="1.21.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
+$env:GTT_VERSION="1.23.0"; irm https://raw.githubusercontent.com/GTT-Community/gtt-cli/main/install.ps1 | iex
 \`\`\`
 
 ### uv y npm
 
 \`\`\`
-uv tool install gtt-cli==1.21.0
-npm install -g @gtt-community/gtt-cli@1.21.0
+uv tool install gtt-cli==1.23.0
+npm install -g @gtt-community/gtt-cli@1.23.0
 \`\`\`
 
 ## Dónde se instala
@@ -3087,8 +3125,8 @@ Archivos por plataforma disponibles en https://github.com/GTT-Community/gtt-cli/
 - checksums.txt (SHA-256)
 
 Código fuente y documentación: https://github.com/GTT-Community/gtt-cli`,
-    searchableEn: "cli gtt command line install curl powershell uv npm go windows macos linux binary gtt init quick start",
-    searchableEs: "cli gtt línea de comandos instalar curl powershell uv npm go windows macos linux binario gtt init inicio rápido",
+    searchableEn: "cli gtt command line install curl powershell uv npm go windows macos linux binary gtt init quick start inbox gtt inbox gtt idea gtt adr gtt answer gtt change gtt proposals idea request adr draft review",
+    searchableEs: "cli gtt línea de comandos instalar curl powershell uv npm go windows macos linux binario gtt init inicio rápido bandeja gtt inbox gtt idea gtt adr gtt answer gtt change gtt proposals idea solicitud borrador de adr revisión",
   },
   {
     slug: "bootstrap",
@@ -3182,7 +3220,7 @@ gtt resume
 - gtt sync keeps agent context, document tracking, the index and validation up to date in one run
 - gtt resume gives the session context derived from the real state of the project
 - gtt update updates GTT Bootstrap and preserves your project state and your local changes
-- gtt change requests a governed change in the middle of the work; gtt proposals, gtt promote and gtt undo follow it: https://gtt-method.org/cli/
+- gtt idea add, gtt adr new and gtt inbox take a change through the Inbox; gtt change is a shortcut; gtt answer, gtt promote and gtt undo decide and ratify it: https://gtt-method.org/cli/
 
 ## Other ways to install
 
@@ -3274,7 +3312,7 @@ gtt resume
 - gtt sync mantiene al día el contexto de los agentes, el seguimiento de documentos, el índice y la validación en una sola ejecución
 - gtt resume entrega el contexto de sesión derivado del estado real del proyecto
 - gtt update actualiza GTT Bootstrap y conserva el estado de tu proyecto y tus cambios locales
-- gtt change pide un cambio gobernado en pleno desarrollo; gtt proposals, gtt promote y gtt undo lo siguen: https://gtt-method.org/cli/
+- gtt idea add, gtt adr new y gtt inbox llevan un cambio por la Bandeja; gtt change es un atajo; gtt answer, gtt promote y gtt undo lo deciden y ratifican: https://gtt-method.org/cli/
 
 ## Otras formas de instalar
 
@@ -3828,8 +3866,8 @@ Without the CLI: bash .gtt/scripts/gtt-sonar.sh render writes .gtt/local/sonar.h
 
 ## Three views
 
-- Portfolio: all your projects (phase, progress, estimated date, what needs you, signals) and *I need you*: only what holds work back (open questions, Epics with work already built or under way and no approval yet, promotion sets ready to apply), ordered by the open Stories each one unblocks, each with the exact command to copy, including the way to the project's folder. Epics with no movement wait in a collapsed list.
-- Project: what is coming (proposals and Epics to approve with a dashed border, the next planned Epic), the flow line per Epic with today, the estimated date and the deadline, and the Stories of an Epic by state.
+- Portfolio: all your projects (phase, progress, estimated date, what needs you, signals) and *I need you*: only what holds work back (open questions, Epics with work already built or under way and no approval yet, promotion sets ready to apply; since 1.23.0 also reviews waiting for your answer, packages to ratify and ADRs written by hand), ordered by the open Stories each one unblocks, each with the exact command to copy, including the way to the project's folder. Epics with no movement wait in a collapsed list.
+- Project: what is coming (proposals and Epics to approve with a dashed border, the next planned Epic), the flow line per Epic with today, the estimated date and the deadline, and the Stories of an Epic by state. Since 1.23.0 it also has the Inbox panel: columns New, In review, To ratify, In work and Closed (last 7 days; the "all" filter adds parked and rejected). Each card shows the reference, title, type (idea, request, ADR or proposal), origin, level, priority, days in the stage, the last 3 lines of the trail and the command that is yours. A person's entries have a solid border and the agent's a dashed one; opening a card shows the full trail and text, drawn as text.
 - Latest: what Claude, you and GTT did, by day, filterable by project and by who.
 
 ## What it never does
@@ -3842,7 +3880,15 @@ It stays almost live: it is regenerated when the state changes and the page relo
 
 ## Ideas
 
-An idea is your own words in docs/ideas/IDEA-NNN.md. Write it from the page (the box *new idea* builds the command) or with gtt idea add. GTT keeps the text exactly as written. The agent can only add one line after it: covered by an Epic, turned into a proposal, a non-goal or a question. Parking and dropping an idea are yours.`,
+An idea is your own words in docs/ideas/IDEA-NNN.md. Write it from the page (the box *new idea* builds the command) or with gtt idea add. GTT keeps the text exactly as written. The agent can only add one line after it: covered by an Epic, turned into a proposal, a non-goal or a question. Parking and dropping an idea are yours.
+
+## The Inbox (since 1.23.0)
+
+One pipeline for everything that proposes a change. What a person writes is an IDEA-NNN (an idea, a request written with gtt idea add --type solicitud, or an architect's ADR draft written with gtt adr new); what the agent writes is a PROP-NNN. Stages: new, in review, accepted, to ratify, in work, closed. You write, you decide with gtt answer and you ratify with gtt promote, gtt approve or gtt run; each step leaves one line with date and author in the entry. gtt inbox lists it, gtt inbox show REF opens one, and park, reject, reopen and priority (urgent, normal or low) are yours. change-request.md is retired; gtt change stays as a shortcut.
+
+## Team profile (since 1.23.0)
+
+In the Team profile, working-agreements.md can declare the roles by level (architecture, specification, scope and a default) in a gtt-roles block. A review is addressed to the person of its level (a line \`Para: name\`); whoever answers is recorded, and if it is not the role's person the answer is accepted and noted, unless the team declares \`roles: strict\`, which rejects it. An ADR draft written by someone who is not the architecture person opens a review for her instead of going straight to accepted. Sonar has a "for me" filter. Light, Medium and Hard use the same flow without roles.`,
     contentEs: `GTT Sonar muestra, en una pantalla, lo que se está haciendo y lo que viene en todos tus proyectos GTT. Funciona como el tablero de salidas de un aeropuerto: ves qué sale, qué se atrasó y qué te espera, pero desde la pantalla no se despega nada.
 
 Disponible desde GTT 1.19.0. Viene con el Bootstrap: no hay nada más que instalar. Actualiza un proyecto existente con gtt update.
@@ -3861,8 +3907,8 @@ Sin el CLI: bash .gtt/scripts/gtt-sonar.sh render escribe .gtt/local/sonar.html.
 
 ## Tres vistas
 
-- Portafolio: todos tus proyectos (fase, avance, fecha estimada, lo que te necesita, señales) y *te necesito*: solo lo que frena trabajo (preguntas abiertas, Epics con trabajo ya construido o en curso y sin aprobar, sets de promoción listos para aplicar), ordenado por las stories abiertas que destraba cada uno, cada uno con el comando exacto para copiar, incluido el camino a la carpeta del proyecto. Los Epics sin movimiento esperan en una lista plegada.
-- Proyecto: lo que viene (propuestas y Epics por aprobar con borde punteado, el próximo Epic del plan), la línea de flujo por Epic con hoy, la fecha estimada y el plazo, y las Stories de un Epic por estado.
+- Portafolio: todos tus proyectos (fase, avance, fecha estimada, lo que te necesita, señales) y *te necesito*: solo lo que frena trabajo (preguntas abiertas, Epics con trabajo ya construido o en curso y sin aprobar, sets de promoción listos para aplicar; desde 1.23.0 también revisiones que esperan tu respuesta, paquetes por ratificar y ADR escritos a mano), ordenado por las stories abiertas que destraba cada uno, cada uno con el comando exacto para copiar, incluido el camino a la carpeta del proyecto. Los Epics sin movimiento esperan en una lista plegada.
+- Proyecto: lo que viene (propuestas y Epics por aprobar con borde punteado, el próximo Epic del plan), la línea de flujo por Epic con hoy, la fecha estimada y el plazo, y las Stories de un Epic por estado. Desde 1.23.0 también tiene el panel Bandeja: columnas Nuevas, En revisión, Por ratificar, En trabajo y Cerradas (últimos 7 días; el filtro «todas» suma las aparcadas y rechazadas). Cada tarjeta muestra la referencia, el título, el tipo (idea, solicitud, ADR o propuesta), el origen, el nivel, la prioridad, los días en la etapa, las 3 últimas líneas del rastro y el comando que te toca. Lo de una persona lleva borde sólido y lo del agente, punteado; al abrir una tarjeta se ve el rastro completo y el texto, pintado como texto.
 - Lo último: lo que hicieron Claude, tú y GTT, por día, con filtros por proyecto y por quién.
 
 ## Lo que nunca hace
@@ -3875,9 +3921,17 @@ Se mantiene casi en vivo: se regenera cuando cambia el estado y la página se re
 
 ## Ideas
 
-Una idea son tus propias palabras en docs/ideas/IDEA-NNN.md. Escríbela desde la página (el cuadro *nueva idea* arma el comando) o con gtt idea add. GTT guarda el texto tal cual. El agente solo puede agregar una línea después: cubierta por un Epic, convertida en propuesta, no-objetivo o pregunta. Aparcar y descartar una idea es tuyo.`,
-    searchableEn: "sonar gtt sonar dashboard board portfolio page read only view projects i need you latest ideas gtt idea add docs/ideas copy command",
-    searchableEs: "sonar gtt sonar tablero portafolio página solo lectura vista proyectos te necesito lo último ideas gtt idea add docs/ideas copiar comando",
+Una idea son tus propias palabras en docs/ideas/IDEA-NNN.md. Escríbela desde la página (el cuadro *nueva idea* arma el comando) o con gtt idea add. GTT guarda el texto tal cual. El agente solo puede agregar una línea después: cubierta por un Epic, convertida en propuesta, no-objetivo o pregunta. Aparcar y descartar una idea es tuyo.
+
+## La Bandeja (desde 1.23.0)
+
+Una sola tubería para todo lo que propone un cambio. Lo que escribe una persona es una IDEA-NNN (una idea, una solicitud escrita con gtt idea add --type solicitud, o un borrador de ADR del arquitecto escrito con gtt adr new); lo que escribe el agente es una PROP-NNN. Etapas: nueva, en revisión, aceptada, por ratificar, en trabajo, cerrada. Tú escribes, decides con gtt answer y ratificas con gtt promote, gtt approve o gtt run; cada paso deja una línea con fecha y autor en la entrada. gtt inbox la lista, gtt inbox show REF abre una, y park, reject, reopen y priority (urgent, normal o low) son tuyos. change-request.md se retira; gtt change queda como atajo.
+
+## Perfil Team (desde 1.23.0)
+
+En el perfil Team, working-agreements.md puede declarar los roles por nivel (arquitectura, especificación, alcance y uno por defecto) en un bloque gtt-roles. Una revisión va dirigida a la persona de su nivel (una línea \`Para: nombre\`); se registra quién contestó, y si no es la persona del rol la respuesta se acepta y queda anotada, salvo que el equipo declare \`roles: strict\`, que la rechaza. Un borrador de ADR escrito por quien no es la persona de arquitectura abre una revisión para ella en vez de pasar directo a aceptada. Sonar tiene un filtro «para mí». Light, Medium y Hard usan el mismo flujo, sin roles.`,
+    searchableEn: "sonar gtt sonar dashboard board portfolio page read only view projects i need you latest ideas gtt idea add docs/ideas copy command inbox review ratify adr adopt team roles",
+    searchableEs: "sonar gtt sonar tablero portafolio página solo lectura vista proyectos te necesito lo último ideas gtt idea add docs/ideas copiar comando bandeja revisión ratificar adr adopt roles team",
   },
   {
     slug: "prompts",
@@ -3929,6 +3983,22 @@ Incorporate GTT-Method Bootstrap into this existing project from https://github.
 Inspect the current code first.
 Do not overwrite, move or delete any existing file without asking me.
 Show me the context you propose so I can confirm it before it is frozen.
+\`\`\`
+
+## 5. Tell it to follow the method
+
+The most complete prompt: you name the methodology and its references, so the agent works as GTT prescribes and not from memory.
+
+\`\`\`
+Work in this project with GTT-Method (Governed Technical Thinking).
+Reference: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v3.0.md
+Install GTT Bootstrap from https://github.com/GTT-Community/gtt-bootstrap
+Read its AGENTS.md first and follow it.
+Inspect the project, detect which ADEs are present and ask me which participate and which is Primary.
+Use my design document if there is one; if not, offer the Initial Design Questionnaire.
+Do not invent decisions: when something is missing, ask me.
+Ideas, change requests and decisions go through the GTT inbox; you prepare them, I decide.
+You cannot freeze or promote: give me the exact command and I will run it.
 \`\`\`
 
 ## After the prompt
@@ -3984,6 +4054,22 @@ Incorpora GTT-Method Bootstrap en este proyecto existente desde https://github.c
 Inspecciona primero el código actual.
 No sobrescribas, muevas ni elimines ningún archivo existente sin preguntarme.
 Muéstrame el contexto que propones para confirmarlo antes de congelarlo.
+\`\`\`
+
+## 5. Indícale que siga el método
+
+El prompt más completo: nombras la metodología y sus referencias, para que el agente trabaje como GTT prescribe y no de memoria.
+
+\`\`\`
+Trabaja en este proyecto con GTT-Method (Governed Technical Thinking).
+Referencia: https://github.com/GTT-Community/gtt-method/blob/main/GTT-CANONICAL-v3.0.md
+Instala GTT Bootstrap desde https://github.com/GTT-Community/gtt-bootstrap
+Lee primero su AGENTS.md y síguelo.
+Inspecciona el proyecto, detecta qué ADEs hay y pregúntame cuáles participan y cuál es el Primario.
+Usa mi documento de diseño si existe; si no, ofrece el Cuestionario de Diseño Inicial.
+No inventes decisiones: cuando falte algo, pregúntame.
+Las ideas, solicitudes de cambio y decisiones pasan por la bandeja de GTT; tú las preparas, yo decido.
+No puedes congelar ni promover: dame el comando exacto y yo lo ejecuto.
 \`\`\`
 
 ## Después del prompt
