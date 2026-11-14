@@ -13,6 +13,7 @@ export interface ContentPage {
 // A paragraph holding only this marker is where the page renders its full-width
 // methodology section; the content before and after it flows around that section.
 export const METHODOLOGY_SECTION_MARKER = "{{methodology-section}}";
+export const SCHEMES_MARKER = "{{schemes}}";
 
 export const pages: ContentPage[] = [
   {
@@ -4087,6 +4088,21 @@ No puedes congelar ni promover: dame el comando exacto y yo lo ejecuto.
 GTT CLI descarga y opera GTT Bootstrap por ti.`,
     searchableEn: "prompts agent ade bootstrap implement gtt project github url",
     searchableEs: "prompts agente ade bootstrap implementar gtt proyecto url github",
+  },
+  {
+    slug: "how-it-works",
+    titleEn: "How GTT works",
+    titleEs: "Cómo funciona GTT",
+    descriptionEn: "Two reference schemes: the complete process from installation to output, and the Inbox, the single flow for every change.",
+    descriptionEs: "Dos esquemas de referencia: el proceso completo desde la instalación hasta la salida, y la Bandeja, el flujo único para todo cambio.",
+    contentEn: `${SCHEMES_MARKER}
+
+Orange: you do it. Blue: the agent does it. Solid border: human. Dashed border: agent. The schemes use the real commands and files of GTT 1.23.`,
+    contentEs: `${SCHEMES_MARKER}
+
+Naranja: lo haces tú. Azul: lo hace el agente. Borde sólido: humano. Borde punteado: agente. Los esquemas usan los comandos y archivos reales de GTT 1.23.`,
+    searchableEn: "how gtt works scheme diagram process installation inbox flow ideas proposals adr freeze commands",
+    searchableEs: "cómo funciona gtt esquema diagrama proceso instalación bandeja flujo ideas propuestas adr freeze comandos",
   },
 ];
 

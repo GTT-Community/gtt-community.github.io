@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { METHODOLOGY_SECTION_MARKER, pages, searchContent } from "@/lib/gttContent";
+import { METHODOLOGY_SECTION_MARKER, SCHEMES_MARKER, pages, searchContent } from "@/lib/gttContent";
 import { pageJsonLd, pageTitle, pageUrl } from "@/lib/seo";
 import { useState } from "react";
 import { ArrowLeft, Check, Copy, Terminal } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { EcosystemGuide } from "@/components/EcosystemGuide";
+import { Esquemas } from "@/components/Esquemas";
 import { linkify } from "@/components/linkify";
 
 function CodeBlock({ code, language }: { code: string; language: "en" | "es" }) {
@@ -221,7 +222,9 @@ function ContentPage() {
           <p className="text-lg text-muted-foreground">{description}</p>
         </header>
 
-        {isGuide ? (
+        {content.includes(SCHEMES_MARKER) ? (
+          <Esquemas language={language} />
+        ) : isGuide ? (
           <EcosystemGuide content={content} language={language} />
         ) : (
           <>
