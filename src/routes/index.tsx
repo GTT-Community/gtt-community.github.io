@@ -135,6 +135,7 @@ function Index() {
               <Link to="/$slug/" params={{ slug: "prompts" }} className="cta-blue"><Bot size={17} /> {heroContent[language].ctaPrimary}</Link>
               <Link to="/$slug/" params={{ slug: "cli" }} className="cta-green"><Terminal size={17} /> {heroContent[language].ctaCli}</Link>
             </div>
+            <p className="mt-4 text-sm"><Link to="/$slug/" params={{ slug: "sonar" }} className="underline underline-offset-4">{language === "en" ? "GTT Sonar: see all your projects on one page →" : "GTT Sonar: todos tus proyectos en una sola página →"}</Link></p>
             <div className="mt-7 flex flex-wrap items-center gap-y-3 text-xs">
               <span className="flex items-center gap-2 pr-7"><Code2 size={20} /> {heroContent[language].badges[0]}</span>
               <a href={FORUM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-l border-border px-7 underline underline-offset-4"><Users size={20} /> {heroContent[language].badges[1]}</a>

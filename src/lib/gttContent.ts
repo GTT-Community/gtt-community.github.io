@@ -3864,11 +3864,13 @@ Inside a project it shows that project. In a folder that holds projects it finds
 
 Without the CLI: bash .gtt/scripts/gtt-sonar.sh render writes .gtt/local/sonar.html.
 
-## Three views
+## Four views and a guide
 
 - Portfolio: all your projects (phase, progress, estimated date, what needs you, signals) and *I need you*: only what holds work back (open questions, Epics with work already built or under way and no approval yet, promotion sets ready to apply; since 1.23.0 also reviews waiting for your answer, packages to ratify and ADRs written by hand), ordered by the open Stories each one unblocks, each with the exact command to copy, including the way to the project's folder. Epics with no movement wait in a collapsed list.
 - Project: what is coming (proposals and Epics to approve with a dashed border, the next planned Epic), the flow line per Epic with today, the estimated date and the deadline, and the Stories of an Epic by state. Since 1.23.0 it also has the Inbox panel: columns New, In review, To ratify, In work and Closed (last 7 days; the "all" filter adds parked and rejected). Each card shows the reference, title, type (idea, request, ADR or proposal), origin, level, priority, days in the stage, the last 3 lines of the trail and the command that is yours. A person's entries have a solid border and the agent's a dashed one; opening a card shows the full trail and text, drawn as text.
 - Latest: what Claude, you and GTT did, by day, filterable by project and by who.
+- Backlog: Epics, Stories and the design documents, with filter and search.
+- Guide: a short tutorial inside the page that explains each view, *I need you*, the Inbox, how progress is counted and how to tell whether the page is up to date. Under the logo, a *home* link opens gtt-method.org.
 
 ## What it never does
 
@@ -3905,11 +3907,13 @@ Dentro de un proyecto muestra ese proyecto. En una carpeta que contiene proyecto
 
 Sin el CLI: bash .gtt/scripts/gtt-sonar.sh render escribe .gtt/local/sonar.html.
 
-## Tres vistas
+## Cuatro vistas y una guía
 
 - Portafolio: todos tus proyectos (fase, avance, fecha estimada, lo que te necesita, señales) y *te necesito*: solo lo que frena trabajo (preguntas abiertas, Epics con trabajo ya construido o en curso y sin aprobar, sets de promoción listos para aplicar; desde 1.23.0 también revisiones que esperan tu respuesta, paquetes por ratificar y ADR escritos a mano), ordenado por las stories abiertas que destraba cada uno, cada uno con el comando exacto para copiar, incluido el camino a la carpeta del proyecto. Los Epics sin movimiento esperan en una lista plegada.
 - Proyecto: lo que viene (propuestas y Epics por aprobar con borde punteado, el próximo Epic del plan), la línea de flujo por Epic con hoy, la fecha estimada y el plazo, y las Stories de un Epic por estado. Desde 1.23.0 también tiene el panel Bandeja: columnas Nuevas, En revisión, Por ratificar, En trabajo y Cerradas (últimos 7 días; el filtro «todas» suma las aparcadas y rechazadas). Cada tarjeta muestra la referencia, el título, el tipo (idea, solicitud, ADR o propuesta), el origen, el nivel, la prioridad, los días en la etapa, las 3 últimas líneas del rastro y el comando que te toca. Lo de una persona lleva borde sólido y lo del agente, punteado; al abrir una tarjeta se ve el rastro completo y el texto, pintado como texto.
 - Lo último: lo que hicieron Claude, tú y GTT, por día, con filtros por proyecto y por quién.
+- Backlog: Epics, Stories y documentos de diseño, con filtro y búsqueda.
+- Guía: un tutorial breve dentro de la página que explica cada vista, *te necesito*, la Bandeja, cómo se cuenta el avance y cómo saber si la página está al día. Bajo el logo, un enlace *inicio* abre gtt-method.org.
 
 ## Lo que nunca hace
 
