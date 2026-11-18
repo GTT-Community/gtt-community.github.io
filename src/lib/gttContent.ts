@@ -3847,8 +3847,8 @@ Desde 1.18.0 el script también se verifica antes de llegar a ti: debe poder lee
     slug: "sonar",
     titleEn: "GTT Sonar",
     titleEs: "GTT Sonar",
-    descriptionEn: "One read-only page with everything under way in your GTT projects and what comes next, without touching governance.",
-    descriptionEs: "Una página de solo lectura con todo lo que está en marcha en tus proyectos GTT y lo que viene, sin tocar el gobierno.",
+    descriptionEn: "One page with everything under way in your GTT projects, what is missing and what claude is doing; read only, or editable on your machine, and it never ratifies anything.",
+    descriptionEs: "Una página con todo lo que está en marcha en tus proyectos GTT, lo que falta y lo que hace claude; de solo lectura, o editable en tu máquina, y nunca ratifica nada.",
     contentEn: `GTT Sonar shows, on one screen, what is being done and what comes next in all your GTT projects. It works like the departures board of an airport: you see what leaves, what is late and what waits for you, but nothing is launched from the screen.
 
 Available since GTT 1.19.0. It comes with the Bootstrap: there is nothing else to install. Update an existing project with gtt update.
@@ -3873,11 +3873,80 @@ Without the CLI: bash .gtt/scripts/gtt-sonar.sh render writes .gtt/local/sonar.h
 - Backlog: Epics, Stories and the design documents, with filter and search.
 - Guide: a short tutorial inside the page that explains each view, *I need you*, the Inbox, how progress is counted and how to tell whether the page is up to date. Under the logo, a *home* link opens gtt-method.org.
 
+## Sonar as a tool (since 1.25.0)
+
+Sonar stopped being only a board: it now shows what is missing, who it is up to and what claude is doing, and lets you fill in what you could write by hand.
+
+\`\`\`
+gtt sonar            # opens the Plan, editable: a local server that only listens on 127.0.0.1
+gtt sonar --all      # the same, for a folder of projects
+gtt sonar --static   # the read-only page of before: commands and text to copy instead of forms
+gtt sonar stop       # closes the server (it also closes itself after 8 hours without use)
+\`\`\`
+
+- **Plan** (the home of a project): the Epics in the order they are built, by front (or release, or group), each with its Stories, what it still lacks (*to define*), who it is up to (*yours* or *the agent's*), the Story that is *next*, hours estimated against active hours, and an estimated date. While fewer than 3 Stories have been measured the date is a **range** that says *uncalibrated*, never a false date.
+- **I need you** answers in the page: the buttons of a question, a reply to a review. What changes the design goes to the Inbox; approving, promoting, running, undoing and freezing stay in your terminal, and Sonar leaves the command to copy.
+- **Fill it in from the page**: the estimate, *Implements*, *Done when* and *Blocked by* of a Story, and the goal, scope and out-of-scope of a *Proposed* Epic. It writes only the fields you could write by hand, through the same operation of GTT (\`backlog.set\`), and only if the backlog is as you saw it; if it changed while you typed, nothing is written and the page says so. Your input about an approved Epic, a design or a gap goes to the Inbox (\`gtt idea add --about REF\`).
+- **Activity**: what claude is doing now (with hooks in Claude Code and Kiro; with any other ADE, a sampler of the working tree says which files changed, marked as *unattributed*), what happened day by day, the result of each \`gtt run\` and what claude saw in its last session. Code that changes for 15 minutes with no Story in progress is flagged, and the agent is told once.
+- **Health**: everything GTT detects, by plane (governance, delivery, definition), each linked to its Epic or Story, and the state of every check of \`gtt-validate\`.
+- **Design**: the governed context, the adopted ADRs and the design of each Epic. Drafts of ADRs live only in the Inbox.
+
+The server only answers on 127.0.0.1. Opening it is a human act: \`gtt sonar\` opens the browser with a code that is good once and for 60 seconds, which becomes a cookie; without the cookie the page is read only and every write answers 403. The agent cannot open it (only \`--static\`) or read its secret, and each act is recorded as yours, via sonar. A project with an older Bootstrap is shown read only, with the version it needs.
+
+## Ask Claude about your projects: gtt mcp (since 1.26.0)
+
+\`gtt mcp\` is an MCP server inside the CLI, so Claude Code, Claude Desktop or any MCP client can ask about your projects with the same data as Sonar, without reading markdown or guessing. It talks over stdin and stdout: it opens no port and uses no network. It reads the project it is started in plus the repos of \`gtt sonar list\`, and nothing else.
+
+It only reads. All seven tools are declared read only and reach three declared read operations of the Bootstrap; none can answer, approve, promote, run, undo or freeze for you. A test of the CLI walks the table of tools and operations and fails if one ever reaches an operation with human authority, one that writes, or a ratification verb.
+
+| Tool | What it answers |
+|---|---|
+| \`gtt_projects\` | The repos of the portfolio, with Bootstrap version, phase and counts |
+| \`gtt_findings\` | The findings of a repo, filtered by plane, owner, level or reference |
+| \`gtt_ready\` | What an Epic or Story still lacks to be ready, and whom each thing is up to |
+| \`gtt_needs_you\` | What needs you, in one repo or, without \`repo\`, in all the repos of the portfolio |
+| \`gtt_epic\` | Progress, estimated and active hours, date or range, and the Stories of an Epic |
+| \`gtt_activity\` | What claude is doing now and the latest events |
+| \`gtt_code\` | The module map, the dependencies the architecture does not allow, and design to code |
+
+Each answer is compact JSON plus one summary line in the language of the project, at most 50 items per page (\`offset\` and \`limit\`). A repo whose Bootstrap is older answers normally and says which release it needs: 1.25 for findings, 1.26 for the code map. Run \`gtt update\` there.
+
+### Connect it to Claude Code
+
+\`\`\`
+claude mcp add gtt -- gtt mcp
+\`\`\`
+
+Everything after \`--\` is the command that starts the server. By default the server is private to you and to the current project; add \`--scope user\` before the name to have it in all your projects, or \`--scope project\` to share it with the team in the project's .mcp.json:
+
+\`\`\`
+claude mcp add --scope user gtt -- gtt mcp
+\`\`\`
+
+Then ask: "what needs me in all my projects?" or "what is missing in STORY-003?".
+
+### Connect it to Claude Desktop
+
+Open Settings, Developer, Edit Config, which opens claude_desktop_config.json (on macOS in ~/Library/Application Support/Claude/, on Windows in %APPDATA%\\Claude\\), and add the server:
+
+\`\`\`
+{
+  "mcpServers": {
+    "gtt": {
+      "command": "gtt",
+      "args": ["mcp"]
+    }
+  }
+}
+\`\`\`
+
+Save the file and quit and reopen Claude Desktop completely. If Claude Desktop does not find \`gtt\`, put the full path of the binary in \`command\` (the output of \`which gtt\`). Desktop does not start inside a project: add the repos you want to ask about with \`gtt sonar add <folder>\`.
+
 ## What it never does
 
-- It does not run anything: every act that is yours is a command with a copy button. You run it in the terminal, with its own dry run and confirmation.
+- It does not ratify anything: every act that is yours is a command with a copy button. You run it in the terminal, with its own dry run and confirmation.
 - It does not calculate: percentages, dates, weights and commands come from the scripts that own each fact. What GTT does not calculate yet shows as "no data".
-- It has no server and no network. The page is a derived file in .gtt/local/ (outside git): delete it and gtt sonar brings it back. Everything it shows is escaped and drawn as text, and a Content Security Policy only lets it run its own script.
+- The page has no network (and \`gtt sonar --static\` has no server). The editable \`gtt sonar\` runs a local server only on 127.0.0.1, see below. The page is a derived file in .gtt/local/ (outside git): delete it and gtt sonar brings it back. Everything it shows is escaped and drawn as text, and a Content Security Policy only lets it run its own script.
 
 It stays almost live: it is regenerated when the state changes and the page reloads every 5 seconds, with a button to pause. A project whose Bootstrap does not have Sonar appears in the portfolio as "update GTT in this repo", and the rest goes on.
 
@@ -3916,11 +3985,80 @@ Sin el CLI: bash .gtt/scripts/gtt-sonar.sh render escribe .gtt/local/sonar.html.
 - Backlog: Epics, Stories y documentos de diseño, con filtro y búsqueda.
 - Guía: un tutorial breve dentro de la página que explica cada vista, *te necesito*, la Bandeja, cómo se cuenta el avance y cómo saber si la página está al día. Bajo el logo, un enlace *inicio* abre gtt-method.org.
 
+## Sonar como herramienta (desde 1.25.0)
+
+Sonar dejó de ser solo un tablero: ahora muestra lo que falta, a quién le toca y qué está haciendo claude, y te deja llenar lo que podrías escribir a mano.
+
+\`\`\`
+gtt sonar            # abre el Plan, editable: un servidor local que solo escucha en 127.0.0.1
+gtt sonar --all      # lo mismo, para una carpeta de proyectos
+gtt sonar --static   # la página de solo lectura de antes: comandos y texto para copiar en vez de formularios
+gtt sonar stop       # cierra el servidor (también se cierra solo tras 8 horas sin uso)
+\`\`\`
+
+- **Plan** (el inicio de un proyecto): las épicas en el orden en que se construyen, por frente (o release, o grupo), cada una con sus historias, lo que le falta (*por definir*), a quién le toca (*tuya* o *de claude*), la historia que viene (*siguiente*), horas estimadas contra horas activas y una fecha estimada. Mientras haya menos de 3 historias medidas la fecha es un **rango** que dice *sin calibrar*, nunca una fecha falsa.
+- **Te necesito** responde en la página: los botones de una pregunta, la respuesta a una revisión. Lo que cambia el diseño entra a la Bandeja; aprobar, promover, correr, deshacer y congelar siguen en tu terminal, y Sonar te deja el comando para copiar.
+- **Llenar desde la página**: la estimación, *Implements*, *Done when* y *Blocked by* de una historia, y la meta, el alcance y lo que queda fuera de una épica *Proposed*. Escribe solo los campos que podrías escribir a mano, por la misma operación de GTT (\`backlog.set\`), y solo si el backlog está como lo viste; si cambió mientras escribías, no escribe nada y la página te avisa. Tu aporte sobre una épica aprobada, un diseño o un vacío va a la Bandeja (\`gtt idea add --about REF\`).
+- **Actividad**: qué está haciendo claude ahora (con hooks en Claude Code y Kiro; con cualquier otro ADE, un muestreo del árbol de trabajo dice qué archivos cambiaron, marcados como *sin atribuir*), lo que pasó día por día, el resultado de cada \`gtt run\` y lo que vio claude en su última sesión. El código que cambia por 15 minutos sin ninguna historia en curso se marca, y el agente lo oye una vez.
+- **Salud**: todo lo que GTT detecta, por plano (gobierno, entrega, definición), cada hallazgo con enlace a su épica o historia, y el estado de cada chequeo de \`gtt-validate\`.
+- **Diseño**: el contexto gobernado, los ADR adoptados y el diseño de cada épica. Los borradores de ADR viven solo en la Bandeja.
+
+El servidor solo responde en 127.0.0.1. Abrirlo es un acto humano: \`gtt sonar\` abre el navegador con un código que sirve una vez y por 60 segundos, y que se canjea por una cookie; sin la cookie la página es de solo lectura y toda escritura responde 403. El agente no puede abrirlo (solo \`--static\`) ni leer su secreto, y cada acto queda anotado como tuyo, vía sonar. Un proyecto con un Bootstrap anterior se ve en solo lectura, con la versión que necesita.
+
+## Pregúntale a Claude por tus proyectos: gtt mcp (desde 1.26.0)
+
+\`gtt mcp\` es un servidor MCP dentro del CLI, para que Claude Code, Claude Desktop u otro cliente MCP consulte tus proyectos con los mismos datos que Sonar, sin leer markdown ni adivinar. Habla por stdin y stdout: no abre puertos ni usa la red. Lee el proyecto donde se inicia más los repos de \`gtt sonar list\`, y nada más.
+
+Solo lee. Las siete herramientas están declaradas de solo lectura y llegan a tres operaciones de lectura declaradas del Bootstrap; ninguna puede responder, aprobar, promover, correr, deshacer ni congelar por ti. Un test del CLI recorre la tabla de herramientas y operaciones y falla si alguna llega alguna vez a una operación con autoridad humana, a una que escribe o a un verbo de ratificación.
+
+| Herramienta | Qué responde |
+|---|---|
+| \`gtt_projects\` | Los repos del portafolio, con versión del Bootstrap, fase y contadores |
+| \`gtt_findings\` | Los hallazgos de un repo, filtrados por plano, dueño, nivel o referencia |
+| \`gtt_ready\` | Qué le falta a una Épica o historia para estar lista y a quién le toca cada cosa |
+| \`gtt_needs_you\` | Lo que te necesita, de un repo o, sin \`repo\`, de todos los repos del portafolio |
+| \`gtt_epic\` | Avance, horas estimadas y activas, fecha o rango, y las historias de una Épica |
+| \`gtt_activity\` | Qué hace claude ahora y lo último |
+| \`gtt_code\` | El mapa de módulos, las dependencias que la arquitectura no permite y del diseño al código |
+
+Cada respuesta es JSON compacto y una línea de resumen en el idioma del proyecto, con un máximo de 50 ítems por página (\`offset\` y \`limit\`). Un repo con un Bootstrap más antiguo responde con normalidad y dice qué versión necesita: la 1.25 para los hallazgos, la 1.26 para el mapa de código. Corre \`gtt update\` ahí.
+
+### Conéctalo a Claude Code
+
+\`\`\`
+claude mcp add gtt -- gtt mcp
+\`\`\`
+
+Todo lo que va después de \`--\` es el comando que arranca el servidor. Por defecto el servidor es solo tuyo y del proyecto actual; agrega \`--scope user\` antes del nombre para tenerlo en todos tus proyectos, o \`--scope project\` para compartirlo con el equipo en el .mcp.json del proyecto:
+
+\`\`\`
+claude mcp add --scope user gtt -- gtt mcp
+\`\`\`
+
+Luego pregunta: «¿qué me necesita en todos mis proyectos?» o «¿qué falta en STORY-003?».
+
+### Conéctalo a Claude Desktop
+
+Abre Settings, Developer, Edit Config, que abre claude_desktop_config.json (en macOS en ~/Library/Application Support/Claude/, en Windows en %APPDATA%\\Claude\\), y agrega el servidor:
+
+\`\`\`
+{
+  "mcpServers": {
+    "gtt": {
+      "command": "gtt",
+      "args": ["mcp"]
+    }
+  }
+}
+\`\`\`
+
+Guarda el archivo y cierra y vuelve a abrir Claude Desktop por completo. Si Claude Desktop no encuentra \`gtt\`, pon en \`command\` la ruta completa del binario (la salida de \`which gtt\`). Desktop no arranca dentro de un proyecto: agrega los repos que quieras consultar con \`gtt sonar add <carpeta>\`.
+
 ## Lo que nunca hace
 
-- No ejecuta nada: cada acto que es tuyo es un comando con un botón copiar. Lo corres en la terminal, con su propio dry-run y confirmación.
+- No ratifica nada: cada acto que es tuyo es un comando con un botón copiar. Lo corres en la terminal, con su propio dry-run y confirmación.
 - No calcula: porcentajes, fechas, pesos y comandos vienen de los scripts dueños de cada dato. Lo que GTT aún no calcula se ve como "sin dato".
-- No tiene servidor ni red. La página es un archivo derivado en .gtt/local/ (fuera de git): si lo borras, gtt sonar lo devuelve. Todo lo que muestra va escapado y se pinta como texto, y una Content Security Policy solo le deja correr su propio script.
+- La página no tiene red (y \`gtt sonar --static\` no tiene servidor). El \`gtt sonar\` editable corre un servidor local solo en 127.0.0.1, ver abajo. La página es un archivo derivado en .gtt/local/ (fuera de git): si lo borras, gtt sonar lo devuelve. Todo lo que muestra va escapado y se pinta como texto, y una Content Security Policy solo le deja correr su propio script.
 
 Se mantiene casi en vivo: se regenera cuando cambia el estado y la página se recarga cada 5 segundos, con un botón para pausar. Un proyecto cuyo Bootstrap no tiene Sonar aparece en el portafolio como "actualiza GTT en este repo", y el resto sigue.
 
@@ -3935,8 +4073,8 @@ Una sola tubería para todo lo que propone un cambio. Lo que escribe una persona
 ## Perfil Team (desde 1.23.0)
 
 En el perfil Team, working-agreements.md puede declarar los roles por nivel (arquitectura, especificación, alcance y uno por defecto) en un bloque gtt-roles. Una revisión va dirigida a la persona de su nivel (una línea \`Para: nombre\`); se registra quién contestó, y si no es la persona del rol la respuesta se acepta y queda anotada, salvo que el equipo declare \`roles: strict\`, que la rechaza. Un borrador de ADR escrito por quien no es la persona de arquitectura abre una revisión para ella en vez de pasar directo a aceptada. Sonar tiene un filtro «para mí». Light, Medium y Hard usan el mismo flujo, sin roles.`,
-    searchableEn: "sonar gtt sonar dashboard board portfolio page read only view projects i need you latest ideas gtt idea add docs/ideas copy command inbox review ratify adr adopt team roles",
-    searchableEs: "sonar gtt sonar tablero portafolio página solo lectura vista proyectos te necesito lo último ideas gtt idea add docs/ideas copiar comando bandeja revisión ratificar adr adopt roles team",
+    searchableEn: "sonar gtt sonar dashboard board portfolio page read only view projects i need you latest ideas gtt idea add docs/ideas copy command inbox review ratify adr adopt team roles mcp claude code desktop claude mcp add",
+    searchableEs: "sonar gtt sonar tablero portafolio página solo lectura vista proyectos te necesito lo último ideas gtt idea add docs/ideas copiar comando bandeja revisión ratificar adr adopt roles team mcp claude code desktop claude mcp add",
   },
   {
     slug: "prompts",
