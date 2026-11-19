@@ -3223,6 +3223,20 @@ gtt resume
 - gtt update updates GTT Bootstrap and preserves your project state and your local changes
 - gtt idea add, gtt adr new and gtt inbox take a change through the Inbox; gtt change is a shortcut; gtt answer, gtt promote and gtt undo decide and ratify it: https://gtt-method.org/cli/
 
+## Disk: your agents never run you out of space (since 1.27.0)
+
+Agents that work in parallel each get a work copy (a Git worktree) with its own dependencies, and a full disk stops all of them at once. So one rule is in force by default, for every ADE: at most 3 work copies at a time, work copies and ADE folders under 15 GB, at least 10 GB free. The agent checks before creating a copy or launching agents, removes a finished copy that is already merged, installs dependencies with the frozen, offline install of its package manager and keeps dumps, audio, test data and test reports in /tmp. The rule never blocks ordinary work.
+
+The numbers are yours, and keeping the default is recommended: a full disk can corrupt the work in progress, and cleaning it afterwards costs more than the limits ever did.
+
+\`\`\`
+bash .gtt/scripts/gtt-disk.sh status
+bash .gtt/scripts/gtt-disk.sh set --max-copies 5 --apply
+bash .gtt/scripts/gtt-disk.sh set --default --apply
+\`\`\`
+
+The setting is saved only on your machine (.gtt/local/disk.json, never committed) and an agent cannot change it.
+
 ## Other ways to install
 
 - With a prompt to your AI agent, without the CLI: https://gtt-method.org/prompts/
@@ -3314,6 +3328,20 @@ gtt resume
 - gtt resume entrega el contexto de sesión derivado del estado real del proyecto
 - gtt update actualiza GTT Bootstrap y conserva el estado de tu proyecto y tus cambios locales
 - gtt idea add, gtt adr new y gtt inbox llevan un cambio por la Bandeja; gtt change es un atajo; gtt answer, gtt promote y gtt undo lo deciden y ratifican: https://gtt-method.org/cli/
+
+## Disco: tus agentes nunca te dejan sin espacio (desde 1.27.0)
+
+Los agentes que trabajan en paralelo reciben cada uno una copia de trabajo (un worktree de Git) con sus propias dependencias, y un disco lleno los detiene a todos a la vez. Por eso rige por defecto una regla, igual para todos los ADE: como máximo 3 copias de trabajo a la vez, copias de trabajo y carpetas de los ADE bajo 15 GB, al menos 10 GB libres. El agente revisa antes de crear una copia o lanzar agentes, borra la copia terminada que ya está integrada, instala dependencias con la instalación congelada y sin red de su gestor de paquetes y deja volcados, audios, datos de prueba y reportes de pruebas en /tmp. La regla nunca bloquea el trabajo ordinario.
+
+Los números son tuyos, y se recomienda dejar los de por defecto: un disco lleno puede corromper el trabajo en curso y limpiarlo después cuesta más que lo que costaron los límites.
+
+\`\`\`
+bash .gtt/scripts/gtt-disk.sh status
+bash .gtt/scripts/gtt-disk.sh set --max-copies 5 --apply
+bash .gtt/scripts/gtt-disk.sh set --default --apply
+\`\`\`
+
+La elección se guarda solo en tu máquina (.gtt/local/disk.json, nunca se versiona) y un agente no puede cambiarla.
 
 ## Otras formas de instalar
 
