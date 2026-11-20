@@ -3220,8 +3220,19 @@ gtt resume
 
 - gtt sync keeps agent context, document tracking, the index and validation up to date in one run
 - gtt resume gives the session context derived from the real state of the project
-- gtt update updates GTT Bootstrap and preserves your project state and your local changes
+- gtt update updates the whole suite in one command (gtt itself first, then the project's GTT Bootstrap) and preserves your project state and your local changes
 - gtt idea add, gtt adr new and gtt inbox take a change through the Inbox; gtt change is a shortcut; gtt answer, gtt promote and gtt undo decide and ratify it: https://gtt-method.org/cli/
+
+## Updating a project: one command (since 1.28.0)
+
+gtt update brings the whole suite up. If a newer gtt exists it replaces itself first (verified, the previous binary kept as gtt.old) and continues with the Bootstrap that release ships; then it updates the project's Bootstrap, transactionally. The CLI and the Bootstrap end on the same version.
+
+It also recovers a project that was cloned, moved to another machine or shared: the install ledger is rebuilt from the published release of the version the project runs, files that were deleted come back and moved files are followed. Your own edits to package files are kept and never replaced without your confirmation. gtt-domain/ (your backlog, context, ADRs and proposals) is not touched by the update: it keeps a zip of it outside the project and, when the new Bootstrap asks more of it, your agent receives the migration as its next action. It makes another zip first, rewrites only Stories and proves that no Epic, Story or governed file was lost or changed. Keep a copy of the zip somewhere else too: it is the only thing that survives losing the machine.
+
+\`\`\`
+gtt update
+gtt update --no-cli
+\`\`\`
 
 ## Disk: your agents never run you out of space (since 1.27.0)
 
@@ -3326,8 +3337,19 @@ gtt resume
 
 - gtt sync mantiene al día el contexto de los agentes, el seguimiento de documentos, el índice y la validación en una sola ejecución
 - gtt resume entrega el contexto de sesión derivado del estado real del proyecto
-- gtt update actualiza GTT Bootstrap y conserva el estado de tu proyecto y tus cambios locales
+- gtt update actualiza toda la suite con un solo comando (primero gtt, luego el GTT Bootstrap del proyecto) y conserva el estado de tu proyecto y tus cambios locales
 - gtt idea add, gtt adr new y gtt inbox llevan un cambio por la Bandeja; gtt change es un atajo; gtt answer, gtt promote y gtt undo lo deciden y ratifican: https://gtt-method.org/cli/
+
+## Actualizar un proyecto: un solo comando (desde 1.28.0)
+
+gtt update actualiza toda la suite. Si existe un gtt más nuevo, se reemplaza primero (verificado, el binario anterior queda como gtt.old) y sigue con el Bootstrap que esa versión trae; después actualiza el Bootstrap del proyecto, de forma transaccional. El CLI y el Bootstrap quedan en la misma versión.
+
+También recupera un proyecto clonado, movido de máquina o compartido: el registro de instalación se reconstruye desde el release publicado de la versión que el proyecto tiene, los archivos borrados vuelven y los movidos se siguen. Tus propias ediciones a archivos del paquete se conservan y nunca se reemplazan sin tu confirmación. gtt-domain/ (tu backlog, contexto, ADRs y propuestas) no lo toca el update: guarda un zip fuera del proyecto y, cuando el Bootstrap nuevo le pide más, tu agente recibe la migración como su siguiente acción. Hace otro zip primero, reescribe solo Stories y prueba que no se perdió ni cambió ningún Epic, Story o archivo gobernado. Guarda también una copia del zip en otro lugar: es lo único que sobrevive si pierdes la máquina.
+
+\`\`\`
+gtt update
+gtt update --no-cli
+\`\`\`
 
 ## Disco: tus agentes nunca te dejan sin espacio (desde 1.27.0)
 
